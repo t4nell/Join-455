@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="./styles/font.css" />
     <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/all_sites.css" />
+    <link rel="stylesheet" href="./styles/input_icons.css">
+
     <script src="./script.js" defer></script>
+    <script src="./scripts/templates.js" defer></script>
     <link
       rel="shortcut icon"
       href="./assets/imgs/Capa 2.svg"
@@ -15,16 +18,23 @@
     />
     <title>Join</title>
   </head>
-  <body>
+  <body onload="init()">
     <main>
+
       <div class="signup_login">
-        <span class="font_size_20px">Not a join User?</span>
+        <span class="font_size_20px">Not a Join user?</span>
         <button class="signup_btn dark_btn">Sign up</button>
       </div>
 
       <div class="join_logo">
         <img src="./assets/imgs/Capa 2.svg" alt="join_logo" />
       </div>
+
+      <div id="login_container" class="login_wrapper"></div>
+
+      <footer>
+        <div><a href="./policy/policy.html">Privacy Policy</a><a href="./legalNotes/legal.html">Legal Notice</a></div>
+      </footer>
 
     </main>
   </body>
