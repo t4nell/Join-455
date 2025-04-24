@@ -1,11 +1,5 @@
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.join-logo{
+.join_logo{
     position: absolute;
     animation: moveLogo 2s ease forwards;
 }
@@ -26,3 +20,14 @@ body{
         transform: translate(0, 0) scale(0.365);
     }
   }
+
+.signup_login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 279px;
+    height: 49px;
+    top: 67px;
+    right: 122px;
+}
