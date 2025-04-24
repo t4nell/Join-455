@@ -1,5 +1,17 @@
-.login_input_icon{
+.name_input_icon{
+    background-image: url('../assets/imgs/input_icons/person.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.mail_input_icon{
     background-image: url('../assets/imgs/input_icons/mail.png');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.lock_input_icon{
+    background-image: url('../assets/imgs/input_icons/lock.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
 }
