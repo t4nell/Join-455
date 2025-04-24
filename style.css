@@ -1,4 +1,5 @@
 main{
+    background-color: var(--background-color-main);
     max-width: 1440px;
     height: 100vh;
 }
