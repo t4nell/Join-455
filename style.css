@@ -47,7 +47,6 @@ main{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 84px 115px;
     background-color: white;
     border-radius: 30px;
 }
@@ -67,7 +66,7 @@ main{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 32px 0;
+    margin: 16px 0;
 }
 
 .button_login_container {
@@ -125,15 +124,14 @@ footer a {
   }
 
   .signup_card{
-    height: 449px;
-    width: 652px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 84px 115px;
     background-color: white;
     border-radius: 30px;
+    width: 598px;
+    height: 630px;
   }
 
   .signup_card input {
@@ -162,7 +160,6 @@ footer a {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 35px;
   }
 
   .button_signup_container{
@@ -170,4 +167,10 @@ footer a {
     justify-content: center;
     align-items: center;
     gap: 35px;
+  }
+
+  #accept_policy{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
   }
