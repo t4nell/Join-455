@@ -1,6 +1,7 @@
 :root {
     --dark-button: #2A3647;
     --text-color-white-button: white;
+    --button-hover-color: #29ABE2;
     --light-button: white;
     --text-color-dark-button: #2A3647;
     --background-color-sidebar: #2A3647;
@@ -11,6 +12,8 @@
     --text-color-main: #000000;
     --text-color-description:  #2A3647;
     --text-color-sidebar: #ffffff;
+    --hover-color-sidebar1: #2A3D59;
+    --hover-color-sidebar2: #29ABE2;
     --border-color: #2A3647;
 }  
 
@@ -38,4 +41,56 @@
     width: 150px;
     border: 2px solid var(--separator-color);
     border-radius: 3px;
+}
+
+.sidebar_container {
+    height: calc(100vh - 128px);
+    width: 232px;
+    background-color: var(--background-color-sidebar);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 64px 0;
+}
+
+.sidebar_nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 100px 0;
+}
+
+.sidebar_nav a {
+    text-decoration: none;
+    color: var(--text-color-sidebar);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    width: calc(100% - 57px);
+    padding:8px 0 8px 57px;
+}
+
+.sidebar_nav a:hover {
+    background-color: var(--hover-color-sidebar1);
+}
+
+.sidebar_footer {
+    position: absolute;
+    bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sidebar_footer a {
+    color: var(--text-color-sidebar);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sidebar_footer a:hover {
+    color: var(--hover-color-sidebar2);
 }
