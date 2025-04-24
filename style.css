@@ -15,12 +15,11 @@ main{
     display: none;
     align-items: center;
     position: absolute;
-    width: 279px;
+    /* width: 279px; */
     height: 49px;
     top: 80px;
     right: 122px;
     gap: 35px;
-
 }
 
 .join_logo{
@@ -117,5 +116,58 @@ footer a {
     }
   }
 
+  .signup_wrapper{
+    height: 100%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .signup_card{
+    height: 449px;
+    width: 652px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 84px 115px;
+    background-color: white;
+    border-radius: 30px;
+  }
 
+  .signup_card input {
+    height: 48px;
+    width: 422px;
+    border: 2px solid rgba(0,0,0,0.4);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 12px 21px;
+    padding-left: 10px;
+}
+
+  .signup_container {
+    display: none;
+    align-items: center;
+    position: absolute;
+    width: 279px;
+    height: 49px;
+    top: 80px;
+    right: 122px;
+    gap: 35px;
+  }
+
+  .checkbox_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+  }
+
+  .button_signup_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+  }
