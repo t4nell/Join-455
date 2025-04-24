@@ -1,0 +1,19 @@
+.dark_btn{
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #2A3647;
+    color: white;
+    border-radius: 8px;
+    padding: 15px 16px;
+    border: unset;
+}
+
+.light_btn{
+    font-size: 16px;
+    font-weight: 700;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 15px 16px;
+    border: unset;
+}

@@ -1,0 +1,19 @@
+body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: Inter;
+  }
+  
+  button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: Inter;
+  }
+  
+  input {
+      border: none;
+      outline: none;
+      cursor: pointer;
+  }

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: Inter;
+    src: url(../assets/font/Inter-VariableFont_opsz\,wght.ttf)
+      format("truetype");
+  }
+
+  .font_size_20px{
+    font-size: 20px;
+  }
