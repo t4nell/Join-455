@@ -56,16 +56,16 @@ function getSidebarTemplate() {
       </div>
       <nav class="sidebar_nav">
         <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebar_icons/summary.svg" alt="Summary Icon">Summary
+          <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
         </a>
         <a href="../addTask/addTask.html" class="${currentPage.includes('addTask') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebar_icons/add_task.svg" alt="Add Task Icon">Add Task
+          <img src="../assets/imgs/sidebarIcons/add_task.svg" alt="Add Task Icon">Add Task
         </a>
         <a href="../board/board.html" class="${currentPage.includes('board') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebar_icons/board.svg" alt="Board Icon">Board
+          <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">Board
         </a>
         <a href="../contacts/contacts.html" class="${currentPage.includes('contacts') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebar_icons/contacts.svg" alt="Contacts Icon">Contacts
+          <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">Contacts
         </a>
       </nav>
       <div class="sidebar_footer">
