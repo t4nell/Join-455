@@ -19,11 +19,11 @@
 }
 
 main {
-  height: calc(100vh - 100px);
+  height: 100vh;
 }
 
 .login_wrapper {
-    height: 100%;
+    height: calc(100% - 100px);
     width: 100%;
     display: flex;
     justify-content: center;
