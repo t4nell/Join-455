@@ -1,3 +1,90 @@
 main {
     height: 100vh;
-  }
+}
+#add_task_container {
+    position: absolute;
+    top: 206px;
+    left: 328px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.separator_container {
+    display: flex;
+    width: 100%;
+}
+
+.title_container {
+    flex: 1;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.priority_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.separator_vertically_gray {
+    width: 1px;
+    background-color: gray;
+    height: auto;
+}
+
+.textarea {
+    padding-top: 16px;
+    padding-left: 16px;
+    width: 440px;
+    max-width: 100%;
+    height: 136px;
+    resize: none;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.input_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input_titel {
+    padding-left: 16px;
+    border: solid 1px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    height: 48px;
+}
+
+.textarea_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input_date_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input_date {
+    padding-left: 16px;
+    padding-right: 16px;
+    border: solid 1px;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    height: 48px;
+}
+

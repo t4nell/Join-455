@@ -1,21 +1,66 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./addTask.css" />
-    <link rel="stylesheet" href="../styles/allSites.css" />
-    <link rel="stylesheet" href="../styles/font.css" />
-    <link rel="stylesheet" href="../styles/standard.css" />
-    <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon"/>
-    <script src="../scripts/templates.js" defer></script>
-    <script src="./addTask.js" defer></script>
-    <title>Join</title>
-  </head>
-  <body onload="renderSidebar()">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./addTask.css" />
+        <link rel="stylesheet" href="../styles/allSites.css" />
+        <link rel="stylesheet" href="../styles/font.css" />
+        <link rel="stylesheet" href="../styles/standard.css" />
+        <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
+        <script src="../scripts/templates.js" defer></script>
+        <script src="./addTask.js" defer></script>
+        <title>Join</title>
+    </head>
+    <body onload="renderSidebar()">
+        <main id="main_container">
+            <header>
+                <span>Kanban Project Management Tool</span>
+                <div class="user_menu">
+                    <div class="help"><a href="#">?</a></div>
+                    <div class="user_profile"><a href="#">SM</a></div>
+                </div>
+            </header>
+            <div id="add_task_container">
+                <div class="title_head">
+                    <h2>Add Task</h2>
+                </div>
 
-    <main id="main_container">
-    </main>
-    
-  </body>
+                <div class="separator_container">
+                    <div class="title_container">
+                        <div class="input_group">
+                            <label for="text" class="input-title">Titel <span style="color: red">*</span></label>
+                            <input class="input_titel" type="text" placeholder="Enter a titel" />
+                        </div>
+                        <div class="textarea_group">
+                            <label for="description" class="input-title">Description</label>
+                            <textarea class="textarea" id="description" placeholder="Enter a Description..."></textarea>
+                        </div>
+                        <div class="input_date_group">
+                            <label for="date">Due date <span style="color: red">*</span></label>
+                            <input class="input_date" type="date" id="date" name="date" />
+                        </div>
+                    </div>
+
+                    <div class="separator_vertically_gray"></div>
+
+                    <div class="priority_container">
+                        <div>
+                            <label for="text" class="">Titel <span style="color: red">*</span></label>
+                            <input class="" type="text" placeholder="Enter a titel" />
+                        </div>
+                        <div>
+                            <label for="description" class="">Category<span style="color: red">*</span></label>
+                            <textarea class="" id="description" placeholder="Enter a Description..."></textarea>
+                        </div>
+                        <div>
+                            <label for="date">Subtasks</label>
+                            <input class="" type="date" id="date" name="date" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
+
