@@ -45,17 +45,40 @@
                     <div class="separator_vertically_gray"></div>
 
                     <div class="priority_container">
+                        <span> Priority</span>
+                        <form class="radio-form" action="/action">
+                            <input type="radio" id="Urgent" name="Priority" value="Urgent" />
+                            <label class="btn_red" for="Urgent">Urgent</label><br />
+
+                            <input type="radio" id="css" name="Priority" value="Medium" />
+                            <label for="css">Medium</label><br />
+
+                            <input type="radio" id="javascript" name="Priority" value="Low" />
+                            <label for="javascript">Low</label>
+                        </form>
                         <div>
-                            <label for="text" class="">Titel <span style="color: red">*</span></label>
-                            <input class="" type="text" placeholder="Enter a titel" />
+                            <label for="names">Assigned to</label>
+                            <select id="" name="name">
+                                <option value="apple">Peter</option>
+                                <option value="banana">Hans</option>
+                                <option value="cherry">Karl</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="description" class="">Category<span style="color: red">*</span></label>
-                            <textarea class="" id="description" placeholder="Enter a Description..."></textarea>
+                            <label for="names">Category</label>
+                            <select id="" name="name">
+                                <option value="apple">Peter</option>
+                                <option value="banana">Hans</option>
+                                <option value="cherry">Karl</option>
+                            </select>
                         </div>
                         <div>
-                            <label for="date">Subtasks</label>
-                            <input class="" type="date" id="date" name="date" />
+                            <label for="names">Subtasks</label>
+                            <select id="" name="name">
+                                <option value="apple">Peter</option>
+                                <option value="banana">Hans</option>
+                                <option value="cherry">Karl</option>
+                            </select>
                         </div>
                     </div>
                 </div>
