@@ -1,10 +1,10 @@
 function getLoginSignupTemplate() {
     return `
       <div class="login_card id="loginCard">
-          <div>
+        <div>
           <h2>Log in</h2>
           <hr class="separator_horizontally">
-          </div>
+        </div>
         <form action="login" method="post">
           <div class="input_login_container">
             <input class="mail_input_icon" type="text" placeholder="E-Mail">
@@ -17,9 +17,9 @@ function getLoginSignupTemplate() {
         </form>
       </div>
 
-      <div class="signup_card d_none" id="signup_container">
-        <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrow-left-line.svg" alt="arrow_left_icon"></button>
-        <div>
+    <div class="signup_card d_none" id="signup_container">
+      <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrow-left-line.svg" alt="arrow_left_icon"></button>
+      <div>
         <a onclick="#"></a>
         
         <h2>Sign up</h2>
@@ -35,14 +35,15 @@ function getLoginSignupTemplate() {
           <input type="checkbox" id="accept_policy" name="a" value="accept_policy">
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>
           </div>
-          </div>
+        </div>
       
         <div class="button_signup_container">
           <button class="dark_btn signup_btn">Sign up</button>
         </div>
       </form>
     </div>
-    `
+  </div>
+`
 }
 
 
