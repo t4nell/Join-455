@@ -85,6 +85,10 @@ footer a {
     text-decoration: none;
     color: #a8a8a8;
 }
+
+footer a:hover {
+  color: var(--hover-color-footer);
+}
  
 @keyframes fadeIn {
     0% {
