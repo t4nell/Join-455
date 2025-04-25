@@ -35,6 +35,7 @@ main{
     width: 100%;
     max-width: 1440px;
     position: relative;
+    overflow-x: hidden;
 }
 
 .dark_btn{
@@ -80,6 +81,8 @@ main{
     align-items: center;
     flex-direction: column;
     padding: 64px 0;
+    z-index: 101;
+    position: relative;
 }
 
 .sidebar_nav {
@@ -89,6 +92,7 @@ main{
     gap: 8px;
     width: 100%;
     margin: 100px 0;
+    z-index: 1000;
 }
 
 .sidebar_nav a {
@@ -133,4 +137,38 @@ main{
 
 .sidebar_footer a.active {
     background-color: var(--active-color-sidebar);
+}
+
+header{
+    width: 100%;
+    height: 96px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    position: absolute;
+    justify-content: space-between;
+    box-shadow: 0px 4px 4px #88888838;
+    overflow-x: hidden;
+}
+
+header span{
+    padding-left: 348px;
+}
+
+.user_menu {
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user_profile{
+    width: 56px;
+    height: 56px;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

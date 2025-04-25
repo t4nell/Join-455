@@ -9,7 +9,7 @@
 }
 
 .signup_login{
-    display: flex;
+    display: none;
     align-items: center;
     position: absolute;
     height: 49px;
@@ -44,7 +44,7 @@ main {
 .login_card input {
     height: 48px;
     width: 422px;
-    border: 2px solid rgba(0,0,0,0.4);
+    border: 2px solid rgba(0,0,0,0.1);
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;
@@ -77,8 +77,10 @@ footer {
 }
 
 footer div {
-    display: flex;
-    gap: 8px;
+  display: flex;
+  width: 246px;
+  height: 35px;
+  justify-content: space-between;
 }
 
 footer a {
@@ -133,7 +135,7 @@ footer a:hover {
   .signup_card input {
     height: 48px;
     width: 422px;
-    border: 2px solid rgba(0,0,0,0.4);
+    border: 2px solid rgba(0,0,0,0.1);
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400;

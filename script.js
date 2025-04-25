@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {string} email - The email address to validate.
+ */
+
 const loginContainer = document.getElementById("login_container");
 function init() {
     renderLogin();
