@@ -17,3 +17,7 @@ body{
       outline: none;
       cursor: pointer;
   }
+
+  .d_none{
+    display: none;
+  }

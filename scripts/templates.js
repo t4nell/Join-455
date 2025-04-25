@@ -1,6 +1,6 @@
-function getLoginTemplate() {
+function getLoginSignupTemplate() {
     return `
-      <div class="login_card">
+      <div class="login_card id="loginCard">
           <div>
           <h2>Log in</h2>
           <hr class="separator_horizontally">
@@ -16,11 +16,8 @@ function getLoginTemplate() {
           </div>
         </form>
       </div>
-    `
-}
 
-function getSignupTemplate() {
-    return `<div class="signup_card">
+      <div class="signup_card d_none" id="signup_container">
     <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrow-left-line.svg" alt="arrow_left_icon"></button>
         <div>
         <a onclick="#"></a>
@@ -45,8 +42,9 @@ function getSignupTemplate() {
         </div>
       </form>
     </div>
-  `
+    `
 }
+
 
 function getSidebarTemplate() {
   const currentPage = window.location.pathname;
