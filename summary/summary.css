@@ -1,12 +1,15 @@
 main {
     height: 100vh;
+    position: relative;
   }
 
 #summary_container{
+  position: absolute;
     display: flex;
-    justify-content: center;
     align-items: center;
-
+    gap: 30px;
+    top: 206px;
+    left: 328px
 }
 
 #summary_todo_container{
@@ -21,9 +24,14 @@ main {
 
 }
 
-#separator_vertically_gray{
-  width: 150px;
-  border: 1px solid var(--separator-color-gray);
+.separator_vertically{
+  height: 59px;
+  border: 3px solid var(--separator-color);
+  margin: 0;
+}
+
+.separator_vertically_gray{
+  
 }
 
 #summary_deadline_container{
