@@ -21,6 +21,7 @@
     --signup-privacy-policy-color: #29ABE2;
     --separator-color-grey: #D1D1D1;
     --separator-color-white: #FFFFFF;
+    --user-icon-hover: #0C2E621F;
 } 
 
 body {
@@ -154,6 +155,7 @@ header{
 
 header span{
     padding-left: 348px;
+    font-size: 20px;
 }
 
 .user_menu {
@@ -166,9 +168,24 @@ header span{
 .user_profile{
     width: 56px;
     height: 56px;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--text-color-name);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.user_profile:hover{
+    background-color: var(--user-icon-hover);
+}
+
+.help_btn{
+    background-color: unset;
+}
+
+.help_btn:hover{
+    scale: 1.1;
 }
