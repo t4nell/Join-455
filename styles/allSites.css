@@ -17,6 +17,10 @@
     --hover-color-sidebar2: #29ABE2;
     --active-color-sidebar: #091931;
     --border-color: #2A3647;
+    --data-protection-text-color: #a8a8a8;
+    --signup-privacy-policy-color: #29ABE2;
+    --separator-color-grey: #D1D1D1;
+    --separator-color-white: #FFFFFF;
 } 
 
 body {

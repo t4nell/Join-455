@@ -40,7 +40,7 @@ function getSignupTemplate() {
           </div>
       
         <div class="button_signup_container">
-          <button class="dark_btn">Sign up</button>
+          <button class="dark_btn signup_btn">Sign up</button>
         </div>
       </form>
     </div>

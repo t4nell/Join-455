@@ -83,7 +83,7 @@ footer div {
 
 footer a {
     text-decoration: none;
-    color: #a8a8a8;
+    color: var(--data-protection-text-color);
 }
 
 footer a:hover {
@@ -168,4 +168,20 @@ footer a:hover {
     width: 20px;
     height: 20px;
     cursor: pointer;
+    margin-right: 10px;
   }
+
+  .signup_btn{
+    width: 126px;
+    height: 55px;
+  }
+
+  .checkbox_container label{
+    color: var(--data-protection-text-color);
+  }
+
+  .checkbox_container a{
+    color: var(--signup-privacy-policy-color);
+  }
+
+  
