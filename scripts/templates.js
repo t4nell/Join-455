@@ -76,3 +76,9 @@ function getSidebarTemplate() {
     </div>
   `;
 }
+
+function getsummaryTemplate() {
+    return `
+Hallo, this is the summary template.
+     `
+}

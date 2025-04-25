@@ -1,3 +1,47 @@
 main {
     height: 100vh;
   }
+
+#summary_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#summary_todo_container{
+
+}
+
+#summary_done_container{
+
+}
+
+#summary_importance_container{
+
+}
+
+#separator_vertically_gray{
+  width: 150px;
+  border: 1px solid var(--separator-color-gray);
+}
+
+#summary_deadline_container{
+
+}
+
+#summary_Tasks_Board_container{
+
+}
+
+#summary_Tasks_Progress_container{
+
+}
+
+#summary_Await_Feedback_container{
+
+}
+
+#summary_greating_container{
+
+}
