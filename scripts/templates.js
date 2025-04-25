@@ -21,6 +21,7 @@ function getLoginTemplate() {
 
 function getSignupTemplate() {
     return `<div class="signup_card">
+    <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrow-left-line.svg" alt="arrow_left_icon"></button>
         <div>
         <a onclick="#"></a>
         

@@ -30,9 +30,6 @@ function toggleLoginSignup() {
         loginContainer.style.display = 'none';
         signupContainer.innerHTML = getSignupTemplate();
         signupContainer.style.display = 'flex';
-        signupLoginDiv.innerHTML = `
-            <span class="font_size_20px">Already a Join user?</span>
-            <button class="dark_btn" onclick="toggleLoginSignup()">Log in</button>
-        `;
+        signupLoginDiv.innerHTML = "";
     }
 }
