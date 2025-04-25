@@ -3,7 +3,7 @@ main {
     position: relative;
   }
 
-.summary_title{
+#summary_container{
   position: absolute;
     display: flex;
     align-items: center;
@@ -12,14 +12,6 @@ main {
     left: 328px
 }
 
-.summary_all{
-  height: 562px;
-  width: 560px;
-  background-color: bisque;
-  position: absolute;
-  left: 328px;
-  top: 335px;
-}
 #summary_todo_container{
 
 }
