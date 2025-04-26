@@ -22,6 +22,7 @@
     --separator-color-grey: #D1D1D1;
     --separator-color-white: #FFFFFF;
     --user-icon-hover: #0C2E621F;
+    --contact-container-background-color: #FFFFFF;
 } 
 
 body {
@@ -72,6 +73,24 @@ main{
     width: 150px;
     border: 2px solid var(--separator-color);
     border-radius: 3px;
+}
+
+.separator_vertically{
+    height: 59px;
+    border: 3px solid var(--separator-color);
+    margin: 0;
+}
+  
+.separator_vertically_gray{
+    
+}
+
+.headline_container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-left: 55px;
+    margin-top: 110px;
 }
 
 .sidebar_container {

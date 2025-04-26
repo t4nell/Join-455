@@ -5,7 +5,37 @@ main {
 .contact_container {
   position: absolute;
   top: 100px;
+  left: 685px;
+  height: calc(100% - 100px);
+  width: calc(100% - 685px);
+}
+
+#contact_list {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 100px;
   left: 232px;
   height: calc(100% - 100px);
-  width: calc(100% - 232px);
+  width: 100%;
+  max-width: 453px;
+  background-color: var(--contact-container-background-color);
+  
+}
+
+#contact_list div {
+  padding-top: 22.5px;
+  height: 42px;
+}
+
+#contact_list div button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 5px 64.5px;
+}
+
+#contact_list div button img {
+  height: 32px;
 }

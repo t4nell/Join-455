@@ -3,13 +3,16 @@ main {
     position: relative;
   }
 
-#summary_container{
+.summary_container{
   position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    top: 206px;
-    left: 328px
+  top: 100px;
+  left: 232px;
+  height: calc(100% - 100px);
+  width: calc(100% - 232px);
+}
+
+.headline_container {
+  padding-left: 80px !important;
 }
 
 #summary_todo_container{
@@ -22,16 +25,6 @@ main {
 
 #summary_importance_container{
 
-}
-
-.separator_vertically{
-  height: 59px;
-  border: 3px solid var(--separator-color);
-  margin: 0;
-}
-
-.separator_vertically_gray{
-  
 }
 
 #summary_deadline_container{
