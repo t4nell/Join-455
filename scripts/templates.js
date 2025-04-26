@@ -50,28 +50,23 @@ function getLoginSignupTemplate() {
 function getSidebarTemplate() {
   const currentPage = window.location.pathname;
   return `    
-    <div class="sidebar_container">
-      <div>
-        <a href="../index.html"><img src="../assets/imgs/join_logo_light.svg" alt="Join Logo"></a>
-      </div>
-      <nav class="sidebar_nav">
-        <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
-        </a>
-        <a href="../addTask/addTask.html" class="${currentPage.includes('addTask') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebarIcons/add_task.svg" alt="Add Task Icon">Add Task
-        </a>
-        <a href="../board/board.html" class="${currentPage.includes('board') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">Board
-        </a>
-        <a href="../contacts/contacts.html" class="${currentPage.includes('contacts') ? 'active' : ''}">
-          <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">Contacts
-        </a>
-      </nav>
-      <div class="sidebar_footer">
-        <a href="../policy/policy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
-        <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
-      </div>
+    <nav class="sidebar_nav">
+      <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
+        <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
+      </a>
+      <a href="../addTask/addTask.html" class="${currentPage.includes('addTask') ? 'active' : ''}">
+        <img src="../assets/imgs/sidebarIcons/add_task.svg" alt="Add Task Icon">Add Task
+      </a>
+      <a href="../board/board.html" class="${currentPage.includes('board') ? 'active' : ''}">
+        <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">Board
+      </a>
+      <a href="../contacts/contacts.html" class="${currentPage.includes('contacts') ? 'active' : ''}">
+        <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">Contacts
+      </a>
+    </nav>
+    <div class="sidebar_footer">
+      <a href="../policy/policy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
   `;
 }

@@ -1,4 +1,4 @@
-const mainContainer = document.getElementById('main_container');
+const mainContainer = document.getElementById('navbar_container');
 
 function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
