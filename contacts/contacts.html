@@ -7,85 +7,117 @@
     <link rel="stylesheet" href="../styles/allSites.css" />
     <link rel="stylesheet" href="../styles/font.css" />
     <link rel="stylesheet" href="../styles/standard.css" />
-    <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon"/>
+    <link
+      rel="shortcut icon"
+      href="./assets/imgs/Capa 2.svg"
+      type="image/x-icon"
+    />
     <script src="../scripts/templates.js" defer></script>
     <script src="./contacts.js" defer></script>
     <title>Join</title>
   </head>
   <body onload="renderSidebar()">
-
     <main id="main_container">
-
       <header>
         <span>Kanban Project Management Tool</span>
         <div class="user_menu">
-            <div class="help"><a href="#">?</a></div>
-            <div class="user_profile"><a href="#">SM</a></div>
+          <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></button>
+          <div class="user_profile"><a href="#">SM</a></div>
         </div>
       </header>
 
       <div class="sidebar_container">
-
         <div class="sidebar_img_container">
-          
-          <a href="../index.html"><img src="../assets/imgs/join_logo_light.svg" alt="Join Logo"></a>
+          <a href="../index.html"
+            ><img src="../assets/imgs/join_logo_light.svg" alt="Join Logo"
+          /></a>
 
-          <div id="navbar_container">
-
-          </div>
-          
+          <div id="navbar_container"></div>
         </div>
-
       </div>
 
       <div id="contact_list">
-        <div>
-          <button class="dark_btn"><span>Add new contact</span><img src="../assets/imgs/contactIcons/person_add.svg" alt="Person Add Icon"></button>
+        <div class="new_contact_container">
+          <button class="dark_btn new_contact_btn">
+            <span>Add new contact</span
+            ><img
+              src="../assets/imgs/contactIcons/person_add.svg"
+              alt="Person Add Icon"
+            />
+          </button>
+        </div>
+        <div class="letter_index">
+          A
+        </div>
+        <div class="letter_seperator_horizontal">
+          <hr class="separator_horizontal" />
+        </div>
+        <div class="contact_side">
+          <div class="contact_small_img">
+            <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="">
+          </div>
+          <div class="contact_side_info">
+            <div class="contact_side_name">
+              <span>Anton Mayer</span>
+            </div>
+            <div class="contact_side_mail">
+              <span>antom@gmail.com</span>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="contact_container">
         <div class="headline_container">
-          <h2>Contacts</h2><hr class="separator_vertically"><span>Key Metrics at a Glance</span>
+          <h2>Contacts</h2>
+          <hr class="separator_vertically" />
+          <span>Better with a team</span>
         </div>
+
         <div class="contact_main">
           <div class="contact_header">
             <div class="contact_img">
-              <img src="../assets/imgs/contactIcons/contact_img.svg" alt="" srcset="">
+              <img
+                src="../assets/imgs/contactIcons/contact_img.svg"
+                alt=""
+                srcset=""
+              />
             </div>
+
             <div class="contact_head">
               <div class="contact_name">
                 <span>Anton Mayer</span>
               </div>
+
               <div class="contact_buttons">
                 <button class="contact_btn">
-                  <img src="../assets/imgs/contactIcons/edit.svg" alt=""> Edit
+                  <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
                 </button>
                 <button class="contact_btn">
-                  <img src="../assets/imgs/contactIcons/delete.svg" alt=""> Delete
+                  <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
+                  Delete
                 </button>
               </div>
-              </div>
-            </div>
-            <div class="contact_information_text">
-              <span>Contact Information</span>
-            </div>
-            <div class="contact_details">
-              <div class="contact_mail">
-                <span class="contact_category">Email</span>
-                <a href="">Anton@gmail.com</a>
-              </div>
-              <div class="contact_phone">
-                <span class="contact_category">Phone</span>
-                <span>+49 1234 567 89 1</span>
             </div>
           </div>
+
+          <div class="contact_information_text">
+            <span>Contact Information</span>
+          </div>
+
+          <div class="contact_details">
+            <div class="contact_mail">
+              <span class="contact_category">Email</span>
+              <a href="">antom@gmail.com</a>
+            </div>
+
+            <div class="contact_phone">
+              <span class="contact_category">Phone</span>
+              <span>+49 1234 567 89 1</span>
+            </div>
           </div>
         </div>
-        
       </div>
-
     </main>
-
   </body>
 </html>
