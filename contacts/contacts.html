@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./contacts.css" />
     <link rel="stylesheet" href="../styles/font.css" />
     <link rel="stylesheet" href="../styles/standard.css" />
+    <link rel="stylesheet" href="../styles/inputIcons.css">
     <link
       rel="shortcut icon"
       href="./assets/imgs/Capa 2.svg"
@@ -21,7 +22,9 @@
       <header>
         <span>Kanban Project Management Tool</span>
         <div class="user_menu">
-          <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></button>
+          <button class="help">
+            <img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon" />
+          </button>
           <div class="user_profile"><a href="#">SM</a></div>
         </div>
       </header>
@@ -46,15 +49,13 @@
             />
           </button>
         </div>
-        <div class="letter_index">
-          A
-        </div>
+        <div class="letter_index">A</div>
         <div class="letter_seperator_horizontal">
           <hr class="separator_horizontal" />
         </div>
         <div class="contact_side">
           <div class="contact_small_img">
-            <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="">
+            <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
           </div>
           <div class="contact_side_info">
             <div class="contact_side_name">
@@ -68,7 +69,6 @@
       </div>
 
       <div class="contact_container">
-
         <div class="headline_container">
           <h2>Contacts</h2>
           <hr class="separator_vertically" />
@@ -76,9 +76,7 @@
         </div>
 
         <div class="contact_main">
-
           <div class="contact_header">
-
             <div class="contact_img">
               <img
                 src="../assets/imgs/contactIcons/contact_img.svg"
@@ -121,6 +119,31 @@
           </div>
         </div>
       </div>
+
+      <div class="contact_overlay_background">
+        <div class="contact_overlay">
+          <div class="overlay_side_img">
+            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+            <span>Add Contact</span>
+            <span>Tasks are better with a Team</span>
+          </div>
+          <div class="new_contact_area">
+          <div class="contact_overlay_img">
+            <img src="../assets/imgs/contactIcons/contact_img.svg" alt="" />
+          </div>
+            <div class="contact_input_fields">
+              <input class="overlay_input name_input_icon" type="text" placeholder="Name" />
+              <input class="overlay_input" type="text" placeholder="Email" />
+              <input class="overlay_input" type="text" placeholder="Phone" />
+            </div>
+            <div class="overlay_buttons">
+              <button class="cancel_btn">Cancel</button>
+              <button class="create_contact_btn">Create Contact</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
   </body>
 </html>

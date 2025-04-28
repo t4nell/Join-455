@@ -26,6 +26,8 @@
     --user-icon-hover: #0C2E621F;
     --contact-container-background-color: #FFFFFF;
     --contact-mail-color: #007CEE;
+    --contact-overlay-color: #2A3647;
+    --input-border-color: #D1D1D1;
     --input-placeholder-color: #bdbdbd;
     --input-border-color: #bdbdbd;
     --input-icon-hover-color: #f5f6f7;
@@ -81,10 +83,11 @@ main{
     border-radius: 3px;
 }
 
-.separator_vertically{
+.separator_vertically {
     height: 59px;
-    border: 3px solid var(--separator-color);
+    border: 2px solid var(--separator-color);
     margin: 0;
+    border-radius: 3px;
 }
 
 .input_base_style {
@@ -106,7 +109,6 @@ main{
 
 .headline_container {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     gap: 30px;
     padding-left: 55px;
