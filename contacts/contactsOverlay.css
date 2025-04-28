@@ -1,0 +1,108 @@
+.contact_overlay_background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 101;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contact_overlay{
+    position: absolute;
+    width: 1212px;
+    height: 592px;
+    z-index: 102;
+    background-color: white;
+    display: flex;
+    border-radius: 30px;
+  }
+  
+  .overlay_side_img{
+    width: 453px;
+    background-color: var(--contact-overlay-color);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .overlay_side_img img{
+    width: 55px;
+    height: 66px;
+  }
+  
+  .contact_overlay_img{
+    position: absolute;
+    top: 204px;
+    left: 550px;
+  }
+  
+  .contact_input_fields {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 137px;
+    right: 48px;
+    width: 422px;
+    height: 215px;
+    gap: 32px;
+  }
+  
+  .overlay_buttons{
+    width: 364px;
+    height: 57px;
+    position: absolute;
+    right: 106px;
+    bottom: 135px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .overlay_input{
+    width: 422px;
+    height: 50px;
+    border: 1px solid ;
+    border-radius: 10px;
+    border-color: var(--input-border-color);
+  }
+  
+  .cancel_btn {
+    font-size: 20px;
+    font-weight: 400;
+    height: 56px;
+    width: 126px;
+    background-color: var(--light-button);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+  .cancel_btn:hover{
+    border: 1px solid var(--button-hover-color);
+  }
+  
+  .create_contact_btn{
+    font-size: 20px;
+    font-weight: 400;
+    height: 56px;
+    width: 214px;
+    background-color: var(--dark-button);
+    color: var(--text-color-white-button);
+    border-radius: 10px;
+  }
+
+.overlay_text_left{
+    font-size: 61px;
+    font-weight: 700;
+    color: var(--text-color-white);
+}
+
+.overlay_phrase_left{
+    font-size: 27px;
+    font-weight: 400;
+    color: var(--text-color-white);
+}
