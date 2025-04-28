@@ -10,24 +10,60 @@ main {
   width: calc(100% - 685px);
 }
 
+.headline_container span{
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--text-color-headline);
+}
+
+.new_contact_container{
+  height: 101px;
+  display: flex;
+  align-items: center;
+} 
+
 #contact_list {
   display: flex;
-  justify-content: center;
   position: absolute;
-  top: 100px;
+  align-items: center;
+  flex-direction: column;
+  top: 96px;
   left: 232px;
-  height: calc(100% - 100px);
+  height: calc(100% - 96px);
   width: 100%;
   max-width: 453px;
   background-color: var(--contact-container-background-color);
+  box-shadow: 4px 0px 4px #88888838;
+  z-index: 100;
 }
 
-#contact_list div {
+.letter_index{
+  font-size: 20px;
+  font-weight: 400;
+  display: flex;
+  width: 352px;
+  height: 58px;
+  align-items: center;
+  padding-left: 36px;
+}
+
+.letter_seperator_horizontal{
+  width: 352px;
+  height: 16px;
+}
+
+.separator_horizontal{
+  width: 100%;
+  border: 1px solid var(--separator-color-grey);
+}
+
+.new_contact_btn {
   padding-top: 22.5px;
-  height: 42px;
+  height: 56px;
+  width: 352px;
 }
 
-#contact_list div button {
+.new_contact_btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +74,35 @@ main {
 #contact_list div button img {
   height: 32px;
 }
+
+.contact_side{
+  width: 352px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  border-radius: 10px;
+}
+
+.contact_side_info{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact_side_name{
+  font-size: 20px;
+}
+
+.contact_side_mail{
+  color: var(--contact-mail-color);
+}
+
+.contact_small_img{
+  padding-left: 24px;
+}
+
+
 
 .contact_main{
   display: flex;
@@ -63,13 +128,17 @@ main {
   gap: 13px;
   font-size: 16px;
   font-weight: 400;
+  background: transparent;
 }
 
 .contact_buttons{
   display: flex;
 }
 
-.contact_btn:hover{
+.contact_btn:hover,
+.contact_btn img:hover{
+  color: var(--button-hover-color);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(384%) hue-rotate(153deg) brightness(98%) contrast(94%);
 }
 
 .contact_information_text{
@@ -101,6 +170,11 @@ main {
   flex-direction: column;
   gap: 15px;
 }
+
+.contact_mail a{
+  text-decoration: none;
+  color: var(--contact-mail-color);
+}  
 
 .contact_phone{
   display: flex;
