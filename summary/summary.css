@@ -16,8 +16,12 @@ main {
 }
 
 .summary_content{
-  background-color: aquamarine;
-  display: flex;
+  position: absolute;
+  top: 335px;
+  left: 328px;
+  width: 560px;
+  height: 335px;
+  background-color: tomato;
 }
 
 #summary_left{
@@ -33,28 +37,36 @@ main {
 width: 100px;
 height: 100px;
 background-color: aqua;
+border-radius: 30px;
 }
 
 #summary_done_container{
   width: 100px;
   height: 100px;
   background-color: blue;
+  border-radius: 30px;
 }
 
 .summary_section2_container{
   display: flex;
+  width: 105px;
+  height: 105px;
+  border-radius: 30px;
+  background-color: lightgreen;
 }
 
 #summary_importance_container{
+  background-color: white;
   width: 100px;
   height: 100px;
-  background-color: white;
+  border-radius: 30px;
 }
 
 #summary_deadline_container{
+  background-color: red;
   width: 100px;
   height: 100px;
-  background-color: red;
+  border-radius: 30px;
 }
 .summary_section3_container{
   display: flex;
@@ -65,18 +77,21 @@ background-color: aqua;
   width: 100px;
   height: 100px;
   background-color: green;
+  border-radius: 30px;
 }
 
 #summary_Tasks_Progress_container{
   width: 100px;
   height: 100px;
   background-color:yellowgreen;
+  border-radius: 30px;
 }
 
 #summary_Await_Feedback_container{
   width: 100px;
   height: 100px;
   background-color: purple;
+  border-radius: 30px;
 }
 
 #summary_right{
@@ -84,7 +99,8 @@ background-color: aqua;
 }
 
 #summary_greating_container{
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   background-color: chocolate;
+  border-radius: 30px;
 }
