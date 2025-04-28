@@ -13,16 +13,18 @@
     --text-color-main: #000000;
     --text-color-description:  #2A3647;
     --text-color-sidebar: #ffffff;
+    --text-color-headline: #2A3647;
     --hover-color-sidebar1: #2A3D59;
     --hover-color-sidebar2: #29ABE2;
     --active-color-sidebar: #091931;
     --border-color: #2A3647;
     --data-protection-text-color: #a8a8a8;
     --signup-privacy-policy-color: #29ABE2;
-    --separator-color-grey: #D1D1D1;
+    --separator-color-grey: #d1d1d1;
     --separator-color-white: #FFFFFF;
     --user-icon-hover: #0C2E621F;
     --contact-container-background-color: #FFFFFF;
+    --contact-mail-color: #007CEE;
 } 
 
 body {
@@ -79,10 +81,6 @@ main{
     height: 59px;
     border: 3px solid var(--separator-color);
     margin: 0;
-}
-  
-.separator_vertically_gray{
-    
 }
 
 .input_base_style {
