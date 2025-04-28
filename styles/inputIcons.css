@@ -15,3 +15,9 @@
     background-repeat: no-repeat;
     background-position: right 10px center;
 }
+
+.magnifying_glass_input_icon {
+    background-image: url('../assets/imgs/boardIcons/search.svg');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}

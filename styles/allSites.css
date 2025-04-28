@@ -5,6 +5,7 @@
     --light-button: white;
     --text-color-dark-button: #2A3647;
     --background-color-sidebar: #2A3647;
+    --background-color-header: #ffffff;
     --background-color-main: #f5f6f7;
     --background-color-footer: #f5f6f7;
     --hover-color-footer: #29ABE2;
@@ -25,6 +26,11 @@
     --user-icon-hover: #0C2E621F;
     --contact-container-background-color: #FFFFFF;
     --contact-mail-color: #007CEE;
+    --contact-overlay-color: #2A3647;
+    --input-border-color: #D1D1D1;
+    --input-placeholder-color: #bdbdbd;
+    --input-border-color: #bdbdbd;
+    --input-icon-hover-color: #f5f6f7;
 } 
 
 body {
@@ -77,25 +83,32 @@ main{
     border-radius: 3px;
 }
 
-.separator_vertically{
+.separator_vertically {
     height: 59px;
-    border: 3px solid var(--separator-color);
+    border: 2px solid var(--separator-color);
     margin: 0;
+    border-radius: 3px;
 }
 
 .input_base_style {
+    font-family: Inter;
     margin-top: 8px;
     padding-left: 16px;
     padding-right: 16px;
-    border: solid 1px;
+    border: 1px solid var(--input-border-color);
     border-radius: 10px;
     height: 48px;
     width: 422px;
+    font-size: 20px;
+}
+
+.input_base_style::placeholder {
+    color: var(--input-placeholder-color);
+    font-size: 20px;
 }
 
 .headline_container {
     display: flex;
-    justify-content: space-around;
     align-items: center;
     gap: 30px;
     padding-left: 55px;
@@ -179,6 +192,7 @@ main{
 }
 
 header{
+    background-color: var(--background-color-header);
     width: calc(100% - 232px);
     height: 96px;
     top: o;
