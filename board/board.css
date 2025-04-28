@@ -9,3 +9,39 @@ main {
     height: calc(100% - 100px);
     width: calc(100% - 232px);
   }
+
+  .board_contend_top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 232px;
+  }
+
+  .board_controls_container {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+  }
+
+  .search_and_addTask_container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .input_style {
+    width: 312px;
+  }
+
+  .board_contend_bottom {
+    width: 100%;
+    height: calc(100% - 232px);
+  }
+
+  .headline_container {
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+  }
