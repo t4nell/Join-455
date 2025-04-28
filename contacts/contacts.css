@@ -20,7 +20,6 @@ main {
   width: 100%;
   max-width: 453px;
   background-color: var(--contact-container-background-color);
-  
 }
 
 #contact_list div {
@@ -39,3 +38,73 @@ main {
 #contact_list div button img {
   height: 32px;
 }
+
+.contact_main{
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  padding-left: 62px;
+  padding-top: 32px ;
+}
+
+.contact_head{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact_name{
+  font-size: 47px;
+  font-weight: 500;
+}
+
+.contact_btn{
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.contact_buttons{
+  display: flex;
+}
+
+.contact_btn:hover{
+}
+
+.contact_information_text{
+  font-size: 20px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+}
+
+.contact_header{
+  display: flex;
+  align-items: center;
+  gap: 54px;
+}
+
+.contact_details{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.contact_category{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.contact_mail{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact_phone{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
