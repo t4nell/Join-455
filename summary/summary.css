@@ -15,34 +15,76 @@ main {
   padding-left: 80px !important;
 }
 
-#summary_todo_container{
+.summary_content{
+  background-color: aquamarine;
+  display: flex;
+}
 
+#summary_left{
+  width: 60%;
+}
+
+.summary_section1_container{
+  display: flex;
+  justify-content: space-between;
+}
+
+#summary_todo_container{
+width: 100px;
+height: 100px;
+background-color: aqua;
 }
 
 #summary_done_container{
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
 
+.summary_section2_container{
+  display: flex;
 }
 
 #summary_importance_container{
-
+  width: 100px;
+  height: 100px;
+  background-color: white;
 }
 
 #summary_deadline_container{
-
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+.summary_section3_container{
+  display: flex;
+  justify-content: space-between;
 }
 
 #summary_Tasks_Board_container{
-
+  width: 100px;
+  height: 100px;
+  background-color: green;
 }
 
 #summary_Tasks_Progress_container{
-
+  width: 100px;
+  height: 100px;
+  background-color:yellowgreen;
 }
 
 #summary_Await_Feedback_container{
+  width: 100px;
+  height: 100px;
+  background-color: purple;
+}
 
+#summary_right{
+  width: 40%;
 }
 
 #summary_greating_container{
-
+  width: 100px;
+  height: 100px;
+  background-color: chocolate;
 }
