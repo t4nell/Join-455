@@ -16,6 +16,12 @@
     background-position: right 10px center;
 }
 
+.phone_input_icon{
+    background-image: url('../assets/imgs/inputIcons/call.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
 .magnifying_glass_input_icon {
     background-image: url('../assets/imgs/boardIcons/search.svg');
     background-repeat: no-repeat;
