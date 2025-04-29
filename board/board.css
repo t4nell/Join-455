@@ -149,17 +149,19 @@ main {
 
 .drake_area {
   background-color: var(--drake-area-background-color);
-  height: 48px;
+  max-height: 100%;
   border: 1px dashed var(--drake-area-border-color);
   border-radius: 10px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
   margin-top: 8px;
 }
 
 .drake_area_placeholder {
+  margin: 14.5px 0;
   font-size: 16px;
   color: var(--text-color-drake-area-placeholder);
 }

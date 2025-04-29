@@ -1,0 +1,103 @@
+:root {
+    --task-card-background-color: #ffffff;
+    --task-description-text-color: #A8A8A8;
+    --category-label-text-color: #ffffff;
+    --progress-bar-background-color: #F4F4F4;
+    --progress-fill-color: #4589FF;
+    --subtask-counter-text-color: #A8A8A8;
+    --avatar-border-color: #ffffff;
+    --avatar-text-color: #ffffff;
+}
+
+.task-card {
+    background: var(--task-card-background-color);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+    width: calc(100% - 32px);
+    margin: 8px 0;
+}
+
+.task-category {
+    margin-bottom: 8px;
+}
+
+.category-label {
+    background-color: #0052ff;
+    color: var(--category-label-text-color);
+    padding: 4px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.task-content {
+    margin: 16px 0;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.task-description {
+    color: var(--task-description-text-color);
+    font-size: 14px;
+}
+
+.progress-section {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 16px 0;
+}
+
+.progress-bar {
+    width: 50%;
+    height: 8px;
+    background-color: var(--progress-bar-background-color);
+    border-radius: 4px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--progress-fill-color);
+    border-radius: 4px;
+}
+
+.subtask-counter {
+    font-size: 14px;
+    color: var(--subtask-counter-text-color);
+}
+
+.task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.assignee-avatars {
+    display: flex;
+    gap: -8px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    /* background-color randomized */
+    background: #0052ff; 
+    border: 1px solid var(--avatar-border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--avatar-text-color);
+    font-size: 12px;
+    margin-right: -8px;
+}
+
+.menu_priority {
+    display: flex;
+    justify-content: center;
+}
