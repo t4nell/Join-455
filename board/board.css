@@ -21,6 +21,7 @@ main {
 .board_controls_container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 85%;
 }
 
@@ -30,10 +31,6 @@ main {
   justify-content: center;
   align-items: center;
   gap: 32px;
-}
-
-.magnifying_glass_input_icon:hover {
-  background-color: var(--input-icon-hover-color);
 }
 
 .input_base_style {
