@@ -105,7 +105,8 @@ main {
 
 .category_task_container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 26px;
   width: 100%;
   height: 24px;
 }
@@ -131,6 +132,33 @@ main {
 }
 
 .board_contend_bottom {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
   width: 100%;
   height: calc(100% - 232px);
+}
+
+.drake_and_drop_container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 244px;
+  
+}
+
+.drake_area {
+  background-color: var(--drake-area-background-color);
+  height: 48px;
+  border: 1px dashed var(--drake-area-border-color);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.drake_area_placeholder {
+  font-size: 16px;
+  color: var(--text-color-drake-area-placeholder);
 }
