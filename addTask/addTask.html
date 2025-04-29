@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="../styles/standard.css" />
         <link rel="stylesheet" href="../addTask/dropdown.css" />
+        <link rel="stylesheet" href="../addTask/dropdown-category.css" />
         <link rel="stylesheet" href="../addTask/radiobutton.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
         <script src="../scripts/templates.js" defer></script>
@@ -103,7 +104,7 @@
     
     <label for="toggle" class="dropdown-header">
         <span class="placeholder-text">Select contacts to assign</span>
-        <span class="arrow"></span>
+       <div class="arrow-bg-hover-color"><span class="arrow"></span></div>
     </label>
     
     <div class="dropdown-content">
@@ -157,14 +158,40 @@
     </div>
 </div>
 
-                        <div class="category_group">
-                            <label for="names">Category <span style="color: red">*</span></label>
-                            <select class="category_style" id="" name="name">
-                                <option value="apple">Select task category</option>
-                                <option value="banana">Hans</option>
-                                <option value="cherry">Karl</option>
-                            </select>
-                        </div>
+<div class="category_group">
+    <label for="names">Category<span style="color: red">*</span></label>
+<div class="Category-custom-dropdown">
+<input type="checkbox" id="Category-toggle" hidden />
+
+<label for="Category-toggle" class="Category-dropdown-header">
+<span class=Category-placeholder-text">Select task category</span>
+<div class="arrow-bg-hover-color"><span class="Category-arrow"></span></div>
+</label>
+
+<div class="Category-dropdown-content">
+<label class="Category-dropdown-item">
+<span>Technical Task</span>
+<input type="checkbox" name="contact" value="contact1" />
+</label>
+
+<label class="Category-dropdown-item">
+<span>User Story</span>
+<input type="checkbox" name="contact" value="contact2" />
+</label>
+
+<label class="Category-dropdown-item">
+<span>To Do</span>
+<input type="checkbox" name="contact" value="contact3" />
+</label>
+
+<label class="Category-dropdown-item">
+<span>Shopping List</span>
+<input type="checkbox" name="contact" value="contact1" />
+</label>
+
+
+</div>
+</div>
                         <div class="subtasks_group">
                             <label for="names">Subtasks</label>
                             <select class="subtasks_style" id="" name="name">
