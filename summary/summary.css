@@ -15,11 +15,17 @@ main {
   padding-left: 80px !important;
 }
 
+.summary_absolute{
+  position: absolute;
+  top: 239px;
+  left: 96px;
+  width: calc(100% - 232px);
+}
+
 .summary_content{
   display: flex;
   top: 239px;
   left: 96px;
-  background-color: tomato;
 }
 
 #summary_left{
@@ -31,7 +37,6 @@ main {
 
 .summary_section1_container{
   display: flex;
-  justify-content: space-between;
 }
 
 #summary_todo_container{
@@ -50,8 +55,8 @@ border-radius: 30px;
 
 .summary_section2_container{
   display: flex;
-  width: 205px;
-  height: 105px;
+  width: 300px;
+  height: 100px;
   border-radius: 30px;
   background-color: lightgreen;
 }
@@ -71,7 +76,6 @@ border-radius: 30px;
 }
 .summary_section3_container{
   display: flex;
-  justify-content: space-between;
 }
 
 #summary_Tasks_Board_container{
@@ -101,8 +105,14 @@ border-radius: 30px;
 }
 
 #summary_greating_container{
-  width: 200px;
-  height: 200px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
   background-color: chocolate;
   border-radius: 30px;
 }
