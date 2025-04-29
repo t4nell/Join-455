@@ -42,7 +42,7 @@ main {
 .separator_vertically_gray {
     width: 1px;
     background-color: gray;
-    height: auto;
+    height: 424px;
 }
 
 .textarea {
@@ -109,6 +109,7 @@ main {
 }
 
 .category_group {
+    margin-top: 24px;
     margin-bottom: 24px;
     display: flex;
     flex-direction: column;
