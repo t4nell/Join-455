@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="../styles/standard.css" />
+        <link rel="stylesheet" href="../addTask/dropdown.css" />
+        <link rel="stylesheet" href="../addTask/radiobutton.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
@@ -95,26 +97,66 @@
                             </form>
                         </div>
                         <div class="assign_to_group">
-                            <div class="custom-dropdown">
-                                <div class="dropdown-header">
-                                    <input type="text" readonly placeholder="Select contacts to assign" />
-                                    <span class="arrow"></span>
-                                </div>
-                                <div class="dropdown-content">
-                                    <label class="dropdown-item">
-                                        <span>Contact 1</span>
-                                        <input type="checkbox" name="contact" value="contact1">
-                                    </label>
-                                    <label class="dropdown-item">
-                                        <span>Contact 2</span>
-                                        <input type="checkbox" name="contact" value="contact2">
-                                    </label>
-                                    <label class="dropdown-item">
-                                        <span>Contact 3</span>
-                                        <input type="checkbox" name="contact" value="contact3">
-                                    </label>
-                                </div>
-                            </div>
+                            <label for="names">Assigned to</label>
+<div class="custom-dropdown">
+    <input type="checkbox" id="toggle" hidden />
+    
+    <label for="toggle" class="dropdown-header">
+        <span class="placeholder-text">Select contacts to assign</span>
+        <span class="arrow"></span>
+    </label>
+    
+    <div class="dropdown-content">
+        <label class="dropdown-item">
+            <img
+                                        class="icon"
+                                        src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+                                        />
+            <span>Anton Mayer</span>
+            <input type="checkbox" name="contact" value="contact1" />
+        </label>
+        <label class="dropdown-item">
+            <img
+            class="icon"
+            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+            />
+            <span>Annika Marl</span>
+            <input type="checkbox" name="contact" value="contact2" />
+        </label>
+        <label class="dropdown-item">
+            <img
+            class="icon"
+            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+            />
+            <span>Anna Maier</span>
+            <input type="checkbox" name="contact" value="contact3" />
+        </label><label class="dropdown-item">
+            <img
+                                        class="icon"
+                                        src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+                                        />
+            <span>Anton Mayer 1</span>
+            <input type="checkbox" name="contact" value="contact1" />
+        </label>
+        <label class="dropdown-item">
+            <img
+            class="icon"
+            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+            />
+            <span>Annika Marl 2</span>
+            <input type="checkbox" name="contact" value="contact2" />
+        </label>
+        <label class="dropdown-item">
+            <img
+            class="icon"
+            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
+            />
+            <span>Anna Maier 3</span>
+            <input type="checkbox" name="contact" value="contact3" />
+        </label>
+    </div>
+</div>
+
                         <div class="category_group">
                             <label for="names">Category <span style="color: red">*</span></label>
                             <select class="category_style" id="" name="name">
