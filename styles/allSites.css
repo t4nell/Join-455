@@ -16,6 +16,8 @@
     --text-color-description:  #2A3647;
     --text-color-sidebar: #ffffff;
     --text-color-headline: #2A3647;
+    --text-color-board-category-container: #42526E;
+    --focus-color: #29ABE2;
     --hover-color-sidebar1: #2A3D59;
     --hover-color-sidebar2: #29ABE2;
     --active-color-sidebar: #091931;
@@ -155,6 +157,7 @@ header span{
     height: 48px;
     width: 422px;
     font-size: 20px;
+    cursor: text;
 }
 
 .input_base_style::placeholder {
