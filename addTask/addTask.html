@@ -95,13 +95,26 @@
                             </form>
                         </div>
                         <div class="assign_to_group">
-                            <label for="names">Assigned to</label>
-                            <select class="assign_to_style select" id="" name="name">
-                                <option value="">Select contacts to assign</option>
-                                <option value="">Hans</option>
-                                <option value="">Karl</option>
-                            </select>
-                        </div>
+                            <div class="custom-dropdown">
+                                <div class="dropdown-header">
+                                    <input type="text" readonly placeholder="Select contacts to assign" />
+                                    <span class="arrow"></span>
+                                </div>
+                                <div class="dropdown-content">
+                                    <label class="dropdown-item">
+                                        <span>Contact 1</span>
+                                        <input type="checkbox" name="contact" value="contact1">
+                                    </label>
+                                    <label class="dropdown-item">
+                                        <span>Contact 2</span>
+                                        <input type="checkbox" name="contact" value="contact2">
+                                    </label>
+                                    <label class="dropdown-item">
+                                        <span>Contact 3</span>
+                                        <input type="checkbox" name="contact" value="contact3">
+                                    </label>
+                                </div>
+                            </div>
                         <div class="category_group">
                             <label for="names">Category <span style="color: red">*</span></label>
                             <select class="category_style" id="" name="name">

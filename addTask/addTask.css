@@ -149,6 +149,75 @@ input#low:checked + label.btn_green {
     margin-top: 8px;
 }
 
+.arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.5rem;
+    border-left: 0.3rem solid transparent;
+    border-right: 0.3rem solid transparent;
+    border-top: 0.3rem solid black;
+    transition: transform 0.3s;
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    background: white;
+}
+
+.dropdown-header input {
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.custom-dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+#toggle:checked + .arrow {
+    transform: rotate(180deg);
+}
+
 .margin_16px {
     margin-left: 16px;
     margin-right: 16px;
@@ -178,12 +247,3 @@ input#low:checked + label.btn_green {
     margin-top: 8px;
 }
 
-select {
-    background-color: #f0f8ff;
-    color: #333;
-    border: 2px solid #007bff;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-}
