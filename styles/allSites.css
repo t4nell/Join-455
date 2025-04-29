@@ -28,10 +28,10 @@
     --contact-container-background-color: #FFFFFF;
     --contact-mail-color: #007CEE;
     --contact-overlay-color: #2A3647;
+    --input-background-color: #ffffff;
     --input-border-color: #D1D1D1;
     --input-placeholder-color: #bdbdbd;
-    --input-border-color: #bdbdbd;
-    --input-icon-hover-color: #f5f6f7;
+    --input-icon-hover-color: #c5c6c7;
 } 
 
 body {
@@ -236,8 +236,11 @@ header span{
     background-color: var(--user-icon-hover);
 }
 
-.help_btn{
-    background-color: unset;
+.help{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color-header);
 }
 
 .help_btn:hover{
