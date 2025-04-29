@@ -90,133 +90,18 @@ main {
     height: 48px;
 }
 
-.radio-form {
-    display: flex;
-    margin-top: 8px;
-}
-
-.radio-form input[type='radio'] {
-    display: none;
-}
-
-.radio-form label {
-    display: flex;
-    gap: 8px;
-    padding: 12px 24px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.radio-form label:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
-}
-
-input#urgent:checked + label.btn_red {
-    background-color: #ff3d00;
-    border-color: #ff3d00;
-    color: white;
-}
-
-input#medium:checked + label.btn_orange {
-    background-color: #ffa800;
-    border-color: #ffa800;
-    color: white;
-}
-
-input#low:checked + label.btn_green {
-    background-color: #7ae229;
-    border-color: #7ae229;
-    color: white;
-}
-
-.radio_btn_group {
-    margin-bottom: 24px;
-}
-
 .assign_to_group {
     display: flex;
     flex-direction: column;
     margin-bottom: 24px;
 }
 
-.assign_to_style {
+/* .assign_to_style {
     height: 48px;
     border-radius: 10px;
     padding: 0 16px 0 16px;
     margin-top: 8px;
-}
-
-.arrow {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 0.5rem;
-    border-left: 0.3rem solid transparent;
-    border-right: 0.3rem solid transparent;
-    border-top: 0.3rem solid black;
-    transition: transform 0.3s;
-}
-
-.custom-dropdown {
-    position: relative;
-    width: 100%;
-}
-
-.dropdown-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    background: white;
-}
-
-.dropdown-header input {
-    border: none;
-    background: none;
-    width: 100%;
-    cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    max-height: 200px;
-    overflow-y: auto;
-}
-
-.custom-dropdown.active .dropdown-content {
-    display: block;
-}
-
-.dropdown-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    cursor: pointer;
-}
-
-.dropdown-item:hover {
-    background-color: #f5f5f5;
-}
-
-#toggle:checked + .arrow {
-    transform: rotate(180deg);
-}
+} */
 
 .margin_16px {
     margin-left: 16px;

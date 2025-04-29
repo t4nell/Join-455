@@ -25,21 +25,3 @@ document.querySelectorAll('input[name="Priority"]').forEach((radio) => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const dropdowns = document.querySelectorAll('.custom-dropdown');
-
-    dropdowns.forEach((dropdown) => {
-        const header = dropdown.querySelector('.dropdown-header');
-
-        header.addEventListener('click', () => {
-            dropdown.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-    });
-});

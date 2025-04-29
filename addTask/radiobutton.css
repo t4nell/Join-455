@@ -1,0 +1,45 @@
+.radio-form {
+    display: flex;
+    margin-top: 8px;
+}
+
+.radio-form input[type='radio'] {
+    display: none;
+}
+
+.radio-form label {
+    display: flex;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.radio-form label:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+}
+
+input#urgent:checked + label.btn_red {
+    background-color: #ff3d00;
+    border-color: #ff3d00;
+    color: white;
+}
+
+input#medium:checked + label.btn_orange {
+    background-color: #ffa800;
+    border-color: #ffa800;
+    color: white;
+}
+
+input#low:checked + label.btn_green {
+    background-color: #7ae229;
+    border-color: #7ae229;
+    color: white;
+}
+
+.radio_btn_group {
+    margin-bottom: 24px;
+}
