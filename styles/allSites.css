@@ -16,10 +16,15 @@
     --text-color-description:  #2A3647;
     --text-color-sidebar: #ffffff;
     --text-color-headline: #2A3647;
+    --text-color-board-category-container: #42526E;
+    --focus-color: #29ABE2;
     --hover-color-sidebar1: #2A3D59;
     --hover-color-sidebar2: #29ABE2;
     --active-color-sidebar: #091931;
     --border-color: #2A3647;
+    --drake-area-border-color: #A8A8A8;
+    --drake-area-background-color: #E7E7E7;
+    --text-color-drake-area-placeholder: #A8A8A8;
     --data-protection-text-color: #a8a8a8;
     --signup-privacy-policy-color: #29ABE2;
     --separator-color-grey: #d1d1d1;
@@ -50,6 +55,60 @@ main{
     overflow-x: hidden;
 }
 
+header{
+    background-color: var(--background-color-header);
+    width: calc(100% - 232px);
+    height: 96px;
+    top: o;
+    left: 232px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    position: absolute;
+    justify-content: space-between;
+    box-shadow: 0px 4px 4px #88888838;
+    overflow-x: hidden;
+}
+
+header span{
+    padding-left: 116px;
+    font-size: 20px;
+}
+
+.user_menu {
+    padding-right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user_profile{
+    width: 56px;
+    height: 56px;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color-name);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.user_profile:hover{
+    background-color: var(--user-icon-hover);
+}
+
+.help{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color-header);
+}
+
+.help_btn:hover{
+    scale: 1.1;
+}
 .dark_btn{
     font-size: 16px;
     font-weight: 700;
@@ -102,6 +161,7 @@ main{
     height: 48px;
     width: 422px;
     font-size: 20px;
+    cursor: text;
 }
 
 .input_base_style::placeholder {
@@ -191,59 +251,4 @@ main{
 
 .sidebar_footer a.active {
     background-color: var(--active-color-sidebar);
-}
-
-header{
-    background-color: var(--background-color-header);
-    width: calc(100% - 232px);
-    height: 96px;
-    top: o;
-    left: 232px;
-    display: flex;
-    align-items: center;
-    z-index: 100;
-    position: absolute;
-    justify-content: space-between;
-    box-shadow: 0px 4px 4px #88888838;
-    overflow-x: hidden;
-}
-
-header span{
-    padding-left: 348px;
-    font-size: 20px;
-}
-
-.user_menu {
-    padding-right: 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.user_profile{
-    width: 56px;
-    height: 56px;
-    border: 3px solid black;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-color-name);
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.user_profile:hover{
-    background-color: var(--user-icon-hover);
-}
-
-.help{
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: var(--background-color-header);
-}
-
-.help_btn:hover{
-    scale: 1.1;
 }

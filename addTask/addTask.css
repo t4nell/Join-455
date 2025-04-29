@@ -125,6 +125,7 @@ main {
 .subtasks_group {
     display: flex;
     flex-direction: column;
+    margin-top: 24px;
 }
 .subtasks_style {
     height: 48px;

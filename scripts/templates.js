@@ -18,7 +18,7 @@ function getLoginSignupTemplate() {
       </div>
 
     <div class="signup_card d_none" id="signup_container">
-      <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrow-left-line.svg" alt="arrow_left_icon"></button>
+      <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrowLeftLine.svg" alt="arrow_left_icon"></button>
       <div>
         <a onclick="#"></a>
         
@@ -55,7 +55,7 @@ function getSidebarTemplate() {
         <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
       </a>
       <a href="../addTask/addTask.html" class="${currentPage.includes('addTask') ? 'active' : ''}">
-        <img src="../assets/imgs/sidebarIcons/add_task.svg" alt="Add Task Icon">Add Task
+        <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">Add Task
       </a>
       <a href="../board/board.html" class="${currentPage.includes('board') ? 'active' : ''}">
         <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">Board
