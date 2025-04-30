@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--overlay-background-color);
     z-index: 103;
     display: flex;
     justify-content: center;
@@ -30,6 +30,7 @@
     transition: all 225ms ease-in-out;
     cursor: default;
 }
+
 .closed {
     transform: translateX(110%);
 }
@@ -147,7 +148,6 @@
     font-size: 27px;
     font-weight: 400;
     color: var(--text-color-white);
-    padding-bottom: 16px;
 }
 
 .overlay_text_container{
@@ -166,4 +166,57 @@
   display: flex;
   margin: 0;
   border-color: var(--separator-color);
+}
+
+.delete_contact_btn {
+  font-size: 20px;
+  font-weight: 400;
+  height: 55px;
+  width: 113px;
+  background-color: var(--light-button);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.save_contact_btn{
+  font-size: 20px;
+  font-weight: 400;
+  height: 57px;
+  width: 111px;
+  background-color: var(--dark-button);
+  color: var(--text-color-white-button);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay_edit_buttons{
+  width: 249px;
+  height: 57px;
+  position: absolute;
+  right: 221px;
+  bottom: 135px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete_contact_btn:hover{
+  color: var(--button-hover-color);
+  border: 1px solid var(--button-hover-color);
+  box-shadow: var(--button-box-shadow-color);
+
+}
+
+.delete_contact_btn:hover img{
+  filter: brightness(0) saturate(100%) invert(69%) sepia(27%) saturate(5455%) hue-rotate(165deg) brightness(93%) contrast(90%);
+}
+
+.save_contact_btn:hover{
+  background-color: var(--button-hover-color);
+  box-shadow: var(--button-box-shadow-color);
 }
