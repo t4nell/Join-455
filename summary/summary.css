@@ -15,21 +15,21 @@ main {
   padding-left: 80px !important;
 }
 
+
 .summary_absolute{
   position: absolute;
   top: 239px;
   left: 96px;
-  width: calc(100% - 232px);
+  width: calc(100%);
 }
 
 .summary_content{
   display: flex;
-  top: 239px;
-  left: 96px;
+  width: 100%;
 }
 
 #summary_left{
-  width: 60%;
+  width: 70%;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -37,82 +37,86 @@ main {
 
 .summary_section1_container{
   display: flex;
+  width: 100%;
+  height: 170px;
+  gap: 32px;
 }
 
 #summary_todo_container{
-width: 150px;
-height: 100px;
-background-color: aqua;
+width: 50%;
+height: 170px;
+border: 3px solid aqua;
 border-radius: 30px;
 }
 
 #summary_done_container{
-  width: 150px;
-  height: 100px;
-  background-color: blue;
+  width: 50%;
+  height: 170px; 
+  border: 3px solid blue;
   border-radius: 30px;
 }
 
 .summary_section2_container{
   display: flex;
-  width: 300px;
-  height: 100px;
+  height: 170px;
+  padding: 28px 48px;
   border-radius: 30px;
-  background-color: lightgreen;
+  border: 3px solid lightgreen;
+  margin: 28px 0px;
 }
 
 #summary_importance_container{
-  background-color: white;
-  width: 100px;
-  height: 100px;
+  border: 3px solid limegreen;
   border-radius: 30px;
 }
 
 #summary_deadline_container{
-  background-color: red;
-  width: 100px;
-  height: 100px;
+  border: 3px solid aqua;
   border-radius: 30px;
 }
 .summary_section3_container{
   display: flex;
+  width: 100%;
+  height: 170px;
+  gap: 28px;
 }
 
 #summary_Tasks_Board_container{
-  width: 100px;
-  height: 100px;
-  background-color: green;
+  width: 33%;
+  height: 170px;
+  border: 3px solid green;
   border-radius: 30px;
 }
 
 #summary_Tasks_Progress_container{
-  width: 100px;
-  height: 100px;
-  background-color:yellowgreen;
+  width: 33%;
+  height: 170px;
+  border: 3px solid yellowgreen;
   border-radius: 30px;
 }
 
 #summary_Await_Feedback_container{
-  width: 100px;
-  height: 100px;
-  background-color: purple;
+  width: 33%;
+  height: 170px;
+  border: 3px solid purple;
   border-radius: 30px;
 }
 
 #summary_right{
-  width: 40%;
+  width: 20%;
+  display: flex;
   justify-content: flex-end;
+  align-items: center;
+  
 }
 
 #summary_greating_container{
   display: flex;
   justify-content: center;
-  justify-items: center;
   align-items: center;
-  text-align: center;
   flex-direction: column;
-  width: 300px;
-  height: 300px;
-  background-color: chocolate;
+  width: 100%;
+  height: 100%;
+  border: 3px solid chocolate;
   border-radius: 30px;
 }
