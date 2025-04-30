@@ -230,9 +230,9 @@ header span{
     cursor: pointer;
     opacity: 1;
     transition: all 225ms ease-in-out;
-  }
+}
   
-  .fade_out{
+.fade_out{
     opacity: 0;
     pointer-events: none;
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/allSites.css" />
     <link rel="stylesheet" href="../styles/inputIcons.css" />
-    <link rel="stylesheet" href="../styles/fongcss" />
+    <link rel="stylesheet" href="../styles/font.css" />
     <link rel="stylesheet" href="../styles/standard.css" />
     <link rel="stylesheet" href="./taskCard.css" />
     <link rel="stylesheet" href="./taskDetailTemplate.css" />
@@ -41,13 +41,13 @@
       </div>
 
 
-      <div class="overlay_background_container">
+      <div id="overlay_background_container" onclick="closeDetailTemplate()" class="overlay_background_container fade_out">
         <!-- Template -->
-        <div class="task_detail_card">
+        <div id="task_detail_card" class="task_detail_card" onclick="eventBubbling(event)">
 
           <div class="task_detail_card_header">
             <span class="category-label">category</span>
-            <button class="closed_btn">X</button>
+            <button onclick="closeDetailTemplate()" class="closed_btn">X</button>
           </div>
 
           <div class="">
@@ -137,7 +137,7 @@
 
               <!-- Template -->
             
-              <div class="task-card">
+              <div id="task-card" class="task-card" onclick="renderDetailTemplate()">
                 <!-- Task Label -->
                 <div class="task-category">
                     <span class="category-label">User Story</span>
