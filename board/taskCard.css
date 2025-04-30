@@ -18,6 +18,10 @@
     margin: 8px 0;
 }
 
+.task-card:hover {
+    cursor: pointer;
+}
+
 .task-category {
     margin-bottom: 8px;
 }
@@ -63,6 +67,7 @@
     height: 100%;
     background-color: var(--progress-fill-color);
     border-radius: 4px;
+    width: 50%;
 }
 
 .subtask-counter {
@@ -85,8 +90,7 @@
 .avatar {
     width: 32px;
     height: 32px;
-    /* background-color randomized */
-    background: #0052ff; 
+    background: #0052ff; /* background-color randomized */
     border: 1px solid var(--avatar-border-color);
     border-radius: 50%;
     display: flex;
