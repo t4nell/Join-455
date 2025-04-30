@@ -32,23 +32,32 @@ const toggle = document.getElementById('dropdownToggleBtn');
 const label = toggle.querySelector('.dropdown-label');
 const menu = document.getElementById('dropdownMenu');
 const items = menu.querySelectorAll('.dropdown-item');
+const symbole = document.getElementById('placeholder_group');
 
 toggle.addEventListener('click', () => {
     dropdown.classList.toggle('open');
+    if (dropdown.classList.contains('open')) {
+        symbole.classList.add('d-none');
+    } else {
+        symbole.classList.remove('d-none');
+    }
 });
 
 items.forEach((item) => {
     item.addEventListener('click', () => {
         label.textContent = item.textContent;
         dropdown.classList.remove('open');
+        symbole.classList.remove('d-none');
     });
 });
 
 document.addEventListener('click', (everyWhere) => {
     if (!dropdown.contains(everyWhere.target)) {
         dropdown.classList.remove('open');
+        symbole.classList.remove('d-none');
     }
 });
+// Assigned To input ende
 
 // Category To input
 const categoryDropdown = document.getElementById('category-dropdown');
@@ -73,4 +82,29 @@ document.addEventListener('click', (everyWhere) => {
         categoryDropdown.classList.remove('open');
     }
 });
+// Category To input ende
+
+// Subtask input
+document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById('tagInputField');
+    const tagList = document.querySelector('.tag-list');
+    const deletTextBtn = document.querySelector('.delet-text-btn');
+    const confirmBtn = document.querySelector('.confirm-btn');
+
+    confirmBtn.addEventListener('click', () => {
+        const value = inputField.value.trim();
+        if (value) {
+            const newTag = document.createElement('li');
+            newTag.classList.add('tag-field');
+            newTag.textContent = value;
+            tagList.appendChild(newTag);
+            inputField.value = '';
+        }
+    });
+
+    deletTextBtn.addEventListener('click', () => {
+        inputField.value = '';
+    });
+});
+// Subtask input ende
 

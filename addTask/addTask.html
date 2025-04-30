@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../styles/standard.css" />
         <link rel="stylesheet" href="../addTask/dropdown-assigned-to.css" />
         <link rel="stylesheet" href="../addTask/dropdown-category.css" />
+        <link rel="stylesheet" href="../addTask/dropdown-subtask.css" />
         <link rel="stylesheet" href="../addTask/radiobutton.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
         <script src="../scripts/templates.js" defer></script>
@@ -118,7 +119,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="placeholder_group">
+                        <div id="placeholder_group" class="placeholder_group">
                             <div class="placeholder-icon"></div>
                             <div class="placeholder-icon"></div>
                             <div class="placeholder-icon"></div>
@@ -146,21 +147,32 @@
                             </div>
                         </div>
 
-                        <div class="subtasks_group">
+                        <div class="tag-input-container">
                             <label for="names">Subtasks</label>
-                            <select class="subtasks_style" id="" name="name">
-                                <option value="apple">Contact Form</option>
-                                <option value="banana">Hans</option>
-                                <option value="cherry">Karl</option>
-                            </select>
+                            <div class="tag-input">
+                                <input type="text" placeholder="Write Legal Imprint" id="tagInputField" />
+                                <button class="delet-text-btn">✖</button>
+                                <hr class="separator_vertically" />
+                                <button class="confirm-btn">✔</button>
+                            </div>
+                            <ul class="tag-list">
+                                <div class="tag-field">
+                                    <li class="tag-item">・Contact Form</li>
+                                    <div class="btns-position">
+                                        <button class="edit-text-btn">✔</button>
+                                        <hr class="separator_vertically" />
+                                        <button class="trash-btn">✖</button>
+                                    </div>
+                                </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="creat-task">
-                    <div class="p-required-field"><p class="required-field">*This field is required</p></div>
+                    <div class="p-required-field"><p class="required-field">* This field is required</p></div>
                     <div class="btn-position">
-                        <button class="clear-btn">Clear</button>
-                        <button class="create-task-btn">Create Task</button>
+                        <button class="clear-btn">Clear x</button>
+                        <button class="create-task-btn">Create Task ✔</button>
                     </div>
                 </div>
             </div>
