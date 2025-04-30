@@ -142,6 +142,12 @@ main {
     height: 42px;
     background-color: blue;
     border-radius: 32px;
+    border: solid 1px;
+    cursor: pointer;
+}
+
+.placeholder-icon:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
 }
 /* Assign ende */
 
@@ -203,3 +209,4 @@ main {
 .d-none {
     display: none;
 }
+
