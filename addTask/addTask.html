@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="../styles/standard.css" />
-        <link rel="stylesheet" href="../addTask/dropdown.css" />
+        <link rel="stylesheet" href="../addTask/dropdown-assigned-to.css" />
         <link rel="stylesheet" href="../addTask/dropdown-category.css" />
         <link rel="stylesheet" href="../addTask/radiobutton.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
@@ -99,99 +99,53 @@
                         </div>
                         <div class="assign_to_group">
                             <label for="names">Assigned to</label>
-<div class="custom-dropdown">
-    <input type="checkbox" id="toggle" hidden />
-    
-    <label for="toggle" class="dropdown-header">
-        <span class="placeholder-text">Select contacts to assign</span>
-       <div class="arrow-bg-hover-color"><span class="arrow"></span></div>
-    </label>
-    
-    <div class="dropdown-content">
-        <label class="dropdown-item">
-            <img
-                                        class="icon"
-                                        src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-                                        />
-            <span>Anton Mayer</span>
-            <input type="checkbox" name="contact" value="contact1" />
-        </label>
-        <label class="dropdown-item">
-            <img
-            class="icon"
-            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-            />
-            <span>Annika Marl</span>
-            <input type="checkbox" name="contact" value="contact2" />
-        </label>
-        <label class="dropdown-item">
-            <img
-            class="icon"
-            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-            />
-            <span>Anna Maier</span>
-            <input type="checkbox" name="contact" value="contact3" />
-        </label><label class="dropdown-item">
-            <img
-                                        class="icon"
-                                        src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-                                        />
-            <span>Anton Mayer 1</span>
-            <input type="checkbox" name="contact" value="contact1" />
-        </label>
-        <label class="dropdown-item">
-            <img
-            class="icon"
-            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-            />
-            <span>Annika Marl 2</span>
-            <input type="checkbox" name="contact" value="contact2" />
-        </label>
-        <label class="dropdown-item">
-            <img
-            class="icon"
-            src="../assets/imgs/add_task_btn_img/Anton_Mayer.svg"
-            />
-            <span>Anna Maier 3</span>
-            <input type="checkbox" name="contact" value="contact3" />
-        </label>
-    </div>
-</div>
+                            <div class="dropdown" id="dropdown">
+                                <button class="dropdown-toggle" id="dropdownToggleBtn">
+                                    <span class="dropdown-label">Select an option</span>
+                                    <div class="arrow-bg-hover-color"><span class="arrow"></span></div>
+                                </button>
+                                <ul class="dropdown-menu" id="dropdownMenu">
+                                    <li class="dropdown-item">Option 1 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 2 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 3 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 4 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 5 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 6 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 7 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 8 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 9 <input type="checkbox" name="contact" /></li>
+                                    <li class="dropdown-item">Option 10 <input type="checkbox" name="contact" /></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="placeholder_group">
+                            <div class="placeholder-icon"></div>
+                            <div class="placeholder-icon"></div>
+                            <div class="placeholder-icon"></div>
+                        </div>
 
-<div class="category_group">
-    <label for="names">Category<span style="color: red">*</span></label>
-<div class="Category-custom-dropdown">
-<input type="checkbox" id="Category-toggle" hidden />
+                        <div class="category-group">
+                            <label for="names">Category <span style="color: red">*</span></label>
+                            <div class="category-dropdown" id="category-dropdown">
+                                <button class="category-dropdown-toggle" id="category-dropdownToggleBtn">
+                                    <span class="category-dropdown-label">Select task category</span>
+                                    <div class="category-arrow-bg-hover-color">
+                                        <span class="category-arrow"></span>
+                                    </div>
+                                </button>
+                                <ul class="category-dropdown-menu" id="category-dropdownMenu">
+                                    <li class="category-dropdown-item">Technical Task</li>
+                                    <li class="category-dropdown-item">User Story</li>
+                                    <li class="category-dropdown-item">To Do</li>
+                                    <li class="category-dropdown-item">Shopping List</li>
+                                    <li class="category-dropdown-item">Train</li>
+                                    <li class="category-dropdown-item">Live</li>
+                                    <li class="category-dropdown-item">Work</li>
+                                    <li class="category-dropdown-item">Nothing</li>
+                                </ul>
+                            </div>
+                        </div>
 
-<label for="Category-toggle" class="Category-dropdown-header">
-<span class=Category-placeholder-text">Select task category</span>
-<div class="arrow-bg-hover-color"><span class="Category-arrow"></span></div>
-</label>
-
-<div class="Category-dropdown-content">
-<label class="Category-dropdown-item">
-<span>Technical Task</span>
-<input type="checkbox" name="contact" value="contact1" />
-</label>
-
-<label class="Category-dropdown-item">
-<span>User Story</span>
-<input type="checkbox" name="contact" value="contact2" />
-</label>
-
-<label class="Category-dropdown-item">
-<span>To Do</span>
-<input type="checkbox" name="contact" value="contact3" />
-</label>
-
-<label class="Category-dropdown-item">
-<span>Shopping List</span>
-<input type="checkbox" name="contact" value="contact1" />
-</label>
-
-
-</div>
-</div>
                         <div class="subtasks_group">
                             <label for="names">Subtasks</label>
                             <select class="subtasks_style" id="" name="name">
@@ -202,6 +156,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="creat-task">
+                <button>Clear</button>
+                <button>Creat Task</button>
             </div>
         </main>
     </body>
