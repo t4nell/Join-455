@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/allSites.css" />
     <link rel="stylesheet" href="../styles/inputIcons.css" />
-    <link rel="stylesheet" href="../styles/font.css" />
+    <link rel="stylesheet" href="../styles/fongcss" />
     <link rel="stylesheet" href="../styles/standard.css" />
-    <link rel="stylesheet" href="./board.css" />
     <link rel="stylesheet" href="./taskCard.css" />
+    <link rel="stylesheet" href="./taskDetailTemplate.css" />
+    <link rel="stylesheet" href="./board.css" />
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
     <script src="../scripts/templates.js" defer></script>
     <script src="./board.js" defer></script>
     <title>Join</title>
   </head>
   <body onload="renderSidebar()">
+
+
+    
+
 
     <main id="main_container">
 
@@ -30,19 +35,41 @@
 
         <div class="sidebar_img_container">
           <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"></a>
-
-          <div id="navbar_container">
-
-          </div>
-
+          <div id="navbar_container"></div>
         </div>
 
       </div>
 
+
+      <div class="overlay_background_container">
+        <!-- Template -->
+        <div class="task_detail_card">
+
+          <div class="task_detail_card_header">
+            <span class="category-label">category</span>
+            <button class="closed_btn">X</button>
+          </div>
+
+          <div class="">
+            <h3>Kochwelt Page & Recipe Recommender</h3>
+          </div>
+
+          <div class="description_container">
+            <span></span>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <!-- Template -->
+      </div>
+      
+
+
+
       <div class="board_container">
-
         <div class="board_contend_top">
-
           <div class="board_controls_container">
 
             <div class="headline_container">
@@ -66,8 +93,9 @@
               </div>
 
             </div>
-
           </div>
+
+          
 
           <div class="category_task_container">
             <div class="category">
@@ -93,21 +121,21 @@
 
         <div class="board_contend_bottom">
 
-          <div class="drake_and_drop_container">
-            <div class="drake_area">
-              <span class="drake_area_placeholder">No Task Todo</span>
+          <div class="drag_and_drop_container">
+            <div class="drag_area">
+              <span class="drag_area_placeholder">No Task Todo</span>
             </div>
           </div>
 
-          <div class="drake_and_drop_container">
-            <div class="drake_area">
-              <span class="drake_area_placeholder">No Task progress</span>
+          <div class="drag_and_drop_container">
+            <div class="drag_area">
+              <span class="drag_area_placeholder">No Task progress</span>
 
 
 
 
 
-
+              <!-- Template -->
             
               <div class="task-card">
                 <!-- Task Label -->
@@ -124,7 +152,7 @@
                 <!-- Progress Bar -->
                 <div class="progress-section">
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 50%"></div>
+                        <div class="progress-fill"></div>
                     </div>
                     <span class="subtask-counter">1/2 Subtasks</span>
                 </div>
@@ -142,7 +170,7 @@
                 </div>
               </div>
 
-              
+              <!-- Template -->
 
 
 
@@ -153,15 +181,15 @@
             </div>
           </div>
 
-          <div class="drake_and_drop_container">
-            <div class="drake_area">
-              <span class="drake_area_placeholder">No Task Await feedback</span>
+          <div class="drag_and_drop_container">
+            <div class="drag_area">
+              <span class="drag_area_placeholder">No Task Await feedback</span>
             </div>
           </div>
 
-          <div class="drake_and_drop_container">
-            <div class="drake_area">
-              <span class="drake_area_placeholder">No Task Done</span>
+          <div class="drag_and_drop_container">
+            <div class="drag_area">
+              <span class="drag_area_placeholder">No Task Done</span>
             </div>
           </div>
 

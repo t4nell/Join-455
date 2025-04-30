@@ -7,3 +7,42 @@
     height: 48px;
     width: 177px;
 }
+
+.help{
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: var(--background-color-header);
+}
+
+.help_btn:hover{
+    scale: 1.1;
+}
+.dark_btn{
+    font-size: 16px;
+    font-weight: 700;
+    background-color: var(--dark-button);
+    color: var(--text-color-white-button);
+    border-radius: 8px;
+    padding: 15px 16px;
+    border: unset;
+}
+
+.dark_btn:hover{
+    background-color: var(--button-hover-color);
+}
+
+.light_btn{
+    font-size: 16px;
+    font-weight: 700;
+    background-color: var(--light-button);
+    color: var(--text-color-dark-button);
+    border-radius: 8px;
+    padding: 15px 16px;
+    border: 1px solid var(--border-color);
+}
+
+.light_btn:hover{
+    color: var(--button-hover-color);
+    border-color: var(--button-hover-color);
+}
