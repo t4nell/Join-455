@@ -19,7 +19,7 @@ function updateGreeting() {
         greeting = "Guten Abend";
     }
     //Namen aus dem Local Storage holen
-    const userName = localStorage.getItem('userName') || 'Ego Ist';
+    const userName = localStorage.getItem('userName') || 'Sofia Müller';
     
     greetingContainer.innerHTML = `${greeting},<br>${userName}`;
 }
