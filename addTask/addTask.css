@@ -126,20 +126,7 @@ main {
     padding: 0 16px 0 16px;
     margin-top: 8px;
 }
-
-.creat-task {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    top: 82%;
-    left: 0px;
-    background-color: red;
-    width: 100%;
-    height: 200px;
-    z-index: 1000;
-    gap: 16px;
-}
-
+/* Assign */
 .placeholder_group {
     display: flex;
     align-items: center;
@@ -152,5 +139,55 @@ main {
     height: 42px;
     background-color: blue;
     border-radius: 32px;
+}
+/* Assign ende */
+
+.creat-task {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.clear-btn {
+    background-color: white;
+    color: #2a3647;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    background-color: #f0f0f0;
+    border-color: #29abe2;
+    color: #29abe2;
+}
+
+.create-task-btn {
+    background-color: #2a3647;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.create-task-btn:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    background-color: #29abe2;
+}
+
+.required-field {
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: left;
+    margin-left: 96px;
 }
 
