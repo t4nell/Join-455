@@ -1,0 +1,85 @@
+.tag-input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 440px;
+    margin: 16px 0;
+}
+
+.tag-input {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: #fff;
+}
+
+.tag-input input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.tag-list {
+    list-style: none;
+    padding: 8px 0 0;
+    margin: 0;
+}
+
+.tag-item {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.separator_vertically {
+    background-color: lightgrey;
+    height: 24px;
+    border: 1px solid;
+    margin: 0;
+    border-radius: 3px;
+}
+
+.delet-text-btn {
+    background-color: white;
+}
+.delet-text-btn:hover {
+    color: #29abe2;
+}
+.confirm-btn:hover {
+    color: #29abe2;
+}
+
+.confirm-btn {
+    background-color: white;
+}
+
+.tag-field {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 16px;
+    align-items: center;
+}
+
+.btns-position {
+    display: flex;
+    padding-right: 8px;
+}
+
+.edit-text-btn {
+    background-color: white;
+}
+.trash-btn {
+    background-color: white;
+}
+
+.tag-field:hover {
+    background-color: lightslategray;
+}
+

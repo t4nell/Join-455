@@ -1,0 +1,14 @@
+:root {
+    
+}
+
+.task_detail_card {
+    background-color: var(--template-background-color);
+    padding: 48px 40px;
+    border-radius: 30px;
+}
+
+.task_detail_card_header {
+    display: flex;
+    justify-content: space-between;
+}
