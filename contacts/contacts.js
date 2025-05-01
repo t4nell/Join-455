@@ -1,6 +1,6 @@
 const mainContainer = document.getElementById("navbar_container");
-const newContactpopup = document.getElementById("contact_popup");
-const editContactpopup = document.getElementById("contact_edit_overlay");
+const newContactPopup = document.getElementById("contact_popup");
+const editContactPopup = document.getElementById("contact_edit_overlay");
 const overlay = document.getElementById("contact_overlay");
 
 function renderSidebar() {
@@ -14,8 +14,8 @@ function toggleOverlayNewContact(){
 
 function toggleOverlay(){
     overlay.classList.add("fade_out");
-    newContactpopup.classList.add("closed");
-    editContactpopup.classList.add("closed");
+    newContactPopup.classList.add("closed");
+    editContactPopup.classList.add("closed");
 }
 
 function eventBubbling(event){
@@ -24,10 +24,10 @@ function eventBubbling(event){
 
 function newContactOverlay(){
     overlay.classList.remove("fade_out");
-    newContactpopup.classList.remove("closed");
+    newContactPopup.classList.remove("closed");
 }
 
 function editContactOverlay(){
     overlay.classList.remove("fade_out");
-    editContactpopup.classList.remove("closed");
+    editContactPopup.classList.remove("closed");
 }
