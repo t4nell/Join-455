@@ -3,12 +3,100 @@
 }
 
 .task_detail_card {
-    background-color: var(--template-background-color);
-    padding: 48px 40px;
+    background-color: white;
     border-radius: 30px;
+    padding: 40px;
+    width: min(80%, 931px);
+    width: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .task_detail_card_header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.closed_btn {
+    background: none;
+    font-size: 20px;
+    border-radius: 100%;
+}
+
+.closed_btn:hover {
+    background-color: #F6F7F8;
+}
+
+.task_detail_title h2 {
+    font-size: 61px;
+}
+
+.detail_label {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+.task_detail_description p {
+    font-size: 20px;
+}
+
+.priority_badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.assigned_contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact_badge {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.subtasks_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subtask_item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.subtask_item:hover {
+    background-color: #F6F7F8;
+}
+
+.task_detail_buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.delete_btn,
+.edit_btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    background: none;
+    cursor: pointer;
+}
+
+.delete_btn:hover,
+.edit_btn:hover {
+    color: #29ABE2;
 }
