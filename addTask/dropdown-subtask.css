@@ -47,10 +47,12 @@
     background-color: white;
 }
 .delet-text-btn:hover {
-    color: #29abe2;
+    background-color: red;
+    color: blue;
 }
 .confirm-btn:hover {
-    color: #29abe2;
+    background-color: red;
+    color: blue;
 }
 
 .confirm-btn {
@@ -81,5 +83,33 @@
 
 .tag-field:hover {
     background-color: lightslategray;
+}
+.tag-field:hover .newTag-input {
+    background-color: lightslategray;
+}
+
+.d-none {
+    display: none;
+}
+
+.newTag-container {
+    scrollbar-width: thin;
+    width: 440px;
+    max-height: 64px;
+    overflow-y: auto;
+}
+
+.newTag-input {
+    width: 440px;
+}
+
+.newTag-input:focus {
+    background-color: white;
+    border-bottom: solid 1px;
+}
+
+.tag-field:has(.newTag-input:focus),
+.tag-field:has(.newTag-input:focus) .newTag-input {
+    background-color: white !important;
 }
 

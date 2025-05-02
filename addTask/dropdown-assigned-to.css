@@ -38,6 +38,7 @@
     overflow-y: auto;
     scrollbar-width: thin;
     padding-bottom: 8px;
+    margin-bottom: -16px;
 }
 
 .dropdown-item {

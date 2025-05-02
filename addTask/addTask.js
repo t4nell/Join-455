@@ -25,6 +25,7 @@ document.querySelectorAll('input[name="Priority"]').forEach((radio) => {
         }
     });
 });
+// Radio Buttons ende
 
 // Assigned To input
 const dropdown = document.getElementById('dropdown');
@@ -87,24 +88,50 @@ document.addEventListener('click', (everyWhere) => {
 // Subtask input
 document.addEventListener('DOMContentLoaded', () => {
     const inputField = document.getElementById('tagInputField');
-    const tagList = document.querySelector('.tag-list');
+    const tagField = document.getElementById('tag-field');
     const deletTextBtn = document.querySelector('.delet-text-btn');
     const confirmBtn = document.querySelector('.confirm-btn');
+    const editBtn = document.querySelector('.edit-text-btn');
 
     confirmBtn.addEventListener('click', () => {
         const value = inputField.value.trim();
+        const newTagCon = document.getElementById('newTag-container');
         if (value) {
-            const newTag = document.createElement('li');
-            newTag.classList.add('tag-field');
-            newTag.textContent = value;
-            tagList.appendChild(newTag);
+            newTagCon.innerHTML += getNewTagTemplate(value);
             inputField.value = '';
+            addTrashEventListeners();
         }
     });
 
     deletTextBtn.addEventListener('click', () => {
         inputField.value = '';
     });
+
+    function addTrashEventListeners() {
+        const trashTagBtns = document.querySelectorAll('.trash-btn');
+        trashTagBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btn.closest('.tag-field').remove();
+            });
+        });
+    }
+
+    addTrashEventListeners();
 });
+
+function getNewTagTemplate(value) {
+    return `
+    <div class="tag-field">
+    <input class="newTag-input" type="text" value="・ ${value}" />
+        <li class="tag-item"></li>
+        <div class="btns-position">
+            <button class="edit-text-btn">✔</button>
+            <hr class="separator_vertically" />
+            <button class="trash-btn">✖</button>
+        </div>
+    </div>
+    `;
+}
+
 // Subtask input ende
 
