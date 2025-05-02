@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const value = inputField.value.trim();
         const newTagCon = document.getElementById('newTag-container');
         if (value) {
-            newTagCon.innerHTML += getNewTagTemplate(value);
+            const valueJoin = `・ ${value}`;
+            newTagCon.innerHTML += getNewTagTemplate(valueJoin);
             inputField.value = '';
             addTrashEventListeners();
         }
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function getNewTagTemplate(value) {
     return `
     <div class="tag-field">
-    <input class="newTag-input" type="text" value="・ ${value}" />
+    <input class="newTag-input" type="text" value="${value}" />
         <li class="tag-item"></li>
         <div class="btns-position">
             <button class="edit-text-btn">✔</button>
