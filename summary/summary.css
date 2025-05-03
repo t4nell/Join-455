@@ -179,3 +179,24 @@ main {
   font-weight: 500;
   margin: 0px 0px 0px 50px;
 }
+
+#summary_greating_container {
+  padding: 20px;
+  color: #2A3647;
+}
+
+#summary_greating_container h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+#summary_greating_container h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #29ABE2;
+}
+
+.welcome-message {
+  font-size: 1.2rem;
+  color: #666;
+}
