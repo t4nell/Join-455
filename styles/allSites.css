@@ -241,5 +241,5 @@ header span{
 }
 
 .closed {
-    transform: translateX(110%);
+    transform: translateX(150%);
 }

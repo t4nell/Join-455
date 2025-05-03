@@ -44,11 +44,13 @@
 
       <!-- Template task detail card -->
       <div id="overlay_background_container" onclick="closeDetailTemplate()" class="overlay_background_container fade_out">
+        
         <!-- Task Detail Template -->
         <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)">
+
             <!-- Card Header with Category and Close Button -->
             <div class="task_detail_card_header">
-                <span class="category-label">User Story</span>
+                <span class="category_lable_detail">User Story</span>
                 <button onclick="closeDetailTemplate()" class="closed_btn">X</button>
             </div>
 
@@ -59,7 +61,6 @@
 
             <!-- Description Section -->
             <div class="task_detail_description">
-                <span class="detail_label">Description:</span>
                 <p>Build start page with recipe recommendation...</p>
             </div>
 

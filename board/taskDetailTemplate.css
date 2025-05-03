@@ -8,13 +8,22 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    gap: 24px;
+    transition: all 225ms ease-in-out;
 }
 
 .task_detail_card_header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.category_lable_detail {
+    background-color: #0052ff;
+    color: var(--category-label-text-color);
+    padding: 4px 16px;
+    border-radius: 8px;
+    font-size: 20px;
 }
 
 .closed_btn {
@@ -33,14 +42,38 @@
 
 .detail_label {
     font-size: 20px;
-    font-weight: bold;
     display: block;
+    color: #2A3647;
 }
 
 .task_detail_description p {
     font-size: 20px;
+    margin: 0;
 }
 
+.task_detail_date {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.task_detail_priority {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.task_detail_assigned {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;  
+}
+
+.task_detail_subtasks {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 .priority_badge {
     display: inline-flex;
     align-items: center;
@@ -58,6 +91,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    padding-left: 16px;
 }
 
 .subtasks_list {
@@ -71,6 +105,7 @@
     align-items: center;
     gap: 10px;
     font-size: 16px;
+    padding-left: 16px;
 }
 
 .subtask_item:hover {
