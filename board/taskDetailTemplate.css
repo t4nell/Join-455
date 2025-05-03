@@ -30,10 +30,14 @@
     background: none;
     font-size: 20px;
     border-radius: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .closed_btn:hover {
-    background-color: #F6F7F8;
+    background-color: #eeeeee;
 }
 
 .task_detail_title h2 {
@@ -52,6 +56,7 @@
 }
 
 .task_detail_date {
+    font-size: 20px;
     display: flex;
     align-items: center;
     gap: 25px;
@@ -101,15 +106,22 @@
 }
 
 .subtask_item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     font-size: 16px;
     padding-left: 16px;
 }
 
-.subtask_item:hover {
-    background-color: #F6F7F8;
+.subtask_background {
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 4px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+}
+
+.subtask_background:hover {
+    background-color: #eeeeee;
 }
 
 .task_detail_buttons {
@@ -129,6 +141,7 @@
 }
 
 .delete_btn:hover,
-.edit_btn:hover {
-    color: #29ABE2;
+.edit_btn:hover{
+  color: var(--button-hover-color);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(384%) hue-rotate(153deg) brightness(98%) contrast(94%);
 }

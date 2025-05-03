@@ -51,7 +51,7 @@
             <!-- Card Header with Category and Close Button -->
             <div class="task_detail_card_header">
                 <span class="category_lable_detail">User Story</span>
-                <button onclick="closeDetailTemplate()" class="closed_btn">X</button>
+                <button onclick="closeDetailTemplate()" class="closed_btn"><img src="../assets/imgs/boardIcons/close.svg" alt="close button"></button>
             </div>
 
             <!-- Title Section -->
@@ -102,12 +102,16 @@
                 <span class="detail_label">Subtasks:</span>
                 <div class="subtasks_list">
                     <div class="subtask_item">
-                        <input type="checkbox" id="subtask1" checked>
-                        <label for="subtask1">Implement Recipe Recommendation</label>
+                        <div class="subtask_background">
+                          <input type="checkbox" id="subtask1" checked>
+                          <label for="subtask1">Implement Recipe Recommendation</label>
+                        </div>
                     </div>
                     <div class="subtask_item">
+                      <div class="subtask_background">
                         <input type="checkbox" id="subtask2">
                         <label for="subtask2">Start Page Layout</label>
+                      </div>
                     </div>
                 </div>
             </div>
