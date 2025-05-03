@@ -20,7 +20,7 @@ function findUser(email) {
 }
 
 // Registrierung behandeln
-function handleSignup(event) {
+async function handleSignup(event) {
     event.preventDefault();
     
     const name = document.getElementById('signupName').value;
@@ -46,7 +46,7 @@ function handleSignup(event) {
     }
 
     // Benutzer erstellen und speichern
-    const hashedPassword = hashPassword(password);
+    const hashedPassword = await hashPassword(password);
     const user = {
         name,
         email,
