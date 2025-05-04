@@ -8,6 +8,7 @@
 
 .tag-input {
     margin-top: 8px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
@@ -29,12 +30,6 @@
     margin: 0;
 }
 
-.tag-item {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 4px;
-}
-
 .separator_vertically {
     background-color: lightgrey;
     height: 24px;
@@ -45,14 +40,6 @@
 
 .delet-text-btn {
     background-color: white;
-}
-.delet-text-btn:hover {
-    background-color: red;
-    color: blue;
-}
-.confirm-btn:hover {
-    background-color: red;
-    color: blue;
 }
 
 .confirm-btn {
@@ -70,15 +57,16 @@
 }
 
 .btns-position {
+    position: absolute;
     display: flex;
     padding-right: 8px;
 }
 
 .edit-text-btn {
-    background-color: white;
+    background: none;
 }
 .trash-btn {
-    background-color: white;
+    background: none;
 }
 
 .tag-field:hover {
@@ -93,23 +81,85 @@
 }
 
 .newTag-container {
-    scrollbar-width: thin;
-    width: 440px;
-    max-height: 64px;
+    width: 100%;
+    max-height: 130px;
     overflow-y: auto;
 }
 
 .newTag-input {
-    width: 440px;
+    width: 100%;
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-bottom: 3px;
 }
 
 .newTag-input:focus {
     background-color: white;
-    border-bottom: solid 1px;
+    border-bottom: solid 2px blue;
 }
 
 .tag-field:has(.newTag-input:focus),
 .tag-field:has(.newTag-input:focus) .newTag-input {
     background-color: white !important;
+}
+
+.tag-field {
+    align-items: center;
+    position: relative;
+    height: 32px;
+    margin-bottom: 8px;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.btns-position {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.tag-prefix {
+    top: 8px;
+    left: 16px;
+    position: absolute;
+}
+
+.arrow-bg-hover-color-subtask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+.arrow-bg-hover-color-subtask:hover {
+    background-color: lightgray;
+}
+
+.newTag-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.newTag-container::-webkit-scrollbar-track {
+    background: lightgray;
+    border-radius: 10px;
+}
+
+.newTag-container::-webkit-scrollbar-thumb {
+    background: blue;
+    border-radius: 10px;
+}
+
+.newTag-container::-webkit-scrollbar-thumb:hover {
+    background: darkblue;
+}
+
+.subtask-btn-container {
+    display: flex;
 }
 
