@@ -67,3 +67,29 @@ function toggleLoginSignup() {
 //     });
 //     alert('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
 // }
+
+// ersten Buchstaben des Vornamens und Nachnamens extrahieren und in eine Variable speichern
+
+// function getInitialsFromLocalStorage() {
+//     const userData = JSON.parse(localStorage.getItem('currentUser'));
+    
+//     if (!userData || !userData.name) {
+//         return null;
+//     }
+
+//     const nameParts = userData.name.trim().split(' ');
+    
+//     // Initialen extrahieren
+//     let initials = '';
+//     if (nameParts.length > 0) {
+//         initials += nameParts[0].charAt(0).toUpperCase();
+//     }
+//     if (nameParts.length > 1) {
+//         initials += nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+//     }
+
+//     return initials || null;
+// }
+
+// const userInitials = getInitialsFromLocalStorage();
+// console.log(userInitials);
