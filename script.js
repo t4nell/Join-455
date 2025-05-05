@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * 
  * @param {string} email - The email address to validate.
@@ -12,13 +11,6 @@ const loginContainer = document.getElementById("login_container");
 async function init() {
     renderLogin();
     await loadData();
-=======
-const loginContainer = document.getElementById("login_container");
-
-function init() {
-    renderLogin();
-    checkLoggedInUser();
->>>>>>> ddec20cfb90e2cf337892f842c8ac2244d72173f
 }
 
 function renderLogin() {
@@ -64,13 +56,11 @@ function toggleLoginSignup() {
     }
 }
 
-<<<<<<< HEAD
 async function loadData(path="") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
     console.log(responseToJson);
 }
-=======
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 // https://www.w3schools.com/js/js_api_web_storage.asp
 
@@ -116,4 +106,3 @@ async function loadData(path="") {
 
 // const userInitials = getInitialsFromLocalStorage();
 // console.log(userInitials);
->>>>>>> ddec20cfb90e2cf337892f842c8ac2244d72173f
