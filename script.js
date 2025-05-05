@@ -1,8 +1,16 @@
-const loginContainer = document.getElementById("login_container");
+/**
+ * 
+ * @param {string} email - The email address to validate.
+ */
 
-function init() {
+BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
+
+const contactsArray = [];
+
+const loginContainer = document.getElementById("login_container");
+async function init() {
     renderLogin();
-    checkLoggedInUser();
+    await loadData();
 }
 
 function renderLogin() {
@@ -48,6 +56,11 @@ function toggleLoginSignup() {
     }
 }
 
+async function loadData(path="") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    console.log(responseToJson);
+}
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 // https://www.w3schools.com/js/js_api_web_storage.asp
 
