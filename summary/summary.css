@@ -48,8 +48,15 @@ main {
   font-weight: 600;
   width: 50%;
   height: 170px;
+  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+}
+
+#summary_todo_container:hover {
+  background-color: #2A3647;
+  scale: 1.1;
+  color: var(--text-color-sidebar);
 }
 
 #summary_done_container{
@@ -60,6 +67,7 @@ main {
   font-weight: 600;
   width: 50%;
   height: 170px; 
+  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
 }
