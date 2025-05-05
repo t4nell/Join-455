@@ -37,13 +37,12 @@ main {
 .summary_section1_container{
   display: flex;
   width: 100%;
-  height: 170px;
   gap: 32px;
 }
 
 #summary_todo_container{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 64px;
   font-weight: 600;
@@ -56,18 +55,18 @@ main {
 #summary_todo_container img {
   width: 69px;
   height: 69px;
-  border-radius: 30px;
 }
 
 .summary_hover_container:hover{
   background-color: var(--hover-color-summary) !important;
   scale: 1.1;
   color: var(--text-color-sidebar);
+  fill: white;
 }
 
 #summary_done_container{
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 64px;
   font-weight: 600;
@@ -80,7 +79,17 @@ main {
 #summary_done_container img {
   width: 69px;
   height: 69px;
-  border-radius: 30px;
+}
+
+.pen, .check {
+  background-color: #2A3647;
+  border-radius: 100%;
+}
+
+.summary_hover_container:hover 
+.summary_hover_container:hover {
+  background-color: white;
+  fill: #2A3647;
 }
 
 .summary_section2_container{
@@ -197,10 +206,6 @@ main {
   color: #29ABE2;
 }
 
-.welcome-message {
-  font-size: 1.2rem;
-  color: #666;
-}
 .summary_column {
   display: flex;
   flex-direction: column;
