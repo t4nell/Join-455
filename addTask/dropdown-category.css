@@ -20,6 +20,11 @@
     align-items: center;
 }
 
+.category-dropdown-toggle:focus {
+    outline: none;
+    border-color: #2684ff;
+}
+
 .category-dropdown-item:focus {
     outline: none;
     border-color: #2684ff;

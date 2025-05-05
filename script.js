@@ -1,24 +1,12 @@
-/**
- * 
- * @param {string} email - The email address to validate.
- */
-
 BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
 
 
 
 const loginContainer = document.getElementById("login_container");
-async function init() {
-    renderLogin();
-    await loadData();
-}
 
-function renderLogin() {
-    setTimeout(() => {
-        loginContainer.innerHTML = getLoginSignupTemplate();
-        loginContainer.style.display = 'flex';
-        document.querySelector(".signup_login").style.display = "flex";
-    }, 3000);
+function init() {
+    checkLoggedInUser();
+    renderLogin();
 }
 
 // Prüfen ob bereits eingeloggt
@@ -29,7 +17,6 @@ function checkLoggedInUser() {
     }
 }
 
-
 function renderLogin() {
     setTimeout(() => {
         loginContainer.innerHTML = getLoginSignupTemplate();
@@ -37,7 +24,7 @@ function renderLogin() {
         document.querySelector(".signup_login").style.display = "flex";
         
         // Gast-Login Button Event hinzufügen
-        document.querySelector('.guest_login_btn').onclick = handleGuestLogin;
+        document.querySelector('.guest_login_btn').addEventListener('click', handleGuestLogin);
     }, 3000);
 }
 
@@ -46,20 +33,16 @@ function toggleLoginSignup() {
     const loginCard = document.querySelector('.login_card');
     const signupCard = document.querySelector('.signup_card');
 
-    loginCard.classList.toggle('d_none');
-    signupCard.classList.toggle('d_none');
-   
-    if (loginCard.classList.contains('d_none')) {
-        signupLoginDiv.style.display = 'none';
-    } else {
-        signupLoginDiv.style.display = 'flex';
+    if (loginCard && signupCard) {
+        loginCard.classList.toggle('d_none');
+        signupCard.classList.toggle('d_none');
+       
+        if (loginCard.classList.contains('d_none')) {
+            signupLoginDiv.style.display = 'none';
+        } else {
+            signupLoginDiv.style.display = 'flex';
+        }
     }
-}
-
-async function loadData(path="") {
-    let response = await fetch(BASE_URL + path + ".json");
-    let responseToJson = await response.json();
-    console.log(responseToJson);
 }
 
 

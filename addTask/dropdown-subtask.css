@@ -17,6 +17,11 @@
     background-color: #fff;
 }
 
+.tag-input:focus-within {
+    outline: none;
+    border-color: #2684ff;
+}
+
 .tag-input input {
     flex: 1;
     border: none;
@@ -69,8 +74,19 @@
 .edit-text-btn {
     background: none;
 }
+
+.edit-text-btn:hover img {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
 .trash-btn {
     background: none;
+}
+
+.trash-btn:hover img {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
 }
 
 .tag-field:hover {
