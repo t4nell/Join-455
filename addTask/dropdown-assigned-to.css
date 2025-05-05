@@ -42,6 +42,9 @@
 }
 
 .dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
