@@ -1,3 +1,7 @@
+:root {
+    --checkbox-hover-bg: #A8A8A8;
+    --checkbox-checked-hover-bg: #D1D1D1;
+}
 
 .task_detail_card {
     background-color: white;
@@ -122,6 +126,37 @@
 
 .subtask_background:hover {
     background-color: #eeeeee;
+}
+
+/* Base checkbox styling */
+input[type="checkbox"] {
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
+}
+
+input[type="checkbox"]:hover {
+    background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
+    background-color: var(--checkbox-hover-bg);
+    border-radius: 100%;
+}
+
+input[type="checkbox"]:checked {
+    background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
+}
+
+input[type="checkbox"]:checked:hover {
+    background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
+    background-color: var(--checkbox-checked-hover-bg);
 }
 
 .task_detail_buttons {
