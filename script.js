@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * 
  * @param {string} email - The email address to validate.

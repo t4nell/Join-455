@@ -5,10 +5,10 @@ function getLoginSignupTemplate() {
           <h2>Log in</h2>
           <hr class="separator_horizontally">
         </div>
-        <form action="login" method="post">
+        <form id="loginForm" onsubmit="handleLogin(event)">
           <div class="input_login_container">
-            <input class="mail_input_icon" type="text" placeholder="E-Mail">
-            <input class="lock_input_icon" type="password" placeholder="Password">
+            <input id="loginEmail" class="mail_input_icon" type="text" placeholder="E-Mail">
+            <input id="loginPassword" class="lock_input_icon" type="password" placeholder="Password">
           </div>
           <div class="button_login_container">
             <button class="dark_btn login_btn">Log in</button>
@@ -25,12 +25,12 @@ function getLoginSignupTemplate() {
         <h2>Sign up</h2>
         <hr class="separator_horizontally">
       </div>
-      <form action="login" method="post">
+      <form id="signupForm" onsubmit="handleSignup(event)">
         <div class="input_login_container">
-          <input class="name_input_icon" type="text" placeholder="Name">
-          <input class="mail_input_icon" type="email" placeholder="E-Mail">
-          <input class="lock_input_icon" type="password" placeholder="Password">
-          <input class="lock_input_icon" type="password" placeholder="Confirm Password">
+          <input id="signupName" class="name_input_icon" type="text" placeholder="Name">
+          <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail">
+          <input id="signupPassword" class="lock_input_icon" type="password" placeholder="Password">
+          <input id="signupConfirmPassword" class="lock_input_icon" type="password" placeholder="Confirm Password">
           <div class="checkbox_container">  
           <input type="checkbox" id="accept_policy" name="a" value="accept_policy">
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>

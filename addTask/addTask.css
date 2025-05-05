@@ -96,7 +96,7 @@ main {
 .assign_to_group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 
 .margin_16px {

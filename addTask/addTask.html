@@ -16,6 +16,10 @@
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
+        <script src="./assigned-to.js" defer></script>
+        <script src="./category.js" defer></script>
+        <script src="./priority.js" defer></script>
+        <script src="./subtask.js" defer></script>
         <title>Join</title>
     </head>
     <body onload="renderSidebar()">
@@ -152,23 +156,25 @@
                         <div class="tag-input-container">
                             <label for="names">Subtasks</label>
                             <div class="tag-input">
-                                <input type="text" placeholder="Write Legal Imprint" id="tagInputField" />
-                                <button class="delet-text-btn">✖</button>
-                                <hr class="separator_vertically" />
-                                <button class="confirm-btn">✔</button>
-                            </div>
-                            <ul class="tag-list">
-                                <div class="tag-field">
-                                    <input class="newTag-input" type="text" value="・Contact Form" />
-                                    <li class="tag-item"></li>
-                                    <div class="btns-position">
-                                        <button class="edit-text-btn">✔</button>
-                                        <hr class="separator_vertically" />
-                                        <button class="trash-btn">✖</button>
-                                    </div>
+                                <input
+                                    type="text"
+                                    placeholder="Add new subtask"
+                                    id="tagInputField"
+                                    name="tagInputField"
+                                    onclick="replaceButtons()"
+                                    onkeydown="onKeyDownEnter(event)" />
+                                <div class="subtask-btn-container" id="subtask-btn-container">
+                                    <button class="plus-btn" onclick="replaceButtons()">
+                                        <img
+                                            class="icon arrow-bg-hover-color-subtask"
+                                            src="../assets/imgs/add_task_btn_img/subtasks_plus_icon.svg"
+                                            alt="New Button Icon"
+                                            width="24"
+                                            height="24" />
+                                    </button>
                                 </div>
-                                <div class="newTag-container" id="newTag-container"></div>
-                            </ul>
+                            </div>
+                            <div class="newTag-container" id="newTag-container"></div>
                         </div>
                     </div>
                 </div>

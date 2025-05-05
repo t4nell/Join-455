@@ -5,7 +5,6 @@ function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
 }
 
-//Tageszeit abhängige Begrüßung
 function updateGreeting() {
     const now = new Date();
     let greeting;
@@ -18,13 +17,30 @@ function updateGreeting() {
     } else {
         greeting = "Guten Abend";
     }
-    //Namen aus dem Local Storage holen
-    const userName = localStorage.getItem('userName') || 'Sofia Müller';
     
-    greetingContainer.innerHTML = `${greeting},<br>${userName}`;
+   
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const userName = currentUser?.name || 'Gast';
+    
+    greetingContainer.innerHTML = `
+        <h1>${greeting},</h1>
+        <h2>${userName}</h2>
+    `;
 }
 
 window.onload = function() {
+    // Sicherstellen, dass ein Benutzer eingeloggt ist
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = '../index.html';
+        return;
+    }
+
     renderSidebar();
     updateGreeting();
+    
+    // Gast-Hinweis anzeigen
+    if (currentUser.isGuest) {
+        showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
+    }
 };
