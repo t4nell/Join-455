@@ -81,15 +81,26 @@ main {
   height: 69px;
 }
 
-.pen, .check {
-  background-color: #2A3647;
-  border-radius: 100%;
-}
-
-.summary_hover_container:hover 
 .summary_hover_container:hover {
   background-color: white;
   fill: #2A3647;
+}
+
+.pen_img_container, .check_img_container {
+  width: 69px;
+  height: 69px;
+  border-radius: 100%;
+  background-color: #2A3647;
+}
+
+
+.pen_img, .check_img {
+  width: 24px;
+}
+
+.pen_img:hover, .check_img:hover {
+  background-color: #ffffff;
+  border-radius: 100%;
 }
 
 .summary_section2_container{
