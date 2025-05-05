@@ -76,3 +76,17 @@ function getsummaryTemplate() {
 Hallo, this is the summary template.
      `
 }
+
+function getContactListTemplate() {
+  return `<div class="contact_small_img">
+            <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
+          </div>
+          <div class="contact_side_info">
+            <div class="contact_side_name">
+              <span>Anton Mayer</span>
+            </div>
+            <div class="contact_side_mail">
+              <span>antom@gmail.com</span>
+            </div>
+          </div>`
+}

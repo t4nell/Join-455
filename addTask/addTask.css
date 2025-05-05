@@ -228,3 +228,12 @@ main {
     cursor: pointer;
 }
 
+.input_titel:focus {
+    outline: none;
+    border-color: #2684ff;
+}
+
+.input_date:focus {
+    outline: none;
+    border-color: #2684ff;
+}

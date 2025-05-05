@@ -1,6 +1,7 @@
 BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
 
-const contactsArray = [];
+
+
 const loginContainer = document.getElementById("login_container");
 
 function init() {
@@ -43,6 +44,8 @@ function toggleLoginSignup() {
         }
     }
 }
+
+
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 // https://www.w3schools.com/js/js_api_web_storage.asp
