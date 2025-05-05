@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="../addTask/radiobutton.css" />
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
         <script src="./assigned-to.js" defer></script>
@@ -55,9 +57,24 @@
                             <label for="description" class="input-title">Description</label>
                             <textarea class="textarea" id="description" placeholder="Enter a Description..."></textarea>
                         </div>
-                        <div class="input_date_group">
+                        <div class="input_date-group">
                             <label for="date">Due date <span style="color: red">*</span></label>
-                            <input class="input_date" placeholder="dd/mm/yyyy" type="date" id="date" name="date" />
+                            <div class="input_date-container">
+                                <input
+                                    type="text"
+                                    id="due-date"
+                                    placeholder="dd/mm/yyyy"
+                                    required=""
+                                    class="flatpickr-input input_date"
+                                    readonly="readonly" />
+                                <img
+                                    class="calendar-icon"
+                                    src="../assets/imgs/add_task_btn_img/Calender_icon.svg"
+                                    alt="Calendar Icon"
+                                    width="24"
+                                    height="24"
+                                    onclick="openCalendar()" />
+                            </div>
                         </div>
                     </div>
 
