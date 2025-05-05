@@ -48,20 +48,8 @@ main {
   font-weight: 600;
   width: 50%;
   height: 170px;
-  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
-}
-#summary_todo_container img {
-  width: 69px;
-  height: 69px;
-}
-
-.summary_hover_container:hover{
-  background-color: var(--hover-color-summary) !important;
-  scale: 1.1;
-  color: var(--text-color-sidebar);
-  fill: white;
 }
 
 #summary_done_container{
@@ -72,18 +60,33 @@ main {
   font-weight: 600;
   width: 50%;
   height: 170px; 
-  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
 }
-#summary_done_container img {
-  width: 69px;
-  height: 69px;
+
+#summary_done_container:hover {
+  background-color: #2A3647;
+  scale: 1.1;
+  color: var(--text-color-sidebar);
 }
 
-.summary_hover_container:hover {
-  background-color: white;
-  fill: #2A3647;
+/* Weißer Hintergrund beim Hover über Container oder Icon */
+#summary_done_container:hover .check_img_container,
+.check_img_container:hover {
+  background-color: #fff;
+}
+
+/* Check-Icon immer dunkel beim Hover auf Container oder Icon */
+#summary_done_container:hover .check_img,
+.check_img_container:hover .check_img,
+.check_img:hover {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
+}
+
+.summary_hover_container:hover{
+  background-color: #2A3647;
+  scale: 1.1;
+  color: var(--text-color-sidebar);
 }
 
 .pen_img_container, .check_img_container {
@@ -93,15 +96,29 @@ main {
   background-color: #2A3647;
 }
 
-
-.pen_img, .check_img {
-  width: 24px;
-}
-
-.pen_img:hover, .check_img:hover {
-  background-color: #ffffff;
+.pen_img_container, .check_img_container {
+  background-color: #2A3647;
   border-radius: 100%;
+  width: 69px;
+  height: 69px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Weißer Hintergrund beim Hover über Container oder Icon */
+.pen_img_container:hover, .check_img_container:hover, 
+.summary_hover_container:hover .pen_img_container {
+  background-color: #fff;
+}
+
+/* Pen immer dunkel beim Hover auf Container oder Icon */
+.summary_hover_container:hover .pen_img,
+.pen_img_container:hover .pen_img,
+.pen_img:hover {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
+}
+
 
 .summary_section2_container{
   display: flex;
