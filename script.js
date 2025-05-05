@@ -1,8 +1,3 @@
-/**
- * 
- * @param {string} email - The email address to validate.
- */
-
 BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
 
 const contactsArray = [];
@@ -11,14 +6,6 @@ const loginContainer = document.getElementById("login_container");
 async function init() {
     renderLogin();
     await loadData();
-}
-
-function renderLogin() {
-    setTimeout(() => {
-        loginContainer.innerHTML = getLoginSignupTemplate();
-        loginContainer.style.display = 'flex';
-        document.querySelector(".signup_login").style.display = "flex";
-    }, 3000);
 }
 
 // Prüfen ob bereits eingeloggt
