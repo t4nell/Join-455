@@ -160,24 +160,15 @@
                                     type="text"
                                     placeholder="Add new subtask"
                                     id="tagInputField"
-                                    name="tagInputField" />
+                                    name="tagInputField"
+                                    onclick="replaceButtons()"
+                                    onkeydown="onKeyDownEnter(event)" />
                                 <div class="subtask-btn-container" id="subtask-btn-container">
-                                    <button class="delet-text-btn">
+                                    <button class="plus-btn" onclick="replaceButtons()">
                                         <img
                                             class="icon arrow-bg-hover-color-subtask"
-                                            id="icon-low"
-                                            src="../assets/imgs/add_task_btn_img/subtasks_x_cancel_icon.svg"
-                                            alt="Icon"
-                                            width="24"
-                                            height="24" />
-                                    </button>
-                                    <hr class="separator_vertically" />
-                                    <button class="confirm-btn">
-                                        <img
-                                            class="icon arrow-bg-hover-color-subtask"
-                                            id="icon-low"
-                                            src="../assets/imgs/add_task_btn_img/subtask_done_icon.svg"
-                                            alt="Icon"
+                                            src="../assets/imgs/add_task_btn_img/subtasks_plus_icon.svg"
+                                            alt="New Button Icon"
                                             width="24"
                                             height="24" />
                                     </button>

@@ -46,6 +46,10 @@
     background-color: white;
 }
 
+.plus-btn {
+    background-color: white;
+}
+
 .tag-field {
     margin-top: 8px;
     display: flex;
