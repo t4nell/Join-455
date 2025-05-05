@@ -9,7 +9,6 @@ function deletTextBtn() {
     const inputField = document.getElementById('tagInputField');
     inputField.value = '';
 }
-
 function confirmSubtaskBtn() {
     const inputField = document.getElementById('tagInputField');
     const value = inputField.value.trim();
@@ -17,7 +16,22 @@ function confirmSubtaskBtn() {
     if (value) {
         newTagCon.innerHTML += getNewTagTemplate(value);
         inputField.value = '';
+        resetButtons();
     }
+}
+
+function resetButtons() {
+    const subtaskBtnContainer = document.getElementById('subtask-btn-container');
+    subtaskBtnContainer.innerHTML = `
+        <button class="plus-btn" onclick="replaceButtons()">
+            <img
+                class="icon arrow-bg-hover-color-subtask"
+                src="../assets/imgs/add_task_btn_img/subtasks_plus_icon.svg"
+                alt="New Button Icon"
+                width="24"
+                height="24" />
+        </button>
+    `;
 }
 
 function trashBtn() {
