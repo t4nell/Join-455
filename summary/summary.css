@@ -45,8 +45,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 50%;
   height: 170px;
   background-color: var(--background-color-header);
@@ -69,8 +69,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 50%;
   height: 170px; 
   background-color: var(--background-color-header);
@@ -97,8 +97,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 45%;
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
@@ -108,12 +108,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 45%;
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
 }
+
 .summary_section3_container{
   display: flex;
   width: 100%;
@@ -125,8 +126,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 33%;
   height: 170px;
   background-color: var(--background-color-header);
@@ -138,8 +139,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 33%;
   height: 170px;
   background-color: var(--background-color-header);
@@ -151,8 +152,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 47px;
-  font-weight: 500;
+  font-size: 64px;
+  font-weight: 600;
   width: 33%;
   height: 170px;
   background-color: var(--background-color-header);
@@ -199,4 +200,15 @@ main {
 .welcome-message {
   font-size: 1.2rem;
   color: #666;
+}
+.summary_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.summary_column span {
+  font-size: 20px;
+  font-weight: 400;
 }

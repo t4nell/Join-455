@@ -39,25 +39,33 @@
           <div id="summary_left">
             <div class="summary_section1_container">
             <div id="summary_todo_container" class="summary_hover_container">
-              <button class="pen"><img src="../assets/imgs/summaryIcons/pen.png" alt="pen_icon"></button>
-              6
+              <div>
+                  <button class="pen"><img src="../assets/imgs/summaryIcons/pen.png" alt="pen_icon"></button>
+              </div>
+              <div class="summary_column">
+                #<span>To-do</span>
+              </div>
             </div>
             <div id="summary_done_container" class="summary_hover_container">
-              <button class="check"><img src="../assets/imgs/summaryIcons/check.png" alt="check_icon"></button>
-              7
+              <div>
+                <button class="check"><img src="../assets/imgs/summaryIcons/check.png" alt="check_icon"></button>
+              </div>
+              <div class="summary_column">
+                #<span>Done</span>
+              </div>
             </div>
           </div>
 
           <div class="summary_section2_container summary_hover_container">
-            <div id="summary_importance_container">1</div>
+            <div id="summary_importance_container" class="summary_column">#<span>Urgent</span></div>
             <hr class="separator_vertically_gray">
-            <div id="summary_deadline_container">2</div>
+            <div id="summary_deadline_container" class="summary_column">#<span>Upcoming Deadline</span></div>
           </div>
 
           <div class="summary_section3_container">
-            <div id="summary_Tasks_Board_container" class="summary_hover_container">3</div>
-            <div id="summary_Tasks_Progress_container" class="summary_hover_container">4</div>
-            <div id="summary_Await_Feedback_container" class="summary_hover_container">5</div>
+            <div id="summary_Tasks_Board_container" class="summary_column summary_hover_container">#<span>Tasks in Board</span></div>
+            <div id="summary_Tasks_Progress_container" class="summary_column summary_hover_container">#<span>Tasks In Prozess</span></div>
+            <div id="summary_Await_Feedback_container" class="summary_column summary_hover_container">#<span>Awaiting Feedback</span></div>
           </div>
         </div>
         <div id="summary_right">
