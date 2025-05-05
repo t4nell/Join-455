@@ -17,9 +17,10 @@
     />
     <script src="../scripts/templates.js" defer></script>
     <script src="./contacts.js" defer></script>
+    <script src="../script.js" defer></script>
     <title>Join</title>
   </head>
-  <body onload="renderSidebar()">
+  <body onload="contactInit()">
     <main id="main_container">
       <header>
         <span>Kanban Project Management Tool</span>
@@ -55,7 +56,7 @@
         <div class="letter_separator_horizontal">
           <hr class="separator_horizontal" />
         </div>
-        <div class="contact_side">
+        <div class="contact_side" id="contact_list_container">
           <div class="contact_small_img">
             <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
           </div>
