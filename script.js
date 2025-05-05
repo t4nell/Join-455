@@ -3,9 +3,14 @@
  * @param {string} email - The email address to validate.
  */
 
+BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
+
+const contactsArray = [];
+
 const loginContainer = document.getElementById("login_container");
-function init() {
+async function init() {
     renderLogin();
+    await loadData();
 }
 
 function renderLogin() {
@@ -29,4 +34,10 @@ function toggleLoginSignup() {
     } else {
         signupLoginDiv.style.display = 'flex';
     }
+}
+
+async function loadData(path="") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    console.log(responseToJson);
 }
