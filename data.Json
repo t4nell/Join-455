@@ -81,11 +81,59 @@
         }
     },
     "contact": {
-        "id": {
-            "email": "",
-            "name": "",
-            "phone": "",
-            "surname": ""
+        "contact_1": {
+            "email": "anna.schmidt@example.com",
+            "name": "Anna",
+            "phone": "+4915112345678",
+            "surname": "Schmidt"
+        },
+        "contact_2":{
+            "email": "max.mueller@example.com",
+            "name": "Max",
+            "phone": "+4915223456789",
+            "surname": "Müller"
+        },
+        "contact_3":{
+            "email": "lisa.meier@example.com",
+            "name": "Lisa",
+            "phone": "+4915334567890",
+            "surname": "Meier"
+        },
+        "contact_4":{
+            "email": "tom.schneider@example.com",
+            "name": "Tom",
+            "phone": "+4915445678901",
+            "surname": "Schneider"
+        },
+        "contact_5":{
+            "email": "julia.fischer@example.com",
+            "name": "Julia",
+            "phone": "+4915556789012",
+            "surname": "Fischer"
+        },
+        "contact_6":{
+            "email": "paul.wagner@example.com",
+            "name": "Paul",
+            "phone": "+4915667890123",
+            "surname": "Wagner"
+        },
+        "contact_7":{
+            "email": "sophie.hoffmann@example.com",
+            "name": "Sophie",
+            "phone": "+4915778901234",
+            "surname": "Hoffmann"
+        },
+        "contact_8":{
+            "email": "felix.keller@example.com",
+            "name": "Felix",
+            "phone": "+4915889012345",
+            "surname": "Keller"
+        },
+        "contact_9":{
+            "email": "laura.braun@example.com",
+            "name": "Laura",
+            "phone": "+4915990123456",
+            "surname": "Braun"
         }
     },
     "users": {
