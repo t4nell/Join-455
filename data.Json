@@ -1,0 +1,99 @@
+{
+    "addtask": {
+        "task_1": {
+            "Category": "User Story",
+            "Titel": "Profilbild-Upload implementieren",
+            "Description": "Als Nutzer möchte ich ein Profilbild hochladen und ändern können, damit mein Profil persönlicher wird.",
+            "DueDate": "15-11-2023",
+            "Priority": "Urgent",
+            "Assigned to": ["id_user_abc", "id_user_xyz"],
+            "Subtasks": [
+                { "text": "Upload-API erstellen", "status": true },
+                { "text": "Frontend-Komponente entwickeln", "status": false },
+                { "text": "Speicherintegration (Cloud Storage)", "status": false }
+            ]
+        },
+        "task_2": {
+            "Category": "Technical Task",
+            "Titel": "Datenbank-Index optimieren",
+            "Description": "Langsame Abfragen im Bereich 'Tasks' identifizieren und notwendige Indizes hinzufügen.",
+            "DueDate": "20-11-2023",
+            "Priority": "Medium",
+            "Assigned to": ["id_user_xyz"],
+            "Subtasks": []
+        },
+        "task_3": {
+            "Category": "To Do",
+            "Titel": "Feedback von Meeting einarbeiten",
+            "Description": "Feed backpunkte aus dem Freitags-Meeting in den Code integrieren und Änderungen testen.",
+            "DueDate": "08-11-2023",
+            "Priority": "low",
+            "Assigned to": [],
+            "Subtasks": [
+                { "text": "Notizen durchgehen", "status": true },
+                { "text": "Code anpassen", "status": false },
+                { "text": "Deployment vorbereiten", "status": false }
+            ]
+        },
+        "task_4": {
+            "Category": "Shopping List",
+            "Titel": "Büromaterial bestellen",
+            "Description": "",
+            "DueDate": "10-11-2023",
+            "Priority": "low",
+            "Assigned to": ["id_user_pqr"],
+            "Subtasks": [
+                { "text": "Druckerpapier", "status": false },
+                { "text": "Stifte (blau)", "status": false },
+                { "text": "Notizblöcke", "status": false }
+            ]
+        },
+        "task_5": {
+            "Category": "Work",
+            "Titel": "Blog Artikel entwerfen",
+            "Description": "Ersten Entwurf für einen Blog Artikel über neue Features schreiben.",
+            "DueDate": "25-11-2023",
+            "Priority": "Medium",
+            "Assigned to": ["id_user_abc"],
+            "Subtasks": [
+                { "text": "Thema festlegen", "status": true },
+                { "text": "Gliederung erstellen", "status": true },
+                { "text": "Text schreiben (Abschnitt 1)", "status": false }
+            ]
+        },
+        "task_6": {
+            "Category": "Train",
+            "Titel": "Neues Framework lernen",
+            "Description": "Einen Online-Kurs zu 'Framework X' absolvieren und Grundkenntnisse erwerben.",
+            "DueDate": "30-11-2023",
+            "Priority": "",
+            "Assigned to": [],
+            "Subtasks": []
+        },
+        "task_7": {
+            "Category": "Nothing",
+            "Titel": "Platzhalter-Task für Demo",
+            "Description": "Dieser Task dient nur zu Demonstrationszwecken der Kategorie 'Nothing'.",
+            "DueDate": "01-12-2023",
+            "Priority": "low",
+            "Assigned to": ["id_user_xyz", "id_user_pqr"],
+            "Subtasks": []
+        }
+    },
+    "contact": {
+        "id": {
+            "email": "",
+            "name": "",
+            "phone": "",
+            "surname": ""
+        }
+    },
+    "users": {
+        "id": {
+            "email": "",
+            "name": "",
+            "password": ""
+        }
+    }
+}
+
