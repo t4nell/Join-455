@@ -92,7 +92,7 @@ main {
 }
 
 .summary_hover_container:hover{
-  background-color: #2A3647;
+  background-color: #2A3647 !important;
   scale: 1.1;
   color: var(--text-color-sidebar);
 }
@@ -114,23 +114,8 @@ main {
   justify-content: center;
 }
 
-/* Weißer Hintergrund beim Hover über Container oder Icon */
-.pen_img_container:hover, .check_img_container:hover, 
-.summary_hover_container:hover .pen_img_container {
-  background-color: #fff;
-}
-
-/* Pen immer dunkel beim Hover auf Container oder Icon */
-.summary_hover_container:hover .pen_img,
-.pen_img_container:hover .pen_img,
-.pen_img:hover {
-  filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
-}
-
-
 .summary_section2_container{
   display: flex;
-  height: 170px;
   background-color: var(--background-color-header);
   padding: 28px 48px;
   border-radius: 30px;
@@ -145,8 +130,8 @@ main {
   font-size: 64px;
   font-weight: 600;
   width: 45%;
-  border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  gap: 10px;
 }
 
 #summary_deadline_container{
@@ -156,7 +141,6 @@ main {
   font-size: 64px;
   font-weight: 600;
   width: 45%;
-  border: 1px solid var(--input-border-color);
   border-radius: 30px;
 }
 
@@ -167,7 +151,7 @@ main {
   gap: 28px;
 }
 
-#summary_Tasks_Board_container{
+#summary_tasks_board_container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,12 +159,12 @@ main {
   font-weight: 600;
   width: 33%;
   height: 170px;
-  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  background-color: var(--background-color-header);
 }
 
-#summary_Tasks_Progress_container{
+#summary_tasks_progress_container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,12 +172,12 @@ main {
   font-weight: 600;
   width: 33%;
   height: 170px;
-  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  background-color: var(--background-color-header);
 }
 
-#summary_Await_Feedback_container{
+#summary_await_feedback_container{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,9 +185,9 @@ main {
   font-weight: 600;
   width: 33%;
   height: 170px;
-  background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  background-color: var(--background-color-header);
 }
 
 #summary_right{
@@ -227,7 +211,7 @@ main {
 }
 
 #summary_greating_container {
-  padding: 20px;
+padding: 20px;
   color: #2A3647;
 }
 
@@ -243,13 +227,112 @@ main {
 }
 
 .summary_column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
 }
 
-.summary_column span {
-  font-size: 20px;
-  font-weight: 400;
+.summary_number {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary_text {
+    font-size: 16px;
+}
+
+.summary_date {
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2A3647;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.priority-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: #FF3D00;
+    padding: 15px;
+}
+
+.priority-icon {
+    width: 35px;
+    object-fit: contain;
+}
+
+/* Weißer Hintergrund beim Hover über Container oder Icon */
+.pen_img_container:hover, .check_img_container:hover, 
+.summary_hover_container:hover .pen_img_container {
+  background-color: #fff;
+}
+
+/* Pen immer dunkel beim Hover auf Container oder Icon */
+.summary_hover_container:hover .pen_img,
+.pen_img_container:hover .pen_img,
+.pen_img:hover {
+  filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
+}
+
+.user_profile {
+    width: 49px;
+    height: 49px;
+    border-radius: 100%;
+    border: 3px solid #2A3647;
+    background-color: var(--current-profile-color, white);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.user_profile:hover {
+    border-color: #29ABE2;
+    transform: scale(1.1);
+}
+
+:root {
+    --profile-color-1: #FF7A00;
+    --profile-color-2: #FF5EB3;
+    --profile-color-3: #6E52FF;
+    --profile-color-4: #9327FF;
+    --profile-color-5: #00BEE8;
+    --profile-color-6: #1FD7C1;
+    --profile-color-7: #FF745E;
+    --profile-color-8: #FFA35E;
+    --profile-color-9: #FC71FF;
+    --profile-color-10: #FFC701;
+    --profile-color-11: #0038FF;
+    --profile-color-12: #C3FF2B;
+    --profile-color-13: #FFE62B;
+    --profile-color-14: #FF4646;
+    --profile-color-15: #FFBB2B;
+    --profile-color-16: #FF7A00;
+    --profile-color-17: #E200BE;
+    --profile-color-18: #0047FF;
+    --profile-color-19: #FF7A00;
+    --profile-color-20: #6E52FF;
 }
