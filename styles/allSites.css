@@ -85,6 +85,7 @@ header span{
     display: flex;
     align-items: center;
     gap: 16px;
+    position: relative;
 }
 
 .user_profile{
@@ -168,7 +169,7 @@ header span{
     gap: 8px;
     width: 100%;
     margin: 100px 0;
-    z-index: 1000;
+    z-index: 999;
 }
 
 .sidebar_nav a {
@@ -242,4 +243,86 @@ header span{
 
 .closed {
     transform: translateX(150%);
+}
+
+.user_dropdown_menu {
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    background: var(--background-color-sidebar);
+    color: var(--text-color-sidebar);
+    padding: 10px;
+    z-index: 10000;
+    border-radius: 20px 0px 20px 20px;
+}
+
+.user_dropdown_menu a {
+    display: block;
+    text-decoration: none;
+    color: var(--text-color-sidebar);
+    padding: 10px 20px;
+}
+
+.user_dropdown_menu a:hover {
+    background-color: var(--hover-color-sidebar1);
+    color: white;
+}
+
+.logout_btn {
+    color: var(--text-color-sidebar);
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.logout_btn:hover {
+    background-color: var(--hover-color-sidebar1);
+}
+
+/* user_Profil color */
+
+.user_profile {
+    width: 49px;
+    height: 49px;
+    border-radius: 100%;
+    border: 3px solid #2A3647;
+    background-color: var(--current-profile-color, white);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.user_profile:hover {
+    border-color: #29ABE2;
+    transform: scale(1.1);
+}
+
+:root {
+    --profile-color-1: #FF7A00;
+    --profile-color-2: #FF5EB3;
+    --profile-color-3: #6E52FF;
+    --profile-color-4: #9327FF;
+    --profile-color-5: #00BEE8;
+    --profile-color-6: #1FD7C1;
+    --profile-color-7: #FF745E;
+    --profile-color-8: #FFA35E;
+    --profile-color-9: #FC71FF;
+    --profile-color-10: #FFC701;
+    --profile-color-11: #0038FF;
+    --profile-color-12: #C3FF2B;
+    --profile-color-13: #FFE62B;
+    --profile-color-14: #FF4646;
+    --profile-color-15: #FFBB2B;
+    --profile-color-16: #FF7A00;
+    --profile-color-17: #E200BE;
+    --profile-color-18: #0047FF;
+    --profile-color-19: #FF7A00;
+    --profile-color-20: #6E52FF;
 }

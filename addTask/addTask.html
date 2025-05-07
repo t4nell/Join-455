@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="../scripts/templates.js" defer></script>
+        <script src="../scripts/userProfil.js" defer></script>
         <script src="./addTask.js" defer></script>
         <script src="./assigned-to.js" defer></script>
         <script src="./category.js" defer></script>
@@ -24,16 +25,9 @@
         <script src="./subtask.js" defer></script>
         <title>Join</title>
     </head>
-    <body onload="renderSidebar()">
+    <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
         <main id="main_container">
-            <header>
-                <span>Kanban Project Management Tool</span>
-                <div class="user_menu">
-                    <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon" /></button>
-                    <button class="user_profile">SM</button>
-                </div>
-            </header>
-
+            <div id="header_container"></div>
             <div class="sidebar_container">
                 <div class="sidebar_img_container">
                     <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" /></a>

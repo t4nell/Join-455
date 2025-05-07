@@ -16,32 +16,22 @@
       type="image/x-icon"
     />
     <script src="../scripts/templates.js" defer></script>
+    <script src="../scripts/userProfil.js" defer></script>
     <script src="./contacts.js" defer></script>
     <script src="../script.js" defer></script>
     <title>Join</title>
   </head>
-  <body onload="contactInit()">
+  <body onload="renderSidebar(); renderHeader(); updateUserProfile(); contactInit()">
     <main id="main_container">
-      <header>
-        <span>Kanban Project Management Tool</span>
-        <div class="user_menu">
-          <button class="help">
-            <img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon" />
-          </button>
-          <button class="user_profile">SM</button>
-        </div>
-      </header>
-
+      <div id="header_container"></div>
       <div class="sidebar_container">
         <div class="sidebar_img_container">
           <a href="../index.html">
             <img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" />
           </a>
-
           <div id="navbar_container"></div>
         </div>
       </div>
-
       <div id="contact_list">
         <div class="new_contact_container">
           <button onclick="newContactOverlay()" class="dark_btn new_contact_btn">
@@ -122,7 +112,6 @@
           </div>
         </div>
       </div>
-
 
       <div onclick="toggleOverlay()" id="contact_overlay" class="overlay_background_container fade_out">
         

@@ -48,8 +48,8 @@ function getLoginSignupTemplate() {
 
 
 function getSidebarTemplate() {
-  const currentPage = window.location.pathname;
-  return `    
+    const currentPage = window.location.pathname;
+    return `    
     <nav class="sidebar_nav">
       <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
         <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
@@ -84,4 +84,22 @@ function getContactListTemplate() {
               <span>antom@gmail.com</span>
             </div>
           </div>`
+}
+
+
+function getHeaderTemplate() {
+    return `
+      <header>
+        <span>Kanban Project Management Tool</span>
+        <div class="user_menu">
+          <a href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
+          <button onclick="toggleUserMenu()" class="user_profile"></button>
+          <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
+            <a href="../policy/policy.html">Privacy Policy</a>
+            <a href="../legalNotes/legal.html">Legal Notice</a>
+            <button onclick="logout()" class="logout_btn">Log out</button>
+          </div>
+        </div>
+      </header>
+    `;
 }

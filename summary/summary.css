@@ -51,6 +51,7 @@ main {
   background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  cursor: pointer;
 }
 
 #summary_todo_container:hover {
@@ -70,6 +71,7 @@ main {
   background-color: var(--background-color-header);
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
+  cursor: pointer;
 }
 
 #summary_done_container:hover {
@@ -121,6 +123,7 @@ main {
   border-radius: 30px;
   border: 1px solid var(--input-border-color);
   margin: 28px 0px;
+  cursor: pointer;
 }
 
 #summary_importance_container{
@@ -132,6 +135,7 @@ main {
   width: 45%;
   border-radius: 30px;
   gap: 10px;
+  cursor: pointer;
 }
 
 #summary_deadline_container{
@@ -142,6 +146,7 @@ main {
   font-weight: 600;
   width: 45%;
   border-radius: 30px;
+  cursor: pointer;
 }
 
 .summary_section3_container{
@@ -162,6 +167,7 @@ main {
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
   background-color: var(--background-color-header);
+  cursor: pointer;
 }
 
 #summary_tasks_progress_container{
@@ -175,6 +181,7 @@ main {
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
   background-color: var(--background-color-header);
+  cursor: pointer;
 }
 
 #summary_await_feedback_container{
@@ -188,6 +195,7 @@ main {
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
   background-color: var(--background-color-header);
+  cursor: pointer;
 }
 
 #summary_right{
@@ -291,48 +299,4 @@ padding: 20px;
 .pen_img_container:hover .pen_img,
 .pen_img:hover {
   filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
-}
-
-.user_profile {
-    width: 49px;
-    height: 49px;
-    border-radius: 100%;
-    border: 3px solid #2A3647;
-    background-color: var(--current-profile-color, white);
-    color: white;
-    font-size: 20px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin-left: 16px;
-}
-
-.user_profile:hover {
-    border-color: #29ABE2;
-    transform: scale(1.1);
-}
-
-:root {
-    --profile-color-1: #FF7A00;
-    --profile-color-2: #FF5EB3;
-    --profile-color-3: #6E52FF;
-    --profile-color-4: #9327FF;
-    --profile-color-5: #00BEE8;
-    --profile-color-6: #1FD7C1;
-    --profile-color-7: #FF745E;
-    --profile-color-8: #FFA35E;
-    --profile-color-9: #FC71FF;
-    --profile-color-10: #FFC701;
-    --profile-color-11: #0038FF;
-    --profile-color-12: #C3FF2B;
-    --profile-color-13: #FFE62B;
-    --profile-color-14: #FF4646;
-    --profile-color-15: #FFBB2B;
-    --profile-color-16: #FF7A00;
-    --profile-color-17: #E200BE;
-    --profile-color-18: #0047FF;
-    --profile-color-19: #FF7A00;
-    --profile-color-20: #6E52FF;
 }

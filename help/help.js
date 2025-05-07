@@ -21,6 +21,6 @@ window.onload = async function() {
         renderHeader();
         updateUserProfile();
     } catch (error) {
-        console.error("Error initializing policy page:", error);
+        console.error("Error initializing help page:", error);
     }
 };
