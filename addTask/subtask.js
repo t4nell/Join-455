@@ -27,11 +27,10 @@ function resetButtons() {
     subtaskBtnContainer.innerHTML = `
         <button class="plus-btn" onclick="replaceButtons()">
             <img
-                class="icon arrow-bg-hover-color-subtask"
+                class="subtasks_icon arrow-bg-hover-color-subtask"
                 src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
                 alt="New Button Icon"
-                width="24"
-                height="24" />
+               />
         </button>
     `;
 }
@@ -48,20 +47,18 @@ function getNewTagTemplate(value) {
     <input class="newTag-input" id='newTag-input' type="text" value="${value}" />
         <div class="btns-position" id='newTag-btn-container'>
             <button class="edit-text-btn" onclick="editTextBtn()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                        /></button>
             <hr class="separator_vertically" />
             <button class="trash-btn" onclick="trashBtn()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                       /></button>
         </div>
     </div>
     `;
@@ -75,20 +72,18 @@ function newTagDefaultBtns() {
 function newTagDefaultBtnsTemplate() {
     return `
             <button class="edit-text-btn" onclick="editTextBtn()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                        " /></button>
             <hr class="separator_vertically" />
             <button class="trash-btn" onclick="trashBtn()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                         /></button>
         </div>
     </div>
     `;
@@ -116,20 +111,18 @@ function newTagBtnReplaceTemplate() {
     return `
         <div class="btns-position" id='newTag-btn-container'>
             <button class="edit-text-btn" onclick="trashBtn()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                         /></button>
             <hr class="separator_vertically" />
             <button class="trash-btn" onclick="newTagDefaultBtns()"><img
-                                        class="icon"
+                                        class="subtasks_icon"
                                         id="icon-low"
                                         src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                         alt="Icon"
-                                        width="24"
-                                        height="24" /></button>
+                                        /></button>
         </div>
     </div>
     `;
@@ -139,22 +132,20 @@ function getBtnsTemplate() {
     return `
         <button class="delet-text-btn" onclick="deletTextBtn()">
                                         <img
-                                            class="icon arrow-bg-hover-color-subtask"
+                                            class="subtasks_icon arrow-bg-hover-color-subtask"
                                             id="icon-low"
                                             src="../assets/imgs/addTaskIcons/subtasksCancelIcon.svg"
                                             alt="Icon"
-                                            width="24"
-                                            height="24" />
+                                            />
                                     </button>
                                     <hr class="separator_vertically" />
                                     <button class="confirm-btn" onclick="confirmSubtaskBtn()">
                                         <img
-                                            class="icon arrow-bg-hover-color-subtask"
+                                            class="subtasks_icon arrow-bg-hover-color-subtask"
                                             id="icon-low"
                                             src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                             alt="Icon"
-                                            width="24"
-                                            height="24" />
+                                           />
                                     </button>
         `;
 }
