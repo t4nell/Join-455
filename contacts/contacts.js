@@ -148,20 +148,4 @@ function editContactOverlay(){
     editContactPopup.classList.remove("closed");
 }
 
-window.onload = async function() {
-    try {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser) {
-            window.location.href = '../index.html';
-            return;
-        }
-
-        renderSidebar();
-        renderHeader();
-        updateUserProfile();
-        await loadContacts();
-    } catch (error) {
-        console.error("Error initializing contacts:", error);
-    }
-};
 
