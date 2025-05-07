@@ -13,25 +13,13 @@
     <link rel="stylesheet" href="./board.css" />
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
     <script src="../scripts/templates.js" defer></script>
+    <script src="../scripts/userProfil.js" defer></script>
     <script src="./board.js" defer></script>
     <title>Join</title>
   </head>
-  <body onload="renderSidebar()">
-
-
-    
-
-
+  <body onload="renderSidebar(); renderHeader(); updateUserProfile(); init()">
     <main id="main_container">
-
-      <header>
-        <span>Kanban Project Management Tool</span>
-        <div class="user_menu">
-          <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></button>
-          <button class="user_profile">SM</button>
-        </div>
-      </header>
-
+      <div id="header_container"></div>
       <div class="sidebar_container">
 
         <div class="sidebar_img_container">
@@ -80,7 +68,7 @@
 
             <!-- Assigned To Section -->
             <div class="task_detail_assigned">
-                <span class="detail_label">Assigned To:</span>
+                <span class="detail_label">AssignedTo:</span>
                 <div class="assigned_contacts">
                     <div class="contact_badge">
                         <div class="avatar">AM</div>
@@ -135,16 +123,14 @@
 
 
       <div class="board_container">
-
+        
         <div class="board_contend_top">
           
           <div class="board_controls_container">
             <div class="headline_container">
               <h2>Board</h2>
             </div>
-
             <div class="search_and_addTask_container">
-
               <div class="search_container">
                 <div>
                   <input class="input_base_style" placeholder="Find Task" type="search">
@@ -154,15 +140,11 @@
                   <button class="light_btn"><img src="../assets/imgs/boardIcons/search.svg" alt="Lupe"></button>
                 </div>
               </div>
-
               <div>
                 <button class="dark_btn">Add Task <img src="../assets/imgs/boardIcons/plus.svg" alt="puls"></button>
               </div>
-
             </div>
           </div>
-
-          
 
           <div class="category_task_container">
             <div class="category">
@@ -180,83 +162,41 @@
             <div class="category category_done_container">
               <span>Done</span>
             </div>
+
           </div>
-
-
-
         </div>
 
         <div class="board_contend_bottom">
 
           <div class="drag_and_drop_container">
-            <div class="drag_area">
+            <div id="drag_area_todo" class="drag_area">
+
               <span class="drag_area_placeholder">No Task Todo</span>
-            </div>
-          </div>
-
-          <div class="drag_and_drop_container">
-            <div class="drag_area">
-              <span class="drag_area_placeholder">No Task progress</span>
-
-
-
-
-
-              <!-- Template -->
-            
-              <div id="task-card" class="task-card" onclick="renderDetailTemplate()">
-                <!-- Task Label -->
-                <div class="task-category">
-                    <span class="category-label">User Story</span>
-                </div>
-                
-                <!-- Task Content -->
-                <div class="task-content">
-                    <h3 class="task-title">Kochwelt Page & Recipe Recommender</h3>
-                    <p class="task-description">Build start page with recipe recommendation...</p>
-                </div>
-                
-                <!-- Progress Bar -->
-                <div class="progress-section">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                    </div>
-                    <span class="subtask-counter">1/2 Subtasks</span>
-                </div>
-                
-                <!-- Task Footer -->
-                <div class="task-footer">
-                    <div class="assignee-avatars">
-                        <span class="avatar">AM</span>
-                        <span class="avatar">EM</span>
-                        <span class="avatar">MB</span>
-                    </div>
-                    <div class="menu_priority">
-                        <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
-                    </div>
-                </div>
-              </div>
-
-              <!-- Template -->
-
-
-
-
-
-
 
             </div>
           </div>
 
           <div class="drag_and_drop_container">
-            <div class="drag_area">
+            <div id="drag_area_in_progress" class="drag_area">
+
+              <span class="drag_area_placeholder">No Task In progress</span>
+
+            </div>
+          </div>
+
+          <div class="drag_and_drop_container">
+            <div id="drag_area_await_feedback" class="drag_area">
+
               <span class="drag_area_placeholder">No Task Await feedback</span>
+
             </div>
           </div>
 
           <div class="drag_and_drop_container">
-            <div class="drag_area">
+            <div id="drag_area_done" class="drag_area">
+
               <span class="drag_area_placeholder">No Task Done</span>
+
             </div>
           </div>
 

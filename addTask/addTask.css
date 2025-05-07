@@ -18,13 +18,13 @@ main {
     margin-bottom: 48px;
 }
 
-.separator_container {
+.main_section {
     display: flex;
     flex: 1;
     width: 100%;
 }
 
-.title_container {
+.main_section_left {
     max-width: 440px;
     margin-left: 96px;
     margin-right: 48px;
@@ -32,36 +32,15 @@ main {
     box-sizing: border-box;
 }
 
-.priority_container {
-    margin-right: 136px;
-    max-width: 440px;
-    margin-left: 48px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    box-sizing: border-box;
-}
-
-.separator_vertically_gray {
-    width: 1px;
-    background-color: #d1d1d1;
-    height: 424px;
-}
-
-.textarea {
-    margin-top: 8px;
-    padding-top: 16px;
-    padding-left: 16px;
-    max-width: 100%;
-    height: 120px;
-    resize: vertical;
-    border-radius: 10px;
-}
-
-.input_group {
+.input_titel_group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.required::after {
+    content: ' *';
+    color: #e00;
 }
 
 .input_titel {
@@ -78,10 +57,26 @@ main {
     margin-bottom: 32px;
 }
 
+.textarea {
+    margin-top: 8px;
+    padding-top: 16px;
+    padding-left: 16px;
+    max-width: 100%;
+    height: 120px;
+    resize: vertical;
+    border-radius: 10px;
+}
+
 .input_date_group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.input_date_container {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .input_date {
@@ -93,6 +88,32 @@ main {
     border: solid 1px;
     border-radius: 10px;
     height: 48px;
+}
+
+.calendar_icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+
+.separator_vertically_gray {
+    width: 1px;
+    background-color: #d1d1d1;
+    height: 424px;
+}
+
+.main_section_right {
+    margin-right: 136px;
+    max-width: 440px;
+    margin-left: 48px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
 }
 
 .assign_to_group {
@@ -139,7 +160,7 @@ main {
     margin-top: 8px;
 }
 
-.placeholder-icon {
+.placeholder_icon {
     width: 42px;
     height: 42px;
     background-color: blue;
@@ -148,7 +169,7 @@ main {
     cursor: pointer;
 }
 
-.placeholder-icon:hover {
+.placeholder_icon:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
 }
 /* Assign ende */
@@ -160,7 +181,7 @@ main {
     margin-bottom: 79px;
 }
 
-.clear-btn {
+.clear_btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -175,14 +196,14 @@ main {
     transition: all 0.3s ease;
 }
 
-.clear-btn:hover {
+.clear_btn:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     background-color: #f0f0f0;
     border-color: #29abe2;
     color: #29abe2;
 }
 
-.create-task-btn {
+.create_task_btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -197,7 +218,7 @@ main {
     transition: all 0.3s ease;
 }
 
-.create-task-btn:hover {
+.create_task_btn:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     background-color: #29abe2;
 }
@@ -220,22 +241,6 @@ main {
     display: none;
 }
 
-.input_date-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.calendar-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-}
-
 .input_titel:focus {
     outline: none;
     border-color: #2684ff;
@@ -244,11 +249,6 @@ main {
 .input_date:focus {
     outline: none;
     border-color: #2684ff;
-}
-
-.required::after {
-    content: ' *';
-    color: #e00;
 }
 
 .clear_icon {

@@ -5,6 +5,11 @@ function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
 }
 
+function renderHeader() {
+    const headerContainer = document.getElementById('header_container');
+    headerContainer.innerHTML = getHeaderTemplate();
+}
+
 function updateGreeting() {
     const now = new Date();
     let greeting;
@@ -39,8 +44,9 @@ window.onload = async function() {
 
         // UI Initialisierung
         renderSidebar();
-        updateGreeting();
+        renderHeader();
         updateUserProfile();
+        updateGreeting();
 
         // Gast-Modus Hinweis
         if (currentUser.isGuest) {

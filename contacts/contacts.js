@@ -87,31 +87,6 @@ function renderContactGroups(groupedContacts) {
   });
 }
 
-function renderContactList() {
-  const contactListContainer = document.getElementById(
-    "contact_list_container"
-  );
-  const allContacts = contactsArray
-    .map(
-      (contact, index) => `
-    <div class="contact_side" id="${index}">
-    <div class="contact_small_img">
-    <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
-    </div>
-    <div class="contact_side_info">
-    <div class="contact_side_name">
-    <span>${contact.name} ${contact.surname}</span>
-    </div>
-    <div class="contact_side_mail">
-    <span>${contact.email}</span>
-    </div>
-    </div>
-    </div>
-    </div>`
-    )
-    .join("");
-  contactListContainer.innerHTML = allContacts;
-}
 
 function renderSidebar() {
   mainContainer.innerHTML += getSidebarTemplate();
@@ -120,6 +95,32 @@ function renderSidebar() {
 function toggleOverlayNewContact() {
   popup.classList.toggle("closed");
   overlay.classList.toggle("fade_out");
+}
+
+function renderHeader() {
+    const headerContainer = document.getElementById('header_container');
+    headerContainer.innerHTML = getHeaderTemplate();
+}
+
+async function renderContactList() {
+    await loadContactData();
+    console.log(contactsArray);
+    
+    const contactListContainer = document.getElementById("contact_list_container");
+    const allContacts = contactsArray[0].id.map((contact, index) => `
+    <div class="contact_list_item" id="contact_${index}">
+    <div class="contact_small_img">
+            <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
+          </div>
+          <div class="contact_side_info">
+            <div class="contact_side_name">
+              <span>${contact.name}</span>
+            </div>
+            <div class="contact_side_mail">
+              <span>antom@gmail.com</span>
+            </div>
+          </div></div>`).join("");
+    contactListContainer.innerHTML = allContacts;
 }
 
 function toggleOverlay() {
@@ -141,3 +142,26 @@ function editContactOverlay() {
   overlay.classList.remove("fade_out");
   editContactPopup.classList.remove("closed");
 }
+
+function editContactOverlay(){
+    overlay.classList.remove("fade_out");
+    editContactPopup.classList.remove("closed");
+}
+
+window.onload = async function() {
+    try {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = '../index.html';
+            return;
+        }
+
+        renderSidebar();
+        renderHeader();
+        updateUserProfile();
+        await loadContacts();
+    } catch (error) {
+        console.error("Error initializing contacts:", error);
+    }
+};
+

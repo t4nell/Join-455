@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../styles/inputIcons.css" />
     <link rel="stylesheet" href="./policy.css">
     <script src="../scripts/templates.js" defer></script>
+    <script src="../scripts/userProfil.js" defer></script>
     <script src="./policy.js" defer></script>
     <link
       rel="shortcut icon"
@@ -18,18 +19,10 @@
     />
     <title>Join</title>
   </head>
-  <body onload="renderSidebar()">
+  <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
 
     <main id="main_container">
-
-      <header>
-        <span>Kanban Project Management Tool</span>
-        <div class="user_menu">
-          <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></button>
-          <button class="user_profile">SM</button>
-        </div>
-      </header>
-
+      <div id="header_container"></div>
 
       <div class="sidebar_container">
 

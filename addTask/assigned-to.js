@@ -1,29 +1,28 @@
 const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdownToggleBtn');
-const label = toggle.querySelector('.dropdown-label');
 const menu = document.getElementById('dropdownMenu');
-const items = menu.querySelectorAll('.dropdown-item');
+const items = menu.querySelectorAll('.dropdown_item');
 const symbole = document.getElementById('placeholder_group');
 
-toggle.addEventListener('click', () => {
+toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     dropdown.classList.toggle('open');
-    if (dropdown.classList.contains('open')) {
-        symbole.classList.add('d-none');
-    } else {
-        symbole.classList.remove('d-none');
-    }
+    symbole.classList.toggle('d-none', dropdown.classList.contains('open'));
 });
 
 items.forEach((item) => {
-    item.addEventListener('click', () => {
-        label.textContent = item.textContent;
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        const text = item.childNodes[0].textContent.trim();
+        toggle.value = text;
         dropdown.classList.remove('open');
         symbole.classList.remove('d-none');
     });
 });
 
-document.addEventListener('click', (clickEveryWhere) => {
-    if (!dropdown.contains(clickEveryWhere.target)) {
+document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
         dropdown.classList.remove('open');
         symbole.classList.remove('d-none');
     }

@@ -48,8 +48,8 @@ function getLoginSignupTemplate() {
 
 
 function getSidebarTemplate() {
-  const currentPage = window.location.pathname;
-  return `    
+    const currentPage = window.location.pathname;
+    return `    
     <nav class="sidebar_nav">
       <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
         <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
@@ -84,4 +84,53 @@ function getContactListTemplate() {
               <span>antom@gmail.com</span>
             </div>
           </div>`
+}
+
+function getTaskCard() {
+  return `
+      <div id="task_card" class="task_card" onclick="renderDetailTemplate()">
+      <div class="task_category">
+          <span class="category_label">User Story</span>
+      </div>
+      <div class="task_content">
+          <h3 class="task_title">Kochwelt Page & Recipe Recommender</h3>
+          <p class="task_description">Build start page with recipe recommendation...</p>
+      </div>
+      <div class="progress_section">
+          <div class="progress_bar">
+              <div class="progress_fill"></div>
+          </div>
+          <span class="subtask_counter">1/2 Subtasks</span>
+      </div>
+      <div class="task_footer">
+          <div class="assignee_avatars">
+              <span class="avatar">AM</span>
+              <span class="avatar">EM</span>
+              <span class="avatar">MB</span>
+          </div>
+          <div class="menu_priority">
+              <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
+          </div>
+      </div>
+    </div>
+
+  `
+}
+
+
+function getHeaderTemplate() {
+    return `
+      <header>
+        <span>Kanban Project Management Tool</span>
+        <div class="user_menu">
+          <a href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
+          <button onclick="toggleUserMenu()" class="user_profile"></button>
+          <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
+            <a href="../policy/policy.html">Privacy Policy</a>
+            <a href="../legalNotes/legal.html">Legal Notice</a>
+            <button onclick="logout()" class="logout_btn">Log out</button>
+          </div>
+        </div>
+      </header>
+    `;
 }
