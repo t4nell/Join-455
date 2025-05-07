@@ -84,36 +84,51 @@
                         <div class="radio_btn_group">
                             <span class="priority_span_text"> Priority</span>
                             <form class="radio-form" action="/action">
-                                <input type="radio" id="urgent" name="Priority" value="urgent" />
+                                <input
+                                    type="radio"
+                                    id="urgent"
+                                    name="Priority"
+                                    value="urgent"
+                                    onclick="switchBtnPriority('urgent')" />
                                 <label class="btn_red" for="urgent"
                                     >Urgent
                                     <img
                                         class="icon"
-                                        id="icon-urgent"
+                                        id="icon_urgent"
                                         src="../assets/imgs/addTaskIcons/priorityUrgentIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /> </label
                                 ><br />
 
-                                <input type="radio" id="medium" name="Priority" value="medium" />
+                                <input
+                                    type="radio"
+                                    id="medium"
+                                    name="Priority"
+                                    value="medium"
+                                    onclick="switchBtnPriority('medium')" />
                                 <label class="btn_orange margin_16px" for="medium"
                                     >Medium
                                     <img
                                         class="icon"
-                                        id="icon-medium"
+                                        id="icon_medium"
                                         src="../assets/imgs/addTaskIcons/priorityMediumIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /> </label
                                 ><br />
 
-                                <input type="radio" id="low" name="Priority" value="low" />
+                                <input
+                                    type="radio"
+                                    id="low"
+                                    name="Priority"
+                                    value="low"
+                                    onclick="switchBtnPriority('low')" />
                                 <label class="btn_green" for="low"
                                     >Low
                                     <img
                                         class="icon"
-                                        id="icon-low"
+                                        id="icon_low"
                                         src="../assets/imgs/addTaskIcons/priorityLowIcon.svg"
                                         alt="Icon"
                                         width="24"

@@ -1,19 +1,17 @@
-// Radio Buttons
-document.querySelectorAll('input[name="Priority"]').forEach((radio) => {
-    radio.addEventListener('change', () => {
-        document.getElementById('icon-urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIcon.svg';
-        document.getElementById('icon-medium').src = '../assets/imgs/addTaskIcons/priorityMediumIcon.svg';
-        document.getElementById('icon-low').src = '../assets/imgs/addTaskIcons/priorityLowIcon.svg';
-
-        if (document.getElementById('urgent').checked) {
-            document.getElementById('icon-urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg';
-        }
-        if (document.getElementById('medium').checked) {
-            document.getElementById('icon-medium').src = '../assets/imgs/addTaskIcons/priorityMediumIconWhite.svg';
-        }
-        if (document.getElementById('low').checked) {
-            document.getElementById('icon-low').src = '../assets/imgs/addTaskIcons/priorityLowIconWhite.svg';
-        }
-    });
-});
+function switchBtnPriority(btnPriority) {
+    document.getElementById('icon_urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIcon.svg';
+    document.getElementById('icon_medium').src = '../assets/imgs/addTaskIcons/priorityMediumIcon.svg';
+    document.getElementById('icon_low').src = '../assets/imgs/addTaskIcons/priorityLowIcon.svg';
+    switch (btnPriority) {
+        case 'urgent':
+            document.getElementById('icon_urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg';
+            break;
+        case 'medium':
+            document.getElementById('icon_medium').src = '../assets/imgs/addTaskIcons/priorityMediumIconWhite.svg';
+            break;
+        case 'low':
+            document.getElementById('icon_low').src = '../assets/imgs/addTaskIcons/priorityLowIconWhite.svg';
+            break;
+    }
+}
 
