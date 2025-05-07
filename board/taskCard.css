@@ -90,6 +90,103 @@
 .avatar {
     width: 32px;
     height: 32px;
+    background: #0052ff;
+    border: 1px solid var(--avatar-border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--avatar-text-color);
+    font-size: 12px;
+    margin-right: -8px;
+}
+
+.menu_priority {
+    display: flex;
+    justify-content: center;
+}
+
+.task_card {
+    background: var(--task-card-background-color);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
+    width: calc(100% - 32px);
+    margin: 8px 0;
+}
+
+.task_card:hover {
+    cursor: pointer;
+}
+
+.task_category {
+    margin-bottom: 8px;
+}
+
+.category_label {
+    background-color: #0052ff;
+    color: var(--category-label-text-color);
+    padding: 4px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.task_content {
+    margin: 16px 0;
+}
+
+.task_title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.task_description {
+    color: var(--task-description-text-color);
+    font-size: 14px;
+}
+
+.progress_section {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 16px 0;
+}
+
+.progress_bar {
+    width: 50%;
+    height: 8px;
+    background-color: var(--progress-bar-background-color);
+    border-radius: 4px;
+}
+
+.progress_fill {
+    height: 100%;
+    background-color: var(--progress-fill-color);
+    border-radius: 4px;
+    width: 50%;
+}
+
+.subtask_counter {
+    font-size: 14px;
+    color: var(--subtask-counter-text-color);
+}
+
+.task_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.assignee_avatars {
+    display: flex;
+    gap: -8px;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
     background: #0052ff; /* background-color randomized */
     border: 1px solid var(--avatar-border-color);
     border-radius: 50%;
