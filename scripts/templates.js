@@ -71,11 +71,6 @@ function getSidebarTemplate() {
   `;
 }
 
-function getsummaryTemplate() {
-    return `
-Hallo, this is the summary template.
-     `
-}
 
 function getContactListTemplate() {
   return `<div class="contact_small_img">

@@ -28,53 +28,64 @@ function updateGreeting() {
     `;
 }
 
-function updateUserProfile() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const userProfileButton = document.querySelector('.user_profile');
-    
-    // Wähle eine zufällige Farbe zwischen 1 und 20
-    const randomColorNumber = Math.floor(Math.random() * 20) + 1;
-    const randomColor = `var(--profile-color-${randomColorNumber})`;
-    
-    if (currentUser && currentUser.name) {
-        const nameParts = currentUser.name.split(' ');
-        const initials = nameParts.map(part => part.charAt(0).toUpperCase()).join('');
-        userProfileButton.textContent = initials;
-    } else {
-        userProfileButton.textContent = 'G';  // G für Gast
-    }
-    
-    // Setze die zufällige Farbe als Hintergrund
-    userProfileButton.style.setProperty('--current-profile-color', randomColor);
-}
+window.onload = async function() {
+    try {
+        // Benutzer-Authentifizierung prüfen
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = '../index.html';
+            return;
+        }
 
-window.onload = function() {
-    // Sicherstellen, dass ein Benutzer eingeloggt ist
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        window.location.href = '../index.html';
-        return;
-    }
+        // UI Initialisierung
+        renderSidebar();
+        updateGreeting();
+        updateUserProfile();
 
-    renderSidebar();
-    updateGreeting();
-    updateUserProfile();
-    
-    // Gast-Hinweis anzeigen
-    if (currentUser.isGuest) {
-        showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
+        // Gast-Modus Hinweis
+        if (currentUser.isGuest) {
+            showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
+        }
+
+        // Daten laden und UI aktualisieren
+        const tasks = await fetchTasks();
+        const stats = calculateTaskStats(tasks);
+        updateSummaryUI(stats);
+
+    } catch (error) {
+        console.error("Error initializing summary:", error);
+        showNotification('Fehler beim Laden der Daten');
     }
 };
 
 // Firebase zugriffe
-
 const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
 
 async function fetchTasks() {
     try {
-        const response = await fetch(`${BASE_URL}/addtask.json`);
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) return [];
+        
+        const response = await fetch(`${BASE_URL}addTask.json`);
         const data = await response.json();
-        return data ? Object.values(data) : [];
+        if (!data) return [];
+
+        // Alle Tasks aus den verschiedenen Status-Kategorien sammeln
+        const allTasks = [];
+        const categories = ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'];
+        
+        categories.forEach(category => {
+            if (data[category]) {
+                Object.values(data[category]).forEach(task => {
+                    allTasks.push({
+                        ...task,
+                        status: category.toLowerCase()
+                    });
+                });
+            }
+        });
+
+        return allTasks;
     } catch (error) {
         console.error("Error fetching tasks:", error);
         return [];
@@ -87,34 +98,53 @@ function calculateTaskStats(tasks) {
         done: 0,
         urgent: 0,
         upcomingDeadline: null,
+        nextUrgentTask: null,
         totalTasks: tasks.length,
         inProgress: 0,
         awaitingFeedback: 0
     };
 
     let earliestDeadline = null;
+    let nextUrgentDate = null;
 
     tasks.forEach(task => {
-        // To-Do und Done
+        // Zähle Tasks nach Status
+        switch(task.status) {
+            case 'todo':
+                stats.todo++;
+                break;
+            case 'done':
+                stats.done++;
+                break;
+            case 'inprogress':
+                stats.inProgress++;
+                break;
+            case 'awaitfeedback':
+                stats.awaitingFeedback++;
+                break;
+        }
+        
+        // Prüfe Subtasks
         const subtasksDone = task.Subtasks ? task.Subtasks.filter(st => st.status).length : 0;
         const totalSubtasks = task.Subtasks ? task.Subtasks.length : 0;
         
-        if (totalSubtasks > 0) {
-            if (subtasksDone === totalSubtasks) {
-                stats.done++;
-            } else {
-                stats.todo++;
-            }
-        } else {
-            stats.todo++;
+        if (totalSubtasks > 0 && subtasksDone > 0 && subtasksDone < totalSubtasks) {
+            stats.inProgress++;
         }
-
-        // Nur Urgent Tasks zählen
+        
+        // Prioritätsprüfung und nächster dringender Task
         if (task.Priority && task.Priority.toLowerCase() === 'urgent') {
             stats.urgent++;
+            const taskDate = task.DueDate ? parseDate(task.DueDate) : null;
+            
+            // Speichere den Task wenn er das früheste Datum hat oder noch kein dringender Task gefunden wurde
+            if (taskDate && (!nextUrgentDate || taskDate < nextUrgentDate)) {
+                nextUrgentDate = taskDate;
+                stats.nextUrgentTask = task;
+            }
         }
 
-        // Upcoming Deadline (unabhängig von Priority)
+        // Allgemeines Fälligkeitsdatum
         if (task.DueDate) {
             const dueDate = parseDate(task.DueDate);
             if (!earliestDeadline || dueDate < earliestDeadline) {
@@ -122,13 +152,8 @@ function calculateTaskStats(tasks) {
             }
         }
 
-        // In Progress
-        if (totalSubtasks > 0 && subtasksDone > 0 && subtasksDone < totalSubtasks) {
-            stats.inProgress++;
-        }
-
-        // Awaiting Feedback
-        if (task.Category === 'Feedback') {
+        // Feedback Status
+        if (task.Category === 'Feedback' || task.status === 'awaitfeedback') {
             stats.awaitingFeedback++;
         }
     });
@@ -140,16 +165,6 @@ function calculateTaskStats(tasks) {
 function parseDate(dateString) {
     const [day, month, year] = dateString.split('-').map(Number);
     return new Date(year, month - 1, day);
-}
-
-function getPriorityIcon(priority) {
-    if (priority === 'urgent') {
-        return '../assets/imgs/add_task_btn_img/priority_btn_urgent_white.svg';
-    } else if (priority === 'medium') {
-        return '../assets/imgs/add_task_btn_img/priority_btn_medium_active_yellow.svg';
-    } else {
-        return '../assets/imgs/add_task_btn_img/priority_btn_low_active_white.svg';
-    }
 }
 
 function updateSummaryUI(stats) {
@@ -170,7 +185,7 @@ function updateSummaryUI(stats) {
     const urgentColumn = document.getElementById('summary_importance_container');
     urgentColumn.innerHTML = `
         <div class="priority-icon-container">
-            <img src="${getPriorityIcon('urgent')}" alt="priority icon" class="priority-icon">
+            <img src="../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg" alt="priority icon" class="priority-icon">
         </div>
         <div class="summary_column">
             <span class="summary_number">${stats.urgent}</span>
@@ -178,7 +193,9 @@ function updateSummaryUI(stats) {
         </div>
     `;
     
-    const deadlineText = stats.upcomingDeadline ? formatDate(stats.upcomingDeadline) : 'No deadlines';
+    const deadlineText = stats.nextUrgentTask && stats.nextUrgentTask.DueDate 
+        ? formatDate(parseDate(stats.nextUrgentTask.DueDate))
+        : 'No urgent deadlines';
     const deadlineColumn = document.getElementById('summary_deadline_container');
     deadlineColumn.innerHTML = `
         <span class="summary_date">${deadlineText}</span>
@@ -212,29 +229,6 @@ function formatDate(date) {
         year: 'numeric'
     });
 }
-
-window.onload = async function() {
-    // Sicherstellen, dass ein Benutzer eingeloggt ist
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        window.location.href = '../index.html';
-        return;
-    }
-
-    renderSidebar();
-    updateGreeting();
-    updateUserProfile();
-    
-    // Gast-Hinweis anzeigen
-    if (currentUser.isGuest) {
-        showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
-    }
-
-    // Daten laden und UI aktualisieren
-    const tasks = await fetchTasks();
-    const stats = calculateTaskStats(tasks);
-    updateSummaryUI(stats);
-};
 
 function showNotification(message) {
     const notification = document.createElement('div');
