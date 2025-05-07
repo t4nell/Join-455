@@ -1,83 +1,91 @@
 {
-    "addtask": {
-        "task_1": {
-            "Category": "User Story",
-            "Titel": "Profilbild-Upload implementieren",
-            "Description": "Als Nutzer möchte ich ein Profilbild hochladen und ändern können, damit mein Profil persönlicher wird.",
-            "DueDate": "15-11-2023",
-            "Priority": "Urgent",
-            "Assigned to": ["id_user_abc", "id_user_xyz"],
-            "Subtasks": [
-                { "text": "Upload-API erstellen", "status": true },
-                { "text": "Frontend-Komponente entwickeln", "status": false },
-                { "text": "Speicherintegration (Cloud Storage)", "status": false }
-            ]
+    "addTask": {
+        "ToDo": {
+            "task_1": {
+                "Category": "User Story",
+                "Titel": "Implement profile picture upload",
+                "Description": "As a user, I want to be able to upload and change a profile picture so that my profile becomes more personal.",
+                "DueDate": "15-11-2023",
+                "Priority": "Urgent",
+                "AssignedTo": ["id_user_abc", "id_user_xyz"],
+                "Subtasks": [
+                    { "text": "Create upload API", "status": true },
+                    { "text": "Develop frontend component", "status": false },
+                    { "text": "Integrate storage (Cloud Storage)", "status": false }
+                ]
+            },
+            "task_3": {
+                "Category": "To Do",
+                "Titel": "Incorporate feedback from meeting",
+                "Description": "Integrate feedback points from Friday's meeting into the code and test changes.",
+                "DueDate": "08-11-2023",
+                "Priority": "low",
+                "AssignedTo": [],
+                "Subtasks": [
+                    { "text": "Go through notes", "status": true },
+                    { "text": "Adjust code", "status": false },
+                    { "text": "Prepare deployment", "status": false }
+                ]
+            }
         },
-        "task_2": {
-            "Category": "Technical Task",
-            "Titel": "Datenbank-Index optimieren",
-            "Description": "Langsame Abfragen im Bereich 'Tasks' identifizieren und notwendige Indizes hinzufügen.",
-            "DueDate": "20-11-2023",
-            "Priority": "Medium",
-            "Assigned to": ["id_user_xyz"],
-            "Subtasks": []
+        "InProgress": {
+            "task_2": {
+                "Category": "Technical Task",
+                "Titel": "Optimize database index",
+                "Description": "Identify slow queries in the 'Tasks' area and add necessary indexes.",
+                "DueDate": "20-11-2023",
+                "Priority": "Medium",
+                "AssignedTo": ["id_user_xyz"],
+                "Subtasks": []
+            }
         },
-        "task_3": {
-            "Category": "To Do",
-            "Titel": "Feedback von Meeting einarbeiten",
-            "Description": "Feed backpunkte aus dem Freitags-Meeting in den Code integrieren und Änderungen testen.",
-            "DueDate": "08-11-2023",
-            "Priority": "low",
-            "Assigned to": [],
-            "Subtasks": [
-                { "text": "Notizen durchgehen", "status": true },
-                { "text": "Code anpassen", "status": false },
-                { "text": "Deployment vorbereiten", "status": false }
-            ]
+        "AwaitFeedback": {
+            "task_5": {
+                "Category": "Work",
+                "Titel": "Draft blog article",
+                "Description": "Write the first draft for a blog article about new features.",
+                "DueDate": "25-11-2023",
+                "Priority": "Medium",
+                "AssignedTo": ["id_user_abc"],
+                "Subtasks": [
+                    { "text": "Define topic", "status": true },
+                    { "text": "Create outline", "status": true },
+                    { "text": "Write text (section 1)", "status": false }
+                ]
+            }
         },
-        "task_4": {
-            "Category": "Shopping List",
-            "Titel": "Büromaterial bestellen",
-            "Description": "",
-            "DueDate": "10-11-2023",
-            "Priority": "low",
-            "Assigned to": ["id_user_pqr"],
-            "Subtasks": [
-                { "text": "Druckerpapier", "status": false },
-                { "text": "Stifte (blau)", "status": false },
-                { "text": "Notizblöcke", "status": false }
-            ]
-        },
-        "task_5": {
-            "Category": "Work",
-            "Titel": "Blog Artikel entwerfen",
-            "Description": "Ersten Entwurf für einen Blog Artikel über neue Features schreiben.",
-            "DueDate": "25-11-2023",
-            "Priority": "Medium",
-            "Assigned to": ["id_user_abc"],
-            "Subtasks": [
-                { "text": "Thema festlegen", "status": true },
-                { "text": "Gliederung erstellen", "status": true },
-                { "text": "Text schreiben (Abschnitt 1)", "status": false }
-            ]
-        },
-        "task_6": {
-            "Category": "Train",
-            "Titel": "Neues Framework lernen",
-            "Description": "Einen Online-Kurs zu 'Framework X' absolvieren und Grundkenntnisse erwerben.",
-            "DueDate": "30-11-2023",
-            "Priority": "",
-            "Assigned to": [],
-            "Subtasks": []
-        },
-        "task_7": {
-            "Category": "Nothing",
-            "Titel": "Platzhalter-Task für Demo",
-            "Description": "Dieser Task dient nur zu Demonstrationszwecken der Kategorie 'Nothing'.",
-            "DueDate": "01-12-2023",
-            "Priority": "low",
-            "Assigned to": ["id_user_xyz", "id_user_pqr"],
-            "Subtasks": []
+        "Done": {
+            "task_4": {
+                "Category": "Shopping List",
+                "Titel": "Order office supplies",
+                "Description": "",
+                "DueDate": "10-11-2023",
+                "Priority": "low",
+                "AssignedTo": ["id_user_pqr"],
+                "Subtasks": [
+                    { "text": "Printer paper", "status": true },
+                    { "text": "Pens (blue)", "status": true },
+                    { "text": "Notepads", "status": true }
+                ]
+            },
+            "task_6": {
+                "Category": "Train",
+                "Titel": "Learn new framework",
+                "Description": "Complete an online course on 'Framework X' and acquire basic knowledge.",
+                "DueDate": "30-11-2023",
+                "Priority": "",
+                "AssignedTo": [],
+                "Subtasks": []
+            },
+            "task_7": {
+                "Category": "Nothing",
+                "Titel": "Placeholder task for demo",
+                "Description": "This task is only for demonstration purposes of the 'Nothing' category.",
+                "DueDate": "01-12-2023",
+                "Priority": "low",
+                "AssignedTo": ["id_user_xyz", "id_user_pqr"],
+                "Subtasks": []
+            }
         }
     },
     "contact": {
@@ -87,49 +95,49 @@
             "phone": "+4915112345678",
             "surname": "Schmidt"
         },
-        "contact_2":{
+        "contact_2": {
             "email": "max.mueller@example.com",
             "name": "Max",
             "phone": "+4915223456789",
             "surname": "Müller"
         },
-        "contact_3":{
+        "contact_3": {
             "email": "lisa.meier@example.com",
             "name": "Lisa",
             "phone": "+4915334567890",
             "surname": "Meier"
         },
-        "contact_4":{
+        "contact_4": {
             "email": "tom.schneider@example.com",
             "name": "Tom",
             "phone": "+4915445678901",
             "surname": "Schneider"
         },
-        "contact_5":{
+        "contact_5": {
             "email": "julia.fischer@example.com",
             "name": "Julia",
             "phone": "+4915556789012",
             "surname": "Fischer"
         },
-        "contact_6":{
+        "contact_6": {
             "email": "paul.wagner@example.com",
             "name": "Paul",
             "phone": "+4915667890123",
             "surname": "Wagner"
         },
-        "contact_7":{
+        "contact_7": {
             "email": "sophie.hoffmann@example.com",
             "name": "Sophie",
             "phone": "+4915778901234",
             "surname": "Hoffmann"
         },
-        "contact_8":{
+        "contact_8": {
             "email": "felix.keller@example.com",
             "name": "Felix",
             "phone": "+4915889012345",
             "surname": "Keller"
         },
-        "contact_9":{
+        "contact_9": {
             "email": "laura.braun@example.com",
             "name": "Laura",
             "phone": "+4915990123456",
