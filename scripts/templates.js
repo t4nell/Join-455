@@ -46,7 +46,6 @@ function getLoginSignupTemplate() {
 `
 }
 
-
 function getSidebarTemplate() {
     const currentPage = window.location.pathname;
     return `    
@@ -71,7 +70,6 @@ function getSidebarTemplate() {
   `;
 }
 
-
 function getContactListTemplate() {
   return `<div class="contact_small_img">
             <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
@@ -86,40 +84,8 @@ function getContactListTemplate() {
           </div>`
 }
 
-function getTaskCard() {
-  return `
-      <div id="task_card" class="task_card" onclick="renderDetailTemplate()">
-      <div class="task_category">
-          <span class="category_label">User Story</span>
-      </div>
-      <div class="task_content">
-          <h3 class="task_title">Kochwelt Page & Recipe Recommender</h3>
-          <p class="task_description">Build start page with recipe recommendation...</p>
-      </div>
-      <div class="progress_section">
-          <div class="progress_bar">
-              <div class="progress_fill"></div>
-          </div>
-          <span class="subtask_counter">1/2 Subtasks</span>
-      </div>
-      <div class="task_footer">
-          <div class="assignee_avatars">
-              <span class="avatar">AM</span>
-              <span class="avatar">EM</span>
-              <span class="avatar">MB</span>
-          </div>
-          <div class="menu_priority">
-              <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
-          </div>
-      </div>
-    </div>
-
-  `
-}
-
-
 function getHeaderTemplate() {
-    return `
+  return `
       <header>
         <span>Kanban Project Management Tool</span>
         <div class="user_menu">
@@ -133,4 +99,35 @@ function getHeaderTemplate() {
         </div>
       </header>
     `;
-}
+  }
+
+  function getTaskCard() {
+    return `
+        <div id="task_card" class="task_card" onclick="renderDetailTemplate()">
+        <div class="task_category">
+            <span class="category_label">User Story</span>
+        </div>
+        <div class="task_content">
+            <h3 class="task_title">Kochwelt Page & Recipe Recommender</h3>
+            <p class="task_description">Build start page with recipe recommendation...</p>
+        </div>
+        <div class="progress_section">
+            <div class="progress_bar">
+                <div class="progress_fill"></div>
+            </div>
+            <span class="subtask_counter">1/2 Subtasks</span>
+        </div>
+        <div class="task_footer">
+            <div class="assignee_avatars">
+                <span class="avatar">AM</span>
+                <span class="avatar">EM</span>
+                <span class="avatar">MB</span>
+            </div>
+            <div class="menu_priority">
+                <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
+            </div>
+        </div>
+      </div>
+  
+    `
+  }
