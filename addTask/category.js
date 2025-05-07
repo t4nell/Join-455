@@ -1,23 +1,23 @@
-// Category To input
-const categoryDropdown = document.getElementById('category-dropdown');
-const categoryToggle = document.getElementById('category-dropdownToggleBtn');
-const categoryLabel = categoryToggle.querySelector('.category-dropdown-label');
+const categoryDropdown = document.getElementById('category_dropdown');
+const categoryToggle = document.getElementById('categoryDropdownInput');
 const categoryMenu = document.getElementById('category-dropdownMenu');
-const categoryItems = categoryMenu.querySelectorAll('.category-dropdown-item');
+const categoryItems = categoryMenu.querySelectorAll('.category_dropdown_item');
 
-categoryToggle.addEventListener('click', () => {
+categoryToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     categoryDropdown.classList.toggle('open');
 });
 
 categoryItems.forEach((item) => {
-    item.addEventListener('click', () => {
-        categoryLabel.textContent = item.textContent;
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        categoryToggle.value = item.textContent.trim();
         categoryDropdown.classList.remove('open');
     });
 });
 
-document.addEventListener('click', (everyWhere) => {
-    if (!categoryDropdown.contains(everyWhere.target)) {
+document.addEventListener('click', (e) => {
+    if (!categoryDropdown.contains(e.target)) {
         categoryDropdown.classList.remove('open');
     }
 });

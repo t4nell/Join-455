@@ -22,6 +22,24 @@ main {
   align-items: center;
 } 
 
+.profile_icon{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--contact-container-background-color);
+  background-color: aquamarine;
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile_icon span{
+  color: white;
+  font-size: 12px;
+}
+
 #contact_list {
   display: flex;
   position: absolute;
@@ -35,7 +53,10 @@ main {
   background-color: var(--contact-container-background-color);
   box-shadow: 4px 0px 4px #88888838;
   z-index: 100;
+  overflow-y: scroll;
 }
+
+
 
 .letter_index{
   font-size: 20px;

@@ -17,7 +17,6 @@
         <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script src="../scripts/templates.js" defer></script>
-        <script src="../scripts/userProfil.js" defer></script>
         <script src="./addTask.js" defer></script>
         <script src="./assigned-to.js" defer></script>
         <script src="./category.js" defer></script>
@@ -25,9 +24,16 @@
         <script src="./subtask.js" defer></script>
         <title>Join</title>
     </head>
-    <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
+    <body onload="renderSidebar()">
         <main id="main_container">
-            <div id="header_container"></div>
+            <header>
+                <span>Kanban Project Management Tool</span>
+                <div class="user_menu">
+                    <button class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon" /></button>
+                    <button class="user_profile">SM</button>
+                </div>
+            </header>
+
             <div class="sidebar_container">
                 <div class="sidebar_img_container">
                     <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" /></a>
@@ -41,138 +47,185 @@
                     <h2>Add Task</h2>
                 </div>
 
-                <div class="separator_container">
-                    <div class="title_container">
-                        <div class="input_group">
-                            <label for="text" class="input-title required">Titel</label>
-                            <input class="input_titel" type="text" placeholder="Enter a titel" />
+                <form id="add_task_form" class="main_section">
+                    <section class="main_section_left">
+                        <div class="input_titel_group">
+                            <label for="text" class="required">Titel</label>
+                            <input
+                                name="title"
+                                id="title"
+                                class="input_titel"
+                                type="text"
+                                placeholder="Enter a titel" />
                         </div>
                         <div class="textarea_group">
-                            <label for="description" class="input-title">Description</label>
-                            <textarea class="textarea" id="description" placeholder="Enter a Description"></textarea>
+                            <label id="description" for="description" class="input-title">Description</label>
+                            <textarea
+                                name="description"
+                                class="textarea"
+                                id="description"
+                                placeholder="Enter a Description"></textarea>
                         </div>
-                        <div class="input_date-group">
+                        <div class="input_date_group">
                             <label for="date" class="required">Due date</label>
-                            <div class="input_date-container">
+                            <div class="input_date_container">
                                 <input
+                                    name="due_date"
                                     type="text"
-                                    id="due-date"
+                                    id="due_date"
                                     placeholder="dd/mm/yyyy"
                                     required=""
-                                    class="flatpickr-input input_date"
+                                    class="flatpickr_input input_date"
                                     readonly="readonly" />
                                 <img
-                                    class="calendar-icon"
+                                    class="calendar_icon"
                                     src="../assets/imgs/addTaskIcons/CalenderIcon.svg"
                                     alt="Calendar Icon"
                                     onclick="openCalendar()" />
                             </div>
                         </div>
-                    </div>
+                    </section>
 
                     <div class="separator_vertically_gray"></div>
 
-                    <div class="priority_container">
-                        <div class="radio_btn_group">
-                            <span class="priority_span_text"> Priority</span>
-                            <form class="radio-form" action="/action">
+                    <section class="main_section_right">
+                        <div class="radio_btn_container">
+                            <span class="required">Priority</span>
+                            <div class="priority_btn_group">
                                 <input
                                     type="radio"
-                                    id="urgent"
-                                    name="Priority"
+                                    id="prio_urgent"
+                                    name="priority"
                                     value="urgent"
                                     onclick="switchBtnPriority('urgent')" />
-                                <label class="btn_red" for="urgent"
+                                <label for="prio_urgent" class="btn btn--red"
                                     >Urgent
                                     <img
+                                        src="../assets/imgs/addTaskIcons/priorityUrgentIcon.svg"
+                                        alt="Urgent Icon"
                                         class="priority_icon"
                                         id="icon_urgent"
-                                        src="../assets/imgs/addTaskIcons/priorityUrgentIcon.svg"
-                                        alt="Icon" /> </label
-                                ><br />
+                                /></label>
 
                                 <input
                                     type="radio"
-                                    id="medium"
-                                    name="Priority"
+                                    id="prio_medium"
+                                    name="priority"
                                     value="medium"
+                                    checked
                                     onclick="switchBtnPriority('medium')" />
-                                <label class="btn_orange margin_16px" for="medium"
+                                <label for="prio_medium" class="btn btn--orange"
                                     >Medium
                                     <img
+                                        src="../assets/imgs/addTaskIcons/priorityMediumIconWhite.svg"
+                                        alt="Medium Icon"
                                         class="priority_icon"
                                         id="icon_medium"
-                                        src="../assets/imgs/addTaskIcons/priorityMediumIcon.svg"
-                                        alt="Icon" /> </label
-                                ><br />
+                                /></label>
 
                                 <input
                                     type="radio"
-                                    id="low"
-                                    name="Priority"
+                                    id="prio_low"
+                                    name="priority"
                                     value="low"
                                     onclick="switchBtnPriority('low')" />
-                                <label class="btn_green" for="low"
+                                <label for="prio_low" class="btn btn--green"
                                     >Low
                                     <img
+                                        src="../assets/imgs/addTaskIcons/priorityLowIcon.svg"
+                                        alt="Low Icon"
                                         class="priority_icon"
                                         id="icon_low"
-                                        src="../assets/imgs/addTaskIcons/priorityLowIcon.svg"
-                                        alt="Icon" />
-                                </label>
-                            </form>
+                                /></label>
+                            </div>
                         </div>
+
                         <div class="assign_to_group">
-                            <label for="names">Assigned to</label>
+                            <label for="assigned_to">Assigned to</label>
                             <div class="dropdown" id="dropdown">
-                                <button class="dropdown-toggle" id="dropdownToggleBtn">
-                                    <span class="dropdown-label">Select contacts to assign</span>
-                                    <div class="arrow-bg-hover-color"><span class="arrow"></span></div>
-                                </button>
-                                <ul class="dropdown-menu" id="dropdownMenu">
-                                    <li class="dropdown-item">Option 1 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 2 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 3 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 4 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 5 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 6 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 7 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 8 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 9 <input type="checkbox" name="contact" /></li>
-                                    <li class="dropdown-item">Option 10 <input type="checkbox" name="contact" /></li>
+                                <div class="dropdown_input_wrapper">
+                                    <input
+                                        type="text"
+                                        id="dropdownToggleBtn"
+                                        name="assigned_to"
+                                        class="dropdown_toggle"
+                                        placeholder="Select contacts to assign"
+                                        readonly />
+                                    <div class="arrow_bg_hover_color">
+                                        <span class="arrow"></span>
+                                    </div>
+                                </div>
+
+                                <ul class="dropdown_menu" id="dropdownMenu">
+                                    <li class="dropdown_item">
+                                        Option 1
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 2
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 3
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 4
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 5
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 6
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
+                                    <li class="dropdown_item">
+                                        Option 7
+                                        <input type="checkbox" name="assignedTo" value="Option 1" />
+                                    </li>
                                 </ul>
                             </div>
                         </div>
+
                         <div id="placeholder_group" class="placeholder_group">
-                            <div class="placeholder-icon">
+                            <div class="placeholder_icon">
                                 <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
                             </div>
-                            <div class="placeholder-icon">
+                            <div class="placeholder_icon">
                                 <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
                             </div>
-                            <div class="placeholder-icon">
+                            <div class="placeholder_icon">
                                 <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
                             </div>
                         </div>
 
-                        <div class="category-group">
-                            <label for="names" class="required">Category</label>
-                            <div class="category-dropdown" id="category-dropdown">
-                                <button class="category-dropdown-toggle" id="category-dropdownToggleBtn">
-                                    <span class="category-dropdown-label">Select task category</span>
-                                    <div class="category-arrow-bg-hover-color">
-                                        <span class="category-arrow"></span>
-                                    </div>
-                                </button>
-                                <ul class="category-dropdown-menu" id="category-dropdownMenu">
-                                    <li class="category-dropdown-item">Technical Task</li>
-                                    <li class="category-dropdown-item">User Story</li>
-                                    <li class="category-dropdown-item">To Do</li>
-                                    <li class="category-dropdown-item">Shopping List</li>
-                                    <li class="category-dropdown-item">Train</li>
-                                    <li class="category-dropdown-item">Live</li>
-                                    <li class="category-dropdown-item">Work</li>
-                                    <li class="category-dropdown-item">Nothing</li>
+                        <div class="category_group">
+                            <label for="categoryDropdownInput">Category</label>
+                            <div class="category_dropdown" id="category_dropdown">
+                                <div class="category_dropdown_input_wrapper">
+                                    <input
+                                        name="category"
+                                        type="text"
+                                        id="categoryDropdownInput"
+                                        name="category"
+                                        class="category_dropdown_toggle"
+                                        placeholder="Select task category"
+                                        readonly />
+                                    <span class="category_arrow_bg_hover_color">
+                                        <span class="arrow"></span>
+                                    </span>
+                                </div>
+                                <ul class="category_dropdown_menu" id="category-dropdownMenu">
+                                    <li class="category_dropdown_item">Technical Task</li>
+                                    <li class="category_dropdown_item">User Story</li>
+                                    <li class="category_dropdown_item">To Do</li>
+                                    <li class="category_dropdown_item">Shopping List</li>
+                                    <li class="category_dropdown_item">Train</li>
+                                    <li class="category_dropdown_item">Live</li>
+                                    <li class="category_dropdown_item">Work</li>
+                                    <li class="category_dropdown_item">Nothing</li>
                                 </ul>
                             </div>
                         </div>
@@ -184,7 +237,7 @@
                                     type="text"
                                     placeholder="Add new subtask"
                                     id="tagInputField"
-                                    name="tagInputField"
+                                    name="subtasks[]"
                                     onclick="replaceButtons()"
                                     onkeydown="onKeyDownEnter(event)" />
                                 <div class="subtask-btn-container" id="subtask-btn-container">
@@ -198,12 +251,17 @@
                             </div>
                             <div class="newTag-container" id="newTag-container"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="creat-task">
+                    </section>
+                </form>
+                <footer class="creat-task">
                     <div class="p-required-field"><p class="required-field">* These fields are required</p></div>
                     <div class="btn-position">
-                        <button class="clear-btn">
+                        <button
+                            class="clear_btn"
+                            type="reset"
+                            form="add_task_form"
+                            id="clear_btn"
+                            onclick="clearSubtasks()">
                             Clear
                             <img
                                 class="clear_icon"
@@ -211,7 +269,7 @@
                                 src="../assets/imgs/addTaskIcons/subtasksCancelIcon.svg"
                                 alt="Icon" />
                         </button>
-                        <button class="create-task-btn">
+                        <button class="create_task_btn" type="button" form="add_task_form" onclick="createTask()">
                             Create Task
                             <img
                                 class="creat_task_icon"
@@ -220,7 +278,7 @@
                                 alt="Icon" />
                         </button>
                     </div>
-                </div>
+                </footer>
             </div>
         </main>
     </body>
