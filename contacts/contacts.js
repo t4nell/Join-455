@@ -7,6 +7,7 @@ let contactsArray = [];
 const groupedContacts = {};
 
 async function contactInit() {
+  renderHeader();
   renderSidebar();
   loadCurrentUser();
   await loadContactData("");
