@@ -1,6 +1,15 @@
 const mainContainer = document.getElementById("navbar_container");
 const overlay = document.getElementById("overlay_background_container");
 const taskDetailCard = document.getElementById("task_detail_card");
+const dragAreaTodo = document.getElementById("drag_area_todo");
+const dragAreaInProgress = document.getElementById("drag_area_in_progress");
+const dragAreaAwaitFeedback = document.getElementById("drag_area_await_feedback");
+const dragAreaDone = document.getElementById("drag_area_done");
+
+function init() {
+    renderSidebar()
+    renderTaskCard()
+}
 
 /**
  * Zeigt die nav der sidebar
@@ -8,6 +17,10 @@ const taskDetailCard = document.getElementById("task_detail_card");
  */
 function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
+}
+
+function renderTaskCard() {
+    dragAreaTodo.innerHTML = getTaskCard();
 }
 
 /**
