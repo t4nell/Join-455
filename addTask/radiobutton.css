@@ -43,3 +43,8 @@ input#low:checked + label.btn_green {
 .radio_btn_group {
     margin-bottom: 24px;
 }
+
+.priority_icon {
+    width: 20px;
+    height: 15px;
+}
