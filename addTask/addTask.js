@@ -44,10 +44,12 @@ window.onload = async function () {
 console.log('----------------Test Funktion zum sammel der Daten----------------------');
 // console.log(new Date().toLocaleTimeString());
 
+let allData = [];
+console.log(allData);
+
 function collectTaskData(form) {
     const fd = new FormData(form);
-
-    return {
+    const task = {
         title: fd.get('title'),
         description: fd.get('description'),
         dueDate: fd.get('due_date'),
@@ -56,11 +58,15 @@ function collectTaskData(form) {
         category: fd.get('category'),
         subtasks: fd.getAll('subtasks[]'),
     };
+
+    allData.push(task);
+    return task;
 }
 
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
+
     console.log(new Date().toLocaleTimeString(), taskData);
 }
 
