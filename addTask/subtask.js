@@ -52,7 +52,7 @@ function getNewTagTemplate(value) {
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         /></button>
-            <hr class="separator_vertically" />
+            <hr class="separator_vertically_subtasks" />
             <button class="trash-btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
                                         id="icon-low"
@@ -77,7 +77,7 @@ function newTagDefaultBtnsTemplate() {
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         " /></button>
-            <hr class="separator_vertically" />
+            <hr class="separator_vertically_subtasks" />
             <button class="trash-btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
                                         id="icon-low"
@@ -116,7 +116,7 @@ function newTagBtnReplaceTemplate() {
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                          /></button>
-            <hr class="separator_vertically" />
+            <hr class="separator_vertically_subtasks" />
             <button class="trash-btn" onclick="newTagDefaultBtns()"><img
                                         class="subtasks_icon"
                                         id="icon-low"
@@ -138,7 +138,7 @@ function getBtnsTemplate() {
                                             alt="Icon"
                                             />
                                     </button>
-                                    <hr class="separator_vertically" />
+                                    <hr class="separator_vertically_subtasks" />
                                     <button class="confirm-btn" onclick="confirmSubtaskBtn()">
                                         <img
                                             class="subtasks_icon arrow-bg-hover-color-subtask"

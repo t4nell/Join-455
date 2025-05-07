@@ -35,8 +35,8 @@
     margin: 0;
 }
 
-.separator_vertically {
-    background-color: lightgrey;
+.separator_vertically_subtasks {
+    color: #d1d1d1;
     height: 24px;
     border: 1px solid;
     margin: 0;

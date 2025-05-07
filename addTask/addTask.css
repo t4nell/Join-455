@@ -44,7 +44,7 @@ main {
 
 .separator_vertically_gray {
     width: 1px;
-    background-color: gray;
+    background-color: #d1d1d1;
     height: 424px;
 }
 
