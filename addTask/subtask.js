@@ -28,7 +28,7 @@ function resetButtons() {
         <button class="plus-btn" onclick="replaceButtons()">
             <img
                 class="icon arrow-bg-hover-color-subtask"
-                src="../assets/imgs/add_task_btn_img/subtasks_plus_icon.svg"
+                src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
                 alt="New Button Icon"
                 width="24"
                 height="24" />
@@ -50,7 +50,7 @@ function getNewTagTemplate(value) {
             <button class="edit-text-btn" onclick="editTextBtn()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_edit_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -58,7 +58,7 @@ function getNewTagTemplate(value) {
             <button class="trash-btn" onclick="trashBtn()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_delete_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -77,7 +77,7 @@ function newTagDefaultBtnsTemplate() {
             <button class="edit-text-btn" onclick="editTextBtn()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_edit_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -85,7 +85,7 @@ function newTagDefaultBtnsTemplate() {
             <button class="trash-btn" onclick="trashBtn()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_delete_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -118,7 +118,7 @@ function newTagBtnReplaceTemplate() {
             <button class="edit-text-btn" onclick="trashBtn()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_delete_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -126,7 +126,7 @@ function newTagBtnReplaceTemplate() {
             <button class="trash-btn" onclick="newTagDefaultBtns()"><img
                                         class="icon"
                                         id="icon-low"
-                                        src="../assets/imgs/add_task_btn_img/subtask_done_icon.svg"
+                                        src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                         alt="Icon"
                                         width="24"
                                         height="24" /></button>
@@ -141,7 +141,7 @@ function getBtnsTemplate() {
                                         <img
                                             class="icon arrow-bg-hover-color-subtask"
                                             id="icon-low"
-                                            src="../assets/imgs/add_task_btn_img/subtasks_x_cancel_icon.svg"
+                                            src="../assets/imgs/addTaskIcons/subtasksCancelIcon.svg"
                                             alt="Icon"
                                             width="24"
                                             height="24" />
@@ -151,7 +151,7 @@ function getBtnsTemplate() {
                                         <img
                                             class="icon arrow-bg-hover-color-subtask"
                                             id="icon-low"
-                                            src="../assets/imgs/add_task_btn_img/subtask_done_icon.svg"
+                                            src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                             alt="Icon"
                                             width="24"
                                             height="24" />

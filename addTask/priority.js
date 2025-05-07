@@ -1,21 +1,18 @@
 // Radio Buttons
 document.querySelectorAll('input[name="Priority"]').forEach((radio) => {
     radio.addEventListener('change', () => {
-        document.getElementById('icon-urgent').src = '../assets/imgs/add_task_btn_img/priority_btn_urgent.svg';
-        document.getElementById('icon-medium').src =
-            '../assets/imgs/add_task_btn_img/priority_btn_medium_active_yellow.svg';
-        document.getElementById('icon-low').src = '../assets/imgs/add_task_btn_img/priority_btn_low.svg';
+        document.getElementById('icon-urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIcon.svg';
+        document.getElementById('icon-medium').src = '../assets/imgs/addTaskIcons/priorityMediumIcon.svg';
+        document.getElementById('icon-low').src = '../assets/imgs/addTaskIcons/priorityLowIcon.svg';
 
         if (document.getElementById('urgent').checked) {
-            document.getElementById('icon-urgent').src =
-                '../assets/imgs/add_task_btn_img/priority_btn_urgent_white.svg';
+            document.getElementById('icon-urgent').src = '../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg';
         }
         if (document.getElementById('medium').checked) {
-            document.getElementById('icon-medium').src = '../assets/imgs/add_task_btn_img/priority_btn_medium.svg';
+            document.getElementById('icon-medium').src = '../assets/imgs/addTaskIcons/priorityMediumIconWhite.svg';
         }
         if (document.getElementById('low').checked) {
-            document.getElementById('icon-low').src =
-                '../assets/imgs/add_task_btn_img/priority_btn_low_active_white.svg';
+            document.getElementById('icon-low').src = '../assets/imgs/addTaskIcons/priorityLowIconWhite.svg';
         }
     });
 });
