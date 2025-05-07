@@ -41,6 +41,9 @@ window.onload = async function () {
     }
 };
 
+console.log('----------------Test Funktion zum sammel der Daten----------------------');
+// console.log(new Date().toLocaleTimeString());
+
 function collectTaskData(form) {
     const fd = new FormData(form);
 
@@ -55,12 +58,11 @@ function collectTaskData(form) {
     };
 }
 
-const form = document.getElementById('add_task_form');
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const taskData = collectTaskData(this);
-    console.log(taskData);
-});
+function createTask() {
+    const form = document.getElementById('add_task_form');
+    const taskData = collectTaskData(form);
+    console.log(new Date().toLocaleTimeString(), taskData);
+}
 
 function clearSubtasks() {
     document.getElementById('newTag-container').innerHTML = '';
