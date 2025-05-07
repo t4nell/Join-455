@@ -1,6 +1,6 @@
+const allData = [];
+
 BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
-
-
 
 const loginContainer = document.getElementById("login_container");
 
@@ -45,6 +45,16 @@ function toggleLoginSignup() {
     }
 }
 
+
+async function loadAllData(path="") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    const data = responseToJson;
+    console.log(data);
+    
+    const allData = Object.keys(data);
+    console.log(allData);
+}
 
 
 //https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
