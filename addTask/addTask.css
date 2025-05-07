@@ -237,3 +237,9 @@ main {
     outline: none;
     border-color: #2684ff;
 }
+
+.required::after {
+    content: ' *';
+    color: #e00;
+}
+
