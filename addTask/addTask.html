@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="../addTask/dropdown-category.css" />
         <link rel="stylesheet" href="../addTask/dropdown-subtask.css" />
         <link rel="stylesheet" href="../addTask/radiobutton.css" />
+        <link rel="stylesheet" href="./addTask-error-massage.css" />
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
@@ -56,7 +57,9 @@
                                 id="title"
                                 class="input_titel"
                                 type="text"
-                                placeholder="Enter a titel" />
+                                placeholder="Enter a titel"
+                                required />
+                            <span class="error-message">This field is required</span>
                         </div>
                         <div class="textarea_group">
                             <label id="description" for="description" class="input-title">Description</label>
@@ -74,14 +77,14 @@
                                     type="text"
                                     id="due_date"
                                     placeholder="dd/mm/yyyy"
-                                    required=""
                                     class="flatpickr_input input_date"
-                                    readonly="readonly" />
+                                    required />
                                 <img
                                     class="calendar_icon"
                                     src="../assets/imgs/addTaskIcons/CalenderIcon.svg"
                                     alt="Calendar Icon"
                                     onclick="openCalendar()" />
+                                <span class="error-message">This field is required</span>
                             </div>
                         </div>
                     </section>
@@ -90,7 +93,7 @@
 
                     <section class="main_section_right">
                         <div class="radio_btn_container">
-                            <span class="required">Priority</span>
+                            <span>Priority</span>
                             <div class="priority_btn_group">
                                 <input
                                     type="radio"
@@ -230,7 +233,7 @@
                         </div>
 
                         <div class="category_group">
-                            <label for="category_dropdown_input">Category</label>
+                            <label class="required" for="category_dropdown_input">Category</label>
                             <div class="category_dropdown" id="category_dropdown">
                                 <div class="category_dropdown_input_wrapper">
                                     <input
@@ -240,10 +243,11 @@
                                         name="category"
                                         class="category_dropdown_toggle"
                                         placeholder="Select task category"
-                                        readonly />
+                                        required />
                                     <span class="category_arrow_bg_hover_color">
                                         <span class="arrow"></span>
                                     </span>
+                                    <!-- <span class="error-message">This field is required</span> -->
                                 </div>
                                 <ul class="category_dropdown_menu" id="category_dropdown_menu">
                                     <li class="category_dropdown_item">Technical Task</li>
@@ -265,7 +269,7 @@
                                     type="text"
                                     placeholder="Add new subtask"
                                     id="tag_input_field"
-                                    name="subtasks[]"
+                                    name="subtasks"
                                     onclick="replaceButtons()"
                                     onkeydown="onKeyDownEnter(event)" />
                                 <div class="subtask_btn_container" id="subtask_btn_container">

@@ -41,7 +41,7 @@ window.onload = async function () {
     }
 };
 
-console.log('----------------Test Funktion zum sammel der Daten----------------------');
+console.log('----------------Test Funktion zum sammeln der Daten----------------------');
 // console.log(new Date().toLocaleTimeString());
 
 let allData = [];
@@ -78,6 +78,6 @@ function createTask() {
 }
 
 function clearSubtasks() {
-    document.getElementById('newTag-container').innerHTML = '';
+    document.getElementById('new_tag_container').innerHTML = '';
 }
 
