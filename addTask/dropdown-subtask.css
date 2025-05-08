@@ -87,10 +87,10 @@
 }
 
 .tag_field:hover {
-    background-color: lightslategray;
+    background-color: var(--subtasks-background-color);
 }
 .tag_field:hover .new_tag_input {
-    background-color: lightslategray;
+    background-color: var(--subtasks-background-color);
 }
 
 .new_tag_container {
@@ -159,17 +159,13 @@
 }
 
 .new_tag_container::-webkit-scrollbar-track {
-    background: lightgray;
+    background: white;
     border-radius: 10px;
 }
 
 .new_tag_container::-webkit-scrollbar-thumb {
-    background: blue;
+    background: darkgray;
     border-radius: 10px;
-}
-
-.new_tag_container::-webkit-scrollbar-thumb:hover {
-    background: darkblue;
 }
 
 .subtask_btn_container {

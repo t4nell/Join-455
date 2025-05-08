@@ -272,8 +272,11 @@ main {
     --medium-priority-btn-color-activ: #ffa800;
     --low-priority-btn-color-activ: #7ae229;
 
+    --category-dropdown-background-color: #f0f0f0;
+
     --subtasks-underline-color: #29abe2;
     --subtasks-icon-divider-color: #a8a8a8;
+    --subtasks-background-color: #f0f0f0;
 
     --add-tasks-input-focus-color: #29abe2;
 }

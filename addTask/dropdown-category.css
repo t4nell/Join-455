@@ -93,7 +93,7 @@
 }
 
 .category_dropdown_item:hover {
-    background-color: red;
+    background-color: var(--category-dropdown-background-color);
     border-radius: 10px;
 }
 
