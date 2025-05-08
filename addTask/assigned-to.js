@@ -10,16 +10,16 @@ toggle.addEventListener('click', (e) => {
     symbole.classList.toggle('d_none', dropdown.classList.contains('open'));
 });
 
-items.forEach((item) => {
-    item.addEventListener('click', (e) => {
-        e.stopPropagation();
+// items.forEach((item) => {
+//     item.addEventListener('click', (e) => {
+//         e.stopPropagation();
 
-        const text = item.childNodes[0].textContent.trim();
-        toggle.value = text;
-        dropdown.classList.remove('open');
-        symbole.classList.remove('d_none');
-    });
-});
+//         const text = item.childNodes[0].textContent.trim();
+//         toggle.value = text;
+//         dropdown.classList.remove('open');
+//         symbole.classList.remove('d_none');
+//     });
+// });
 
 document.addEventListener('click', (e) => {
     if (!dropdown.contains(e.target)) {

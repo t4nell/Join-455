@@ -1,0 +1,23 @@
+.error-message {
+    display: none;
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.input_titel,
+.flatpickr_input,
+.category_dropdown_toggle {
+    /* optional: weichere Transition */
+    transition: border-color 0.2s ease;
+}
+
+input:required:invalid,
+.category_dropdown_toggle:required:invalid {
+    border: 2px solid red !important;
+}
+
+input:required:invalid ~ .error-message,
+.category_dropdown_toggle:required:invalid ~ .error-message {
+    display: block;
+}
