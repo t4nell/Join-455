@@ -78,6 +78,6 @@ function createTask() {
 }
 
 function clearSubtasks() {
-    document.getElementById('newTag-container').innerHTML = '';
+    document.getElementById('new_tag_container').innerHTML = '';
 }
 
