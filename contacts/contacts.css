@@ -28,7 +28,7 @@ main {
   height: 42px;
   border-radius: 50%;
   border: 2px solid var(--contact-container-background-color);
-  background-color: aquamarine;
+  background-color: rgb(8, 52, 119);
   box-sizing: border-box;
   display: flex;
   overflow: hidden;

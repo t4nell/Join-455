@@ -3,6 +3,7 @@ const newContactPopup = document.getElementById("contact_popup");
 const editContactPopup = document.getElementById("contact_edit_overlay");
 const overlay = document.getElementById("contact_overlay");
 
+
 let contactsArray = [];
 const groupedContacts = {};
 
@@ -15,20 +16,43 @@ async function contactInit() {
   groupContacts();
 }
 
+
+
+
 //kontakte fetchen
 //kontakte nach name sortieren
 //kontakte in array speichern
 //kontakte in html rendern
 
 function loadCurrentUser() {
+  
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const currentUserFirstLetter = currentUser.name.charAt(0).toUpperCase();
+  const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("");
+  const currentUserDiv = document.createElement("div");
+  // currentUserDiv.classList.add("contact_side", "current_user");
+  currentUserDiv.innerHTML = `<div class="letter_index"">
+                                User
+                                </div>
+                                <div class="letter_separator_horizontal">
+                                    <hr class="separator_horizontal" />
+                                </div>
+                            <div class="contact_side" id="current_user">
+                                <div class="profile_icon">
+                                    <span>${currentUserInitials}</span>
+                                </div>
+                                <div class="contact_side_info">
+                                    <div class="contact_side_name">
+                                        <span>${currentUser.name} ${currentUser.surname ? `${currentUser.surname}` : ''} (You)</span>
+                                    </div>
+                                    <div class="contact_side_mail">
+                                        <span>${currentUser.email}</span>
+                                    </div>
+                                </div>
+                            </div></div>`;
+  const contactListContainer = document.getElementById("contact_list_container");
 
-  if (!groupedContacts[currentUserFirstLetter]) {
-    groupedContacts[currentUserFirstLetter] = [];
-  }
-  groupedContacts[currentUserFirstLetter].push(currentUser);
-  console.log(groupedContacts);
+
+  contactListContainer.appendChild(currentUserDiv);
 }
 
 async function loadContactData(path = "") {
@@ -62,30 +86,35 @@ function renderContactGroups(groupedContacts) {
   const sortedLetters = Object.keys(groupedContacts).sort();
 
   sortedLetters.forEach((letter) => {
-    contactListContainer.innerHTML += `
-            <div class="letter_index" id="letter_index_container">${letter}</div>
-        <div class="letter_separator_horizontal">
-          <hr class="separator_horizontal" />
-        </div>
-        `;
-
-    groupedContacts[letter].forEach((contact, index) => {
-      contactListContainer.innerHTML += `
-            <div class="contact_side" id="${index}">
-        <div class="profile_icon">
-          <span >EB</span>
-        </div>
-                <div class="contact_side_info">
-                    <div class="contact_side_name">
-                        <span>${contact.name} ${contact.surname}</span>
+    const letterGroup = `
+        <div class="letter_group" id="letter_group_${letter}">
+            <div class="letter_index" id="letter_index_container_${letter}">
+                ${letter}
+            </div>
+            <div class="letter_separator_horizontal">
+                <hr class="separator_horizontal" />
+            </div>
+            <div class="contacts_container">
+                ${groupedContacts[letter].map((contact, index) => `
+                    <div class="contact_side" id="${index}">
+                        <div class="profile_icon">
+                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
+                        </div>
+                        <div class="contact_side_info">
+                            <div class="contact_side_name">
+                                <span>${contact.name} ${contact.surname}</span>
+                            </div>
+                            <div class="contact_side_mail">
+                                <span>${contact.email}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="contact_side_mail">
-                        <span>${contact.email}</span>
-                    </div>
-                </div>
-            </div>`;
-    });
-  });
+                `).join('')}
+            </div>
+        </div>`;
+        
+    contactListContainer.innerHTML += letterGroup;
+});
 }
 
 
