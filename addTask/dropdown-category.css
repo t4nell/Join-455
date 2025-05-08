@@ -94,6 +94,7 @@
 
 .category_dropdown_item:hover {
     background-color: red;
+    border-radius: 10px;
 }
 
 .category_dropdown.open .category_dropdown_menu {
@@ -104,7 +105,11 @@
     transform: rotate(180deg);
 }
 
-.category_arrow_bg_hover_color:hover {
+.category_dropdown_input_wrapper:hover .category_arrow_bg_hover_color {
     background-color: lightgray;
+}
+
+.category_dropdown.open .category_arrow_bg_hover_color {
+    background-color: skyblue;
 }
 

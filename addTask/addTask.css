@@ -94,6 +94,7 @@ main {
 }
 
 .calendar_icon {
+    cursor: pointer;
     position: absolute;
     right: 12px;
     top: 50%;
@@ -260,5 +261,20 @@ main {
     background-color: white;
     width: 24px;
     height: 24px;
+}
+
+/* colors */
+:root {
+    --hover-color-assigned-dropdown: #091931;
+    --checked-color-assigned-dropdown: #2a3647;
+
+    --urgent-priority-btn-color-activ: #ff3d00;
+    --medium-priority-btn-color-activ: #ffa800;
+    --low-priority-btn-color-activ: #7ae229;
+
+    --subtasks-underline-color: #29abe2;
+    --subtasks-icon-divider-color: #a8a8a8;
+
+    --add-tasks-input-focus-color: #29abe2;
 }
 

@@ -49,6 +49,9 @@ let allData = [];
 
 function collectTaskData(form) {
     const fd = new FormData(form);
+    const subtaskInputs = document.getElementById('new_tag_container');
+    const subtasks = Array.from(subtaskInputs).map((input) => input.value.trim());
+
     const task = {
         title: fd.get('title'),
         description: fd.get('description'),
@@ -56,7 +59,8 @@ function collectTaskData(form) {
         priority: fd.get('priority'),
         assignedTo: fd.getAll('assigned_to'),
         category: fd.get('category'),
-        subtasks: fd.getAll('subtasks[]'),
+        subtasks: subtasks,
+        // subtasks: fd.getAll('subtasks[]'),
     };
 
     allData.push(task);
