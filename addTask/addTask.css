@@ -62,7 +62,8 @@ main {
     padding-top: 16px;
     padding-left: 16px;
     max-width: 100%;
-    height: 120px;
+    min-height: 120px;
+    max-height: 240px;
     resize: vertical;
     border-radius: 10px;
 }
@@ -77,12 +78,14 @@ main {
     position: relative;
     display: flex;
     align-items: center;
+    margin-top: 8px;
+    height: 48px;
 }
 
 .input_date {
     box-sizing: border-box;
     width: 100%;
-    margin-top: 8px;
+    margin: 0px;
     padding-left: 16px;
     padding-right: 16px;
     border: solid 1px;
@@ -95,9 +98,6 @@ main {
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
 }
 
 .separator_vertically_gray {
@@ -174,7 +174,7 @@ main {
 }
 /* Assign ende */
 
-.creat-task {
+.creat_task {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -223,7 +223,7 @@ main {
     background-color: #29abe2;
 }
 
-.required-field {
+.required_field {
     color: red;
     font-size: 14px;
     margin-top: 8px;
@@ -231,13 +231,13 @@ main {
     margin-left: 96px;
 }
 
-.btn-position {
+.btn_position {
     display: flex;
     margin-right: 136px;
     gap: 16px;
 }
 
-.d-none {
+.d_none {
     display: none;
 }
 

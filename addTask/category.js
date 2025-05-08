@@ -1,6 +1,6 @@
 const categoryDropdown = document.getElementById('category_dropdown');
-const categoryToggle = document.getElementById('categoryDropdownInput');
-const categoryMenu = document.getElementById('category-dropdownMenu');
+const categoryToggle = document.getElementById('category_dropdown_input');
+const categoryMenu = document.getElementById('category_dropdown_menu');
 const categoryItems = categoryMenu.querySelectorAll('.category_dropdown_item');
 
 categoryToggle.addEventListener('click', (e) => {

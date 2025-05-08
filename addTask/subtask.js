@@ -6,15 +6,15 @@ function onKeyDownEnter(event) {
 }
 
 function deletTextBtn() {
-    const inputField = document.getElementById('tagInputField');
+    const inputField = document.getElementById('tag_input_field');
     inputField.value = '';
     resetButtons();
 }
 
 function confirmSubtaskBtn() {
-    const inputField = document.getElementById('tagInputField');
+    const inputField = document.getElementById('tag_input_field');
     const value = inputField.value.trim();
-    const newTagCon = document.getElementById('newTag-container');
+    const newTagCon = document.getElementById('new_tag_container');
     if (value) {
         newTagCon.innerHTML += getNewTagTemplate(value);
         inputField.value = '';
@@ -23,11 +23,11 @@ function confirmSubtaskBtn() {
 }
 
 function resetButtons() {
-    const subtaskBtnContainer = document.getElementById('subtask-btn-container');
+    const subtaskBtnContainer = document.getElementById('subtask_btn_container');
     subtaskBtnContainer.innerHTML = `
-        <button class="plus-btn" onclick="replaceButtons()">
+        <button class="plus_btn" onclick="replaceButtons()">
             <img
-                class="subtasks_icon arrow-bg-hover-color-subtask"
+                class="subtasks_icon arrow_bg_hover_color_subtask"
                 src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
                 alt="New Button Icon"
                />
@@ -36,26 +36,26 @@ function resetButtons() {
 }
 
 function trashBtn() {
-    const newTagField = document.getElementById('tag-field');
+    const newTagField = document.getElementById('tag_field');
     newTagField.remove();
 }
 
 function getNewTagTemplate(value) {
     return `
-    <div class="tag-field" id='tag-field'>
-    <span class="tag-prefix">・</span>
-    <input class="newTag-input" id='newTag-input' type="text" value="${value}" />
-        <div class="btns-position" id='newTag-btn-container'>
-            <button class="edit-text-btn" onclick="editTextBtn()"><img
+    <div class="tag_field" id='tag_field'>
+    <span class="tag_prefix">・</span>
+    <input class="new_tag_input" id='new_tag_input' type="text" value="${value}" />
+        <div class="btns_position" id='new_tag_btn_container'>
+            <button class="edit_text_btn" onclick="editTextBtn()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         /></button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash-btn" onclick="trashBtn()"><img
+            <button class="trash_btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                        /></button>
@@ -65,22 +65,22 @@ function getNewTagTemplate(value) {
 }
 
 function newTagDefaultBtns() {
-    const newTagField = document.getElementById('newTag-btn-container');
+    const newTagField = document.getElementById('new_tag_btn_container');
     newTagField.innerHTML = newTagDefaultBtnsTemplate();
 }
 
 function newTagDefaultBtnsTemplate() {
     return `
-            <button class="edit-text-btn" onclick="editTextBtn()"><img
+            <button class="edit_text_btn" onclick="editTextBtn()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
                                         alt="Icon"
                                         " /></button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash-btn" onclick="trashBtn()"><img
+            <button class="trash_btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                          /></button>
@@ -90,36 +90,36 @@ function newTagDefaultBtnsTemplate() {
 }
 
 function replaceButtons() {
-    const subtaskBtnContainer = document.getElementById('subtask-btn-container');
-    const inputField = document.getElementById('tagInputField');
+    const subtaskBtnContainer = document.getElementById('subtask_btn_container');
+    const inputField = document.getElementById('tag_input_field');
     subtaskBtnContainer.innerHTML = getBtnsTemplate();
     inputField.focus();
 }
 
 function editTextBtn() {
-    const newTag = document.getElementById('newTag-input');
+    const newTag = document.getElementById('new_tag_input');
     newTag.focus();
     newTagBtnReplace();
 }
 
 function newTagBtnReplace() {
-    const newTagReplaceBtn = document.getElementById('newTag-btn-container');
+    const newTagReplaceBtn = document.getElementById('new_tag_btn_container');
     newTagReplaceBtn.innerHTML = newTagBtnReplaceTemplate();
 }
 
 function newTagBtnReplaceTemplate() {
     return `
-        <div class="btns-position" id='newTag-btn-container'>
-            <button class="edit-text-btn" onclick="trashBtn()"><img
+        <div class="btns_position" id='new_tag_btn_container'>
+            <button class="edit_text_btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                          /></button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash-btn" onclick="newTagDefaultBtns()"><img
+            <button class="trash_btn" onclick="newTagDefaultBtns()"><img
                                         class="subtasks_icon"
-                                        id="icon-low"
+                                        id=""
                                         src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                         alt="Icon"
                                         /></button>
@@ -130,19 +130,19 @@ function newTagBtnReplaceTemplate() {
 
 function getBtnsTemplate() {
     return `
-        <button class="delet-text-btn" onclick="deletTextBtn()">
+        <button class="delet_text_btn" onclick="deletTextBtn()">
                                         <img
-                                            class="subtasks_icon arrow-bg-hover-color-subtask"
-                                            id="icon-low"
+                                            class="subtasks_icon arrow_bg_hover_color_subtask"
+                                            id=""
                                             src="../assets/imgs/addTaskIcons/subtasksCancelIcon.svg"
                                             alt="Icon"
                                             />
                                     </button>
                                     <hr class="separator_vertically_subtasks" />
-                                    <button class="confirm-btn" onclick="confirmSubtaskBtn()">
+                                    <button class="confirm_btn" onclick="confirmSubtaskBtn()">
                                         <img
-                                            class="subtasks_icon arrow-bg-hover-color-subtask"
-                                            id="icon-low"
+                                            class="subtasks_icon arrow_bg_hover_color_subtask"
+                                            id=""
                                             src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                             alt="Icon"
                                            />

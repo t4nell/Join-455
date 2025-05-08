@@ -1,4 +1,4 @@
-.tag-input-container {
+.tag_input_container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -6,7 +6,10 @@
     margin: 16px 0;
 }
 
-.tag-input {
+.tag_input {
+    position: relative;
+    height: 48px;
+    box-sizing: border-box;
     margin-top: 8px;
     margin-bottom: 8px;
     display: flex;
@@ -17,12 +20,12 @@
     background-color: #fff;
 }
 
-.tag-input:focus-within {
+.tag_input:focus-within {
     outline: none;
     border-color: #2684ff;
 }
 
-.tag-input input {
+.tag_input input {
     flex: 1;
     border: none;
     outline: none;
@@ -43,19 +46,19 @@
     border-radius: 3px;
 }
 
-.delet-text-btn {
+.delet_text_btn {
     background-color: white;
 }
 
-.confirm-btn {
+.confirm_btn {
     background-color: white;
 }
 
-.plus-btn {
+.plus_btn {
     background-color: white;
 }
 
-.tag-field {
+.tag_field {
     margin-top: 8px;
     display: flex;
     justify-content: space-between;
@@ -65,65 +68,55 @@
     align-items: center;
 }
 
-.btns-position {
-    position: absolute;
-    display: flex;
-    padding-right: 8px;
-}
-
-.edit-text-btn {
+.edit_text_btn {
     background: none;
 }
 
-.edit-text-btn:hover img {
+.edit_text_btn:hover img {
     transform: translateY(-2px);
     transition: transform 0.2s ease;
 }
 
-.trash-btn {
+.trash_btn {
     background: none;
 }
 
-.trash-btn:hover img {
+.trash_btn:hover img {
     transform: translateY(-2px);
     transition: transform 0.2s ease;
 }
 
-.tag-field:hover {
+.tag_field:hover {
     background-color: lightslategray;
 }
-.tag-field:hover .newTag-input {
+.tag_field:hover .new_tag_input {
     background-color: lightslategray;
 }
 
-.d-none {
-    display: none;
-}
-
-.newTag-container {
+.new_tag_container {
     width: 100%;
     max-height: 130px;
     overflow-y: auto;
 }
 
-.newTag-input {
+.new_tag_input {
     width: 100%;
     padding-left: 16px;
     padding-top: 8px;
     padding-bottom: 3px;
 }
 
-.newTag-input:focus {
+.new_tag_input:focus {
     background-color: white;
     border-bottom: solid 2px blue;
 }
 
-.tag-field:has(.newTag-input:focus),
-.tag-field:has(.newTag-input:focus) .newTag-input {
+.tag_field:has(.new_tag_input:focus),
+.tag_field:has(.new_tag_input:focus) .new_tag_input {
     background-color: white !important;
 }
 
-.tag-field {
+.tag_field {
     align-items: center;
     position: relative;
     height: 32px;
@@ -131,20 +124,20 @@
     padding: 0 16px;
     box-sizing: border-box;
 }
-.btns-position {
+.btns_position {
     position: absolute;
     right: 8px;
     display: flex;
     align-items: center;
 }
 
-.tag-prefix {
+.tag_prefix {
     top: 8px;
     left: 16px;
     position: absolute;
 }
 
-.arrow-bg-hover-color-subtask {
+.arrow_bg_hover_color_subtask {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,30 +150,35 @@
     transition: background-color 0.3s, color 0.3s;
     position: relative;
 }
-.arrow-bg-hover-color-subtask:hover {
+.arrow_bg_hover_color_subtask:hover {
     background-color: lightgray;
 }
 
-.newTag-container::-webkit-scrollbar {
+.new_tag_container::-webkit-scrollbar {
     width: 8px;
 }
 
-.newTag-container::-webkit-scrollbar-track {
+.new_tag_container::-webkit-scrollbar-track {
     background: lightgray;
     border-radius: 10px;
 }
 
-.newTag-container::-webkit-scrollbar-thumb {
+.new_tag_container::-webkit-scrollbar-thumb {
     background: blue;
     border-radius: 10px;
 }
 
-.newTag-container::-webkit-scrollbar-thumb:hover {
+.new_tag_container::-webkit-scrollbar-thumb:hover {
     background: darkblue;
 }
 
-.subtask-btn-container {
+.subtask_btn_container {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
     display: flex;
+    align-items: center;
 }
 
 .subtasks_icon {

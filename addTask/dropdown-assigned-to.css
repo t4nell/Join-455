@@ -58,6 +58,7 @@
 }
 
 .arrow {
+    margin-right: 12px;
     display: inline-block;
     width: 0;
     height: 0;

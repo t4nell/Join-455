@@ -45,7 +45,7 @@ console.log('----------------Test Funktion zum sammel der Daten-----------------
 // console.log(new Date().toLocaleTimeString());
 
 let allData = [];
-console.log(allData);
+// console.log(new Date().toLocaleTimeString(), 'Alle allData Array:', allData);
 
 function collectTaskData(form) {
     const fd = new FormData(form);
@@ -67,7 +67,10 @@ function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
 
-    console.log(new Date().toLocaleTimeString(), taskData);
+    console.log(new Date().toLocaleTimeString(), 'Nur die Category:', taskData.category);
+    console.log(new Date().toLocaleTimeString(), 'Alle taskData Object:', taskData);
+    console.log(new Date().toLocaleTimeString(), 'Alle allData Array:', allData);
+    console.log('priority:', allData[0].priority);
 }
 
 function clearSubtasks() {

@@ -146,7 +146,7 @@
                                 <div class="dropdown_input_wrapper">
                                     <input
                                         type="text"
-                                        id="dropdownToggleBtn"
+                                        id="dropdown_toggle_btn"
                                         name="assigned_to"
                                         class="dropdown_toggle"
                                         placeholder="Select contacts to assign"
@@ -156,7 +156,7 @@
                                     </div>
                                 </div>
 
-                                <ul class="dropdown_menu" id="dropdownMenu">
+                                <ul class="dropdown_menu" id="dropdown_menu">
                                     <li class="dropdown_item">
                                         Option 1
                                         <input type="checkbox" name="assignedTo" value="Option 1" />
@@ -202,13 +202,13 @@
                         </div>
 
                         <div class="category_group">
-                            <label for="categoryDropdownInput">Category</label>
+                            <label for="category_dropdown_input">Category</label>
                             <div class="category_dropdown" id="category_dropdown">
                                 <div class="category_dropdown_input_wrapper">
                                     <input
                                         name="category"
                                         type="text"
-                                        id="categoryDropdownInput"
+                                        id="category_dropdown_input"
                                         name="category"
                                         class="category_dropdown_toggle"
                                         placeholder="Select task category"
@@ -217,7 +217,7 @@
                                         <span class="arrow"></span>
                                     </span>
                                 </div>
-                                <ul class="category_dropdown_menu" id="category-dropdownMenu">
+                                <ul class="category_dropdown_menu" id="category_dropdown_menu">
                                     <li class="category_dropdown_item">Technical Task</li>
                                     <li class="category_dropdown_item">User Story</li>
                                     <li class="category_dropdown_item">To Do</li>
@@ -230,32 +230,32 @@
                             </div>
                         </div>
 
-                        <div class="tag-input-container">
+                        <div class="tag_input_container">
                             <label for="names">Subtasks</label>
-                            <div class="tag-input">
+                            <div class="tag_input">
                                 <input
                                     type="text"
                                     placeholder="Add new subtask"
-                                    id="tagInputField"
+                                    id="tag_input_field"
                                     name="subtasks[]"
                                     onclick="replaceButtons()"
                                     onkeydown="onKeyDownEnter(event)" />
-                                <div class="subtask-btn-container" id="subtask-btn-container">
-                                    <button class="plus-btn" onclick="replaceButtons()">
+                                <div class="subtask_btn_container" id="subtask_btn_container">
+                                    <button class="plus_btn" onclick="replaceButtons()">
                                         <img
-                                            class="subtasks_icon arrow-bg-hover-color-subtask"
+                                            class="subtasks_icon arrow_bg_hover_color_subtask"
                                             src="../assets/imgs/addTaskIcons/subtasksPlusIcon.svg"
                                             alt="New Button Icon" />
                                     </button>
                                 </div>
                             </div>
-                            <div class="newTag-container" id="newTag-container"></div>
+                            <div class="new_tag_container" id="new_tag_container"></div>
                         </div>
                     </section>
                 </form>
-                <footer class="creat-task">
-                    <div class="p-required-field"><p class="required-field">* These fields are required</p></div>
-                    <div class="btn-position">
+                <footer class="creat_task">
+                    <div><p class="required_field">* These fields are required</p></div>
+                    <div class="btn_position">
                         <button
                             class="clear_btn"
                             type="reset"
@@ -273,7 +273,7 @@
                             Create Task
                             <img
                                 class="creat_task_icon"
-                                id="icon-low"
+                                id="create_task"
                                 src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                 alt="Icon" />
                         </button>
