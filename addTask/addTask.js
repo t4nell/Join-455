@@ -41,7 +41,7 @@ window.onload = async function () {
     }
 };
 
-console.log('----------------Test Funktion zum sammel der Daten----------------------');
+console.log('----------------Test Funktion zum sammeln der Daten----------------------');
 // console.log(new Date().toLocaleTimeString());
 
 let allData = [];
