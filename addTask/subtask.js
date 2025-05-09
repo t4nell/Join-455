@@ -44,7 +44,7 @@ function getNewTagTemplate(value) {
     return `
     <div class="tag_field" id='tag_field'>
     <span class="tag_prefix">・</span>
-    <input class="new_tag_input" id='new_tag_input' type="text" value="${value}" />
+    <input name="subtasks" class="new_tag_input" id='new_tag_input' type="text" value="${value}" />
         <div class="btns_position" id='new_tag_btn_container'>
             <button class="edit_text_btn" onclick="editTextBtn()"><img
                                         class="subtasks_icon"

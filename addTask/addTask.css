@@ -194,14 +194,23 @@ main {
     padding: 12px 24px;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
+/* Hover effecte für mobile deaktivieren  */
+
 .clear_btn:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     background-color: #f0f0f0;
     border-color: #29abe2;
     color: #29abe2;
+}
+
+.clear_btn:active {
+    transform: translateY(4px) scale(0.98);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .create_task_btn {
@@ -216,12 +225,19 @@ main {
     padding: 12px 24px;
     font-size: 16px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .create_task_btn:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     background-color: #29abe2;
+}
+
+.create_task_btn:active {
+    transform: translateY(4px) scale(0.98);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .required_field {

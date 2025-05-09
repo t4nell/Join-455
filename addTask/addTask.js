@@ -44,13 +44,13 @@ window.onload = async function () {
 console.log('----------------Test Funktion zum sammeln der Daten----------------------');
 // console.log(new Date().toLocaleTimeString());
 
-let allData = [];
+let addTaskAllData = [];
 // console.log(new Date().toLocaleTimeString(), 'Alle allData Array:', allData);
 
 function collectTaskData(form) {
     const fd = new FormData(form);
-    const subtaskInputs = document.getElementById('new_tag_container');
-    const subtasks = Array.from(subtaskInputs).map((input) => input.value.trim());
+    // const subtaskInputs = document.getElementById('new_tag_container');
+    // const subtasks = Array.from(subtaskInputs).map((input) => input.value.trim());
 
     const task = {
         title: fd.get('title'),
@@ -59,11 +59,12 @@ function collectTaskData(form) {
         priority: fd.get('priority'),
         assignedTo: fd.getAll('assigned_to'),
         category: fd.get('category'),
-        subtasks: subtasks,
+        // subtasks: subtasks,
         // subtasks: fd.getAll('subtasks[]'),
+        subtasks: fd.getAll('subtasks'),
     };
 
-    allData.push(task);
+    addTaskAllData.push(task);
     return task;
 }
 
@@ -71,10 +72,22 @@ function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
 
-    console.log(new Date().toLocaleTimeString(), 'Nur die Category:', taskData.category);
-    console.log(new Date().toLocaleTimeString(), 'Alle taskData Object:', taskData);
-    console.log(new Date().toLocaleTimeString(), 'Alle allData Array:', allData);
-    console.log('priority:', allData[0].priority);
+    // console.log(new Date().toLocaleTimeString(), 'Nur die Category:', taskData.category);
+    // console.log(new Date().toLocaleTimeString(), 'Alle taskData Object:', taskData);
+    // console.log(new Date().toLocaleTimeString(), 'Alle addTaskAllData Array:', addTaskAllData);
+    // console.log('priority:', addTaskAllData[0].priority);
+
+    console.group('addTaskAllData');
+    console.table(addTaskAllData);
+    console.groupEnd();
+
+    console.group('subtasks');
+    console.table(addTaskAllData[0].subtasks);
+    console.groupEnd();
+
+    console.group('assignedTo');
+    console.table(addTaskAllData[0].assignedTo);
+    console.groupEnd();
 }
 
 function clearSubtasks() {
