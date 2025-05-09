@@ -128,6 +128,59 @@ function getHeaderTemplate() {
             </div>
         </div>
       </div>
-  
     `
+  }
+
+  function getContactListTemplate(letter, groupedContacts) {
+    return `
+        <div class="letter_group" id="letter_group_${letter}">
+            <div class="letter_index" id="letter_index_container_${letter}">
+                ${letter}
+            </div>
+            <div class="letter_separator_horizontal">
+                <hr class="separator_horizontal" />
+            </div>
+            <div class="contacts_container" >
+                ${groupedContacts[letter].map((contact, index) => `
+                    <div class="contact_side" id="${index}" onclick="handleContactClick(event, ${contactsArray.indexOf(contact)})">                        
+                    <div class="profile_icon_mini" style="background-color: ${contact.color}">
+                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
+                        </div>
+                        <div class="contact_side_info">
+                            <div class="contact_side_name">
+                                <span>${contact.name} ${contact.surname}</span>
+                            </div>
+                            <div class="contact_side_mail">
+                                <span>${contact.email}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`
+  }
+
+  function getCurrenUserTemplate() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
+    
+    return `<div class="letter_index"">
+                                User
+                                </div>
+                                <div class="letter_separator_horizontal">
+                                    <hr class="separator_horizontal" />
+                                </div>
+                            <div class="contact_side" id="current_user">
+                                <div class="profile_icon_mini">
+                                    <span>${currentUserInitials}</span>
+                                </div>
+                                <div class="contact_side_info">
+                                    <div class="contact_side_name">
+                                        <span>${currentUser.name} ${currentUser.surname ? `${currentUser.surname}` : ''} (You)</span>
+                                    </div>
+                                    <div class="contact_side_mail">
+                                        <span>${currentUser.email}</span>
+                                    </div>
+                                </div>
+                            </div></div>`
   }

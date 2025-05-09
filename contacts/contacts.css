@@ -10,6 +10,15 @@ main {
   width: calc(100% - 685px);
 }
 
+.active{
+  background: var(--active-contact-color);
+  color: var(--text-color-white);
+}
+
+.contact_side.active:hover{
+  background: var(--active-contact-color); 
+}
+
 .headline_container span{
   font-size: 27px;
   font-weight: 400;
@@ -23,7 +32,7 @@ main {
   padding: 22.5px;
 } 
 
-.profile_icon{
+.profile_icon_mini{
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -35,8 +44,26 @@ main {
   justify-content: center;
   align-items: center;
 }
+.profile_icon_large{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--contact-container-background-color);
+  background-color: rgb(8, 52, 119);
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
 
-.profile_icon span{
+.profile_icon_large span{
+  color: white;
+  font-size: 47px;
+  font-weight: 500;
+}
+
+.profile_icon_mini span{
   color: white;
   font-size: 12px;
 }
@@ -138,6 +165,7 @@ main {
   gap: 21px;
   padding-left: 62px;
   padding-top: 32px ;
+  transition: all 225ms ease-in-out;
 }
 
 .contact_head{
