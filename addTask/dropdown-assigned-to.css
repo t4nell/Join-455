@@ -166,3 +166,14 @@
     align-items: center;
 }
 
+.selected_user_group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.profile_icon:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+}
+

@@ -86,8 +86,8 @@ function fillRandomForm() {
     if (toggle) toggle.value = names.join(', ');
 
     // 4.4 Platzhalter-Icons erzeugen
-    if (nameIcon) {
-        nameIcon.innerHTML = selectedIndices
+    if (selectedUser) {
+        selectedUser.innerHTML = selectedIndices
             .map((i) => {
                 const c = contactsArray[i];
                 const bgColor = contactsArray[i].color;

@@ -153,28 +153,6 @@ main {
     padding: 0 16px 0 16px;
     margin-top: 8px;
 }
-/* Assign */
-.placeholder_group {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 8px;
-}
-
-.placeholder_icon {
-    width: 42px;
-    height: 42px;
-    background-color: blue;
-    border-radius: 32px;
-    border: solid 1px;
-    cursor: pointer;
-}
-
-.placeholder_icon:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
-}
-/* Assign ende */
-
 .creat_task {
     display: flex;
     justify-content: space-between;
