@@ -19,11 +19,20 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
+/* Hover effecte für mobile deaktivieren  */
+
 .btn:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+    transform: translateY(4px) scale(0.98);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 #prio_urgent:checked + label.btn--red {

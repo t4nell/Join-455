@@ -148,9 +148,9 @@
                             <div class="dropdown" id="dropdown">
                                 <div class="dropdown_input_wrapper">
                                     <input
+                                        onclick="toggleDropdownAssigned(event)"
                                         type="text"
                                         id="dropdown_toggle_btn"
-                                        name="assigned_to"
                                         class="dropdown_toggle"
                                         placeholder="Select contacts to assign"
                                         readonly />
@@ -163,9 +163,10 @@
                                     <li class="dropdown_item">
                                         Option 1
                                         <input
+                                            id="option_1"
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -173,7 +174,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -181,7 +182,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -189,7 +190,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -197,7 +198,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -205,7 +206,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                     <li class="dropdown_item">
@@ -213,7 +214,7 @@
                                         <input
                                             class="assign_dropdown_input"
                                             type="checkbox"
-                                            name="assignedTo"
+                                            name="assigned_to"
                                             value="Option 1" />
                                     </li>
                                 </ul>
@@ -243,6 +244,7 @@
                                         name="category"
                                         class="category_dropdown_toggle"
                                         placeholder="Select task category"
+                                        readonly
                                         required />
                                     <span class="category_arrow_bg_hover_color">
                                         <span class="arrow"></span>
@@ -269,7 +271,6 @@
                                     type="text"
                                     placeholder="Add new subtask"
                                     id="tag_input_field"
-                                    name="subtasks"
                                     onclick="replaceButtons()"
                                     onkeydown="onKeyDownEnter(event)" />
                                 <div class="subtask_btn_container" id="subtask_btn_container">
