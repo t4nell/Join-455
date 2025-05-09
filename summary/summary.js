@@ -76,22 +76,20 @@ async function fetchTasks() {
         const data = await response.json();
         if (!data) return [];
 
-        // Alle Tasks aus den verschiedenen Status-Kategorien sammeln
-        const allTasks = [];
-        const categories = ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'];
-        
-        categories.forEach(category => {
-            if (data[category]) {
-                Object.values(data[category]).forEach(task => {
-                    allTasks.push({
-                        ...task,
-                        status: category.toLowerCase()
-                    });
-                });
-            }
-        });
+        // Konvertiere die Tasks in das richtige Format
+        const allTasks = Object.entries(data).map(([id, task]) => ({
+            id,
+            Category: task.Category,
+            Title: task.Titel,
+            Description: task.Description,
+            DueDate: task.DueDate,
+            Priority: task.Priority,
+            status: task.status,
+            Subtasks: task.Subtasks || [],
+            AssignedTo: task.AssignedTo || []
+        }));
 
-        return allTasks;
+        return allTasks.filter(task => task.status !== 'deleted');
     } catch (error) {
         console.error("Error fetching tasks:", error);
         return [];

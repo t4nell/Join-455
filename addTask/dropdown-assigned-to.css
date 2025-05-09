@@ -88,6 +88,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 12px;
     padding: 10px 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;
@@ -109,6 +110,13 @@
 
 .dropdown_input_wrapper:hover .arrow_bg_hover_color {
     background-color: lightgray;
+}
+
+.symbole_name_group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-left: 16px;
 }
 
 /* Villeicht */
@@ -144,5 +152,28 @@
     background-color: #2a3647;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+}
+
+.profile_icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--contact-container-background-color);
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected_user_group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.profile_icon:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
 }
 
