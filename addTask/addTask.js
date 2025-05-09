@@ -2,6 +2,7 @@ const mainContainer = document.getElementById('navbar_container');
 
 function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
+    initFetch();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -88,9 +89,46 @@ function createTask() {
     console.group('assignedTo');
     console.table(addTaskAllData[0].assignedTo);
     console.groupEnd();
+    postTask();
 }
 
 function clearSubtasks() {
     document.getElementById('new_tag_container').innerHTML = '';
+}
+
+console.log('----------------Firebase Test Funktion----------------------');
+const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
+
+function postTask() {
+    console.log('Post Funktioniert');
+
+    // loadData('');
+
+    // postData('ebene1/ebene2', { ebene3: { ebene4: 'wert' } });
+    // postData('ebene1/ebene2', { ebene3: { Test: 'wert' } });
+
+    postData('addtask', addTaskAllData);
+}
+
+// async function loadData(path = '') {
+//     let response = await fetch(BASE_URL + path + '.json');
+//     let responseToJson = await response.json();
+//     console.log(responseToJson);
+
+//     console.log(responseToJson.addtask.task_1['Assigned to']);
+// }
+
+async function postData(path = '', data = {}) {
+    let response = await fetch(BASE_URL_Test + path + '.json', {
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify(data),
+    });
+
+    return (responseToJson = await response.json());
 }
 

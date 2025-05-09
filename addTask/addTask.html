@@ -23,6 +23,9 @@
         <script src="./category.js" defer></script>
         <script src="./priority.js" defer></script>
         <script src="./subtask.js" defer></script>
+
+        <script src="./LÖSCHEN-addTask-random-fill.js" defer></script>
+
         <title>Join</title>
     </head>
     <body onload="renderSidebar()">
@@ -62,7 +65,7 @@
                             <span class="error-message">This field is required</span>
                         </div>
                         <div class="textarea_group">
-                            <label id="description" for="description" class="input-title">Description</label>
+                            <label id="description_label" for="description" class="input-title">Description</label>
                             <textarea
                                 name="description"
                                 class="textarea"
@@ -158,80 +161,11 @@
                                         <span class="arrow"></span>
                                     </div>
                                 </div>
-
-                                <ul class="dropdown_menu" id="dropdown_menu">
-                                    <li class="dropdown_item">
-                                        Option 1
-                                        <input
-                                            id="option_1"
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 2
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 3
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 4
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 5
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 6
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                    <li class="dropdown_item">
-                                        Option 7
-                                        <input
-                                            class="assign_dropdown_input"
-                                            type="checkbox"
-                                            name="assigned_to"
-                                            value="Option 1" />
-                                    </li>
-                                </ul>
+                                <ul class="dropdown_menu" id="dropdown_menu"></ul>
                             </div>
                         </div>
 
-                        <div id="placeholder_group" class="placeholder_group">
-                            <div class="placeholder_icon">
-                                <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
-                            </div>
-                            <div class="placeholder_icon">
-                                <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
-                            </div>
-                            <div class="placeholder_icon">
-                                <img class="icon" id="" src="../assets/imgs/addTaskIcons/antonMayer.svg" alt="Icon" />
-                            </div>
-                        </div>
+                        <div id="placeholder_group" class="placeholder_group"></div>
 
                         <div class="category_group">
                             <label class="required" for="category_dropdown_input">Category</label>
@@ -245,7 +179,8 @@
                                         class="category_dropdown_toggle"
                                         placeholder="Select task category"
                                         readonly
-                                        required />
+                                        required
+                                        onclick="toggleDropdownCategory(event)" />
                                     <span class="category_arrow_bg_hover_color">
                                         <span class="arrow"></span>
                                     </span>
@@ -286,6 +221,29 @@
                         </div>
                     </section>
                 </form>
+
+                <!-- Löschen -->
+                <div style="text-align: center">
+                    <button
+                        id="randomFillBtn"
+                        type="button"
+                        style="
+                            width: 100px;
+                            height: 100px;
+                            background-color: #e60000;
+                            color: #fff;
+                            font-weight: bold;
+                            font-size: 14px;
+                            border: none;
+                            border-radius: 6px;
+                            box-shadow: 0 0 5px rgba(230, 0, 0, 0.8);
+                            cursor: pointer;
+                        ">
+                        LÖSCHEN Zufällig ausfüllen LÖSCHEN
+                    </button>
+                </div>
+                <!-- Löschen -->
+
                 <footer class="creat_task">
                     <div><p class="required_field">* These fields are required</p></div>
                     <div class="btn_position">
