@@ -1,6 +1,3 @@
-const allData = [];
-
-BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
 
 const loginContainer = document.getElementById("login_container");
 
