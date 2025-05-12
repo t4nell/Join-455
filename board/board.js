@@ -28,11 +28,9 @@ function renderContent() {
 async function loadAddTask(path="") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
-    
     const addTaskData = responseToJson.addTask;
     allTasks.length = 0;
     allTasks.push(...Object.values(addTaskData));
-    console.log('Loaded tasks:', allTasks);
 }
 
 function renderTaskCardTodo() {
