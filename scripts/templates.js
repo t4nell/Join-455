@@ -107,15 +107,15 @@ function getHeaderTemplate() {
     ` 
   }
 
-  function getTaskCard() {
+  function getTaskCard(task) {
     return `
         <div id="task_card" class="task_card" onclick="renderDetailTemplate()">
         <div class="task_category">
-            <span class="category_label">User Story</span>
+            <span class="category_label">${task.Category}</span>
         </div>
         <div class="task_content">
-            <h3 class="task_title">Kochwelt Page & Recipe Recommender</h3>
-            <p class="task_description">Build start page with recipe recommendation...</p>
+            <h3 class="task_title">${task.Titel}</h3>
+            <p class="task_description">${task.Description}</p>
         </div>
         <div class="progress_section">
             <div class="progress_bar">

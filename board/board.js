@@ -13,6 +13,7 @@ async function init() {
     renderContent()
     updateUserProfile();
     await loadAddTask();
+    renderColumns()
 };
 
 /**
@@ -29,11 +30,6 @@ async function loadAddTask(path="") {
     let responseToJson = await response.json();
     const addTaskData = responseToJson.addTask;
     allTasks = Object.values(addTaskData);
-
-    renderAllTaskCards(allTasks, "todo",dragAreaTodo)
-    renderAllTaskCards(allTasks, "in_progress", dragAreaInProgress)
-    renderAllTaskCards(allTasks, "await_feedback", dragAreaAwaitFeedback)
-    renderAllTaskCards(allTasks, "done", dragAreaDone)
 }
 
 function renderAllTaskCards(allTasks, state, id) {
@@ -47,6 +43,13 @@ function renderAllTaskCards(allTasks, state, id) {
         id.innerHTML += getTaskCard(task);
     });
 };
+
+function renderColumns() {
+    renderAllTaskCards(allTasks, "todo",dragAreaTodo)
+    renderAllTaskCards(allTasks, "in_progress", dragAreaInProgress)
+    renderAllTaskCards(allTasks, "await_feedback", dragAreaAwaitFeedback)
+    renderAllTaskCards(allTasks, "done", dragAreaDone)
+}
 
 /**
  * Zeigt das Task-Detail Template an
