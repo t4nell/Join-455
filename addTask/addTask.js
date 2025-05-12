@@ -43,29 +43,35 @@ window.onload = async function () {
 };
 
 console.log('----------------Test Funktion zum sammeln der Daten----------------------');
-// console.log(new Date().toLocaleTimeString());
-
-let addTaskAllData = [];
-// console.log(new Date().toLocaleTimeString(), 'Alle allData Array:', allData);
 
 function collectTaskData(form) {
     const fd = new FormData(form);
-    // const subtaskInputs = document.getElementById('new_tag_container');
-    // const subtasks = Array.from(subtaskInputs).map((input) => input.value.trim());
+    const assignedToArray = fd.getAll('assigned_to');
+    const subtasksArray = fd.getAll('subtasks');
+
+    const assignedTo = {};
+    assignedToArray.forEach((person) => {
+        assignedTo[person] = true;
+    });
+
+    const subtasks = {};
+    subtasksArray.forEach((subtask, index) => {
+        subtasks[`subtask_${index}`] = {
+            title: subtask,
+            done: false,
+        };
+    });
 
     const task = {
         title: fd.get('title'),
         description: fd.get('description'),
         dueDate: fd.get('due_date'),
         priority: fd.get('priority'),
-        assignedTo: fd.getAll('assigned_to'),
+        assignedTo: assignedTo,
         category: fd.get('category'),
-        // subtasks: subtasks,
-        // subtasks: fd.getAll('subtasks[]'),
-        subtasks: fd.getAll('subtasks'),
+        subtasks: subtasks,
     };
 
-    addTaskAllData.push(task);
     return task;
 }
 
@@ -73,51 +79,34 @@ function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
 
-    // console.log(new Date().toLocaleTimeString(), 'Nur die Category:', taskData.category);
-    // console.log(new Date().toLocaleTimeString(), 'Alle taskData Object:', taskData);
-    // console.log(new Date().toLocaleTimeString(), 'Alle addTaskAllData Array:', addTaskAllData);
-    // console.log('priority:', addTaskAllData[0].priority);
-
-    console.group('addTaskAllData');
-    console.table(addTaskAllData);
+    console.group('taskData');
+    console.table(taskData);
     console.groupEnd();
 
     console.group('subtasks');
-    console.table(addTaskAllData[0].subtasks);
+    console.table(taskData.subtasks);
     console.groupEnd();
 
     console.group('assignedTo');
-    console.table(addTaskAllData[0].assignedTo);
+    console.table(taskData.assignedTo);
     console.groupEnd();
-    postTask();
+
+    postTask(taskData);
 }
 
 function clearSubtasks() {
     document.getElementById('new_tag_container').innerHTML = '';
-    document.getElementById('selected_user_group').innerHTML = '';
+    document.getElementById('selected_users_group').innerHTML = '';
 }
 
 console.log('----------------Firebase Test Funktion----------------------');
 const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
 
-function postTask() {
+function postTask(taskData) {
     console.log('Post Funktioniert');
 
-    // loadData('');
-
-    // postData('ebene1/ebene2', { ebene3: { ebene4: 'wert' } });
-    // postData('ebene1/ebene2', { ebene3: { Test: 'wert' } });
-
-    // postData('addtask', addTaskAllData);
+    postData('addtask', taskData);
 }
-
-// async function loadData(path = '') {
-//     let response = await fetch(BASE_URL + path + '.json');
-//     let responseToJson = await response.json();
-//     console.log(responseToJson);
-
-//     console.log(responseToJson.addtask.task_1['Assigned to']);
-// }
 
 async function postData(path = '', data = {}) {
     let response = await fetch(BASE_URL_Test + path + '.json', {

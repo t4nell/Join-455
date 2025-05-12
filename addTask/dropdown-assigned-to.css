@@ -169,8 +169,10 @@
 .selected_user_group {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
     margin-top: 8px;
+    width: 440px;
 }
 
 .profile_icon:hover {
