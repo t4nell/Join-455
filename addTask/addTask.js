@@ -94,6 +94,7 @@ function createTask() {
 
 function clearSubtasks() {
     document.getElementById('new_tag_container').innerHTML = '';
+    document.getElementById('selected_user_group').innerHTML = '';
 }
 
 console.log('----------------Firebase Test Funktion----------------------');
@@ -107,7 +108,7 @@ function postTask() {
     // postData('ebene1/ebene2', { ebene3: { ebene4: 'wert' } });
     // postData('ebene1/ebene2', { ebene3: { Test: 'wert' } });
 
-    postData('addtask', addTaskAllData);
+    // postData('addtask', addTaskAllData);
 }
 
 // async function loadData(path = '') {
