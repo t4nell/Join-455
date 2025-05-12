@@ -37,7 +37,7 @@ function loadContactsToAssignedTemplate(contact, index) {
         .join('');
 
     return `
-<li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index})">
+<li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
   <div class="symbole_name_group">
     <div class="profile_icon" style="background-color: ${bgColor}">
       <span>${nameInitials}${surnameInitials}</span>
@@ -47,34 +47,33 @@ function loadContactsToAssignedTemplate(contact, index) {
     </div>
   </div>
   <input
-  onclick="selectUser(${index})"
     id="users_checkbox_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
     value="${contact.name} ${contact.surname}" 
-    onclick="event.stopPropagation()"/>
+    onclick="selectUser(${index}, event)"/>
 </li>`;
 }
 
-function selectUser(index) {
+function selectUser(index, event) {
+    event.stopPropagation();
     const checkbox = document.getElementById(`users_checkbox_${index}`);
-    const wasChecked = checkbox.checked;
 
-    checkbox.checked = !wasChecked;
+    if (event.target.type !== 'checkbox') {
+        checkbox.checked = !checkbox.checked;
+    }
 
-    if (!wasChecked) {
-        console.log('is checked');
+    if (checkbox.checked) {
         addSelectedUserIcon(index);
     } else {
         removeSelectedUser(index);
-        console.log('is not checked');
     }
 }
 
 function removeSelectedUser(index) {
-    const container = document.getElementById(`selected_user_${index}`);
-    container.remove();
+    const userIconContainer = document.getElementById(`selected_user_${index}`);
+    userIconContainer.remove();
 }
 
 function addSelectedUserIcon(index) {

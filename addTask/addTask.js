@@ -75,6 +75,30 @@ function collectTaskData(form) {
     return task;
 }
 
+console.log('----------------Firebase Test Funktion----------------------');
+const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
+
+function postTask(taskData) {
+    console.log('Post Funktioniert');
+
+    // Deaktivieren DerPost Funktion
+    // postData('addtask', taskData);
+}
+
+async function postData(path = '', data = {}) {
+    let response = await fetch(BASE_URL_Test + path + '.json', {
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+        body: JSON.stringify(data),
+    });
+
+    return (responseToJson = await response.json());
+}
+
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
@@ -97,28 +121,5 @@ function createTask() {
 function clearSubtasks() {
     document.getElementById('new_tag_container').innerHTML = '';
     document.getElementById('selected_users_group').innerHTML = '';
-}
-
-console.log('----------------Firebase Test Funktion----------------------');
-const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
-
-function postTask(taskData) {
-    console.log('Post Funktioniert');
-
-    postData('addtask', taskData);
-}
-
-async function postData(path = '', data = {}) {
-    let response = await fetch(BASE_URL_Test + path + '.json', {
-        method: 'POST',
-
-        headers: {
-            'Content-Type': 'application/json',
-        },
-
-        body: JSON.stringify(data),
-    });
-
-    return (responseToJson = await response.json());
 }
 
