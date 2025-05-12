@@ -101,6 +101,12 @@ function getHeaderTemplate() {
     `;
   }
 
+  function renderPlaceholder() {
+    return `
+    <span class="drag_area_placeholder">No Task Todo</span>
+    ` 
+  }
+
   function getTaskCard() {
     return `
         <div id="task_card" class="task_card" onclick="renderDetailTemplate()">

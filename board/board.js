@@ -7,13 +7,12 @@ const dragAreaTodo = document.getElementById("drag_area_todo");
 const dragAreaInProgress = document.getElementById("drag_area_in_progress");
 const dragAreaAwaitFeedback = document.getElementById("drag_area_await_feedback");
 const dragAreaDone = document.getElementById("drag_area_done");
-const allTasks = [];
+let allTasks = [];
 
 async function init() {
     renderContent()
     updateUserProfile();
     await loadAddTask();
-    renderTaskCardTodo();
 };
 
 /**
@@ -29,19 +28,23 @@ async function loadAddTask(path="") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
     const addTaskData = responseToJson.addTask;
-    allTasks.length = 0;
-    allTasks.push(...Object.values(addTaskData));
+    allTasks = Object.values(addTaskData);
+
+    renderAllTaskCards(allTasks, "todo",dragAreaTodo)
+    renderAllTaskCards(allTasks, "in_progress", dragAreaInProgress)
+    renderAllTaskCards(allTasks, "await_feedback", dragAreaAwaitFeedback)
+    renderAllTaskCards(allTasks, "done", dragAreaDone)
 }
 
-function renderTaskCardTodo() {
-    const todos = allTasks.filter(task => task.status === 'todo');
-    dragAreaTodo.innerHTML = '';
+function renderAllTaskCards(allTasks, state, id) {
+    const todos = allTasks.filter(task => task.status === state);
+    id.innerHTML = '';
     if (todos.length === 0) {
-        dragAreaTodo.innerHTML = '<span class="drag_area_placeholder">No Task Todo</span>';
+        id.innerHTML = renderPlaceholder();
         return;
     }
     todos.forEach(task => {
-        dragAreaTodo.innerHTML += getTaskCard(task);
+        id.innerHTML += getTaskCard(task);
     });
 };
 
