@@ -170,7 +170,7 @@ function getHeaderTemplate() {
                                 <div class="letter_separator_horizontal">
                                     <hr class="separator_horizontal" />
                                 </div>
-                            <div class="contact_side" id="current_user">
+                            <div class="contact_side" id="current_user" onclick="showCurrentUserDetails()">
                                 <div class="profile_icon_mini">
                                     <span>${currentUserInitials}</span>
                                 </div>
@@ -183,4 +183,48 @@ function getHeaderTemplate() {
                                     </div>
                                 </div>
                             </div></div>`
+  }
+
+  function getCurrentUserDetailsTemplate() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
+
+    return `
+  <div class="contact_header">
+            <div class="profile_icon_large" style="background-color: ${currentUser.color}">
+                            <span>${currentUserInitials}</span>
+                        </div>
+
+            <div class="contact_head">
+              <div class="contact_name">
+                <span>${currentUser.name}</span>
+              </div>
+
+              <div class="contact_buttons">
+                <button onclick="editContactOverlay()" class="contact_btn">
+                  <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
+                </button>
+                <button class="contact_btn">
+                  <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact_information_text">
+            <span>Contact Information</span>
+          </div>
+
+          <div class="contact_details">
+            <div class="contact_mail">
+              <span class="contact_category">Email</span>
+              <a href="">${currentUser.email}</a>
+            </div>
+
+            <div class="contact_phone">
+              <span class="contact_category">Phone</span>
+              <span>${currentUser.phone}</span>
+            </div>
+          </div>`
   }

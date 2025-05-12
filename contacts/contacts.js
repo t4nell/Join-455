@@ -44,6 +44,8 @@ async function loadContactData(path = "") {
 }
 
 
+
+
 function groupContacts() {
   contactsArray.forEach((contact) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
@@ -72,8 +74,8 @@ function showContactDetails(contactIndex) {
    console.log(contact);
    if (contact) {
       const contactDetailsContainer = document.getElementById("contact_detail_container");
-      contactDetailsContainer.innerHTML = "";
       contactDetailsContainer.classList.remove("closed");
+      contactDetailsContainer.innerHTML = "";
       contactDetailsContainer.innerHTML = `
                 <div class="contact_header">
             <div class="profile_icon_large" style="background-color: ${contact.color}">
@@ -115,6 +117,26 @@ function showContactDetails(contactIndex) {
         </div>`
    }
 };
+
+function showCurrentUserDetails() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
+  console.log(currentUser);
+  
+  currentUserDiv = document.getElementById("current_user");
+  const mainContainer = document.querySelector("#contact_detail_container")
+  const allContacts = document.querySelectorAll(".contact_side");
+  allContacts.forEach((contact) => {contact.classList.remove("active");});
+  mainContainer.classList.add("closed");
+ 
+  currentUserDiv.classList.add("active");
+    setTimeout(() => {
+  mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
+
+      mainContainer.classList.remove("closed");
+  }, 300);
+
+}
 
 function handleContactClick(event, contactIndex) {
   const allContacts = document.querySelectorAll(".contact_side");

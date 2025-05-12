@@ -4,31 +4,10 @@ const menu = document.getElementById('dropdown_menu');
 const items = menu.querySelectorAll('.dropdown_item');
 const selectedUser = document.getElementById('selected_user_group');
 
-const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-
-let contactsArray = [];
-
-function initFetch() {
-    loadContactData();
-}
-
-async function loadContactData(path = '') {
-    try {
-        let response = await fetch(BASE_URL + path + '.json');
-        let responseToJson = await response.json();
-        const contactsRef = responseToJson.contact;
-        contactsArray = Object.values(contactsRef);
-        contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    } catch (error) {
-        console.error('Error loading contact data:', error);
-    }
-}
-
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
-    addContacts();
 }
 
 document.onclick = function (event) {
@@ -38,15 +17,15 @@ document.onclick = function (event) {
     }
 };
 
-function addContacts() {
+function loadContactsToAssigned() {
     menu.innerHTML = '';
 
     contactsArray.forEach((contact, index) => {
-        menu.innerHTML += contactTemplate(contact, index);
+        menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
 
-function contactTemplate(contact, index) {
+function loadContactsToAssignedTemplate(contact, index) {
     const bgColor = contactsArray[index].color;
     const nameInitials = contact.name
         .split(' ')
@@ -68,31 +47,50 @@ function contactTemplate(contact, index) {
     </div>
   </div>
   <input
+  onclick="selectUser(${index})"
     id="option_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
-    value="Option 1" />
+    value="${contact.name} ${contact.surname}" 
+    onclick="event.stopPropagation()"/>
 </li>`;
 }
 
-function selectUser(index) {
-    const bgColor = contactsArray[index].color;
-    const contact = contactsArray[index];
-    const nameInitials = contact.name
-        .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
-        .join('');
-    const surnameInitials = contact.surname
-        .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
-        .join('');
+// function addSelectedUserIcon(index) {
+//     const bgColor = contactsArray[index].color;
+//     const contact = contactsArray[index];
+//     const nameInitials = contact.name
+//         .split(' ')
+//         .map((part) => part.charAt(0).toUpperCase())
+//         .join('');
+//     const surnameInitials = contact.surname
+//         .split(' ')
+//         .map((part) => part.charAt(0).toUpperCase())
+//         .join('');
 
-    selectedUser.innerHTML = `
-  <div class="placeholder_icon">
-    <div class="profile_icon" style="background-color: ${bgColor}">
-      <span>${nameInitials}${surnameInitials}</span>
-    </div>
-  </div>`;
+//     selectedUser.innerHTML = `
+//   <div class="placeholder_icon">
+//     <div class="profile_icon" style="background-color: ${bgColor}">
+//       <span>${nameInitials}${surnameInitials}</span>
+//     </div>
+//   </div>`;
+// }
+
+function selectUser(index) {
+    const checkbox = document.getElementById(`option_${index}`);
+    const wasChecked = checkbox.checked;
+
+    checkbox.checked = !wasChecked;
+
+    if (!wasChecked) {
+        console.log('is checked');
+        // selectedIndices.add(index);
+        // addSelectedUserIcon(index);
+    } else {
+        // selectedIndices.delete(index);
+        // removeSelectedUserIcon(index);
+        console.log('is not checked');
+    }
 }
 

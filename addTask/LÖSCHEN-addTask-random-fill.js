@@ -1,6 +1,6 @@
 // Hilfsfunktionen
 function getRandomInt(min, max) {
-    addContacts();
+    // loadContactsToAssigned();
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function formatDate(d) {
@@ -48,59 +48,59 @@ function fillRandomForm() {
         if (typeof switchBtnPriority === 'function') switchBtnPriority(prio);
     }
 
-    // 4. Assigned to (Checkboxen) anpassen
-    // ------------------------------------
-    // Wähle zufällig 1–3 Kontakte aus contactsArray aus
-    const total = contactsArray.length;
-    const k = getRandomInt(1, Math.min(3, total));
+    //     // 4. Assigned to (Checkboxen) anpassen
+    //     // ------------------------------------
+    //     // Wähle zufällig 1–3 Kontakte aus contactsArray aus
+    //     const total = contactsArray.length;
+    //     const k = getRandomInt(1, Math.min(1, total));
 
-    // Hilfsfunktion zum Mischen
-    function shuffle(arr) {
-        return arr
-            .map((v) => ({ v, sort: Math.random() }))
-            .sort((a, b) => a.sort - b.sort)
-            .map(({ v }) => v);
-    }
+    //     // Hilfsfunktion zum Mischen
+    //     function shuffle(arr) {
+    //         return arr
+    //             .map((v) => ({ v, sort: Math.random() }))
+    //             .sort((a, b) => a.sort - b.sort)
+    //             .map(({ v }) => v);
+    //     }
 
-    // Erzeuge Array [0,1,2,…,total-1] und mixe es
-    const allIndices = Array.from({ length: total }, (_, i) => i);
-    const selectedIndices = shuffle(allIndices).slice(0, k);
+    //     // Erzeuge Array [0,1,2,…,total-1] und mixe es
+    //     const allIndices = Array.from({ length: total }, (_, i) => i);
+    //     const selectedIndices = shuffle(allIndices).slice(0, k);
 
-    // 4.1 Alle Checkboxen zurücksetzen
-    allIndices.forEach((i) => {
-        const cb = document.getElementById(`option_${i}`);
-        if (cb) cb.checked = false;
-    });
+    //     // 4.1 Alle Checkboxen zurücksetzen
+    //     allIndices.forEach((i) => {
+    //         const cb = document.getElementById(`option_${i}`);
+    //         if (cb) cb.checked = false;
+    //     });
 
-    // 4.2 Ausgewählte Checkboxen setzen & Namen einsammeln
-    const names = selectedIndices.map((i) => {
-        const contact = contactsArray[i];
-        // Checkbox anklicken
-        const cb = document.getElementById(`option_${i}`);
-        if (cb) cb.checked = true;
-        // Name zurückgeben
-        return `${contact.name} ${contact.surname}`;
-    });
+    //     // 4.2 Ausgewählte Checkboxen setzen & Namen einsammeln
+    //     const names = selectedIndices.map((i) => {
+    //         const contact = contactsArray[i];
+    //         // Checkbox anklicken
+    //         const cb = document.getElementById(`option_${i}`);
+    //         if (cb) cb.checked = true;
+    //         // Name zurückgeben
+    //         return `${contact.name} ${contact.surname}`;
+    //     });
 
-    // 4.3 Toggle-Input updaten (sichtbare Liste)
-    if (toggle) toggle.value = names.join(', ');
+    //     // 4.3 Toggle-Input updaten (sichtbare Liste)
+    //     if (toggle) toggle.value = names.join(', ');
 
-    // 4.4 Platzhalter-Icons erzeugen
-    if (selectedUser) {
-        selectedUser.innerHTML = selectedIndices
-            .map((i) => {
-                const c = contactsArray[i];
-                const bgColor = contactsArray[i].color;
-                const initials = c.name.charAt(0).toUpperCase() + c.surname.charAt(0).toUpperCase();
-                return `
-        <div class="placeholder_icon">
-    <div class="profile_icon" style="background-color: ${bgColor}">
-      <span>${initials}</span>
-    </div>
-  </div>`;
-            })
-            .join('');
-    }
+    //     // 4.4 Platzhalter-Icons erzeugen
+    //     if (selectedUser) {
+    //         selectedUser.innerHTML = selectedIndices
+    //             .map((i) => {
+    //                 const c = contactsArray[i];
+    //                 const bgColor = contactsArray[i].color;
+    //                 const initials = c.name.charAt(0).toUpperCase() + c.surname.charAt(0).toUpperCase();
+    //                 return `
+    //         <div class="placeholder_icon">
+    //     <div class="profile_icon" style="background-color: ${bgColor}">
+    //       <span>${initials}</span>
+    //     </div>
+    //   </div>`;
+    //             })
+    //             .join('');
+    //     }
     // 5. Kategorie
     const catItems = Array.from(document.querySelectorAll('.category_dropdown_item')).map((li) =>
         li.textContent.trim()
