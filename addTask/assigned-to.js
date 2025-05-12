@@ -47,11 +47,13 @@ function loadContactsToAssignedTemplate(contact, index) {
     </div>
   </div>
   <input
+  onclick="selectUser(${index})"
     id="option_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
-    value="${contact.name} ${contact.surname}" />
+    value="${contact.name} ${contact.surname}" 
+    onclick="event.stopPropagation()"/>
 </li>`;
 }
 
