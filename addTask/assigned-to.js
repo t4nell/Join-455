@@ -2,7 +2,7 @@ const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const items = menu.querySelectorAll('.dropdown_item');
-const selectedUser = document.getElementById('selected_user_group');
+const selectedUser = document.getElementById('selected_users_group');
 
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
@@ -48,7 +48,7 @@ function loadContactsToAssignedTemplate(contact, index) {
   </div>
   <input
   onclick="selectUser(${index})"
-    id="option_${index}"
+    id="users_checkbox_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
@@ -57,40 +57,46 @@ function loadContactsToAssignedTemplate(contact, index) {
 </li>`;
 }
 
-// function addSelectedUserIcon(index) {
-//     const bgColor = contactsArray[index].color;
-//     const contact = contactsArray[index];
-//     const nameInitials = contact.name
-//         .split(' ')
-//         .map((part) => part.charAt(0).toUpperCase())
-//         .join('');
-//     const surnameInitials = contact.surname
-//         .split(' ')
-//         .map((part) => part.charAt(0).toUpperCase())
-//         .join('');
-
-//     selectedUser.innerHTML = `
-//   <div class="placeholder_icon">
-//     <div class="profile_icon" style="background-color: ${bgColor}">
-//       <span>${nameInitials}${surnameInitials}</span>
-//     </div>
-//   </div>`;
-// }
-
 function selectUser(index) {
-    const checkbox = document.getElementById(`option_${index}`);
+    const checkbox = document.getElementById(`users_checkbox_${index}`);
     const wasChecked = checkbox.checked;
 
     checkbox.checked = !wasChecked;
 
     if (!wasChecked) {
         console.log('is checked');
-        // selectedIndices.add(index);
-        // addSelectedUserIcon(index);
+        addSelectedUserIcon(index);
     } else {
-        // selectedIndices.delete(index);
-        // removeSelectedUserIcon(index);
+        removeSelectedUser(index);
         console.log('is not checked');
     }
+}
+
+function removeSelectedUser(index) {
+    const container = document.getElementById(`selected_user_${index}`);
+    container.remove();
+}
+
+function addSelectedUserIcon(index) {
+    contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    const bgColor = contactsArray[index].color;
+    const contact = contactsArray[index];
+    const nameInitials = contact.name
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+    const surnameInitials = contact.surname
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+
+    selectedUser.innerHTML += `
+    <div id="selected_user_${index}">
+  <div class="placeholder_icon">
+    <div class="profile_icon" style="background-color: ${bgColor}">
+      <span>${nameInitials}${surnameInitials}</span>
+    </div>
+    </div>
+  </div>`;
 }
 
