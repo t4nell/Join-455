@@ -166,9 +166,7 @@ function getHeaderTemplate() {
         </div>`
   }
 
-  function getCurrenUserTemplate() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
+  function getCurrenUserTemplate(currentUser, currentUserInitials) {
     
     return `<div class="letter_index"">
                                 User
@@ -191,10 +189,7 @@ function getHeaderTemplate() {
                             </div></div>`
   }
 
-  function getCurrentUserDetailsTemplate() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
-
+  function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
     return `
   <div class="contact_header">
             <div class="profile_icon_large" style="background-color: ${currentUser.color}">

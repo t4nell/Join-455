@@ -126,21 +126,33 @@
                 alt=""
               />
             </div>
+
+            <form id="new_contact_form" >
             <div class="contact_input_fields">
               <input
                 class="overlay_input name_input_icon"
+                id="new_contact_name"
+                name="new_contact_name"
                 type="text"
                 placeholder="Name"
+                required
               />
               <input
                 class="overlay_input mail_input_icon"
-                type="text"
+                id="new_contact_email"
+                name="new_contact_email"
+                type="email"
                 placeholder="Email"
+                required
               />
               <input
                 class="overlay_input phone_input_icon"
-                type="text"
+                id="new_contact_phone"
+                name="new_contact_phone"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 placeholder="Phone"
+                required
               />
             </div>
             <div class="overlay_buttons">
@@ -151,13 +163,14 @@
                   alt="cancel button"
                 />
               </button>
-              <button class="create_contact_btn">
+              <button onclick="createNewContact(event)" type="submit" form="add_contact_form" class="create_contact_btn">
                 Create Contact
                 <img
                   src="../assets/imgs/contactIcons/check.svg"
                   alt="create contact button"
                 />
               </button>
+              </form>
             </div>
           </div>
         </div>

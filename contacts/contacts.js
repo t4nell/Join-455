@@ -2,6 +2,8 @@ const mainContainer = document.getElementById("navbar_container");
 const newContactPopup = document.getElementById("contact_popup");
 const editContactPopup = document.getElementById("contact_edit_overlay");
 const overlay = document.getElementById("contact_overlay");
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
 
 
 let contactsArray = [];
@@ -11,7 +13,7 @@ async function contactInit() {
   renderHeader();
   renderSidebar();
   loadCurrentUser();
-  await loadContactData("");
+  await loadContactData();
   groupContacts();
 }
 
@@ -21,29 +23,34 @@ async function contactInit() {
 //kontakte in html rendern
 
 function loadCurrentUser() {
+
   const currentUserDiv = document.createElement("div");
   // currentUserDiv.classList.add("contact_side", "current_user");
-  currentUserDiv.innerHTML = getCurrenUserTemplate();
+  currentUserDiv.innerHTML = getCurrenUserTemplate(currentUser, currentUserInitials);
   const contactListContainer = document.getElementById("contact_list_container");
 
   contactListContainer.appendChild(currentUserDiv);
 }
 
 
-async function loadContactData(path = "") {
+async function fetchContactData(path = "") {
   try {
     let response = await fetch(BASE_URL + path + ".json");
-    let responseToJson = await response.json();
-    const contactsRef = responseToJson.contact;
-    contactsArray = Object.values(contactsRef);
-    contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    return responseToJson = await response.json();
+    
   } catch (error) {
     console.error("Error loading contact data:", error);
   }
-  console.log(contactsArray);
 }
 
-
+async function loadContactData(){
+  await fetchContactData("contact");
+  
+  const contactsRef = responseToJson;
+  contactsArray = Object.values(contactsRef);
+  
+  console.log(contactsArray);
+}
 
 
 function groupContacts() {
@@ -57,6 +64,54 @@ function groupContacts() {
   console.log(groupedContacts);
   renderContactGroups(groupedContacts);
 }
+
+
+function collectContactData(){
+  const form = document.getElementById("new_contact_form");
+  const fd = new FormData(form);
+  const randomColorNumber = Math.floor(Math.random() * 20) + 1;
+  let randomContactColor = `var(--profile-color-${randomColorNumber})`;
+  const fullName = fd.get("new_contact_name").split(" ");
+  const firstName = fullName[0];
+  const lastName = fullName[1];
+
+
+  const contact = {
+    name: firstName,
+    surname: lastName,
+    email: fd.get("new_contact_email"),
+    phone: fd.get("new_contact_phone"),
+    color: randomContactColor,
+  };
+
+  return contact;
+}
+
+function createNewContact(event) {
+  event.preventDefault();
+  const form = document.getElementById("add_contact_form");
+  const contactData = collectContactData(form);
+
+  console.log(contactData);
+  
+  postContactData('contact', contactData);
+}
+
+async function postContactData(path = "", data = {}){
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (response.ok) {
+    return (responseToJson = await response.json());
+  }else {
+    console.error("Error posting contact data:", response.statusText);
+  }
+};
+
 
 
 function renderContactGroups(groupedContacts) {
@@ -119,37 +174,44 @@ function showContactDetails(contactIndex) {
 };
 
 function showCurrentUserDetails() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("")
   console.log(currentUser);
   
-  currentUserDiv = document.getElementById("current_user");
+  const currentUserDiv = document.getElementById("current_user");
   const mainContainer = document.querySelector("#contact_detail_container")
   const allContacts = document.querySelectorAll(".contact_side");
-  allContacts.forEach((contact) => {contact.classList.remove("active");});
-  mainContainer.classList.add("closed");
- 
-  currentUserDiv.classList.add("active");
-    setTimeout(() => {
-  mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
+  
+  if (currentUserDiv.classList.contains("active")) {
+    return;
+  }else{
+    allContacts.forEach((contact) => {contact.classList.remove("active");});
+    mainContainer.classList.add("closed");
+    currentUserDiv.classList.add("active");
+      setTimeout(() => {
+    mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
+        mainContainer.classList.remove("closed");
+    }, 300)};
+  }
 
-      mainContainer.classList.remove("closed");
-  }, 300);
 
-}
+
 
 function handleContactClick(event, contactIndex) {
   const allContacts = document.querySelectorAll(".contact_side");
   const contactMainContainer = document.getElementById("contact_detail_container");
-  if (!contactMainContainer.classList.contains("closed")) {
-    contactMainContainer.classList.add("closed");
-  }
-  allContacts.forEach((contact) => {contact.classList.remove("active");});
   const clickedContact = event.currentTarget;
-  clickedContact.classList.add("active");
-  setTimeout(() => {
-    showContactDetails(contactIndex) ;
-  }, 300);
+  
+  if (clickedContact.classList.contains("active")) {
+    return;
+  }else{
+    contactMainContainer.classList.add("closed");
+    allContacts.forEach((contact) => {contact.classList.remove("active");});
+    clickedContact.classList.add("active");
+      setTimeout(() => {
+        showContactDetails(contactIndex) ;
+      }, 300);
+
+  }
+
   
 }
 
