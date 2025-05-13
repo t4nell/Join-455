@@ -29,7 +29,10 @@ async function loadAddTask(path="") {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
     const addTaskData = responseToJson.addTask;
-    allTasks = Object.values(addTaskData);
+    allTasks = Object.entries(addTaskData).map(([id, task]) => ({
+        ...task,
+        id
+    }));    
 }
 
 function renderAllTaskCards(allTasks, state, id) {

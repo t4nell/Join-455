@@ -42,7 +42,28 @@
     --active-contact-color: #2A3647;          
 } 
 
-
+:root {
+    --profile-color-1: #FF7A00;
+    --profile-color-2: #FF5EB3;
+    --profile-color-3: #6E52FF;
+    --profile-color-4: #9327FF;
+    --profile-color-5: #00BEE8;
+    --profile-color-6: #1FD7C1;
+    --profile-color-7: #FF745E;
+    --profile-color-8: #FFA35E;
+    --profile-color-9: #FC71FF;
+    --profile-color-10: #FFC701;
+    --profile-color-11: #0038FF;
+    --profile-color-12: #C3FF2B;
+    --profile-color-13: #FFE62B;
+    --profile-color-14: #FF4646;
+    --profile-color-15: #FFBB2B;
+    --profile-color-16: #FF7A00;
+    --profile-color-17: #E200BE;
+    --profile-color-18: #0047FF;
+    --profile-color-19: #FF7A00;
+    --profile-color-20: #6E52FF;
+}
 
 body {
     display: flex;
@@ -316,25 +337,3 @@ header span{
     transform: scale(1.1);
 }
 
-:root {
-    --profile-color-1: #FF7A00;
-    --profile-color-2: #FF5EB3;
-    --profile-color-3: #6E52FF;
-    --profile-color-4: #9327FF;
-    --profile-color-5: #00BEE8;
-    --profile-color-6: #1FD7C1;
-    --profile-color-7: #FF745E;
-    --profile-color-8: #FFA35E;
-    --profile-color-9: #FC71FF;
-    --profile-color-10: #FFC701;
-    --profile-color-11: #0038FF;
-    --profile-color-12: #C3FF2B;
-    --profile-color-13: #FFE62B;
-    --profile-color-14: #FF4646;
-    --profile-color-15: #FFBB2B;
-    --profile-color-16: #FF7A00;
-    --profile-color-17: #E200BE;
-    --profile-color-18: #0047FF;
-    --profile-color-19: #FF7A00;
-    --profile-color-20: #6E52FF;
-}

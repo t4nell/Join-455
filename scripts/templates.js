@@ -103,19 +103,19 @@ function getHeaderTemplate() {
 
   function renderPlaceholder() {
     return `
-    <span class="drag_area_placeholder">No Task Todo</span>
+    <span class="drag_area_placeholder">No Tasks</span>
     ` 
   }
 
   function getTaskCard(task) {
     return `
-        <div id="task_card" class="task_card" onclick="renderDetailTemplate()">
+      <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate(${task.id})">
         <div class="task_category">
-            <span class="category_label">${task.Category}</span>
+            <span class="category_label">${task.category || 'No Category'}</span>
         </div>
         <div class="task_content">
-            <h3 class="task_title">${task.Titel}</h3>
-            <p class="task_description">${task.Description}</p>
+            <h3 class="task_title">${task.title}</h3>
+            <p class="task_description">${task.description || 'No Description'}</p>
         </div>
         <div class="progress_section">
             <div class="progress_bar">
@@ -125,12 +125,10 @@ function getHeaderTemplate() {
         </div>
         <div class="task_footer">
             <div class="assignee_avatars">
-                <span class="avatar">AM</span>
-                <span class="avatar">EM</span>
-                <span class="avatar">MB</span>
+                
             </div>
             <div class="menu_priority">
-                <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
+                <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
             </div>
         </div>
       </div>
