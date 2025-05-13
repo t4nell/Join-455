@@ -33,7 +33,7 @@ async function loadAddTask(path="") {
         ...task,
         id
     }));    
-}
+};
 
 function renderAllTaskCards(allTasks, state, id) {
     const todos = allTasks.filter(task => task.status === state);
@@ -48,11 +48,11 @@ function renderAllTaskCards(allTasks, state, id) {
 };
 
 function renderColumns() {
-    renderAllTaskCards(allTasks, "todo",dragAreaTodo)
-    renderAllTaskCards(allTasks, "in_progress", dragAreaInProgress)
-    renderAllTaskCards(allTasks, "await_feedback", dragAreaAwaitFeedback)
-    renderAllTaskCards(allTasks, "done", dragAreaDone)
-}
+    renderAllTaskCards(allTasks, "todo", dragAreaTodo);
+    renderAllTaskCards(allTasks, "inProgress", dragAreaInProgress);
+    renderAllTaskCards(allTasks, "awaitFeedback", dragAreaAwaitFeedback);
+    renderAllTaskCards(allTasks, "done", dragAreaDone);
+};
 
 /**
  * Zeigt das Task-Detail Template an
