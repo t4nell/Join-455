@@ -1,24 +1,48 @@
+const categories = [
+    'User Story',
+    'Technical Task',
+    'To Do',
+    'Backlog',
+    'Design',
+    'In Progress',
+    'In Review',
+    'Blocked',
+    'Backlog',
+    'Testing',
+    'Done',
+    'Archived',
+];
+
 const categoryDropdown = document.getElementById('category_dropdown');
-const categoryToggle = document.getElementById('category_dropdown_input');
+const categoryInput = document.getElementById('category_dropdown_input');
 const categoryMenu = document.getElementById('category_dropdown_menu');
-const categoryItems = categoryMenu.querySelectorAll('.category_dropdown_item');
 
-// categoryItems.forEach((item) => {
-//     item.addEventListener('click', (e) => {
-//         e.stopPropagation();
-//         categoryToggle.value = item.textContent.trim();
-//         categoryDropdown.classList.remove('open');
-//     });
-// });
-
-// document.addEventListener('click', (e) => {
-//     if (!categoryDropdown.contains(e.target)) {
-//         categoryDropdown.classList.remove('open');
-//     }
-// });
+function renderCategories() {
+    categoryMenu.innerHTML = categories
+        .map(
+            (category) => `
+        <li class="category_dropdown_item" onclick="selectCategory('${category}')">
+            ${category}
+        </li>
+    `
+        )
+        .join('');
+}
 
 function toggleDropdownCategory(event) {
     event.stopPropagation();
     categoryDropdown.classList.toggle('open');
 }
 
+function selectCategory(category) {
+    categoryInput.value = category;
+    categoryDropdown.classList.remove('open');
+}
+
+renderCategories();
+
+document.addEventListener('click', (e) => {
+    if (!categoryDropdown.contains(e.target)) {
+        categoryDropdown.classList.remove('open');
+    }
+});
