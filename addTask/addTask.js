@@ -48,10 +48,11 @@ function collectTaskData(form) {
     const fd = new FormData(form);
     const assignedToArray = fd.getAll('assigned_to');
     const subtasksArray = fd.getAll('subtasks');
+    const todo = 'todo';
 
-    const assignedTo = {};
+    const AssignedTo = {};
     assignedToArray.forEach((person) => {
-        assignedTo[person] = true;
+        AssignedTo[person] = true;
     });
 
     const subtasks = {};
@@ -63,26 +64,28 @@ function collectTaskData(form) {
     });
 
     const task = {
-        title: fd.get('title'),
-        description: fd.get('description'),
-        dueDate: fd.get('due_date'),
-        priority: fd.get('priority'),
-        assignedTo: assignedTo,
-        category: fd.get('category'),
-        subtasks: subtasks,
+        Title: fd.get('title'),
+        Description: fd.get('description'),
+        DueDate: fd.get('due_date'),
+        Priority: fd.get('priority'),
+        AssignedTo: AssignedTo,
+        Category: fd.get('category'),
+        Subtasks: subtasks,
+        status: todo,
     };
 
     return task;
 }
 
 console.log('----------------Firebase Test Funktion----------------------');
-const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
+const BASE_URL_Test = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 function postTask(taskData) {
     console.log('Post Funktioniert');
 
     // Deaktivieren DerPost Funktion
-    // postData('addtask', taskData);
+    // postData('addTask/meinKey', taskData);
+    postData('addTask', taskData);
 }
 
 async function postData(path = '', data = {}) {
