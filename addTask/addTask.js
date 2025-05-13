@@ -82,10 +82,11 @@ const BASE_URL_Test = 'https://join-455-default-rtdb.europe-west1.firebasedataba
 
 function postTask(taskData) {
     console.log('Post Funktioniert');
+    // postData('addTask/meinKey', taskData);
 
     // Deaktivieren DerPost Funktion
-    // postData('addTask/meinKey', taskData);
-    postData('addTask', taskData);
+    // postData('addTask', taskData);
+    // Deaktivieren DerPost Funktion
 }
 
 async function postData(path = '', data = {}) {
