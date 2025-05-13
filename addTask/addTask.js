@@ -50,9 +50,9 @@ function collectTaskData(form) {
     const subtasksArray = fd.getAll('subtasks');
     const todo = 'todo';
 
-    const AssignedTo = {};
+    const assignedTo = {};
     assignedToArray.forEach((person) => {
-        AssignedTo[person] = true;
+        assignedTo[person] = true;
     });
 
     const subtasks = {};
@@ -64,13 +64,13 @@ function collectTaskData(form) {
     });
 
     const task = {
-        Title: fd.get('title'),
-        Description: fd.get('description'),
-        DueDate: fd.get('due_date'),
-        Priority: fd.get('priority'),
-        AssignedTo: AssignedTo,
-        Category: fd.get('category'),
-        Subtasks: subtasks,
+        title: fd.get('title'),
+        description: fd.get('description'),
+        dueDate: fd.get('due_date'),
+        priority: fd.get('priority'),
+        assignedTo: assignedTo,
+        category: fd.get('category'),
+        subtasks: subtasks,
         status: todo,
     };
 
