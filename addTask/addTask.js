@@ -48,6 +48,7 @@ function collectTaskData(form) {
     const fd = new FormData(form);
     const assignedToArray = fd.getAll('assigned_to');
     const subtasksArray = fd.getAll('subtasks');
+    const todo = 'todo';
 
     const assignedTo = {};
     assignedToArray.forEach((person) => {
@@ -70,19 +71,22 @@ function collectTaskData(form) {
         assignedTo: assignedTo,
         category: fd.get('category'),
         subtasks: subtasks,
+        status: todo,
     };
 
     return task;
 }
 
 console.log('----------------Firebase Test Funktion----------------------');
-const BASE_URL_Test = 'https://join-test-354db-default-rtdb.firebaseio.com/';
+const BASE_URL_Test = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 function postTask(taskData) {
     console.log('Post Funktioniert');
+    // postData('addTask/meinKey', taskData);
 
     // Deaktivieren DerPost Funktion
-    // postData('addtask', taskData);
+    // postData('addTask', taskData);
+    // Deaktivieren DerPost Funktion
 }
 
 async function postData(path = '', data = {}) {

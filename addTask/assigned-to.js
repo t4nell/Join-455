@@ -1,13 +1,17 @@
 const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
-const items = menu.querySelectorAll('.dropdown_item');
 const selectedUser = document.getElementById('selected_users_group');
 
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
+}
+
+function toggleBackground(index) {
+    const clickedItem = document.getElementById(`dropdown_item_${index}`);
+    clickedItem.classList.toggle('active');
 }
 
 document.onclick = function (event) {
@@ -62,12 +66,14 @@ function selectUser(index, event) {
 
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
+        toggleBackground(index);
     }
 
     if (checkbox.checked) {
         addSelectedUserIcon(index);
     } else {
         removeSelectedUser(index);
+        toggleBackground(index);
     }
 }
 
