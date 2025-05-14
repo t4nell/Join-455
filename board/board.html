@@ -169,26 +169,26 @@
 
         <div class="board_contend_bottom">
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_todo" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_todo" class="drag_area" status="todo" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_in_progress" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_in_progress" class="drag_area" status="inProgress" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_await_feedback" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_await_feedback" class="drag_area" status="awaitFeedback" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_done" class="drag_area">
+          <div class="drag_and_drop_container">
+            <div id="drag_area_done" class="drag_area" status="done" ondrop="handleDrop(event)" ondragover="allowDrop(event)"> 
 
             </div>
           </div>
