@@ -1,29 +1,31 @@
 function onKeyDownEnter(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
-        checkValue();
         confirmSubtaskBtn();
     }
 }
 
 // function checkValue() {
 //     const input = document.getElementById('new_tag_input');
-//     if (input.value === ' ') {
-//         input.remove();
-//     } else {
+//     const tagFieldContainer = document.getElementById('tag_field');
+//     if (input.value) {
 //         confirmSubtaskBtn();
+//     } else {
+//         tagFieldContainer.remove();
 //     }
 // }
 
 function enableEditing() {
     const input = document.getElementById('new_tag_input');
     input.removeAttribute('readonly');
-    input.focus();
+    // input.focus();
+    input.classList.add('focus');
 }
 
 function disableEditing() {
     const input = document.getElementById('new_tag_input');
     input.setAttribute('readonly', true);
+    input.classList.remove('focus');
 }
 
 function deletTextBtn() {
@@ -64,7 +66,6 @@ function trashBtn() {
 function getNewTagTemplate(value) {
     return `
     <div class="tag_field" id='tag_field'>
-    <span class="tag_prefix">・</span>
     <input name="subtasks" class="new_tag_input" id='new_tag_input' type="text" ondblclick="enableEditing()" onblur="disableEditing()" value="${value}" readonly />
         <div class="btns_position" id='new_tag_btn_container'>
             <button class="edit_text_btn" onclick="editTextBtn()"><img

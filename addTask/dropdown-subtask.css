@@ -60,13 +60,16 @@
 }
 
 .tag_field {
+    align-items: center;
+    position: relative;
+    height: 32px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
     margin-top: 8px;
     display: flex;
     justify-content: space-between;
-    background-color: white;
     border-radius: 10px;
-    padding-left: 16px;
-    align-items: center;
+    background: none;
 }
 
 .edit_text_btn {
@@ -102,40 +105,28 @@
 
 .new_tag_input {
     width: 100%;
-    padding-left: 16px;
+    padding-left: 24px;
     padding-top: 8px;
     padding-bottom: 3px;
+    background: none;
 }
 
-.new_tag_input:focus {
+.new_tag_input:focus,
+.new_tag_input.focus {
     background-color: white;
     border-bottom: solid 2px var(--subtasks-underline-color);
 }
 
-.tag_field:has(.new_tag_input:focus),
+/* .tag_field:has(.new_tag_input:focus),
 .tag_field:has(.new_tag_input:focus) .new_tag_input {
     background-color: white !important;
-}
+} */
 
-.tag_field {
-    align-items: center;
-    position: relative;
-    height: 32px;
-    margin-bottom: 8px;
-    padding: 0 16px;
-    box-sizing: border-box;
-}
 .btns_position {
     position: absolute;
-    right: 8px;
+    right: 6px;
     display: flex;
     align-items: center;
-}
-
-.tag_prefix {
-    top: 8px;
-    left: 16px;
-    position: absolute;
 }
 
 .arrow_bg_hover_color_subtask {
@@ -181,5 +172,12 @@
 .subtasks_icon {
     width: 24px;
     height: 24px;
+}
+
+.tag_field:before {
+    content: '•';
+    font-size: 1rem;
+    position: absolute;
+    left: 0.5rem;
 }
 
