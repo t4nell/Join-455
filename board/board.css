@@ -154,7 +154,6 @@ main {
   flex-direction: row;
   height: 100%;
   width: 244px;
-  position: relative;
 }
 
 .drag_area {
@@ -167,9 +166,6 @@ main {
   flex-direction: column;
   margin-top: 8px;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .drag_area_placeholder {

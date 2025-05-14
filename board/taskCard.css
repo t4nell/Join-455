@@ -113,10 +113,16 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
     width: calc(100% - 32px);
     margin: 8px 0;
+    transition: transform 0.2s ease-in-out;
+    transform-origin: bottom left;
 }
 
 .task_card:hover {
     cursor: pointer;
+}
+
+.task_card:active {
+    transform: rotate(5deg);
 }
 
 .task_category {
@@ -187,7 +193,7 @@
 .avatar {
     width: 32px;
     height: 32px;
-    background: #0052ff; /* background-color randomized */
+    background: #0052ff;
     border: 1px solid var(--avatar-border-color);
     border-radius: 50%;
     display: flex;

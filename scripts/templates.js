@@ -86,144 +86,206 @@ function getContactListTemplate() {
 
 function getHeaderTemplate() {
   return `
-      <header>
-        <span>Kanban Project Management Tool</span>
-        <div class="user_menu">
-          <a href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
-          <button onclick="toggleUserMenu()" class="user_profile"></button>
-          <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
-            <a href="../policy/policy.html">Privacy Policy</a>
-            <a href="../legalNotes/legal.html">Legal Notice</a>
-            <button onclick="logout()" class="logout_btn">Log out</button>
+    <header>
+      <span>Kanban Project Management Tool</span>
+      <div class="user_menu">
+        <a href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
+        <button onclick="toggleUserMenu()" class="user_profile"></button>
+        <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
+          <a href="../policy/policy.html">Privacy Policy</a>
+          <a href="../legalNotes/legal.html">Legal Notice</a>
+          <button onclick="logout()" class="logout_btn">Log out</button>
+        </div>
+      </div>
+    </header>
+  `;
+}
+
+function renderPlaceholder() {
+  return `
+  <span class="drag_area_placeholder">No Tasks</span>
+  ` 
+}
+
+function getTaskCard(task) {
+  return `
+    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
+      <div class="task_category">
+          <span class="category_label">${task.category}</span>
+      </div>
+      <div class="task_content">
+          <h3 class="task_title">${task.title}</h3>
+          <p class="task_description">${task.description}</p>
+      </div>
+      <div class="progress_section">
+          <div class="progress_bar">
+              <div class="progress_fill"></div>
           </div>
-        </div>
-      </header>
-    `;
-  }
+          <span class="subtask_counter">1/2 Subtasks</span>
+      </div>
+      <div class="task_footer">
+          <div class="assignee_avatars">
+              
+          </div>
+          <div class="menu_priority">
+              <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
+          </div>
+      </div>
+    </div>
+  `
+}
 
-  function renderPlaceholder() {
+function getDetailTaskCard(task) {
     return `
-    <span class="drag_area_placeholder">No Tasks</span>
-    ` 
-  }
-
-  function getTaskCard(task) {
-    return `
-      <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate(${task.id})">
-        <div class="task_category">
-            <span class="category_label">${task.category || 'No Category'}</span>
+        <div class="task_detail_card_header">
+            <span class="category_lable_detail">${task.category}</span>
+            <button onclick="closeDetailTemplate()" class="closed_btn">
+                <img src="../assets/imgs/boardIcons/close.svg" alt="close button">
+            </button>
         </div>
-        <div class="task_content">
-            <h3 class="task_title">${task.title}</h3>
-            <p class="task_description">${task.description || 'No Description'}</p>
+        <div class="task_detail_title">
+            <h2>${task.title}</h2>
         </div>
-        <div class="progress_section">
-            <div class="progress_bar">
-                <div class="progress_fill"></div>
-            </div>
-            <span class="subtask_counter">1/2 Subtasks</span>
+        <div class="task_detail_description">
+            <p>${task.description}</p>
         </div>
-        <div class="task_footer">
-            <div class="assignee_avatars">
-                
-            </div>
-            <div class="menu_priority">
+        <div class="task_detail_date">
+            <span class="detail_label">Due Date:</span>
+            <span>${task.DueDate}</span>
+        </div>
+        <div class="task_detail_priority">
+            <span class="detail_label">Priority:</span>
+            <div class="priority_badge">
+                ${task.priority}
                 <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
             </div>
         </div>
-      </div>
-    `
-  }
-
-  function getContactListTemplate(letter, groupedContacts) {
-    return `
-        <div class="letter_group" id="letter_group_${letter}">
-            <div class="letter_index" id="letter_index_container_${letter}">
-                ${letter}
+        <div class="task_detail_assigned">
+            <span class="detail_label">Assigned to:</span>
+            <div class="assigned_contacts">
+                ${task.AssignedTo ? task.AssignedTo.map(contact => `
+                    <div class="contact_badge">
+                        <div class="avatar">${contact.initials}</div>
+                        <span>${contact.name}</span>
+                    </div>
+                `).join('') : ''}
             </div>
-            <div class="letter_separator_horizontal">
-                <hr class="separator_horizontal" />
-            </div>
-            <div class="contacts_container" >
-                ${groupedContacts[letter].map((contact, index) => `
-                    <div class="contact_side" id="${index}" onclick="handleContactClick(event, ${contactsArray.indexOf(contact)})">                        
-                    <div class="profile_icon_mini" style="background-color: ${contact.color}">
-                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
-                        </div>
-                        <div class="contact_side_info">
-                            <div class="contact_side_name">
-                                <span>${contact.name} ${contact.surname}</span>
-                            </div>
-                            <div class="contact_side_mail">
-                                <span>${contact.email}</span>
-                            </div>
+        </div>
+        <div class="task_detail_subtasks">
+            <span class="detail_label">Subtasks:</span>
+            <div class="subtasks_list">
+                ${task.Subtasks ? task.Subtasks.map((subtask, index) => `
+                    <div class="subtask_item">
+                        <div class="subtask_background">
+                            <input type="checkbox" id="subtask${index}" ${subtask.done ? 'checked' : ''}>
+                            <label for="subtask${index}">${subtask.text}</label>
                         </div>
                     </div>
-                `).join('')}
+                `).join('') : ''}
             </div>
+        </div>
+        <div class="task_detail_buttons">
+            <button class="delete_btn">
+                <img src="../assets/imgs/contactIcons/delete.svg" alt="delete">
+                Delete
+            </button>
+            <button class="edit_btn">
+                <img src="../assets/imgs/contactIcons/edit.svg" alt="edit">
+                Edit
+            </button>
+        </div>
+    `;
+}
+
+function getContactListTemplate(letter, groupedContacts) {
+  return `
+      <div class="letter_group" id="letter_group_${letter}">
+          <div class="letter_index" id="letter_index_container_${letter}">
+              ${letter}
+          </div>
+          <div class="letter_separator_horizontal">
+              <hr class="separator_horizontal" />
+          </div>
+          <div class="contacts_container" >
+              ${groupedContacts[letter].map((contact, index) => `
+                  <div class="contact_side" id="${index}" onclick="handleContactClick(event, ${contactsArray.indexOf(contact)})">                        
+                  <div class="profile_icon_mini" style="background-color: ${contact.color}">
+                          <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
+                      </div>
+                      <div class="contact_side_info">
+                          <div class="contact_side_name">
+                              <span>${contact.name} ${contact.surname}</span>
+                          </div>
+                          <div class="contact_side_mail">
+                              <span>${contact.email}</span>
+                          </div>
+                      </div>
+                  </div>
+              `).join('')}
+          </div>
+      </div>`
+}
+
+function getCurrenUserTemplate(currentUser, currentUserInitials) {
+  
+  return `<div class="letter_index"">
+                              User
+                              </div>
+                              <div class="letter_separator_horizontal">
+                                  <hr class="separator_horizontal" />
+                              </div>
+                          <div class="contact_side" id="current_user" onclick="showCurrentUserDetails()">
+                              <div class="profile_icon_mini">
+                                  <span>${currentUserInitials}</span>
+                              </div>
+                              <div class="contact_side_info">
+                                  <div class="contact_side_name">
+                                      <span>${currentUser.name} ${currentUser.surname ? `${currentUser.surname}` : ''} (You)</span>
+                                  </div>
+                                  <div class="contact_side_mail">
+                                      <span>${currentUser.email}</span>
+                                  </div>
+                              </div>
+                          </div></div>`
+}
+
+function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
+  return `
+<div class="contact_header">
+          <div class="profile_icon_large" style="background-color: ${currentUser.color}">
+                          <span>${currentUserInitials}</span>
+                      </div>
+
+          <div class="contact_head">
+            <div class="contact_name">
+              <span>${currentUser.name}</span>
+            </div>
+
+            <div class="contact_buttons">
+              <button onclick="editContactOverlay()" class="contact_btn">
+                <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
+              </button>
+              <button class="contact_btn">
+                <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact_information_text">
+          <span>Contact Information</span>
+        </div>
+
+        <div class="contact_details">
+          <div class="contact_mail">
+            <span class="contact_category">Email</span>
+            <a href="">${currentUser.email}</a>
+          </div>
+
+          <div class="contact_phone">
+            <span class="contact_category">Phone</span>
+            <span>${currentUser.phone}</span>
+          </div>
         </div>`
-  }
-
-  function getCurrenUserTemplate(currentUser, currentUserInitials) {
-    
-    return `<div class="letter_index"">
-                                User
-                                </div>
-                                <div class="letter_separator_horizontal">
-                                    <hr class="separator_horizontal" />
-                                </div>
-                            <div class="contact_side" id="current_user" onclick="showCurrentUserDetails()">
-                                <div class="profile_icon_mini">
-                                    <span>${currentUserInitials}</span>
-                                </div>
-                                <div class="contact_side_info">
-                                    <div class="contact_side_name">
-                                        <span>${currentUser.name} ${currentUser.surname ? `${currentUser.surname}` : ''} (You)</span>
-                                    </div>
-                                    <div class="contact_side_mail">
-                                        <span>${currentUser.email}</span>
-                                    </div>
-                                </div>
-                            </div></div>`
-  }
-
-  function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
-    return `
-  <div class="contact_header">
-            <div class="profile_icon_large" style="background-color: ${currentUser.color}">
-                            <span>${currentUserInitials}</span>
-                        </div>
-
-            <div class="contact_head">
-              <div class="contact_name">
-                <span>${currentUser.name}</span>
-              </div>
-
-              <div class="contact_buttons">
-                <button onclick="editContactOverlay()" class="contact_btn">
-                  <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
-                </button>
-                <button class="contact_btn">
-                  <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
-                  Delete
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact_information_text">
-            <span>Contact Information</span>
-          </div>
-
-          <div class="contact_details">
-            <div class="contact_mail">
-              <span class="contact_category">Email</span>
-              <a href="">${currentUser.email}</a>
-            </div>
-
-            <div class="contact_phone">
-              <span class="contact_category">Phone</span>
-              <span>${currentUser.phone}</span>
-            </div>
-          </div>`
-  }
+}

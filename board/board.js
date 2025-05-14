@@ -58,9 +58,13 @@ function renderColumns() {
  * Zeigt das Task-Detail Template an
  * 
  */
-function renderDetailTemplate() {
-    overlay.classList.remove("fade_out");
-    taskDetailCard.classList.remove("closed");
+function renderDetailTemplate(taskId) {
+    const task = allTasks.find(task => task.id === taskId);
+    if (task) {
+        taskDetailCard.innerHTML = getDetailTaskCard(task);
+        overlay.classList.remove("fade_out");
+        taskDetailCard.classList.remove("closed");
+    }
 };
 
 /**
