@@ -86,7 +86,7 @@ function postTask(taskData) {
     // postData('addTask/meinKey', taskData);
 
     // Deaktivieren DerPost Funktion
-    // postData('addTask', taskData);
+    postData('addTask', taskData);
     // Deaktivieren DerPost Funktion
 }
 
@@ -134,6 +134,7 @@ function clearTasks() {
     document.getElementById('new_tag_container').innerHTML = '';
     document.getElementById('selected_users_group').innerHTML = '';
     document.getElementById('prio_medium').checked = true;
+
     switchBtnPriority('medium');
 }
 
@@ -142,10 +143,6 @@ function createTaskBtnEnable() {
     const titelInput = document.getElementById('title').value;
     const dueDate = document.getElementById('due_date').value;
     const category = document.getElementById('category_dropdown_input').value;
-
-    console.log(titelInput);
-    console.log(dueDate);
-    console.log(category);
 
     if (titelInput && dueDate && category) {
         creatTaskBtn.disabled = false;

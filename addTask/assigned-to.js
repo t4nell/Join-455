@@ -66,11 +66,11 @@ function selectUser(index, event) {
 
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
-        toggleBackground(index);
     }
 
     if (checkbox.checked) {
         addSelectedUserIcon(index);
+        toggleBackground(index);
     } else {
         removeSelectedUser(index);
         toggleBackground(index);
