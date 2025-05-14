@@ -219,6 +219,12 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+} */
+
 .required_field {
     color: red;
     font-size: 14px;

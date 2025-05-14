@@ -42,7 +42,7 @@ window.onload = async function () {
     }
 };
 
-console.log('----------------Test Funktion zum sammeln der Daten----------------------');
+console.log('----------------Funktion zum sammeln der Daten----------------------');
 
 function collectTaskData(form) {
     const fd = new FormData(form);
@@ -77,8 +77,9 @@ function collectTaskData(form) {
     return task;
 }
 
-console.log('----------------Firebase Test Funktion----------------------');
-const BASE_URL_Test = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+console.log('----------------Firebase POST Funktion----------------------');
+const BASE_URL_TWO = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+console.log('----------------Base url ist noch nicht richtig implementiert ?????----------------------');
 
 function postTask(taskData) {
     console.log('Post Funktioniert');
@@ -90,7 +91,7 @@ function postTask(taskData) {
 }
 
 async function postData(path = '', data = {}) {
-    let response = await fetch(BASE_URL_Test + path + '.json', {
+    let response = await fetch(BASE_URL_TWO + path + '.json', {
         method: 'POST',
 
         headers: {
@@ -103,6 +104,7 @@ async function postData(path = '', data = {}) {
     return (responseToJson = await response.json());
 }
 
+console.log('----------------Creat Task Button Funktion----------------------');
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
@@ -120,10 +122,40 @@ function createTask() {
     console.groupEnd();
 
     postTask(taskData);
+
+    clearTasks();
+
+    document.getElementById('clear_btn').click();
+
+    createTaskBtnDisable();
 }
 
-function clearSubtasks() {
+function clearTasks() {
     document.getElementById('new_tag_container').innerHTML = '';
     document.getElementById('selected_users_group').innerHTML = '';
+    document.getElementById('prio_medium').checked = true;
+    switchBtnPriority('medium');
+}
+
+function createTaskBtnEnable() {
+    const creatTaskBtn = document.getElementById('create_task_btn');
+    const titelInput = document.getElementById('title').value;
+    const dueDate = document.getElementById('due_date').value;
+    const category = document.getElementById('category_dropdown_input').value;
+
+    console.log(titelInput);
+    console.log(dueDate);
+    console.log(category);
+
+    if (titelInput && dueDate && category) {
+        creatTaskBtn.disabled = false;
+    } else {
+        creatTaskBtn.disabled = true;
+    }
+}
+
+function createTaskBtnDisable() {
+    const creatTaskBtn = document.getElementById('create_task_btn');
+    creatTaskBtn.disabled = true;
 }
 

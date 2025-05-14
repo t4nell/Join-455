@@ -58,6 +58,7 @@
                         <div class="input_titel_group">
                             <label for="text" class="required">Titel</label>
                             <input
+                                oninput="createTaskBtnEnable()"
                                 name="title"
                                 id="title"
                                 class="input_titel"
@@ -78,6 +79,7 @@
                             <label for="date" class="required">Due date</label>
                             <div class="input_date_container">
                                 <input
+                                    oninput="createTaskBtnEnable()"
                                     name="due_date"
                                     type="text"
                                     id="due_date"
@@ -245,7 +247,7 @@
                             type="reset"
                             form="add_task_form"
                             id="clear_btn"
-                            onclick="clearSubtasks()">
+                            onclick="clearTasks()">
                             Clear
                             <img
                                 class="clear_icon"
@@ -253,7 +255,13 @@
                                 src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg"
                                 alt="Icon" />
                         </button>
-                        <button class="create_task_btn" type="button" form="add_task_form" onclick="createTask()">
+                        <button
+                            class="create_task_btn"
+                            id="create_task_btn"
+                            type="button"
+                            form="add_task_form"
+                            disabled
+                            onclick="createTask()">
                             Create Task
                             <img
                                 class="creat_task_icon"

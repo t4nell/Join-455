@@ -7,7 +7,6 @@ const categories = [
     'In Progress',
     'In Review',
     'Blocked',
-    'Backlog',
     'Testing',
     'Done',
     'Archived',
@@ -18,15 +17,15 @@ const categoryInput = document.getElementById('category_dropdown_input');
 const categoryMenu = document.getElementById('category_dropdown_menu');
 
 function renderCategories() {
-    categoryMenu.innerHTML = categories
-        .map(
-            (category) => `
+    categoryMenu.innerHTML = categories.map((category) => categoriesTemplate(category)).join('');
+}
+
+function categoriesTemplate(category) {
+    return `
         <li class="category_dropdown_item" onclick="selectCategory('${category}')">
             ${category}
         </li>
-    `
-        )
-        .join('');
+    `;
 }
 
 function toggleDropdownCategory(event) {
@@ -37,6 +36,7 @@ function toggleDropdownCategory(event) {
 function selectCategory(category) {
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
+    createTaskBtnEnable();
 }
 
 renderCategories();
@@ -46,3 +46,4 @@ document.addEventListener('click', (e) => {
         categoryDropdown.classList.remove('open');
     }
 });
+
