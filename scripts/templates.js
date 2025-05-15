@@ -272,9 +272,51 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
             <a href="">${currentUser.email}</a>
           </div>
 
-          <div class="contact_phone">
-            <span class="contact_category">Phone</span>
-            <span>${currentUser.phone}</span>
+            <div class="contact_phone">
+              <span class="contact_category">Phone</span>
+              <span>${currentUser.phone}</span>
+            </div>
+          </div>`
+  }
+
+  function getContactDetailsTemplate(contact){
+    return`
+                <div class="contact_header">
+            <div class="profile_icon_large" style="background-color: ${contact.color}">
+                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
+                        </div>
+
+            <div class="contact_head">
+              <div class="contact_name">
+                <span>${contact.name} ${contact.surname}</span>
+              </div>
+
+              <div class="contact_buttons">
+                <button onclick="editContactOverlay()" class="contact_btn">
+                  <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
+                </button>
+                <button class="contact_btn">
+                  <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact_information_text">
+            <span>Contact Information</span>
+          </div>
+
+          <div class="contact_details">
+            <div class="contact_mail">
+              <span class="contact_category">Email</span>
+              <a href="">${contact.email}</a>
+            </div>
+
+            <div class="contact_phone">
+              <span class="contact_category">Phone</span>
+              <span>${contact.phone}</span>
+            </div>
           </div>
         </div>`
-}
+  }

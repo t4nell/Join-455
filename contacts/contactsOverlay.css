@@ -200,3 +200,19 @@
   background-color: var(--button-hover-color);
   box-shadow: var(--button-box-shadow-color);
 }
+
+.alert{
+  position: absolute;
+  color: var(--alert-font-color);
+  font-size: 13px;
+}
+
+#name_alert{
+  top: 43px;
+}
+#mail_alert{
+  top: 126px;
+}
+#phone_alert{
+  top: 210px
+}
