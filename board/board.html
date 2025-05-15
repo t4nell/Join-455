@@ -18,110 +18,24 @@
     <script src="./board.js" defer></script>
     <title>Join</title>
   </head>
+
   <body onload="init()">
+
     <main id="main_container">
+
       <div id="header_container"></div>
       <div class="sidebar_container">
-
         <div class="sidebar_img_container">
           <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"></a>
           <div id="navbar_container"></div>
         </div>
-
       </div>
-
-
-      <!-- Template task detail card -->
-      <div id="overlay_background_container" onclick="closeDetailTemplate()" class="overlay_background_container fade_out">
-        
-        <!-- Task Detail Template -->
+      
+      <div id="overlay_background_container" class="overlay_background fade_out" onclick="closeDetailTemplate()">
         <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)">
-
-            <!-- Card Header with Category and Close Button -->
-            <div class="task_detail_card_header">
-                <span class="category_lable_detail">User Story</span>
-                <button onclick="closeDetailTemplate()" class="closed_btn"><img src="../assets/imgs/boardIcons/close.svg" alt="close button"></button>
-            </div>
-
-            <!-- Title Section -->
-            <div class="task_detail_title">
-                <h2>Kochwelt Page & Recipe Recommender</h2>
-            </div>
-
-            <!-- Description Section -->
-            <div class="task_detail_description">
-                <p>Build start page with recipe recommendation...</p>
-            </div>
-
-            <!-- Due Date Section -->
-            <div class="task_detail_date">
-                <span class="detail_label">Due date:</span>
-                <span>10/05/2023</span>
-            </div>
-
-            <!-- Priority Section -->
-            <div class="task_detail_priority">
-                <span class="detail_label">Priority:</span>
-                <div class="priority_badge">
-                    Medium <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="priority">
-                </div>
-            </div>
-
-            <!-- Assigned To Section -->
-            <div class="task_detail_assigned">
-                <span class="detail_label">AssignedTo:</span>
-                <div class="assigned_contacts">
-                    <div class="contact_badge">
-                        <div class="avatar">AM</div>
-                        <span>Anton Mayer</span>
-                    </div>
-                    <div class="contact_badge">
-                        <div class="avatar">EM</div>
-                        <span>Emmanuel Mauer</span>
-                    </div>
-                    <div class="contact_badge">
-                        <div class="avatar">MB</div>
-                        <span>Marcel Bauer</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Subtasks Section -->
-            <div class="task_detail_subtasks">
-                <span class="detail_label">Subtasks:</span>
-                <div class="subtasks_list">
-                    <div class="subtask_item">
-                      <div class="subtask_background">
-                        <input type="checkbox" id="subtask1" checked>
-                        <label for="subtask1">Implement Recipe Recommendation</label>
-                      </div>
-                    </div>
-                    <div class="subtask_item">
-                      <div class="subtask_background">
-                        <input type="checkbox" id="subtask2">
-                        <label for="subtask2">Start Page Layout</label>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit/Delete Buttons -->
-            <div class="task_detail_buttons">
-                <button class="delete_btn">
-                    <img src="../assets/imgs/contactIcons/delete.svg" alt="delete">
-                    Delete
-                </button>
-                <button class="edit_btn">
-                    <img src="../assets/imgs/contactIcons/edit.svg" alt="edit">
-                    Edit
-                </button>
-            </div>
+        
         </div>
       </div>
-      <!-- Template -->
-      
-
-
 
       <div class="board_container">
         
@@ -169,26 +83,26 @@
 
         <div class="board_contend_bottom">
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_todo" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_todo" class="drag_area" status="todo" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_in_progress" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_in_progress" class="drag_area" status="inProgress" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_await_feedback" class="drag_area">
+          <div class="drag_and_drop_container" >
+            <div id="drag_area_await_feedback" class="drag_area" status="awaitFeedback" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
-          <div class="drag_and_drop_container" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-            <div id="drag_area_done" class="drag_area">
+          <div class="drag_and_drop_container">
+            <div id="drag_area_done" class="drag_area" status="done" ondrop="handleDrop(event)" ondragover="allowDrop(event)"> 
 
             </div>
           </div>

@@ -66,11 +66,11 @@ function selectUser(index, event) {
 
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
-        toggleBackground(index);
     }
 
     if (checkbox.checked) {
         addSelectedUserIcon(index);
+        toggleBackground(index);
     } else {
         removeSelectedUser(index);
         toggleBackground(index);
@@ -94,12 +94,17 @@ function addSelectedUserIcon(index) {
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
         .join('');
+    const initials = nameInitials + surnameInitials;
 
-    selectedUser.innerHTML += `
+    selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
+}
+
+function addSelectedUserIconTemplate(index, bgColor, initials) {
+    return `
     <div id="selected_user_${index}">
   <div class="placeholder_icon">
     <div class="profile_icon" style="background-color: ${bgColor}">
-      <span>${nameInitials}${surnameInitials}</span>
+      <span>${initials}</span>
     </div>
     </div>
   </div>`;
