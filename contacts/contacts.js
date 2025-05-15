@@ -3,10 +3,7 @@ const newContactPopup = document.getElementById("contact_popup");
 const editContactPopup = document.getElementById("contact_edit_overlay");
 const overlay = document.getElementById("contact_overlay");
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-const currentUserInitials = currentUser.name
-  .split(" ")
-  .map((part) => part.charAt(0).toUpperCase())
-  .join("");
+const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("");
 
 let contactsArray = [];
 const groupedContacts = {};
@@ -16,7 +13,7 @@ async function contactInit() {
   renderSidebar();
   loadCurrentUser();
   await loadContactData();
-  groupContacts();
+  // groupContacts();
 }
 
 //kontakte fetchen
@@ -26,15 +23,9 @@ async function contactInit() {
 
 function loadCurrentUser() {
   const currentUserDiv = document.createElement("div");
-  // currentUserDiv.classList.add("contact_side", "current_user");
-  currentUserDiv.innerHTML = getCurrenUserTemplate(
-    currentUser,
-    currentUserInitials
-  );
-  const contactListContainer = document.getElementById(
-    "contact_list_container"
-  );
-
+  currentUserDiv.classList.add("current_user_container");
+  currentUserDiv.innerHTML = getCurrenUserTemplate(currentUser, currentUserInitials);
+  const contactListContainer = document.getElementById("contact_list_container");
   contactListContainer.appendChild(currentUserDiv);
 }
 
@@ -49,14 +40,12 @@ async function fetchContactData(path = "") {
 
 async function loadContactData() {
   await fetchContactData("contact");
-
   const contactsRef = responseToJson;
   contactsArray = Object.values(contactsRef);
 
-  console.log(contactsArray);
 }
 
-function groupContacts() {
+function groupContacts() {  
   contactsArray.forEach((contact) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
     if (!groupedContacts[firstLetter]) {
@@ -178,21 +167,47 @@ async function postContactData(path = "", data = {}) {
     body: JSON.stringify(data),
   });
   if (response.ok) {
+    closeNewContactOverlay()
     return (responseToJson = await response.json());
   } else {
     console.error("Error posting contact data:", response.statusText);
   }
+  }
+
+function closeNewContactOverlay() {
+  toggleOverlay();
+  document.getElementById('contact_save_message').classList.remove('closed');
+  resetInputFields();
+  clearGroupedContacts();
+  loadContactData();
+  setTimeout(() => {
+    document.getElementById('contact_save_message').classList.add('closed');
+  }, 3000);
+}
+
+function resetInputFields(){
+  document.getElementById('new_contact_name').value = ""
+  document.getElementById('new_contact_email').value = ""
+  document.getElementById('new_contact_phone').value = ""
+}
+
+function clearGroupedContacts(){
+  contactsArray = [];
+
+  for (const key in groupedContacts) {
+    if(Object.hasOwnProperty.call(groupedContacts, key)) {
+      delete groupedContacts[key];
+    }
+  }
 }
 
 function renderContactGroups(groupedContacts) {
-  const contactListContainer = document.getElementById(
-    "contact_list_container"
-  );
+  const contactListDiv = document.getElementById("contact_list_container");
   const sortedLetters = Object.keys(groupedContacts).sort();
-
+  contactListDiv.innerHTML = "";  // Diese funktion löscht den currentUser
   sortedLetters.forEach((letter) => {
     const contactTemplate = getContactListTemplate(letter, groupedContacts);
-    contactListContainer.innerHTML += contactTemplate;
+    contactListDiv.innerHTML += contactTemplate;
   });
 }
 

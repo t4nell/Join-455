@@ -338,3 +338,10 @@ header span{
     transform: scale(1.1);
 }
 
+.center_flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: 21px;
+}

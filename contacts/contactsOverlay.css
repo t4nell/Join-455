@@ -216,3 +216,15 @@
 #phone_alert{
   top: 210px
 }
+
+.contact_save_message{
+  background-color: var(--active-contact-color);
+  color: var(--text-color-white);
+  height: 80px;
+  width: 370px;
+  position: absolute;
+  border-radius: 20px;
+  bottom: 100px;
+  right: 100px;
+  transition: all 225ms ease-in-out;
+}
