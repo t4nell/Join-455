@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="./contactsOverlay.css" />
     <link rel="stylesheet" href="./contacts.css" />
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
-    <script src="../scripts/fetch.js"></script>
-    <script src="../scripts/templates.js" defer></script>
-    <script src="../scripts/userProfil.js" defer></script>
-    <script src="./contacts.js" defer></script>
     <script src="../script.js" defer></script>
+    <script src="../scripts/fetch.js" defer></script>
+    <!-- <script src="./scripts/userProfil.js" defer></script> -->
+    <script src="../scripts/templates.js" defer></script>
+    <script src="./contacts.js" defer></script>
     <title>Join</title>
   </head>
   <body onload="contactInit()">
@@ -137,6 +137,7 @@
                 placeholder="Name"
                 required
               />
+              <p class="alert d_none" id="name_alert">*Please enter first-and surname.</p>
               <input
                 class="overlay_input mail_input_icon"
                 id="new_contact_email"
@@ -145,6 +146,7 @@
                 placeholder="Email"
                 required
               />
+              <p class="alert d_none" id="mail_alert">*Please enter a valid email address.</p>
               <input
                 class="overlay_input phone_input_icon"
                 id="new_contact_phone"
@@ -154,6 +156,7 @@
                 placeholder="Phone"
                 required
               />
+              <p class="alert d_none" id="phone_alert">*Please enter a valid phone number.</p>
             </div>
             <div class="overlay_buttons">
               <button onclick="toggleOverlay()" class="cancel_btn">

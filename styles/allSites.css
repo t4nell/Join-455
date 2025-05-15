@@ -39,7 +39,8 @@
     --overlay-background-color: rgba(0,0,0,0.5);
     --template-background-color: #ffffff;
     --hover-color-summary: #2A3D59;                 /* summary? eigene root? und nutze noch --text-color-sidebar & --background-color-header auch neue anlegen? */
-    --active-contact-color: #2A3647;          
+    --active-contact-color: #2A3647;    
+    --alert-font-color: #FF8190;
 } 
 
 :root {
