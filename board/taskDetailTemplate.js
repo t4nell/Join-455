@@ -1,3 +1,33 @@
+/**
+ * Zeigt das Task-Detail Template an
+ * 
+ */
+function renderDetailTemplate(taskId) {
+    const task = allTasks.find(task => task.id === taskId);
+    if (task) {
+        taskDetailCard.innerHTML = getDetailTaskCard(task);
+        overlay.classList.remove("fade_out");
+        taskDetailCard.classList.remove("closed");
+    }
+};
+
+/**
+ * Schließt das Task-Detail Template
+ * 
+ */
+function closeDetailTemplate() {
+    overlay.classList.add("fade_out");
+    taskDetailCard.classList.add("closed");
+};
+
+/**
+ * Verhindert das Schließen beim Klick auf die Karte
+ * 
+ */
+function eventBubbling(event) {
+    event.stopPropagation();
+};
+
 function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
     
