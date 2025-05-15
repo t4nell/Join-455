@@ -108,6 +108,7 @@ function renderPlaceholder() {
 }
 
 function getTaskCard(task) {
+  const progress = calculateSubtaskProgress(task);
   return `
     <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
       <div class="task_category">
@@ -118,11 +119,11 @@ function getTaskCard(task) {
           <p class="task_description">${task.description}</p>
       </div>
       <div class="progress_section">
-          <div class="progress_bar">
-              <div class="progress_fill"></div>
-          </div>
-          <span class="subtask_counter">1/2 Subtasks</span>
-      </div>
+                <div class="progress_bar">
+                    <div class="progress_fill" style="width: ${progress.progressPercentage}%"></div>
+                </div>
+                <span class="subtask_counter">${progress.completed}/${progress.total} Subtasks</span>
+            </div>
       <div class="task_footer">
           <div class="assignee_avatars">
               
@@ -151,7 +152,7 @@ function getDetailTaskCard(task) {
         </div>
         <div class="task_detail_date">
             <span class="detail_label">Due Date:</span>
-            <span>${task.DueDate}</span>
+            <span>${task.dueDate}</span>
         </div>
         <div class="task_detail_priority">
             <span class="detail_label">Priority:</span>
@@ -163,27 +164,15 @@ function getDetailTaskCard(task) {
         <div class="task_detail_assigned">
             <span class="detail_label">Assigned to:</span>
             <div class="assigned_contacts">
-                ${task.AssignedTo ? task.AssignedTo.map(contact => `
-                    <div class="contact_badge">
-                        <div class="avatar">${contact.initials}</div>
-                        <span>${contact.name}</span>
-                    </div>
-                `).join('') : ''}
+                ${renderAssignedContacts(task.assignedTo)}
             </div>
         </div>
         <div class="task_detail_subtasks">
-            <span class="detail_label">Subtasks:</span>
-            <div class="subtasks_list">
-                ${task.Subtasks ? task.Subtasks.map((subtask, index) => `
-                    <div class="subtask_item">
-                        <div class="subtask_background">
-                            <input type="checkbox" id="subtask${index}" ${subtask.done ? 'checked' : ''}>
-                            <label for="subtask${index}">${subtask.text}</label>
-                        </div>
-                    </div>
-                `).join('') : ''}
-            </div>
+        <span class="detail_label">Subtasks:</span>
+        <div class="subtasks_list">
+            ${renderSubtasksList(task.subtasks, task.id)}
         </div>
+    </div>
         <div class="task_detail_buttons">
             <button class="delete_btn">
                 <img src="../assets/imgs/contactIcons/delete.svg" alt="delete">
