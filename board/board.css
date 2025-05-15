@@ -147,6 +147,25 @@ main {
   gap: 26px;
   width: 100%;
   height: calc(100% - 232px);
+  overflow-y: auto;
+}
+
+.board_contend_bottom::-webkit-scrollbar {
+    width: 10px;
+}
+
+.board_contend_bottom::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.board_contend_bottom::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.board_contend_bottom::-webkit-scrollbar-thumb:hover {
+    background: #666;
 }
 
 .drag_and_drop_container {
@@ -157,14 +176,13 @@ main {
 }
 
 .drag_area {
-  border: 2px solid black;
   max-height: 100%;
   width: 100%;
   display: flex;
+  gap: 16px;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  margin-top: 8px;
   height: 100%;
 }
 
@@ -177,7 +195,6 @@ main {
   width: 100%;
   height: 46px;
   border-radius: 10px;
-  margin: 14.5px 0;
   font-size: 16px;
   color: var(--text-color-drag-area-placeholder);
 }
