@@ -321,3 +321,13 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
           </div>
         </div>`
   }
+
+function createUserDropdownMenu() {
+    return `
+    <div class="user_dropdown_menu">
+        <a href="../html/legal_notice.html">Legal Notice</a>
+        <a href="../html/privacy_policy.html">Privacy Policy</a>
+        <a href="#" onclick="logout(); return false;">Log out</a>
+    </div>
+    `;
+}
