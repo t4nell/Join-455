@@ -236,7 +236,7 @@ function getCurrenUserTemplate(currentUser, currentUserInitials) {
                                   </div>
                               </div>
                           </div></div>
-                          <div id="contact_list_container"></div>`
+                          <div id="all_contacts_container"></div>`
 }
 
 function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {

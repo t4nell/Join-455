@@ -42,10 +42,10 @@ async function loadContactData() {
   await fetchContactData("contact");
   const contactsRef = responseToJson;
   contactsArray = Object.values(contactsRef);
-
+groupContacts(contactsArray);
 }
 
-function groupContacts() {  
+function groupContacts(contactsArray) {  
   contactsArray.forEach((contact) => {
     const firstLetter = contact.name.charAt(0).toUpperCase();
     if (!groupedContacts[firstLetter]) {
@@ -77,7 +77,7 @@ function collectContactData() {
     phone: fd.get("new_contact_phone"),
     color: randomContactColor
   };
-  if (checkIfValid(contact, fullName) && !checkEmailAlreadyExists(contact.email)) {
+  if (checkIfValid(contact, fullName) && checkEmailAlreadyExists(contact.email)) {
     return contact;
   }else{
    return;
@@ -85,13 +85,13 @@ function collectContactData() {
 }
 
 function checkEmailAlreadyExists(email) {
-  const emailExists = contactsArray.some(
-    (contact) => contact.email === email
-  );
+  const emailExists = contactsArray.some((contact) => contact.email === email);
   if (emailExists) {
     const alertEmail = document.getElementById("mail_alert");
     alertEmail.classList.remove("d_none");
     alertEmail.innerHTML = "Email already exists";
+    return false;
+  }else{
     return true;
 }};
 
@@ -154,8 +154,12 @@ function createNewContact(event) {
   const contactData = collectContactData(form);
 
   console.log(contactData);
+  if (collectContactData()) {
+    postContactData("contact", contactData);
+   }else{
+    return;
+   }
 
-  postContactData("contact", contactData);
 }
 
 async function postContactData(path = "", data = {}) {
@@ -180,6 +184,7 @@ function closeNewContactOverlay() {
   resetInputFields();
   clearGroupedContacts();
   loadContactData();
+  // groupContacts();
   setTimeout(() => {
     document.getElementById('contact_save_message').classList.add('closed');
   }, 3000);
@@ -202,7 +207,7 @@ function clearGroupedContacts(){
 }
 
 function renderContactGroups(groupedContacts) {
-  const contactListDiv = document.getElementById("contact_list_container");
+  const contactListDiv = document.getElementById("all_contacts_container");
   const sortedLetters = Object.keys(groupedContacts).sort();
   contactListDiv.innerHTML = "";  // Diese funktion löscht den currentUser
   sortedLetters.forEach((letter) => {
