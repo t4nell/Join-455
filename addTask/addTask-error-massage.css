@@ -1,12 +1,12 @@
-.error-message {
-    display: none;
+.required_message {
+    display: block;
     color: red;
     font-size: 14px;
     margin-top: 4px;
 }
 
 .input_titel,
-.flatpickr_input,
+.input_date,
 .category_dropdown_toggle {
     transition: border-color 0.2s ease;
 }
@@ -16,8 +16,8 @@ input:required:invalid,
     border: 2px solid red !important;
 }
 
-input:required:invalid ~ .error-message,
-.category_dropdown_toggle:required:invalid ~ .error-message {
+input:required:invalid ~ .required_message,
+.category_dropdown_toggle:required:invalid ~ .required_message {
     display: block;
 }
 
