@@ -7,5 +7,9 @@ main {
     top: 100px;
     left: 232px;
     height: calc(100% - 100px);
-    width: calc(100% - 232px);
+    width: calc(100% - 424px);
+    padding: 0 96px;
+    overflow-y: auto;
+    display: block;
   }
+
