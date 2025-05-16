@@ -4,6 +4,7 @@ const loginContainer = document.getElementById("login_container");
 function init() {
     checkLoggedInUser();
     renderLogin();
+    document.addEventListener('click', closeUserMenuOnClickOutside);
 }
 
 // Prüfen ob bereits eingeloggt

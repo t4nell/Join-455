@@ -94,7 +94,7 @@ function getHeaderTemplate() {
         <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
           <a href="../policy/policy.html">Privacy Policy</a>
           <a href="../legalNotes/legal.html">Legal Notice</a>
-          <button onclick="logout()" class="logout_btn">Log out</button>
+          <a href="#" onclick="logout(); return false;">Log out</a>
         </div>
       </div>
     </header>
@@ -321,13 +321,3 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
           </div>
         </div>`
   }
-
-function createUserDropdownMenu() {
-    return `
-    <div class="user_dropdown_menu">
-        <a href="../html/legal_notice.html">Legal Notice</a>
-        <a href="../html/privacy_policy.html">Privacy Policy</a>
-        <a href="#" onclick="logout(); return false;">Log out</a>
-    </div>
-    `;
-}

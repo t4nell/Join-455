@@ -283,6 +283,7 @@ header span{
 
 .user_dropdown_menu a {
     display: flex;
+    align-items: center;
     text-decoration: none;
     color: var(--text-color-sidebar);
     width: 130px;
