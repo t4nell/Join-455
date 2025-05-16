@@ -30,6 +30,8 @@ function updateUserProfile() {
     
     // Setze die Farbe als Hintergrund
     userProfileButton.style.setProperty('--current-profile-color', userColor);
+    //close user menu
+    document.addEventListener('click', closeUserMenuOnClickOutside);
 }
 
 function toggleUserMenu() {
