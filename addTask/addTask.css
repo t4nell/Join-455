@@ -38,7 +38,7 @@ main {
     margin-bottom: 20px;
 }
 
-.required::after {
+.required_for_label::after {
     content: ' *';
     color: #e00;
 }
@@ -225,7 +225,7 @@ main {
     cursor: not-allowed;
 } */
 
-.required_field {
+.required_footer_text {
     color: red;
     font-size: 14px;
     margin-top: 8px;

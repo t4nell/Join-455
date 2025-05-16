@@ -156,3 +156,7 @@ function createTaskBtnDisable() {
     creatTaskBtn.disabled = true;
 }
 
+function requiredMassagetoggle() {
+    const requiredMassage = document.getElementById('required_message');
+    requiredMassage.classList.toggle('required');
+}

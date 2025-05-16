@@ -56,16 +56,16 @@
                 <form id="add_task_form" class="main_section">
                     <section class="main_section_left">
                         <div class="input_titel_group">
-                            <label for="text" class="required">Titel</label>
+                            <label for="title" class="required_for_label">Titel</label>
                             <input
                                 oninput="createTaskBtnEnable()"
                                 name="title"
                                 id="title"
                                 class="input_titel"
                                 type="text"
-                                placeholder="Enter a titel"
-                                required />
-                            <span class="error-message">This field is required</span>
+                                required
+                                placeholder="Enter a titel" />
+                            <span id="required_message" class="required_message">This field is required</span>
                         </div>
                         <div class="textarea_group">
                             <label id="description_label" for="description" class="input-title">Description</label>
@@ -76,7 +76,7 @@
                                 placeholder="Enter a Description"></textarea>
                         </div>
                         <div class="input_date_group">
-                            <label for="date" class="required">Due date</label>
+                            <label for="due_date" class="required_for_label">Due date</label>
                             <div class="input_date_container">
                                 <input
                                     oninput="createTaskBtnEnable()"
@@ -91,8 +91,8 @@
                                     src="../assets/imgs/addTaskIcons/CalenderIcon.svg"
                                     alt="Calendar Icon"
                                     onclick="openCalendar()" />
-                                <span class="error-message">This field is required</span>
                             </div>
+                            <span id="required_message" class="required_message">This field is required</span>
                         </div>
                     </section>
 
@@ -151,7 +151,7 @@
                         </div>
 
                         <div class="assign_to_group">
-                            <label for="assigned_to">Assigned to</label>
+                            <label for="dropdown_toggle_btn">Assigned to</label>
                             <div class="dropdown" id="dropdown">
                                 <div class="dropdown_input_wrapper">
                                     <input
@@ -172,7 +172,7 @@
                         <div id="selected_users_group" class="selected_user_group"></div>
 
                         <div class="category_group">
-                            <label class="required" for="category_dropdown_input">Category</label>
+                            <label class="required_for_label" for="category_dropdown_input">Category</label>
                             <div class="category_dropdown" id="category_dropdown">
                                 <div class="category_dropdown_input_wrapper">
                                     <input
@@ -188,14 +188,14 @@
                                     <span class="category_arrow_bg_hover_color">
                                         <span class="arrow"></span>
                                     </span>
-                                    <!-- <span class="error-message">This field is required</span> -->
                                 </div>
+                                <span id="required_message" class="required_message">This field is required</span>
                                 <ul class="category_dropdown_menu" id="category_dropdown_menu"></ul>
                             </div>
                         </div>
 
                         <div class="tag_input_container">
-                            <label for="names">Subtasks</label>
+                            <label for="tag_input_field">Subtasks</label>
                             <div class="tag_input">
                                 <input
                                     type="text"
@@ -240,7 +240,7 @@
                 <!-- Löschen -->
 
                 <footer class="creat_task">
-                    <div><p class="required_field">* These fields are required</p></div>
+                    <div><p class="required_footer_text">* These fields are required</p></div>
                     <div class="btn_position">
                         <button
                             class="clear_btn"
