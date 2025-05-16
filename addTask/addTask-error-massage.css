@@ -12,12 +12,19 @@
 }
 
 input:required:invalid,
-.category_dropdown_toggle:required:invalid {
+.category_dropdown_toggle:required:invalid .input_date:required:invalid {
     border: 2px solid red !important;
 }
 
 input:required:invalid ~ .required_message,
-.category_dropdown_toggle:required:invalid ~ .required_message {
+.category_dropdown_toggle:required:invalid ~ .required_message .input_date:required:invalid {
     display: block;
 }
 
+.input_date {
+    border: 2px solid red !important;
+}
+
+.category_dropdown_toggle {
+    border: 2px solid red !important;
+}
