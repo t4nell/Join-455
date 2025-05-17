@@ -278,41 +278,22 @@ header span{
     height: 158px;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
 .user_dropdown_menu a {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: var(--text-color-sidebar);
     width: 130px;
     height: 48px;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
+    font-size: 16px;
 }
 
 .user_dropdown_menu a:hover {
     background-color: var(--hover-color-sidebar1);
     color: white;
-}
-
-.logout_btn {
-    color: var(--text-color-sidebar);
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 130px;
-    height: 46px;
-    width: 155px;
-}
-
-.logout_btn:hover {
-    background-color: var(--hover-color-sidebar1);
 }
 
 /* user_Profil color */

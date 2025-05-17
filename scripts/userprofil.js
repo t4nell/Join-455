@@ -30,11 +30,24 @@ function updateUserProfile() {
     
     // Setze die Farbe als Hintergrund
     userProfileButton.style.setProperty('--current-profile-color', userColor);
+    //close user menu
+    document.addEventListener('click', closeUserMenuOnClickOutside);
 }
 
 function toggleUserMenu() {
-    const menu = document.getElementById('user_dropdown_menu');
-    menu.classList.toggle('d_none');
+    const userMenu = document.getElementById('user_dropdown_menu');
+    userMenu.classList.toggle('d_none');
+}
+
+function closeUserMenuOnClickOutside(event) {
+    const userMenu = document.getElementById('user_dropdown_menu');
+    const userProfile = document.querySelector('.user_profile');
+    
+    if (userMenu && !userMenu.classList.contains('d_none')) {
+        if (!userMenu.contains(event.target) && !userProfile.contains(event.target)) {
+            userMenu.classList.add('d_none');
+        }
+    }
 }
 
 function logout() {

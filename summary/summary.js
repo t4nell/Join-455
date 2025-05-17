@@ -10,20 +10,19 @@ function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
+function getGreeting(hours) {
+    if (hours >= 0 && hours < 10) {
+        return "Guten Morgen";
+    } else if (hours >= 10 && hours < 19) {
+        return "Guten Tag";
+    } else {
+        return "Guten Abend";
+    }
+}
+
 function updateGreeting() {
     const now = new Date();
-    let greeting;
-    const hours = now.getHours();
-    
-    if (hours >= 0 && hours < 10) {
-        greeting = "Guten Morgen";
-    } else if (hours >= 10 && hours < 19) {
-        greeting = "Guten Tag";
-    } else {
-        greeting = "Guten Abend";
-    }
-    
-   
+    const greeting = getGreeting(now.getHours());
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const userName = currentUser?.name || 'Gast';
     
@@ -33,197 +32,249 @@ function updateGreeting() {
     `;
 }
 
+function checkAuth() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) {
+        window.location.href = '../index.html';
+        throw new Error('Unauthenticated'); // Abbruch, falls kein User
+    }
+    return currentUser; // Für weitere Verwendung
+}
+
+function initializeUI(currentUser) {
+    renderSidebar();
+    renderHeader();
+    updateUserProfile();
+    updateGreeting();
+    
+    if (currentUser.isGuest) {
+        showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
+    }
+}
+
+async function loadAndUpdateTaskData() {
+    const tasks = await fetchTasks();
+    const stats = calculateTaskStats(tasks);
+    updateSummaryUI(stats);
+    return stats; // Optional für weitere Verarbeitung
+}
+
 window.onload = async function() {
     try {
-        // Benutzer-Authentifizierung prüfen
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser) {
-            window.location.href = '../index.html';
-            return;
-        }
-
-        // UI Initialisierung
-        renderSidebar();
-        renderHeader();
-        updateUserProfile();
-        updateGreeting();
-
-        // Gast-Modus Hinweis
-        if (currentUser.isGuest) {
-            showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
-        }
-
-        // Daten laden und UI aktualisieren
-        const tasks = await fetchTasks();
-        const stats = calculateTaskStats(tasks);
-        updateSummaryUI(stats);
-
+        const currentUser = checkAuth();
+        initializeUI(currentUser);
+        await loadAndUpdateTaskData();
+        makeContainersClickable(); // Neue Zeile
     } catch (error) {
-        console.error("Error initializing summary:", error);
-        showNotification('Fehler beim Laden der Daten');
+        console.error("Initialization error:", error);
+        showNotification(error.message || 'Fehler beim Laden der Daten');
     }
 };
 
 // Firebase zugriffe
 const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
 
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+}
+
+async function fetchTaskData() {
+    const response = await fetch(`${BASE_URL}addTask.json`);
+    if (!response.ok) throw new Error('Network response was not ok');
+    return await response.json();
+}
+
+function transformTaskData(rawData) {
+    return Object.entries(rawData || {}).map(([id, task]) => ({
+        id,
+        category: task.category,
+        title: task.title,
+        description: task.description,
+        dueDate: task.dueDate,
+        priority: task.priority,
+        status: task.status,
+        subtasks: Object.values(task.subtasks || {}),
+        assignedTo: task.assignedTo || {}
+    }));
+}
+
+function filterActiveTasks(tasks) {
+    return tasks.filter(task => task.status !== 'deleted');
+}
+
 async function fetchTasks() {
     try {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const currentUser = getCurrentUser();
         if (!currentUser) return [];
-        
-        const response = await fetch(`${BASE_URL}addTask.json`);
-        const data = await response.json();
-        if (!data) return [];
 
-        // Konvertiere die Tasks in das richtige Format
-        const allTasks = Object.entries(data).map(([id, task]) => ({
-            id,
-            Category: task.Category,
-            Title: task.Titel,
-            Description: task.Description,
-            DueDate: task.DueDate,
-            Priority: task.Priority,
-            status: task.status,
-            Subtasks: task.Subtasks || [],
-            AssignedTo: task.AssignedTo || []
-        }));
+        const rawData = await fetchTaskData();
+        if (!rawData) return [];
 
-        return allTasks.filter(task => task.status !== 'deleted');
+        const allTasks = transformTaskData(rawData);
+        console.log("Geladene Tasks:", allTasks);
+
+        return filterActiveTasks(allTasks);
     } catch (error) {
         console.error("Error fetching tasks:", error);
         return [];
     }
 }
 
-function calculateTaskStats(tasks) {
-    const stats = {
-        todo: 0,
-        done: 0,
-        urgent: 0,
-        upcomingDeadline: null,
-        nextUrgentTask: null,
-        totalTasks: tasks.length,
-        inProgress: 0,
-        awaitingFeedback: 0
-    };
+function normalizeTaskStatus(status) {
+    if (!status) return '';
+    
+    return status.toLowerCase().trim()
+        .replace(/\s+/g, '') // Entfernt alle Leerzeichen
+        .replace('awaiting', 'await') // Standardisiert Feedback-Status
+        .replace('feedback', 'feedback');
+}
 
-    let earliestDeadline = null;
-    let nextUrgentDate = null;
+const STATUS_MAPPINGS = {
+    todo: ['todo'],
+    done: ['done'],
+    inProgress: ['inprogress', 'in progress'],
+    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
+};
 
+function matchesStatus(normalizedStatus, targetStatus) {
+    return STATUS_MAPPINGS[targetStatus]
+        .some(pattern => normalizedStatus.includes(pattern));
+}
+
+function countStatusOccurrences(tasks) {
+    const counts = Object.keys(STATUS_MAPPINGS)
+        .reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
+    
     tasks.forEach(task => {
-        // Zähle Tasks nach Status
-        switch(task.status) {
-            case 'todo':
-                stats.todo++;
-                break;
-            case 'done':
-                stats.done++;
-                break;
-            case 'inprogress':
-                stats.inProgress++;
-                break;
-            case 'awaitfeedback':
-                stats.awaitingFeedback++;
-                break;
-        }
+        const normalizedStatus = normalizeTaskStatus(task.status);
         
-        // Prüfe Subtasks
-        const subtasksDone = task.Subtasks ? task.Subtasks.filter(st => st.status).length : 0;
-        const totalSubtasks = task.Subtasks ? task.Subtasks.length : 0;
-        
-        if (totalSubtasks > 0 && subtasksDone > 0 && subtasksDone < totalSubtasks) {
-            stats.inProgress++;
-        }
-        
-        // Prioritätsprüfung und nächster dringender Task
-        if (task.Priority && task.Priority.toLowerCase() === 'urgent') {
-            stats.urgent++;
-            const taskDate = task.DueDate ? parseDate(task.DueDate) : null;
-            
-            // Speichere den Task wenn er das früheste Datum hat oder noch kein dringender Task gefunden wurde
-            if (taskDate && (!nextUrgentDate || taskDate < nextUrgentDate)) {
-                nextUrgentDate = taskDate;
-                stats.nextUrgentTask = task;
+        for (const statusType in STATUS_MAPPINGS) {
+            if (matchesStatus(normalizedStatus, statusType)) {
+                counts[statusType]++;
+                break; // Keine Mehrfachzählung
             }
-        }
-
-        // Allgemeines Fälligkeitsdatum
-        if (task.DueDate) {
-            const dueDate = parseDate(task.DueDate);
-            if (!earliestDeadline || dueDate < earliestDeadline) {
-                earliestDeadline = dueDate;
-            }
-        }
-
-        // Feedback Status
-        if (task.Category === 'Feedback' || task.status === 'awaitfeedback') {
-            stats.awaitingFeedback++;
         }
     });
+    
+    return counts;
+}
 
-    stats.upcomingDeadline = earliestDeadline;
+function isUrgentTask(task) {
+    return task.priority && normalizeTaskStatus(task.priority) === 'urgent';
+}
+
+function safeParseDate(dateString) {
+    try {
+        return dateString ? parseDate(dateString) : null;
+    } catch {
+        return null;
+    }
+}
+
+function findNextUrgentTask(urgentTasks) {
+    return urgentTasks.reduce((closest, task) => {
+        const taskDate = safeParseDate(task.dueDate);
+        const closestDate = closest ? safeParseDate(closest.dueDate) : null;
+        
+        return (taskDate && (!closestDate || taskDate < closestDate)) 
+            ? task 
+            : closest;
+    }, null);
+}
+
+function analyzeUrgentTasks(tasks) {
+    const urgentTasks = tasks.filter(isUrgentTask);
+    
+    return {
+        urgentCount: urgentTasks.length,
+        nextUrgent: findNextUrgentTask(urgentTasks)
+    };
+}
+
+function logTaskDebugInfo(tasks) {
+    console.log("Alle Task-Status vor der Verarbeitung:");
+    tasks.forEach(task => {
+        console.log(`Task "${task.title}": ` + 
+                   `Original Status = "${task.status}", ` +
+                   `Normalisiert = "${normalizeTaskStatus(task.status)}"`);
+    });
+}
+
+function calculateTaskStats(tasks) {
+    logTaskDebugInfo(tasks);
+    
+    const statusCounts = countStatusOccurrences(tasks);
+    const { urgentCount, nextUrgent } = analyzeUrgentTasks(tasks);
+    
+    const stats = {
+        ...statusCounts,
+        urgent: urgentCount,
+        upcomingDeadline: nextUrgent?.dueDate || null,
+        nextUrgentTask: nextUrgent,
+        totalTasks: tasks.length
+    };
+
+    console.log("Finale Statistiken:", stats);
     return stats;
 }
 
 function parseDate(dateString) {
-    const [day, month, year] = dateString.split('-').map(Number);
+    if (!dateString) return null;
+    const [day, month, year] = dateString.split('/').map(Number);
     return new Date(year, month - 1, day);
 }
 
-function updateSummaryUI(stats) {
-    // To-Do und Done
-    const todoColumn = document.getElementById('summary_todo_container').querySelector('.summary_column');
-    todoColumn.innerHTML = `
-        <span class="summary_number">${stats.todo}</span>
-        <span class="summary_text">To-do</span>
+function updateStatCard(containerId, value, label) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = `
+        <span class="summary_number">${value}</span>
+        <span class="summary_text">${label}</span>
     `;
+}
 
-    const doneColumn = document.getElementById('summary_done_container').querySelector('.summary_column');
-    doneColumn.innerHTML = `
-        <span class="summary_number">${stats.done}</span>
-        <span class="summary_text">Done</span>
-    `;
-
-    // Urgent und Deadline
-    const urgentColumn = document.getElementById('summary_importance_container');
-    urgentColumn.innerHTML = `
+function updateUrgentCard(urgentCount) {
+    const container = document.getElementById('summary_importance_container');
+    if (!container) return;
+    
+    container.innerHTML = `
         <div class="priority-icon-container">
-            <img src="../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg" alt="priority icon" class="priority-icon">
+            <img src="../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg" 
+                 alt="priority icon" class="priority-icon">
         </div>
         <div class="summary_column">
-            <span class="summary_number">${stats.urgent}</span>
+            <span class="summary_number">${urgentCount}</span>
             <span class="summary_text">Urgent</span>
         </div>
     `;
+}
+
+function updateDeadlineCard(nextUrgentTask) {
+    const container = document.getElementById('summary_deadline_container');
+    if (!container) return;
     
-    const deadlineText = stats.nextUrgentTask && stats.nextUrgentTask.DueDate 
-        ? formatDate(parseDate(stats.nextUrgentTask.DueDate))
+    const deadlineText = nextUrgentTask?.dueDate 
+        ? formatDate(parseDate(nextUrgentTask.dueDate))
         : 'No urgent deadlines';
-    const deadlineColumn = document.getElementById('summary_deadline_container');
-    deadlineColumn.innerHTML = `
+    
+    container.innerHTML = `
         <span class="summary_date">${deadlineText}</span>
         <span class="summary_text">Upcoming Deadline</span>
     `;
+}
 
-    // Board Stats
-    const tasksColumn = document.getElementById('summary_tasks_board_container');
-    tasksColumn.innerHTML = `
-        <span class="summary_number">${stats.totalTasks}</span>
-        <span class="summary_text">Tasks in Board</span>
-    `;
-
-    const progressColumn = document.getElementById('summary_tasks_progress_container');
-    progressColumn.innerHTML = `
-        <span class="summary_number">${stats.inProgress}</span>
-        <span class="summary_text">Tasks In Progress</span>
-    `;
-
-    const feedbackColumn = document.getElementById('summary_await_feedback_container');
-    feedbackColumn.innerHTML = `
-        <span class="summary_number">${stats.awaitingFeedback}</span>
-        <span class="summary_text">Awaiting Feedback</span>
-    `;
+function updateSummaryUI(stats) {
+    // Einfache Statistik-Karten
+    updateStatCard('summary_todo_container', stats.todo, 'To-do');
+    updateStatCard('summary_done_container', stats.done, 'Done');
+    updateStatCard('summary_tasks_board_container', stats.totalTasks, 'Tasks in Board');
+    updateStatCard('summary_tasks_progress_container', stats.inProgress, 'Tasks In Progress');
+    updateStatCard('summary_await_feedback_container', stats.awaitingFeedback, 'Awaiting Feedback');
+    
+    // Spezialkarten
+    updateUrgentCard(stats.urgent);
+    updateDeadlineCard(stats.nextUrgentTask);
 }
 
 function formatDate(date) {
@@ -243,4 +294,34 @@ function showNotification(message) {
     setTimeout(() => {
         notification.remove();
     }, 3000);
+}
+
+function getClickableContainerIds() {
+    return [
+        'summary_todo_container',
+        'summary_done_container',
+        'summary_section2_container',
+        'summary_tasks_board_container',
+        'summary_tasks_progress_container',
+        'summary_await_feedback_container'
+    ];
+}
+
+function makeContainerClickable(containerElement) {
+    if (!containerElement) return;
+    
+    containerElement.classList.add('clickable-container');
+    containerElement.addEventListener('click', navigateToBoard);
+}
+
+function navigateToBoard() {
+    window.location.href = '../board/board.html';
+}
+
+function makeContainersClickable() {
+    getClickableContainerIds().forEach(containerId => {
+        const container = document.getElementById(containerId) || 
+                         document.querySelector(`.${containerId}`);
+        makeContainerClickable(container);
+    });
 }

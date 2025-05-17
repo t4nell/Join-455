@@ -300,3 +300,9 @@ padding: 20px;
 .pen_img:hover {
   filter: brightness(0) saturate(100%) invert(15%) sepia(20%) saturate(863%) hue-rotate(182deg) brightness(97%) contrast(95%);
 }
+
+.clickable-container {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
