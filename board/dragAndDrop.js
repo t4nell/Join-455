@@ -23,13 +23,12 @@ function handleDrop(event) {
 async function moveTo(taskId, targetStatus) {
     const taskIndex = allTasks.findIndex(task => task.id === taskId);
     if (taskIndex === -1) return;
-    allTasks[taskIndex].status = targetStatus;
+    const updatedTask = allTasks[taskIndex];
+    updatedTask.status = targetStatus;
     try {
         const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                status: targetStatus
-            }),
+            method: 'PUT',
+            body: JSON.stringify(updatedTask),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -38,6 +37,6 @@ async function moveTo(taskId, targetStatus) {
         renderColumns();
     } catch (error) {
         console.error('Fehler beim Verschieben des Tasks:', error);
-    };
-};
+    }
+}
 

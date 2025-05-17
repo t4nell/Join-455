@@ -90,7 +90,6 @@
 .avatar {
     width: 32px;
     height: 32px;
-    background: #0052ff;
     border: 1px solid var(--avatar-border-color);
     border-radius: 50%;
     display: flex;
