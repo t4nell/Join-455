@@ -215,7 +215,7 @@ function getContactListTemplate(letter, groupedContacts) {
       </div>`
 }
 
-function getCurrenUserTemplate(currentUser, currentUserInitials) {
+function getCurrentUserTemplate(currentUser, currentUserInitials) {
   
   return `<div class="letter_index"">
                               User
