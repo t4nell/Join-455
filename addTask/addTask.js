@@ -138,7 +138,7 @@ function clearTasks() {
 
 function validateRequiredFields() {
     const titleValid = validateTitleField();
-    const dateValid = validateDateField();
+    const dateValid = validateDueDateField();
     const categoryValid = validateCategoryField();
 
     if (titleValid && dateValid && categoryValid) {
