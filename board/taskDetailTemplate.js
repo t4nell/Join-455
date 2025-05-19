@@ -86,3 +86,13 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
         checkbox.checked = !checkbox.checked;
     }
 };
+
+async function openEditTask(taskId) {
+    const task = allTasks.find(task => task.id === taskId);
+    if (task) {
+        const taskDetailCard = document.querySelector('.task_detail_card');
+        taskDetailCard.innerHTML = getEditTaskTemplate(task);
+        loadContactsToAssigned();
+        switchBtnPriority(task.priority);
+    }
+}
