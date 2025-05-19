@@ -30,9 +30,8 @@ function eventBubbling(event) {
 
 function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
-    
     return Object.entries(assignedTo)
-        .map(([name, isAssigned]) => {
+        .map(([name, isAssigned,]) => {
             if (isAssigned) {
                 const initials = name.split(' ')
                     .map(part => part.charAt(0).toUpperCase())
@@ -50,7 +49,6 @@ function renderAssignedContacts(assignedTo) {
 
 function renderSubtasksList(subtasks, taskId) {
     if (!subtasks) return '';
-    
     return Object.entries(subtasks).map(([key, subtask]) => `
         <div class="subtask_item">
             <div class="subtask_background">
@@ -70,7 +68,7 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
     task.subtasks[subtaskKey].done = checkbox.checked;
     try {
         const response = await fetch(`${BASE_URL}addTask/${taskId}/subtasks/${subtaskKey}.json`, {
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify({
                 done: checkbox.checked
             }),

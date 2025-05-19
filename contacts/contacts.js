@@ -10,6 +10,7 @@ const currentUserInitials = currentUser.name.split(" ").map((part) => part.charA
 async function contactInit() {
   renderHeader();
   renderSidebar();
+  updateUserProfile()
   loadCurrentUser();
   await loadContactData();
   // groupContacts();

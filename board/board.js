@@ -53,22 +53,3 @@ function renderColumns() {
     renderAllTaskCards(allTasks, "awaitFeedback", dragAreaAwaitFeedback);
     renderAllTaskCards(allTasks, "done", dragAreaDone);
 };
-
-
-
-
-// window.onload = async function() {
-//     try {
-//         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-//         if (!currentUser) {
-//             window.location.href = '../index.html';
-//             return;
-//         }
-
-//           renderSidebar()
-//           renderHeader()
-//           updateUserProfile()
-//     } catch (error) {
-//         console.error("Error initializing board:", error);
-//     }
-// };
