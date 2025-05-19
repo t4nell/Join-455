@@ -141,6 +141,7 @@
 .subtask_item {
     font-size: 16px;
     padding-left: 16px;
+    border-radius: 10px;
 }
 
 .subtask_background {
@@ -153,11 +154,12 @@
     width: fit-content;
 }
 
-.subtask_background:hover {
+.subtask_item:hover {
     background-color: #eeeeee;
+    border-radius: 10px;
 }
 
-input[type="checkbox"] {
+.subtask_chbox {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -171,17 +173,17 @@ input[type="checkbox"] {
     background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
 }
 
-input[type="checkbox"]:hover {
+.subtask_chbox:hover {
     background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
     background-color: var(--checkbox-hover-bg);
     border-radius: 100%;
 }
 
-input[type="checkbox"]:checked {
+.subtask_chbox:checked {
     background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
 }
 
-input[type="checkbox"]:checked:hover {
+.subtask_chbox:checked:hover {
     background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
     background-color: var(--checkbox-checked-hover-bg);
 }

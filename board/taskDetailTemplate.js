@@ -55,7 +55,7 @@ function renderSubtasksList(subtasks, taskId) {
     return Object.entries(subtasks).map(([key, subtask]) => `
         <div class="subtask_item">
             <div class="subtask_background">
-                <input type="checkbox" 
+                <input type="checkbox" class= "subtask_chbox"
                        id="subtask_${key}" 
                        ${subtask.done ? 'checked' : ''} 
                        onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">

@@ -3,6 +3,8 @@
     --medium-priority-btn-color-activ: #ffa800;
     --low-priority-btn-color-activ: #7ae229;
     --hover-color-assigned-dropdown: #091931;
+    --checkbox-hover-background_color:#eeeeee;
+    --checkbox-active-hover-background_color:#2A3647;
 }
 
 .input_titel_group {
@@ -404,12 +406,16 @@
 }
 
 .dropdown_item:hover {
-    background-color: var(--hover-color-assigned-dropdown);
+    background-color: var(--checkbox-hover-background_color);
     border-radius: 10px;
 }
 
-.dropdown_item.active {
+.dropdown_item.active:hover{
     background-color: var(--hover-color-assigned-dropdown);
+}
+
+.dropdown_item.active {
+    background-color: var(--checkbox-active-hover-background_color);
     color: white;
     border-radius: 10px;
 }
@@ -455,17 +461,12 @@
 
 .assign_dropdown_input:hover {
     background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
-    background-color: var(--checkbox-hover-bg);
+    background-color: var(--checkbox-hover-background_color);
     border-radius: 100%;
 }
 
 .assign_dropdown_input:checked {
-    background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
-}
-
-.assign_dropdown_input:checked::after {
-    background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
-    background-color: var(--checkbox-checked-hover-bg);
+    background-image: url('../assets/imgs/boardIcons/CheckButtonChecktWhit.svg');
 }
 
 .profile_icon {
