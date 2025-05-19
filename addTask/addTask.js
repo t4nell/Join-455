@@ -104,7 +104,7 @@ async function postData(path = '', data = {}) {
     return (responseToJson = await response.json());
 }
 
-console.log('----------------Creat Task Button Funktion----------------------');
+console.log('----------------Create Task Button Funktion----------------------');
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
@@ -148,14 +148,14 @@ function validateRequiredFields() {
 
 function validateTitleField() {
     const titleInput = document.getElementById('title');
-    const titleMessage = document.getElementById('required_message_titel');
+    const titleMessage = document.getElementById('required_message_title');
 
     if (!titleInput.value) {
-        titleInput.classList.add('input_titel_required');
+        titleInput.classList.add('input_title_required');
         titleMessage.style.display = 'block';
         return false;
     } else {
-        titleInput.classList.remove('input_titel_required');
+        titleInput.classList.remove('input_title_required');
         titleMessage.style.display = 'none';
         return true;
     }
