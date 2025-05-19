@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: {
             firstDayOfWeek: 1,
         },
+        allowInput: true,
+        altInput: true,
+        altFormat: 'd/m/Y',
     });
 });
 

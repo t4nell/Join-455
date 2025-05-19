@@ -121,6 +121,7 @@ function replaceButtons() {
 function editTextBtn() {
     const newTag = document.getElementById('new_tag_input');
     newTag.focus();
+    removeHoverEffect();
     newTagBtnReplace();
 }
 
