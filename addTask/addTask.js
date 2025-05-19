@@ -126,8 +126,6 @@ function createTask() {
     clearTasks();
 
     document.getElementById('clear_btn').click();
-
-    createTaskBtnDisable();
 }
 
 function clearTasks() {
@@ -138,25 +136,58 @@ function clearTasks() {
     switchBtnPriority('medium');
 }
 
-function createTaskBtnEnable() {
-    const creatTaskBtn = document.getElementById('create_task_btn');
-    const titelInput = document.getElementById('title').value;
-    const dueDate = document.getElementById('due_date').value;
-    const category = document.getElementById('category_dropdown_input').value;
+function validateRequiredFields() {
+    const titleValid = validateTitleField();
+    const dateValid = validateDateField();
+    const categoryValid = validateCategoryField();
 
-    if (titelInput && dueDate && category) {
-        creatTaskBtn.disabled = false;
-    } else {
-        creatTaskBtn.disabled = true;
+    if (titleValid && dateValid && categoryValid) {
+        createTask();
     }
 }
 
-function createTaskBtnDisable() {
-    const creatTaskBtn = document.getElementById('create_task_btn');
-    creatTaskBtn.disabled = true;
+function validateTitleField() {
+    const titleInput = document.getElementById('title');
+    const titleMessage = document.getElementById('required_message_titel');
+
+    if (!titleInput.value) {
+        titleInput.classList.add('input_titel_required');
+        titleMessage.style.display = 'block';
+        return false;
+    } else {
+        titleInput.classList.remove('input_titel_required');
+        titleMessage.style.display = 'none';
+        return true;
+    }
 }
 
-function requiredMassagetoggle() {
-    const requiredMassage = document.getElementById('required_message');
-    requiredMassage.classList.toggle('required');
+function validateDateField() {
+    const dueDateInput = document.getElementById('due_date');
+    const dateMessage = document.getElementById('required_message_due_date');
+
+    if (!dueDateInput.value) {
+        dueDateInput.classList.add('input_date_required');
+        dateMessage.style.display = 'block';
+        return false;
+    } else {
+        dueDateInput.classList.remove('input_date_required');
+        dateMessage.style.display = 'none';
+        return true;
+    }
 }
+
+function validateCategoryField() {
+    const categoryInput = document.getElementById('category_dropdown_input');
+    const categoryMessage = document.getElementById('required_message_category');
+
+    if (!categoryInput.value) {
+        categoryInput.classList.add('category_dropdown_toggle_required');
+        categoryMessage.style.display = 'block';
+        return false;
+    } else {
+        categoryInput.classList.remove('category_dropdown_toggle_required');
+        categoryMessage.style.display = 'none';
+        return true;
+    }
+}
+

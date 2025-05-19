@@ -50,14 +50,13 @@
                         <div class="input_titel_group">
                             <label for="title" class="required_for_label">Titel</label>
                             <input
-                                oninput="createTaskBtnEnable()"
                                 name="title"
                                 id="title"
                                 class="input_titel"
                                 type="text"
                                 required
                                 placeholder="Enter a titel" />
-                            <span id="required_message" class="required_message">This field is required</span>
+                            <span id="required_message_titel" class="required_message">This field is required</span>
                         </div>
                         <div class="textarea_group">
                             <label id="description_label" for="description" class="input-title">Description</label>
@@ -71,7 +70,6 @@
                             <label for="due_date" class="required_for_label">Due date</label>
                             <div class="input_date_container">
                                 <input
-                                    oninput="createTaskBtnEnable()"
                                     name="due_date"
                                     type="text"
                                     id="due_date"
@@ -84,7 +82,7 @@
                                     alt="Calendar Icon"
                                     onclick="openCalendar()" />
                             </div>
-                            <span id="required_message" class="required_message">This field is required</span>
+                            <span id="required_message_due_date" class="required_message">This field is required</span>
                         </div>
                     </section>
 
@@ -181,7 +179,9 @@
                                         <span class="arrow"></span>
                                     </span>
                                 </div>
-                                <span id="required_message" class="required_message">This field is required</span>
+                                <span id="required_message_category" class="required_message"
+                                    >This field is required</span
+                                >
                                 <ul class="category_dropdown_menu" id="category_dropdown_menu"></ul>
                             </div>
                         </div>
@@ -252,8 +252,7 @@
                             id="create_task_btn"
                             type="button"
                             form="add_task_form"
-                            disabled
-                            onclick="createTask()">
+                            onclick="validateRequiredFields()">
                             Create Task
                             <img
                                 class="creat_task_icon"
