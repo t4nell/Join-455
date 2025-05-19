@@ -161,7 +161,7 @@ function getBtnsTemplate() {
                                             />
                                     </button>
                                     <hr class="separator_vertically_subtasks" />
-                                    <button class="confirm_btn" onclick="confirmSubtaskBtn()">
+                                    <button type="button" class="confirm_btn" onclick="confirmSubtaskBtn()">
                                         <img
                                             class="subtasks_icon arrow_bg_hover_color_subtask"
                                             id=""

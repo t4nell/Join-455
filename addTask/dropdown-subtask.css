@@ -181,3 +181,23 @@
     left: 0.5rem;
 }
 
+.btns_position {
+    position: absolute;
+    right: 6px;
+    display: none;
+    align-items: center;
+}
+
+.tag_field:hover .btns_position {
+    display: flex;
+}
+
+.tag_field .btns_position {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tag_field:hover .btns_position {
+    opacity: 1;
+}
+
