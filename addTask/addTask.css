@@ -265,7 +265,8 @@ main {
 
 /* colors */
 :root {
-    --hover-color-assigned-dropdown: #091931;
+    --hover-before-color-assigned-dropdown: #eeeeee;
+    --hover-after-color-assigned-dropdown: #091931;
     --checked-color-assigned-dropdown: #2a3647;
 
     --urgent-priority-btn-color-active: #ff3d00;
