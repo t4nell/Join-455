@@ -161,7 +161,7 @@ function validateTitleField() {
     }
 }
 
-function validateDateField() {
+function validateDueDateField() {
     const dueDateInput = document.getElementById('due_date');
     const dateMessage = document.getElementById('required_message_due_date');
 
