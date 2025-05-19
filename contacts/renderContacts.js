@@ -1,7 +1,7 @@
 function renderContactGroups(groupedContacts) {
   const contactListDiv = document.getElementById("all_contacts_container");
   const sortedLetters = Object.keys(groupedContacts).sort();
-  contactListDiv.innerHTML = "";  // Diese funktion löscht den currentUser
+  contactListDiv.innerHTML = ""; 
   sortedLetters.forEach((letter) => {
     const contactTemplate = getContactListTemplate(letter, groupedContacts);
     contactListDiv.innerHTML += contactTemplate;

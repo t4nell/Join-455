@@ -5,8 +5,7 @@ const overlay = document.getElementById("contact_overlay");
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("");
 
-let contactsArray = [];
-const groupedContacts = {};
+
 
 async function contactInit() {
   renderHeader();
@@ -20,13 +19,6 @@ async function contactInit() {
 //kontakte nach name sortieren
 //kontakte in array speichern
 //kontakte in html rendern
-
-
-
-
-
-
-
 
 
 
@@ -60,7 +52,14 @@ function newContactOverlay() {
   newContactPopup.classList.remove("closed");
 }
 
-function editContactOverlay() {
+function editContactOverlay(contactIndex) {
   overlay.classList.remove("fade_out");
   editContactPopup.classList.remove("closed");
+  // const clickedContact = event.currentTarget
+  const contact = contactsArray[contactIndex]
+  console.log(contact);
+  document.getElementById('edit_name').value = contact.name + " " + contact.surname
+  document.getElementById('edit_mail').value = contact.email
+  document.getElementById('edit_phone').value = contact.phone
+  
 }

@@ -1,3 +1,7 @@
+let contactsArray = [];
+const groupedContacts = {};
+
+
 async function fetchContactData(path = "") {
   try {
     let response = await fetch(BASE_URL + path + ".json");
@@ -11,7 +15,11 @@ async function fetchContactData(path = "") {
 async function loadContactData() {
   await fetchContactData("contact");
   const contactsRef = responseToJson;
-  contactsArray = Object.values(contactsRef);
+  contactsArray = Object.entries(contactsRef).map(([id, contact]) => ({
+    ...contact, id
+  }));
+  console.log(contactsArray);
+  
 groupContacts(contactsArray);
 }
 

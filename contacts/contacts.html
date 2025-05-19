@@ -16,6 +16,7 @@
     <script src="./loadContacts.js" defer></script>
     <script src="./postContact.js" defer></script>
     <script src="./renderContacts.js" defer></script>
+    <script src="./putContact.js" defer></script>
     <!-- <script src="./scripts/userProfil.js" defer></script> -->
     <script src="../scripts/templates.js" defer></script>
     <script src="./contacts.js" defer></script>
@@ -201,26 +202,40 @@
                 alt=""
               />
             </div>
+
+            <form id="edit_contact_form">
             <div class="contact_input_fields">
               <input
                 class="overlay_input name_input_icon"
                 type="text"
                 placeholder="Name"
+                id="edit_name"
+                name="edit_contact_name"
+                required
               />
+              <p class="alert d_none" id="name_alert">*Please enter first-and surname.</p>
               <input
                 class="overlay_input mail_input_icon"
                 type="text"
                 placeholder="Email"
+                id="edit_mail"
+                name="edit_contact_mail"
+                required
               />
+              <p class="alert d_none" id="mail_alert">*Please enter a valid email address.</p>
               <input
                 class="overlay_input phone_input_icon"
                 type="text"
                 placeholder="Phone"
+                id="edit_phone"
+                name="edit_contact_phone"
+                required
               />
+              <p class="alert d_none" id="phone_alert">*Please enter a valid phone number.</p>
             </div>
             <div class="overlay_edit_buttons">
               <button class="delete_contact_btn">Delete</button>
-              <button class="save_contact_btn">
+              <button onclick="saveEditContact(event, contactIndex)" type="submit" form="edit_contact_form" class="save_contact_btn">
                 Save
                 <img
                   src="../assets/imgs/contactIcons/check.svg"
@@ -228,6 +243,8 @@
                 />
               </button>
             </div>
+            </form>
+
           </div>
         </div>
       </div>

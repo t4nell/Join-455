@@ -293,7 +293,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
               </div>
 
               <div class="contact_buttons">
-                <button onclick="editContactOverlay()" class="contact_btn">
+                <button onclick="editContactOverlay(${contactsArray.indexOf(contact)} )" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
                 </button>
                 <button class="contact_btn">
