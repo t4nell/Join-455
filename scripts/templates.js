@@ -126,7 +126,7 @@ function getTaskCard(task) {
             </div>
       <div class="task_footer">
           <div class="assignee_avatars">
-              
+              ${renderAssignedAvatars(task.assignedTo)}
           </div>
           <div class="menu_priority">
               <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">

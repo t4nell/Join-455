@@ -38,5 +38,5 @@ async function moveTo(taskId, targetStatus) {
     } catch (error) {
         console.error('Fehler beim Verschieben des Tasks:', error);
     }
-}
+};
 

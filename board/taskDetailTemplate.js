@@ -31,14 +31,17 @@ function eventBubbling(event) {
 function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-        .map(([name, isAssigned,]) => {
+        .map(([name, isAssigned]) => {
             if (isAssigned) {
                 const initials = name.split(' ')
                     .map(part => part.charAt(0).toUpperCase())
                     .join('');
+                const bgColor = getContactColor(name);
                 return `
                     <div class="contact_badge">
-                        <div class="avatar">${initials}</div>
+                        <div class="avatar" style="background-color: ${bgColor}">
+                            ${initials}
+                        </div>
                         <span>${name}</span>
                     </div>
                 `;
