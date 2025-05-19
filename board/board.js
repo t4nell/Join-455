@@ -15,6 +15,7 @@ async function init() {
     updateUserProfile();
     await loadContactData();
     await loadAddTask();
+    initTaskTemplate();
     renderColumns();
     loadContactsToAssigned();
 };

@@ -2,6 +2,21 @@ const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const selectedUser = document.getElementById('selected_users_group');
 const dropdown = document.getElementById('dropdown');
+
+function initTaskTemplate() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainContainer = document.getElementById('main_container');
+        const templateDiv = document.createElement('div');
+        templateDiv.style.display = 'none';
+        templateDiv.innerHTML = `
+            <form id="add_task_form" class="main_section">
+                <!-- Alle Template-Inhalte hier -->
+            </form>
+        `;
+        mainContainer.appendChild(templateDiv);
+    });
+};
+
 function openCalendar() {
     const calenderInput = document.getElementById('due_date');
     calenderInput.focus();
