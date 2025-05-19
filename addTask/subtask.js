@@ -28,7 +28,7 @@ function disableEditing() {
     input.classList.remove('focus');
 }
 
-function deletTextBtn() {
+function deleteTextBtn() {
     const inputField = document.getElementById('tag_input_field');
     inputField.value = '';
     resetButtons();
@@ -152,7 +152,7 @@ function newTagBtnReplaceTemplate() {
 
 function getBtnsTemplate() {
     return `
-        <button class="delet_text_btn" onclick="deletTextBtn()">
+        <button class="delete_text_btn" onclick="deleteTextBtn()">
                                         <img
                                             class="subtasks_icon arrow_bg_hover_color_subtask"
                                             id=""
