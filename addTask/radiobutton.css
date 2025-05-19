@@ -36,20 +36,20 @@
 }
 
 #prio_urgent:checked + label.btn--red {
-    background-color: var(--urgent-priority-btn-color-activ);
-    border-color: var(--urgent-priority-btn-color-activ);
+    background-color: var(--urgent-priority-btn-color-active);
+    border-color: var(--urgent-priority-btn-color-active);
     color: #fff;
 }
 
 #prio_medium:checked + label.btn--orange {
-    background-color: var(--medium-priority-btn-color-activ);
-    border-color: var(--medium-priority-btn-color-activ);
+    background-color: var(--medium-priority-btn-color-active);
+    border-color: var(--medium-priority-btn-color-active);
     color: #fff;
 }
 
 #prio_low:checked + label.btn--green {
-    background-color: var(--low-priority-btn-color-activ);
-    border-color: var(--low-priority-btn-color-activ);
+    background-color: var(--low-priority-btn-color-active);
+    border-color: var(--low-priority-btn-color-active);
     color: #fff;
 }
 

@@ -36,7 +36,6 @@ function toggleDropdownCategory(event) {
 function selectCategory(category) {
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
-    createTaskBtnEnable();
 }
 
 renderCategories();
