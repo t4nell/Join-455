@@ -11,6 +11,7 @@ const groupedContacts = {};
 async function contactInit() {
   renderHeader();
   renderSidebar();
+  updateUserProfile()
   loadCurrentUser();
   await loadContactData();
   // groupContacts();
