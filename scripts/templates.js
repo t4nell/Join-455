@@ -243,7 +243,7 @@ function getEditTaskTemplate(task) {
                     <ul class="dropdown_menu" id="dropdown_menu"></ul>
                 </div>
             </div>
-            <div id="selected_users_group" class="selected_user_group"></div>
+            <div id="selected_users_group" class="selected_user_group"> ${renderAssignedContactsEdit(task.assignedTo)}</div>
 
       <div class="tag_input_container">
         <label for="tag_input_field">Subtasks</label>
