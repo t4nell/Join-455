@@ -335,13 +335,10 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
             </div>
 
             <div class="contact_buttons">
-              <button onclick="editContactOverlay()" class="contact_btn">
+              <button onclick="editCurrentUserOverlay()" class="contact_btn">
                 <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
               </button>
-              <button class="contact_btn">
-                <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
-                Delete
-              </button>
+
             </div>
           </div>
         </div>
@@ -358,7 +355,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
 
             <div class="contact_phone">
               <span class="contact_category">Phone</span>
-              <span>${currentUser.phone}</span>
+              <span>+49</span>
             </div>
           </div>`
   }
@@ -379,7 +376,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
                 <button onclick="editContactOverlay(${contactsArray.indexOf(contact)} )" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
                 </button>
-                <button class="contact_btn">
+                <button onclick="deleteContact('${contact.id}')" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
                   Delete
                 </button>
@@ -530,5 +527,61 @@ function getEditContactOverlay(contact, index){
             </div>
             </form>
 
+          </div>`
+}
+function getCurrentUserEditOverlay(currentUserInitials){
+  return `                     <div class="overlay_side_img">
+            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+            <div class="overlay_text_container">
+              <span class="overlay_text_left pb_20">Edit Contact</span>
+              <hr class="overlay_separator_horizontal" />
+            </div>
+          </div>
+          <div>
+                <div class="contact_header">
+            <div class="profile_icon_large contact_overlay_img" >
+                            <span>${currentUserInitials}</span>
+                        </div>
+
+            <div class="contact_input_fields">
+              <input
+                class="overlay_input name_input_icon"
+                type="text"
+                placeholder="Name"
+                id="edit_name"
+                name="edit_contact_name"
+                value=""
+                required
+              />
+              <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+              <input
+                class="overlay_input mail_input_icon"
+                type="text"
+                placeholder="Email"
+                id="edit_mail"
+                name="edit_contact_mail"
+                required
+              />
+              <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+              <input
+                class="overlay_input phone_input_icon"
+                type="text"
+                placeholder="Phone"
+                id="edit_phone"
+                name="edit_contact_phone"
+                required
+              />
+              <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
+            </div>
+            <div class="overlay_edit_buttons">
+              <button class="delete_contact_btn">Delete</button>
+              <button onclick="saveCurrentUserInfo()" class="save_contact_btn">
+                Save
+                <img
+                  src="../assets/imgs/contactIcons/check.svg"
+                  alt="create contact button"
+                />
+              </button>
+            </div>
           </div>`
 }
