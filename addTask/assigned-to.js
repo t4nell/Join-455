@@ -2,6 +2,7 @@ const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const selectedUser = document.getElementById('selected_users_group');
+let selectedUsers = [];
 
 function filterContacts() {
     const filter = toggle.value.toLowerCase();
