@@ -1,4 +1,4 @@
-const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/"
+const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
 const mainContainer = document.getElementById("navbar_container");
 const headerContainer = document.getElementById('header_container');
 const overlay = document.getElementById("overlay_background_container");
@@ -8,31 +8,15 @@ const dragAreaInProgress = document.getElementById("drag_area_in_progress");
 const dragAreaAwaitFeedback = document.getElementById("drag_area_await_feedback");
 const dragAreaDone = document.getElementById("drag_area_done");
 let allTasks = [];
-let contactsArray = [];
 
 async function init() {
     renderContent();
     updateUserProfile();
     await loadContactData();
     await loadAddTask();
-    initTaskTemplate();
     renderColumns();
     loadContactsToAssigned();
 };
-
-async function loadContactData(path = '') {
-    try {
-        let response = await fetch(BASE_URL + path + '.json');
-        let responseToJson = await response.json();
-        const contactsRef = responseToJson.contact;
-        const addTask = Object.values(responseToJson.addTask);
-        contactsArray = Object.values(contactsRef);
-        contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    } catch (error) {
-        console.error('Error loading contact data:', error);
-    }
-    loadContactsToAssigned();
-}
 
 /**
  * Rendert die nav und denn Header
@@ -53,6 +37,13 @@ async function loadAddTask(path="") {
     }));    
 };
 
+function renderColumns() {
+    renderAllTaskCards(allTasks, "todo", dragAreaTodo);
+    renderAllTaskCards(allTasks, "inProgress", dragAreaInProgress);
+    renderAllTaskCards(allTasks, "awaitFeedback", dragAreaAwaitFeedback);
+    renderAllTaskCards(allTasks, "done", dragAreaDone);
+};
+
 function renderAllTaskCards(allTasks, state, id) {
     const todos = allTasks.filter(task => task.status === state);
     id.innerHTML = '';
@@ -63,11 +54,4 @@ function renderAllTaskCards(allTasks, state, id) {
     todos.forEach(task => {
         id.innerHTML += getTaskCard(task);
     });
-};
-
-function renderColumns() {
-    renderAllTaskCards(allTasks, "todo", dragAreaTodo);
-    renderAllTaskCards(allTasks, "inProgress", dragAreaInProgress);
-    renderAllTaskCards(allTasks, "awaitFeedback", dragAreaAwaitFeedback);
-    renderAllTaskCards(allTasks, "done", dragAreaDone);
 };

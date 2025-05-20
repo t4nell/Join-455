@@ -92,6 +92,8 @@ async function openEditTask(taskId) {
     if (task) {
         const taskDetailCard = document.querySelector('.task_detail_card');
         taskDetailCard.innerHTML = getEditTaskTemplate(task);
+        initEditTaskVariables();
+        handleClickOutside(event)
         loadContactsToAssigned();
         switchBtnPriority(task.priority);
     }

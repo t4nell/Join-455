@@ -168,18 +168,18 @@ function getDetailTaskCard(task) {
             </div>
         </div>
         <div class="task_detail_subtasks">
-        <span class="detail_label">Subtasks:</span>
-        <div class="subtasks_list">
+          <span class="detail_label">Subtasks:</span>
+          <div class="subtasks_list">
             ${renderSubtasksList(task.subtasks, task.id)}
+          </div>
         </div>
-    </div>
         <div class="task_detail_buttons">
             <button class="delete_btn">
-                <img src="../assets/imgs/contactIcons/delete.svg" alt="delete">
+                <img src="../assets/imgs/boardIcons/delete.svg" alt="delete">
                 Delete
             </button>
             <button class="edit_btn" onclick="openEditTask('${task.id}')">
-                <img src="../assets/imgs/contactIcons/edit.svg" alt="edit">
+                <img src="../assets/imgs/boardIcons/edit.svg" alt="edit">
                 Edit
             </button>
         </div>
@@ -188,7 +188,7 @@ function getDetailTaskCard(task) {
 
 function getEditTaskTemplate(task) {
   return `
-    <form id="add_task_form" class="main_section">
+    
       <div class="main_section_left">
         <div class="input_titel_group">
             <label for="title" class="required_for_label">Title</label>
@@ -205,7 +205,7 @@ function getEditTaskTemplate(task) {
         <label for="due_date" class="required_for_label">Due date</label>
         <div class="input_date_container">
           <input name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
-          <img class="calendar_icon" src="../assets/imgs/addTaskIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
+          <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
         </div>
       </div>
 
@@ -232,18 +232,18 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="assign_to_group">
-        <label for="dropdown_toggle_btn">Assigned to</label>
-        <div class="dropdown" id="dropdown">
-          <div class="dropdown_input_wrapper">
-            <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
-            <div class="arrow_bg_hover_color">
-                <span class="arrow"></span>
+                <label for="dropdown_toggle_btn">Assigned to</label>
+                <div class="dropdown" id="dropdown">
+                    <div class="dropdown_input_wrapper">
+                        <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
+                        <div class="arrow_bg_hover_color">
+                            <span class="arrow"></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown_menu" id="dropdown_menu"></ul>
+                </div>
             </div>
-          </div>
-          <ul class="dropdown_menu" id="dropdown_menu"></ul>
-        </div>
-      </div>
-      <div id="selected_users_group" class="selected_user_group"></div>
+            <div id="selected_users_group" class="selected_user_group"></div>
 
       <div class="tag_input_container">
         <label for="tag_input_field">Subtasks</label>
@@ -251,12 +251,12 @@ function getEditTaskTemplate(task) {
           <input type="text" placeholder="Add new subtask" id="tag_input_field" onclick="replaceButtons()" onkeydown="onKeyDownEnter(event)"/>
           <div class="subtask_btn_container" id="subtask_btn_container">
             <button class="plus_btn" onclick="replaceButtons()">
-              <img class="subtasks_icon arrow_bg_hover_color_subtask" src="../assets/imgs/addTaskIcons/subtasksPlusIcon.svg" alt="New Button Icon"/>
+              <img class="subtasks_icon arrow_bg_hover_color_subtask" src="../assets/imgs/boardIcons/subtasksPlusIcon.svg" alt="New Button Icon"/>
             </button>
           </div>
         </div>
         <div class="new_tag_container" id="new_tag_container">
-          ${task.subtasks}
+          
         </div>
       </div>
 
@@ -265,7 +265,7 @@ function getEditTaskTemplate(task) {
           Save
         </button>
       </div>
-    </form>
+    
   `;
 }
 
