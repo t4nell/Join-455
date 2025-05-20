@@ -18,7 +18,7 @@ function onKeyDownEnter(event) {
 function enableEditing() {
     const input = document.getElementById('new_tag_input');
     input.removeAttribute('readonly');
-    // input.focus();
+    input.focus();
     input.classList.add('focus');
 }
 
@@ -53,7 +53,7 @@ function resetButtons() {
                 class="subtasks_icon arrow_bg_hover_color_subtask"
                 src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
                 alt="New Button Icon"
-               />
+            />
         </button>
     `;
 }
@@ -80,7 +80,7 @@ function getNewTagTemplate(value) {
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                       /></button>
+                                    /></button>
         </div>
     </div>
     `;
@@ -92,8 +92,8 @@ function newTagDefaultBtns() {
 }
 
 function newTagDefaultBtnsTemplate() {
-    return `
-            <button class="edit_text_btn" onclick="editTextBtn()"><img
+    return ` <div class="btns_position" id='new_tag_btn_container'>
+            <button class="edit_text_btn" onclick="editTextBtn(event)"><img
                                         class="subtasks_icon"
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
@@ -105,9 +105,8 @@ function newTagDefaultBtnsTemplate() {
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                         /></button>
+                                        /></button>
         </div>
-    </div>
     `;
 }
 
@@ -120,6 +119,7 @@ function replaceButtons() {
 
 function editTextBtn(event) {
     event.stopPropagation();
+    event.preventDefault();
     const newTag = document.getElementById('new_tag_input');
     newTag.focus();
     newTagBtnReplace();
@@ -138,7 +138,7 @@ function newTagBtnReplaceTemplate() {
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
-                                         /></button>
+                                        /></button>
             <hr class="separator_vertically_subtasks" />
             <button class="trash_btn" onclick="newTagDefaultBtns()"><img
                                         class="subtasks_icon"
@@ -147,7 +147,6 @@ function newTagBtnReplaceTemplate() {
                                         alt="Icon"
                                         /></button>
         </div>
-    </div>
     `;
 }
 
@@ -168,7 +167,7 @@ function getBtnsTemplate() {
                                             id=""
                                             src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                             alt="Icon"
-                                           />
+                                        />
                                     </button>
         `;
 }
