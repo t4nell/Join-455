@@ -68,7 +68,7 @@ function getNewTagTemplate(value) {
     <div class="tag_field" id='tag_field'>
     <input name="subtasks" class="new_tag_input" id='new_tag_input' type="text" ondblclick="enableEditing()" onblur="disableEditing()" value="${value}" readonly />
         <div class="btns_position" id='new_tag_btn_container'>
-            <button class="edit_text_btn" onclick="editTextBtn()"><img
+            <button class="edit_text_btn" onclick="editTextBtn(event)"><img
                                         class="subtasks_icon"
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
@@ -118,7 +118,8 @@ function replaceButtons() {
     inputField.focus();
 }
 
-function editTextBtn() {
+function editTextBtn(event) {
+    event.stopPropagation();
     const newTag = document.getElementById('new_tag_input');
     newTag.focus();
     removeHoverEffect();

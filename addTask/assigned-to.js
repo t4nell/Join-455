@@ -3,10 +3,31 @@ const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const selectedUser = document.getElementById('selected_users_group');
 
+function filterContacts() {
+    const filter = toggle.value.toLowerCase();
+    menu.innerHTML = '';
+    let found = false;
+
+    contactsArray.forEach((contact, index) => {
+        const fullName = `${contact.name} ${contact.surname}`.toLowerCase();
+        if (fullName.includes(filter)) {
+            menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
+            found = true;
+        }
+    });
+
+    if (!found) {
+        menu.innerHTML =
+            '<li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>';
+    }
+}
+
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
+    toggle.value = '';
+    // loadContactsToAssigned();
 }
 
 function toggleBackground(index) {
@@ -18,6 +39,8 @@ document.onclick = function (event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
+        toggle.value = '';
+        // loadContactsToAssigned();
     }
 };
 
@@ -108,5 +131,23 @@ function addSelectedUserIconTemplate(index, bgColor, initials) {
     </div>
     </div>
   </div>`;
+}
+
+function clearSelection() {
+    contactsArray.forEach((box, index) => {
+        const checkbox = document.getElementById(`users_checkbox_${index}`);
+        if (checkbox) {
+            checkbox.checked = false;
+            removeActiveBG();
+        }
+    });
+}
+
+function removeActiveBG() {
+    const items = document.getElementsByClassName('dropdown_item');
+    for (let i = 0; i < items.length; i++) {
+        items[i].classList.remove('active');
+    }
+    loadContactsToAssigned();
 }
 

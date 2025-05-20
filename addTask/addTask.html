@@ -15,8 +15,12 @@
         <link rel="stylesheet" href="./addTask-error-massage.css" />
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css"
+            defer />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
@@ -144,6 +148,7 @@
                             <div class="dropdown" id="dropdown">
                                 <div class="dropdown_input_wrapper">
                                     <input
+                                        oninput="filterContacts()"
                                         onclick="toggleDropdownAssigned(event)"
                                         type="text"
                                         id="dropdown_toggle_btn"

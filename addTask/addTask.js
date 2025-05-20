@@ -5,22 +5,17 @@ function renderSidebar() {
     initFetch();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
-        minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-        allowInput: true,
-        altInput: true,
-        altFormat: 'd/m/Y',
-    });
+const dueDatePicker = flatpickr('#due_date', {
+    dateFormat: 'd/m/Y',
+    minDate: 'today',
+    locale: { firstDayOfWeek: 1 },
+    allowInput: true,
+    altInput: true,
+    altFormat: 'd/m/Y',
 });
 
 function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
+    dueDatePicker.open();
 }
 
 function renderHeader() {
@@ -136,6 +131,7 @@ function clearTasks() {
     document.getElementById('selected_users_group').innerHTML = '';
     document.getElementById('prio_medium').checked = true;
 
+    clearSelection();
     switchBtnPriority('medium');
 }
 
