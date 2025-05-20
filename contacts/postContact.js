@@ -40,7 +40,7 @@ async function postContactData(path = "", data = {}, email) {
     body: JSON.stringify(data),
   });
   if (response.ok) {
-    closeNewContactOverlay(email)
+    closeNewContactProcess(email)
     return (responseToJson = await response.json());
   } else {
     console.error("Error posting contact data:", response.statusText);
@@ -111,7 +111,7 @@ function checkEmailAlreadyExists(email) {
     return true;
 }};
 
-async function closeNewContactOverlay(mail) {
+async function closeNewContactProcess(mail) {
   toggleOverlay();
   const savedContactNotification = document.getElementById('contact_notification');
   savedContactNotification.innerHTML = `<p>Contact successfully created</p>`;

@@ -53,7 +53,7 @@ async function putContactData(path = "", data = {}, contactId) {
     body: JSON.stringify(data),
   });
   if (response.ok) {
-    closeEditContactOverlay(contactId)
+    closeEditContactProcess(contactId)
     return (responseToJson = await response.json());
   } else {
     console.error("Error posting contact data:", response.statusText);
@@ -73,7 +73,7 @@ function checkEditEmailAlreadyExists(email, currentContact) {
     return true;
 }};
 
-async function closeEditContactOverlay(contactId) {
+async function closeEditContactProcess(contactId) {
   toggleOverlay();
   const editContactNotification = document.getElementById('contact_notification');
   editContactNotification.innerHTML = `<p>Contact successfully edited</p>`;
