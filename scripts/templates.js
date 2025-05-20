@@ -197,7 +197,7 @@ function getContactListTemplate(letter, groupedContacts) {
           </div>
           <div class="contacts_container" >
               ${groupedContacts[letter].map((contact, index) => `
-                  <div class="contact_side" id="${index}" onclick="handleContactClick(event, ${contactsArray.indexOf(contact)})">                        
+                  <div class="contact_side" data-email="${contact.email}" id="${index}" onclick="handleContactClick(event, ${contactsArray.indexOf(contact)})">                        
                   <div class="profile_icon_mini" style="background-color: ${contact.color}">
                           <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
                       </div>
@@ -321,3 +321,131 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
           </div>
         </div>`
   }
+
+function getNewContactOverlay(){
+  return `          <div class="overlay_side_img">
+            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+            <div class="overlay_text_container">
+              <span class="overlay_text_left">Add Contact</span>
+              <span class="overlay_phrase_left pb_20"
+                >Tasks are better with a Team!</span
+              >
+              <hr class="overlay_separator_horizontal" />
+            </div>
+          </div>
+          <div>
+            <div class="contact_overlay_img">
+              <img
+                src="../assets/imgs/contactIcons/defaultProfileImg.svg"
+                alt=""
+              />
+            </div>
+
+            <form id="new_contact_form" >
+            <div class="contact_input_fields">
+              <input
+                class="overlay_input name_input_icon"
+                id="new_contact_name"
+                name="new_contact_name"
+                type="text"
+                placeholder="Name"
+                required
+              />
+              <p class="alert d_none" id="name_alert">*Please enter first-and surname.</p>
+              <input
+                class="overlay_input mail_input_icon"
+                id="new_contact_email"
+                name="new_contact_email"
+                type="email"
+                placeholder="Email"
+                required
+              />
+              <p class="alert d_none" id="mail_alert">*Please enter a valid email address.</p>
+              <input
+                class="overlay_input phone_input_icon"
+                id="new_contact_phone"
+                name="new_contact_phone"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="Phone"
+                required
+              />
+              <p class="alert d_none" id="phone_alert">*Please enter a valid phone number.</p>
+            </div>
+            <div class="overlay_buttons">
+              <button onclick="toggleOverlay()" class="cancel_btn">
+                Cancel
+                <img
+                  src="../assets/imgs/contactIcons/iconoir_cancel.svg"
+                  alt="cancel button"
+                />
+              </button>
+              <button onclick="createNewContact(event)" type="submit" form="add_contact_form" class="create_contact_btn">
+                Create Contact
+                <img
+                  src="../assets/imgs/contactIcons/check.svg"
+                  alt="create contact button"
+                />
+              </button>
+              </form>
+            </div>`
+}
+
+function getEditContactOverlay(contact, index){
+  return `                     <div class="overlay_side_img">
+            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+            <div class="overlay_text_container">
+              <span class="overlay_text_left pb_20">Edit Contact</span>
+              <hr class="overlay_separator_horizontal" />
+            </div>
+          </div>
+          <div>
+                <div class="contact_header">
+            <div class="profile_icon_large contact_overlay_img" style="background-color: ${contact.color}">
+                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
+                        </div>
+
+            <form id="edit_contact_form" data-index="${index}" onsubmit="saveEditContact(event)">
+            <div class="contact_input_fields">
+              <input
+                class="overlay_input name_input_icon"
+                type="text"
+                placeholder="Name"
+                id="edit_name"
+                name="edit_contact_name"
+                required
+              />
+              <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+              <input
+                class="overlay_input mail_input_icon"
+                type="text"
+                placeholder="Email"
+                id="edit_mail"
+                name="edit_contact_mail"
+                required
+              />
+              <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+              <input
+                class="overlay_input phone_input_icon"
+                type="text"
+                placeholder="Phone"
+                id="edit_phone"
+                name="edit_contact_phone"
+                required
+              />
+              <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
+            </div>
+            <div class="overlay_edit_buttons">
+              <button class="delete_contact_btn">Delete</button>
+              <button  type="submit" form="edit_contact_form" class="save_contact_btn">
+                Save
+                <img
+                  src="../assets/imgs/contactIcons/check.svg"
+                  alt="create contact button"
+                />
+              </button>
+            </div>
+            </form>
+
+          </div>`
+}

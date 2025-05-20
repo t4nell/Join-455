@@ -207,15 +207,18 @@
   font-size: 13px;
 }
 
-#name_alert{
+#name_alert, #edit_name_alert{
   top: 43px;
 }
-#mail_alert{
+#mail_alert, #edit_mail_alert{
   top: 126px;
 }
-#phone_alert{
+#phone_alert, #edit_phone_alert{
   top: 210px
 }
+
+
+
 
 .contact_save_message{
   background-color: var(--active-contact-color);

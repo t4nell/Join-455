@@ -51,13 +51,16 @@ function eventBubbling(event) {
 function newContactOverlay() {
   overlay.classList.remove("fade_out");
   newContactPopup.classList.remove("closed");
+  newContactPopup.innerHTML = getNewContactOverlay();
 }
 
 function editContactOverlay(contactIndex) {
   overlay.classList.remove("fade_out");
   editContactPopup.classList.remove("closed");
+
   // const clickedContact = event.currentTarget
   const contact = contactsArray[contactIndex]
+  editContactPopup.innerHTML = getEditContactOverlay(contact, contactIndex);
   console.log(contact);
   document.getElementById('edit_name').value = contact.name + " " + contact.surname
   document.getElementById('edit_mail').value = contact.email

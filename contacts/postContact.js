@@ -1,31 +1,14 @@
 function createNewContact(event) {
   event.preventDefault();
-  const form = document.getElementById("add_contact_form");
-  const contactData = collectContactData(form);
+  const contactData = collectContactData();
 
-  console.log(contactData);
-  if (collectContactData()) {
-    postContactData("contact", contactData);
-   }else{
+  console.log(contactData.name);
+  if (contactData) {
+    postContactData("contact", contactData, contactData.email);
     return;
    }
 }
 
-async function postContactData(path = "", data = {}) {
-  let response = await fetch(BASE_URL + path + ".json", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  if (response.ok) {
-    closeNewContactOverlay()
-    return (responseToJson = await response.json());
-  } else {
-    console.error("Error posting contact data:", response.statusText);
-  }
-  }
 
 function collectContactData() {
   const form = document.getElementById("new_contact_form");
@@ -41,19 +24,34 @@ function collectContactData() {
     phone: fd.get("new_contact_phone"),
     color: randomContactColor
   };
-  if (checkIfValid(contact, fullName) && checkEmailAlreadyExists(contact.email)) {
+  if (checkIfValid(contact, fullName, "") && checkEmailAlreadyExists(contact.email)) {
     return contact;
   }else{
-   return;
+    return;
   }
 }
 
+async function postContactData(path = "", data = {}, email) {
+  let response = await fetch(BASE_URL + path + ".json", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (response.ok) {
+    closeNewContactOverlay(email)
+    return (responseToJson = await response.json());
+  } else {
+    console.error("Error posting contact data:", response.statusText);
+  }
+  }
 
 
-function checkIfValid(contact, fullName){
-  const isNameValid = validateName(fullName);
-  const isEmailValid = validateEmail(contact.email);
-  const isPhoneValid = validatePhone(contact.phone);
+function checkIfValid(contact, fullName, isEdit){
+  const isNameValid = validateName(fullName, isEdit);
+  const isEmailValid = validateEmail(contact.email, isEdit);
+  const isPhoneValid = validatePhone(contact.phone, isEdit);
   
   if (isNameValid && isEmailValid && isPhoneValid) {
   return true;
@@ -62,8 +60,8 @@ function checkIfValid(contact, fullName){
   }
 }
 
-function validateName(fullName) {
-  const alertName = document.getElementById("name_alert");
+function validateName(fullName, isEdit) {
+  const alertName = document.getElementById(isEdit + "name_alert");
   const namePattern = /^[a-zA-ZäöüÄÖÜß]+$/;
   const isValid =
     fullName.length >= 2 && fullName.every((name) => namePattern.test(name));
@@ -76,8 +74,8 @@ function validateName(fullName) {
   }
 }
 
-function validateEmail(email) {
-  const alertEmail = document.getElementById("mail_alert");
+function validateEmail(email, isEdit) {
+  const alertEmail = document.getElementById(isEdit + "mail_alert");
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isValid = email.trim() && emailPattern.test(email);
   if (isValid) {
@@ -89,8 +87,8 @@ function validateEmail(email) {
   }
 }
 
-function validatePhone(phone) {
-  const alertPhone = document.getElementById("phone_alert");
+function validatePhone(phone, isEdit) {
+  const alertPhone = document.getElementById(isEdit + "phone_alert");
   const phonePattern = /^\+?[0-9\s\-()]+$/;
   const isValid = phonePattern.test(phone);
   if (isValid) {
@@ -113,17 +111,31 @@ function checkEmailAlreadyExists(email) {
     return true;
 }};
 
-function closeNewContactOverlay() {
+async function closeNewContactOverlay(mail) {
   toggleOverlay();
-  document.getElementById('contact_save_message').classList.remove('closed');
+  const savedContactNotification = document.getElementById('contact_notification');
+  savedContactNotification.innerHTML = `<p>Contact successfully created</p>`;
+  savedContactNotification.classList.remove('closed');
   resetInputFields();
   clearGroupedContacts();
-  loadContactData();
+  await loadContactData();
+  showNewContact(mail);
   // groupContacts();
   setTimeout(() => {
-    document.getElementById('contact_save_message').classList.add('closed');
+    document.getElementById('contact_notification').classList.add('closed');
   }, 3000);
 }
 
-
+function showNewContact(email){
+  const allContacts = document.querySelectorAll(".contact_side")
+  const contactDetailsContainer = document.getElementById("contact_detail_container");
+  const newContactDiv = document.querySelector(`.contact_side[data-email="${email}"]`);
+  const contact = contactsArray.find(contact => contact.email === email);
+    if (contact){
+      allContacts.forEach((contact) => {contact.classList.remove("active")});
+      newContactDiv.classList.add("active")
+      contactDetailsContainer.classList.remove("closed") ;
+      contactDetailsContainer.innerHTML = getContactDetailsTemplate(contact);
+    }
+}
 
