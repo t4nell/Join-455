@@ -11,7 +11,6 @@ async function loadContactData(path = '') {
         let response = await fetch(BASE_URL + path + '.json');
         let responseToJson = await response.json();
         const contactsRef = responseToJson.contact;
-        // const addTask = responseToJson.addTask;
         const addTask = Object.values(responseToJson.addTask);
         console.log(addTask);
         console.log(addTask[0].category);

@@ -32,7 +32,7 @@ main {
     box-sizing: border-box;
 }
 
-.input_titel_group {
+.input_title_group {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
@@ -43,7 +43,7 @@ main {
     color: #e00;
 }
 
-.input_titel {
+.input_title {
     margin-top: 8px;
     padding-left: 16px;
     border: solid 1px;
@@ -154,7 +154,7 @@ main {
     padding: 0 16px 0 16px;
     margin-top: 8px;
 }
-.creat_task {
+.create_task {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -243,7 +243,7 @@ main {
     display: none;
 }
 
-.input_titel:focus {
+.input_title:focus {
     outline: none;
     border-color: #2684ff;
 }
@@ -265,12 +265,13 @@ main {
 
 /* colors */
 :root {
-    --hover-color-assigned-dropdown: #091931;
+    --hover-before-color-assigned-dropdown: #eeeeee;
+    --hover-after-color-assigned-dropdown: #091931;
     --checked-color-assigned-dropdown: #2a3647;
 
-    --urgent-priority-btn-color-activ: #ff3d00;
-    --medium-priority-btn-color-activ: #ffa800;
-    --low-priority-btn-color-activ: #7ae229;
+    --urgent-priority-btn-color-active: #ff3d00;
+    --medium-priority-btn-color-active: #ffa800;
+    --low-priority-btn-color-active: #7ae229;
 
     --category-dropdown-background-color: #f0f0f0;
 

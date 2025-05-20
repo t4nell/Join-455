@@ -15,8 +15,12 @@
         <link rel="stylesheet" href="./addTask-error-massage.css" />
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="shortcut icon" href="./assets/imgs/Capa 2.svg" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css"
+            defer />
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
@@ -47,17 +51,15 @@
 
                 <form id="add_task_form" class="main_section">
                     <section class="main_section_left">
-                        <div class="input_titel_group">
-                            <label for="title" class="required_for_label">Titel</label>
+                        <div class="input_title_group">
+                            <label for="title" class="required_for_label">Title</label>
                             <input
-                                oninput="createTaskBtnEnable()"
                                 name="title"
                                 id="title"
-                                class="input_titel"
+                                class="input_title"
                                 type="text"
-                                required
-                                placeholder="Enter a titel" />
-                            <span id="required_message" class="required_message">This field is required</span>
+                                placeholder="Enter a title" />
+                            <span id="required_message_title" class="required_message">This field is required</span>
                         </div>
                         <div class="textarea_group">
                             <label id="description_label" for="description" class="input-title">Description</label>
@@ -71,7 +73,6 @@
                             <label for="due_date" class="required_for_label">Due date</label>
                             <div class="input_date_container">
                                 <input
-                                    oninput="createTaskBtnEnable()"
                                     name="due_date"
                                     type="text"
                                     id="due_date"
@@ -84,7 +85,7 @@
                                     alt="Calendar Icon"
                                     onclick="openCalendar()" />
                             </div>
-                            <span id="required_message" class="required_message">This field is required</span>
+                            <span id="required_message_due_date" class="required_message">This field is required</span>
                         </div>
                     </section>
 
@@ -147,12 +148,12 @@
                             <div class="dropdown" id="dropdown">
                                 <div class="dropdown_input_wrapper">
                                     <input
+                                        oninput="filterContacts()"
                                         onclick="toggleDropdownAssigned(event)"
                                         type="text"
                                         id="dropdown_toggle_btn"
                                         class="dropdown_toggle"
-                                        placeholder="Select contacts to assign"
-                                        readonly />
+                                        placeholder="Select contacts to assign" />
                                     <div class="arrow_bg_hover_color">
                                         <span class="arrow"></span>
                                     </div>
@@ -181,7 +182,9 @@
                                         <span class="arrow"></span>
                                     </span>
                                 </div>
-                                <span id="required_message" class="required_message">This field is required</span>
+                                <span id="required_message_category" class="required_message"
+                                    >This field is required</span
+                                >
                                 <ul class="category_dropdown_menu" id="category_dropdown_menu"></ul>
                             </div>
                         </div>
@@ -231,7 +234,7 @@
                 </div>
                 <!-- Löschen -->
 
-                <footer class="creat_task">
+                <footer class="create_task">
                     <div><p class="required_footer_text">* These fields are required</p></div>
                     <div class="btn_position">
                         <button
@@ -252,11 +255,10 @@
                             id="create_task_btn"
                             type="button"
                             form="add_task_form"
-                            disabled
-                            onclick="createTask()">
+                            onclick="validateRequiredFields()">
                             Create Task
                             <img
-                                class="creat_task_icon"
+                                class="create_task_icon"
                                 id="create_task"
                                 src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg"
                                 alt="Icon" />

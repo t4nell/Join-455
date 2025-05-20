@@ -31,14 +31,17 @@ function eventBubbling(event) {
 function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-        .map(([name, isAssigned,]) => {
+        .map(([name, isAssigned]) => {
             if (isAssigned) {
                 const initials = name.split(' ')
                     .map(part => part.charAt(0).toUpperCase())
                     .join('');
+                const bgColor = getContactColor(name);
                 return `
                     <div class="contact_badge">
-                        <div class="avatar">${initials}</div>
+                        <div class="avatar" style="background-color: ${bgColor}">
+                            ${initials}
+                        </div>
                         <span>${name}</span>
                     </div>
                 `;
@@ -52,7 +55,7 @@ function renderSubtasksList(subtasks, taskId) {
     return Object.entries(subtasks).map(([key, subtask]) => `
         <div class="subtask_item">
             <div class="subtask_background">
-                <input type="checkbox" 
+                <input type="checkbox" class= "subtask_chbox"
                        id="subtask_${key}" 
                        ${subtask.done ? 'checked' : ''} 
                        onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">
@@ -83,3 +86,13 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
         checkbox.checked = !checkbox.checked;
     }
 };
+
+async function openEditTask(taskId) {
+    const task = allTasks.find(task => task.id === taskId);
+    if (task) {
+        const taskDetailCard = document.querySelector('.task_detail_card');
+        taskDetailCard.innerHTML = getEditTaskTemplate(task);
+        loadContactsToAssigned();
+        switchBtnPriority(task.priority);
+    }
+}

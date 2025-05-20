@@ -47,7 +47,7 @@
     border-radius: 3px;
 }
 
-.delet_text_btn {
+.delete_text_btn {
     background-color: white;
 }
 
@@ -179,5 +179,25 @@
     font-size: 1rem;
     position: absolute;
     left: 0.5rem;
+}
+
+.btns_position {
+    position: absolute;
+    right: 6px;
+    display: none;
+    align-items: center;
+}
+
+.tag_field:hover .btns_position {
+    display: flex;
+}
+
+.tag_field .btns_position {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tag_field:hover .btns_position {
+    opacity: 1;
 }
 

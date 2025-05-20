@@ -28,7 +28,7 @@ function disableEditing() {
     input.classList.remove('focus');
 }
 
-function deletTextBtn() {
+function deleteTextBtn() {
     const inputField = document.getElementById('tag_input_field');
     inputField.value = '';
     resetButtons();
@@ -68,7 +68,7 @@ function getNewTagTemplate(value) {
     <div class="tag_field" id='tag_field'>
     <input name="subtasks" class="new_tag_input" id='new_tag_input' type="text" ondblclick="enableEditing()" onblur="disableEditing()" value="${value}" readonly />
         <div class="btns_position" id='new_tag_btn_container'>
-            <button class="edit_text_btn" onclick="editTextBtn()"><img
+            <button class="edit_text_btn" onclick="editTextBtn(event)"><img
                                         class="subtasks_icon"
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
@@ -118,9 +118,11 @@ function replaceButtons() {
     inputField.focus();
 }
 
-function editTextBtn() {
+function editTextBtn(event) {
+    event.stopPropagation();
     const newTag = document.getElementById('new_tag_input');
     newTag.focus();
+    removeHoverEffect();
     newTagBtnReplace();
 }
 
@@ -152,7 +154,7 @@ function newTagBtnReplaceTemplate() {
 
 function getBtnsTemplate() {
     return `
-        <button class="delet_text_btn" onclick="deletTextBtn()">
+        <button class="delete_text_btn" onclick="deleteTextBtn()">
                                         <img
                                             class="subtasks_icon arrow_bg_hover_color_subtask"
                                             id=""
@@ -161,7 +163,7 @@ function getBtnsTemplate() {
                                             />
                                     </button>
                                     <hr class="separator_vertically_subtasks" />
-                                    <button class="confirm_btn" onclick="confirmSubtaskBtn()">
+                                    <button type="button" class="confirm_btn" onclick="confirmSubtaskBtn()">
                                         <img
                                             class="subtasks_icon arrow_bg_hover_color_subtask"
                                             id=""

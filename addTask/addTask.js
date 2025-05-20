@@ -5,19 +5,17 @@ function renderSidebar() {
     initFetch();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
-        minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-    });
+const dueDatePicker = flatpickr('#due_date', {
+    dateFormat: 'd/m/Y',
+    minDate: 'today',
+    locale: { firstDayOfWeek: 1 },
+    allowInput: true,
+    altInput: true,
+    altFormat: 'd/m/Y',
 });
 
 function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
+    dueDatePicker.open();
 }
 
 function renderHeader() {
@@ -104,7 +102,7 @@ async function postData(path = '', data = {}) {
     return (responseToJson = await response.json());
 }
 
-console.log('----------------Creat Task Button Funktion----------------------');
+console.log('----------------Create Task Button Funktion----------------------');
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
@@ -126,8 +124,6 @@ function createTask() {
     clearTasks();
 
     document.getElementById('clear_btn').click();
-
-    createTaskBtnDisable();
 }
 
 function clearTasks() {
@@ -135,28 +131,62 @@ function clearTasks() {
     document.getElementById('selected_users_group').innerHTML = '';
     document.getElementById('prio_medium').checked = true;
 
+    clearSelection();
     switchBtnPriority('medium');
 }
 
-function createTaskBtnEnable() {
-    const creatTaskBtn = document.getElementById('create_task_btn');
-    const titelInput = document.getElementById('title').value;
-    const dueDate = document.getElementById('due_date').value;
-    const category = document.getElementById('category_dropdown_input').value;
+function validateRequiredFields() {
+    const titleValid = validateTitleField();
+    const dateValid = validateDueDateField();
+    const categoryValid = validateCategoryField();
 
-    if (titelInput && dueDate && category) {
-        creatTaskBtn.disabled = false;
-    } else {
-        creatTaskBtn.disabled = true;
+    if (titleValid && dateValid && categoryValid) {
+        createTask();
     }
 }
 
-function createTaskBtnDisable() {
-    const creatTaskBtn = document.getElementById('create_task_btn');
-    creatTaskBtn.disabled = true;
+function validateTitleField() {
+    const titleInput = document.getElementById('title');
+    const titleMessage = document.getElementById('required_message_title');
+
+    if (!titleInput.value) {
+        titleInput.classList.add('input_title_required');
+        titleMessage.style.display = 'block';
+        return false;
+    } else {
+        titleInput.classList.remove('input_title_required');
+        titleMessage.style.display = 'none';
+        return true;
+    }
 }
 
-function requiredMassagetoggle() {
-    const requiredMassage = document.getElementById('required_message');
-    requiredMassage.classList.toggle('required');
+function validateDueDateField() {
+    const dueDateInput = document.getElementById('due_date');
+    const dateMessage = document.getElementById('required_message_due_date');
+
+    if (!dueDateInput.value) {
+        dueDateInput.classList.add('input_date_required');
+        dateMessage.style.display = 'block';
+        return false;
+    } else {
+        dueDateInput.classList.remove('input_date_required');
+        dateMessage.style.display = 'none';
+        return true;
+    }
 }
+
+function validateCategoryField() {
+    const categoryInput = document.getElementById('category_dropdown_input');
+    const categoryMessage = document.getElementById('required_message_category');
+
+    if (!categoryInput.value) {
+        categoryInput.classList.add('category_dropdown_toggle_required');
+        categoryMessage.style.display = 'block';
+        return false;
+    } else {
+        categoryInput.classList.remove('category_dropdown_toggle_required');
+        categoryMessage.style.display = 'none';
+        return true;
+    }
+}
+

@@ -1,46 +1,70 @@
-const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const selectedUser = document.getElementById('selected_users_group');
+const dropdown = document.getElementById('dropdown');
 
-function filterContacts() {
-    const filter = toggle.value.toLowerCase();
-    menu.innerHTML = '';
-    let found = false;
-
-    contactsArray.forEach((contact, index) => {
-        const fullName = `${contact.name} ${contact.surname}`.toLowerCase();
-        if (fullName.includes(filter)) {
-            menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
-            found = true;
-        }
+function initTaskTemplate() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const mainContainer = document.getElementById('main_container');
+        const templateDiv = document.createElement('div');
+        templateDiv.style.display = 'none';
+        templateDiv.innerHTML = `
+            <form id="add_task_form" class="main_section">
+                <!-- Alle Template-Inhalte hier -->
+            </form>
+        `;
+        mainContainer.appendChild(templateDiv);
     });
+};
 
-    if (!found) {
-        menu.innerHTML =
-            '<li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>';
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    calenderInput.focus();
+};
+
+document.addEventListener('DOMContentLoaded', function () {
+    flatpickr('#due_date', {
+        dateFormat: 'd/m/Y',
+        minDate: 'today',
+        locale: {
+            firstDayOfWeek: 1,
+        },
+    });
+});
+
+function switchBtnPriority(btnPriority) {
+    document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
+    document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMedium.svg';
+    document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLow.svg';
+
+    switch (btnPriority) {
+        case 'urgent':
+            document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
+            break;
+        case 'medium':
+            document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMediumIconWhite.svg';
+            break;
+        case 'low':
+            document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
+            break;
     }
-}
+};
 
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
-    toggle.value = '';
-    // loadContactsToAssigned();
-}
+};
 
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
-}
+};
 
 document.onclick = function (event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
-        toggle.value = '';
-        // loadContactsToAssigned();
     }
 };
 
@@ -50,7 +74,7 @@ function loadContactsToAssigned() {
     contactsArray.forEach((contact, index) => {
         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
-}
+};
 
 function loadContactsToAssignedTemplate(contact, index) {
     const bgColor = contactsArray[index].color;
@@ -64,24 +88,24 @@ function loadContactsToAssignedTemplate(contact, index) {
         .join('');
 
     return `
-<li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
-  <div class="symbole_name_group">
-    <div class="profile_icon" style="background-color: ${bgColor}">
-      <span>${nameInitials}${surnameInitials}</span>
-    </div>
-    <div>
-      <span class="contact_name">${contact.name} ${contact.surname}</span>
-    </div>
-  </div>
-  <input
-    id="users_checkbox_${index}"
-    class="assign_dropdown_input"
-    type="checkbox"
-    name="assigned_to"
-    value="${contact.name} ${contact.surname}" 
-    onclick="selectUser(${index}, event)"/>
-</li>`;
-}
+        <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
+        <div class="symbole_name_group">
+            <div class="profile_icon" style="background-color: ${bgColor}">
+            <span>${nameInitials}${surnameInitials}</span>
+            </div>
+            <div>
+            <span class="contact_name">${contact.name} ${contact.surname}</span>
+            </div>
+        </div>
+        <input
+            id="users_checkbox_${index}"
+            class="assign_dropdown_input"
+            type="checkbox"
+            name="assigned_to"
+            value="${contact.name} ${contact.surname}" 
+            onclick="selectUser(${index}, event)"/>
+        </li>`;
+};
 
 function selectUser(index, event) {
     event.stopPropagation();
@@ -98,12 +122,12 @@ function selectUser(index, event) {
         removeSelectedUser(index);
         toggleBackground(index);
     }
-}
+};
 
 function removeSelectedUser(index) {
     const userIconContainer = document.getElementById(`selected_user_${index}`);
     userIconContainer.remove();
-}
+};
 
 function addSelectedUserIcon(index) {
     contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -120,7 +144,7 @@ function addSelectedUserIcon(index) {
     const initials = nameInitials + surnameInitials;
 
     selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
-}
+};
 
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `
@@ -131,23 +155,4 @@ function addSelectedUserIconTemplate(index, bgColor, initials) {
     </div>
     </div>
   </div>`;
-}
-
-function clearSelection() {
-    contactsArray.forEach((box, index) => {
-        const checkbox = document.getElementById(`users_checkbox_${index}`);
-        if (checkbox) {
-            checkbox.checked = false;
-            removeActiveBG();
-        }
-    });
-}
-
-function removeActiveBG() {
-    const items = document.getElementsByClassName('dropdown_item');
-    for (let i = 0; i < items.length; i++) {
-        items[i].classList.remove('active');
-    }
-    loadContactsToAssigned();
-}
-
+};
