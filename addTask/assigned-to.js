@@ -138,12 +138,12 @@ function clearSelection() {
         const checkbox = document.getElementById(`users_checkbox_${index}`);
         if (checkbox) {
             checkbox.checked = false;
-            removeActiveBG();
+            removeActiveBgColor();
         }
     });
 }
 
-function removeActiveBG() {
+function removeActiveBgColor() {
     const items = document.getElementsByClassName('dropdown_item');
     for (let i = 0; i < items.length; i++) {
         items[i].classList.remove('active');
