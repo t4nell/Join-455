@@ -355,7 +355,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
 
             <div class="contact_phone">
               <span class="contact_category">Phone</span>
-              <span>+49</span>
+              <span>${currentUser.phone ? currentUser.phone : '+49'}</span>
             </div>
           </div>`
   }
@@ -516,7 +516,7 @@ function getEditContactOverlay(contact, index){
               <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
             </div>
             <div class="overlay_edit_buttons">
-              <button class="delete_contact_btn">Delete</button>
+              <button type="button" onclick="deleteContact('${contact.id}')" class="delete_contact_btn">Delete</button>
               <button  type="submit" form="edit_contact_form" class="save_contact_btn">
                 Save
                 <img

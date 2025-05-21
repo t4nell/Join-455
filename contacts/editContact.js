@@ -75,16 +75,11 @@ function checkEditEmailAlreadyExists(email, currentContact) {
 
 async function closeEditContactProcess(contactId) {
   toggleOverlay();
-  const editContactNotification = document.getElementById('contact_notification');
-  editContactNotification.innerHTML = `<p>Contact successfully edited</p>`;
-  editContactNotification.classList.remove('closed');
+
   clearGroupedContacts();
   await loadContactData();
   showEditedContact(contactId)
-  // groupContacts();
-  setTimeout(() => {
-    document.getElementById('contact_notification').classList.add('closed');
-  }, 3000);
+  showNotification("Contact edited successfully")
 }
 
 function showEditedContact(contactId){
