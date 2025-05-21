@@ -5,17 +5,19 @@ function renderSidebar() {
     initFetch();
 }
 
-const dueDatePicker = flatpickr('#due_date', {
-    dateFormat: 'd/m/Y',
-    minDate: 'today',
-    locale: { firstDayOfWeek: 1 },
-    allowInput: true,
-    altInput: true,
-    altFormat: 'd/m/Y',
+document.addEventListener('DOMContentLoaded', function () {
+    flatpickr('#due_date', {
+        dateFormat: 'd/m/Y',
+        minDate: 'today',
+        locale: {
+            firstDayOfWeek: 1,
+        },
+    });
 });
 
 function openCalendar() {
-    dueDatePicker.open();
+    const calenderInput = document.getElementById('due_date');
+    calenderInput.focus();
 }
 
 function renderHeader() {
@@ -49,8 +51,10 @@ function collectTaskData(form) {
     const todo = 'todo';
 
     const assignedTo = {};
-    assignedToArray.forEach((person) => {
-        assignedTo[person] = true;
+    selectedUserIndices.forEach((index) => {
+        const contact = contactsArray[index];
+        const name = `${contact.name} ${contact.surname}`;
+        assignedTo[name] = true;
     });
 
     const subtasks = {};

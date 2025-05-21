@@ -45,7 +45,6 @@ document.onclick = function (event) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
         toggle.value = '';
-        // filterContacts();
     }
 };
 
