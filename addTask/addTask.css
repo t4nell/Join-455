@@ -106,6 +106,7 @@ main {
     width: 1px;
     background-color: #d1d1d1;
     height: 424px;
+    flex-shrink: 0;
 }
 
 .main_section_right {
