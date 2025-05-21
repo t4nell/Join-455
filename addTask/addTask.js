@@ -131,6 +131,7 @@ function clearTasks() {
     document.getElementById('selected_users_group').innerHTML = '';
     document.getElementById('prio_medium').checked = true;
 
+    clearSelectedUserIndices();
     clearSelection();
     switchBtnPriority('medium');
 }

@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="assign_to_group">
-                            <label for="dropdown_toggle_btn">Assigned to</label>
+                            <label for="dropdown_toggle_btn" onclick="event.preventDefault()">Assigned to</label>
                             <div class="dropdown" id="dropdown">
                                 <div class="dropdown_input_wrapper">
                                     <input
@@ -165,7 +165,12 @@
                         <div id="selected_users_group" class="selected_user_group"></div>
 
                         <div class="category_group">
-                            <label class="required_for_label" for="category_dropdown_input">Category</label>
+                            <label
+                                class="required_for_label"
+                                for="category_dropdown_input"
+                                onclick="event.preventDefault()"
+                                >Category</label
+                            >
                             <div class="category_dropdown" id="category_dropdown">
                                 <div class="category_dropdown_input_wrapper">
                                     <input
@@ -190,7 +195,7 @@
                         </div>
 
                         <div class="tag_input_container">
-                            <label for="tag_input_field">Subtasks</label>
+                            <label for="tag_input_field" onclick="event.preventDefault()">Subtasks</label>
                             <div class="tag_input">
                                 <input
                                     type="text"

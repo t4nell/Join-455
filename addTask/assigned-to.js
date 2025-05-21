@@ -2,22 +2,21 @@ const dropdown = document.getElementById('dropdown');
 const toggle = document.getElementById('dropdown_toggle_btn');
 const menu = document.getElementById('dropdown_menu');
 const selectedUser = document.getElementById('selected_users_group');
-let selectedUsers = [];
+
+let selectedUserIndices = [];
 
 function filterContacts() {
     const filter = toggle.value.toLowerCase();
     menu.innerHTML = '';
-    let found = false;
 
     contactsArray.forEach((contact, index) => {
         const fullName = `${contact.name} ${contact.surname}`.toLowerCase();
         if (fullName.includes(filter)) {
             menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
-            found = true;
         }
     });
 
-    if (!found) {
+    if (!menu.innerHTML) {
         menu.innerHTML =
             '<li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>';
     }
@@ -27,8 +26,13 @@ function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
-    toggle.value = '';
-    // loadContactsToAssigned();
+
+    if (!dropdown.classList.contains('open')) {
+        toggle.value = '';
+        toggle.blur();
+    }
+
+    filterContacts();
 }
 
 function toggleBackground(index) {
@@ -41,31 +45,34 @@ document.onclick = function (event) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
         toggle.value = '';
-        // loadContactsToAssigned();
+        // filterContacts();
     }
 };
 
 function loadContactsToAssigned() {
     menu.innerHTML = '';
-
     contactsArray.forEach((contact, index) => {
         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
 
 function loadContactsToAssignedTemplate(contact, index) {
-    const bgColor = contactsArray[index].color;
+    const isSelected = selectedUserIndices.includes(index);
+    const activeClass = isSelected ? ' active' : '';
+    const checkedAttr = isSelected ? 'checked' : '';
+
+    const bgColor = contact.color;
     const nameInitials = contact.name
         .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
+        .map((p) => p.charAt(0).toUpperCase())
         .join('');
     const surnameInitials = contact.surname
         .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
+        .map((p) => p.charAt(0).toUpperCase())
         .join('');
 
     return `
-<li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
+<li class="dropdown_item${activeClass}" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
   <div class="symbole_name_group">
     <div class="profile_icon" style="background-color: ${bgColor}">
       <span>${nameInitials}${surnameInitials}</span>
@@ -79,26 +86,29 @@ function loadContactsToAssignedTemplate(contact, index) {
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
-    value="${contact.name} ${contact.surname}" 
-    onclick="selectUser(${index}, event)"/>
+    value="${contact.name} ${contact.surname}"
+    onclick="selectUser(${index}, event)"
+    ${checkedAttr} />
 </li>`;
 }
 
 function selectUser(index, event) {
     event.stopPropagation();
     const checkbox = document.getElementById(`users_checkbox_${index}`);
-
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
 
     if (checkbox.checked) {
-        addSelectedUserIcon(index);
-        toggleBackground(index);
+        if (!selectedUserIndices.includes(index)) {
+            selectedUserIndices.push(index);
+        }
     } else {
-        removeSelectedUser(index);
-        toggleBackground(index);
+        selectedUserIndices = selectedUserIndices.filter((i) => i !== index);
     }
+
+    filterContacts();
+    renderSelectedIcons();
 }
 
 function removeSelectedUser(index) {
@@ -106,32 +116,29 @@ function removeSelectedUser(index) {
     userIconContainer.remove();
 }
 
-function addSelectedUserIcon(index) {
-    contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    const bgColor = contactsArray[index].color;
-    const contact = contactsArray[index];
-    const nameInitials = contact.name
-        .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
-        .join('');
-    const surnameInitials = contact.surname
-        .split(' ')
-        .map((part) => part.charAt(0).toUpperCase())
-        .join('');
-    const initials = nameInitials + surnameInitials;
-
-    selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
-}
-
-function addSelectedUserIconTemplate(index, bgColor, initials) {
-    return `
-    <div id="selected_user_${index}">
-  <div class="placeholder_icon">
-    <div class="profile_icon" style="background-color: ${bgColor}">
-      <span>${initials}</span>
-    </div>
-    </div>
-  </div>`;
+function renderSelectedIcons() {
+    selectedUser.innerHTML = '';
+    selectedUserIndices.forEach((index) => {
+        const contact = contactsArray[index];
+        const bgColor = contact.color;
+        const initials =
+            contact.name
+                .split(' ')
+                .map((p) => p[0].toUpperCase())
+                .join('') +
+            contact.surname
+                .split(' ')
+                .map((p) => p[0].toUpperCase())
+                .join('');
+        selectedUser.innerHTML += `
+        <div id="selected_user_${index}">
+            <div class="placeholder_icon">
+                <div class="profile_icon" style="background-color: ${bgColor}">
+                    <span>${initials}</span>
+                </div>
+            </div>
+        </div>`;
+    });
 }
 
 function clearSelection() {
@@ -150,5 +157,13 @@ function removeActiveBgColor() {
         items[i].classList.remove('active');
     }
     loadContactsToAssigned();
+}
+
+function clearSelectedUserIndices() {
+    selectedUserIndices = [];
+
+    filterContacts();
+
+    renderSelectedIcons();
 }
 
