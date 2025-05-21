@@ -25,22 +25,22 @@ function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
-window.onload = async function () {
-    try {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser) {
-            window.location.href = '../index.html';
-            return;
-        }
+// window.onload = async function () {
+//     try {
+//         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+//         if (!currentUser) {
+//             window.location.href = '../index.html';
+//             return;
+//         }
 
-        renderSidebar();
-        renderHeader();
-        updateUserProfile();
-        initializeAddTask();
-    } catch (error) {
-        console.error('Error initializing add task:', error);
-    }
-};
+//         renderSidebar();
+//         renderHeader();
+//         updateUserProfile();
+//         initializeAddTask();
+//     } catch (error) {
+//         console.error('Error initializing add task:', error);
+//     }
+// };
 
 console.log('----------------Funktion zum sammeln der Daten----------------------');
 
