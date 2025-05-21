@@ -1,47 +1,33 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/allSites.css" />
-    <link rel="stylesheet" href="../styles/buttons.css" />
-    <link rel="stylesheet" href="../styles/inputIcons.css" />
-    <link rel="stylesheet" href="../styles/standard.css" />
-    <link rel="stylesheet" href="../styles/font.css" />
-    <link rel="stylesheet" href="./help.css" />
-    <script src="../scripts/templates.js" defer></script>
-    <script src="../scripts/userProfil.js" defer></script>
-    <script src="./help.js" defer></script>
-    <link
-      rel="shortcut icon"
-      href="./assets/imgs/Capa 2.svg"
-      type="image/x-icon"
-    />
-    <title>Join</title>
-  </head>
-  <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../styles/allSites.css" />
+        <link rel="stylesheet" href="../styles/buttons.css" />
+        <link rel="stylesheet" href="../styles/inputIcons.css" />
+        <link rel="stylesheet" href="../styles/standard.css" />
+        <link rel="stylesheet" href="../styles/font.css" />
+        <link rel="stylesheet" href="./help.css" />
+        <script src="../scripts/templates.js" defer></script>
+        <script src="../scripts/userProfil.js" defer></script>
+        <script src="./help.js" defer></script>
+        <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
+        <title>Join</title>
+    </head>
+    <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
+        <main id="main_container">
+            <div id="header_container"></div>
 
-    <main id="main_container">
-      <div id="header_container"></div>
+            <div class="sidebar_container">
+                <div class="sidebar_img_container">
+                    <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" /></a>
 
-      <div class="sidebar_container">
+                    <div id="navbar_container"></div>
+                </div>
+            </div>
 
-        <div class="sidebar_img_container">
-          <a href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"></a>
-
-          <div id="navbar_container">
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="legal_container">
-
-      </div>
-
-    </main>
-
-  </body>
+            <div class="legal_container"></div>
+        </main>
+    </body>
 </html>

@@ -5,15 +5,15 @@ function onKeyDownEnter(event) {
     }
 }
 
-// function checkValue() {
-//     const input = document.getElementById('new_tag_input');
-//     const tagFieldContainer = document.getElementById('tag_field');
-//     if (input.value) {
-//         confirmSubtaskBtn();
-//     } else {
-//         tagFieldContainer.remove();
-//     }
-// }
+function checkValue() {
+    const input = document.getElementById('tag_input_field');
+    const value = input.value.trim();
+    if (value !== '') {
+        confirmSubtaskBtn();
+    } else {
+        resetButtons();
+    }
+}
 
 function enableEditing() {
     const input = document.getElementById('new_tag_input');
@@ -67,7 +67,8 @@ function getNewTagTemplate(value) {
     return `
     <div class="tag_field" id='tag_field'>
     <input name="subtasks" class="new_tag_input" id='new_tag_input' type="text" ondblclick="enableEditing()" onblur="disableEditing()" value="${value}" readonly />
-        <div class="btns_position" id='new_tag_btn_container'>
+        <div id='new_tag_btn_container'>
+         <div class="btns_position">
             <button class="edit_text_btn" onclick="editTextBtn(event)"><img
                                         class="subtasks_icon"
                                         id=""
@@ -82,6 +83,7 @@ function getNewTagTemplate(value) {
                                         alt="Icon"
                                     /></button>
         </div>
+        </div>
     </div>
     `;
 }
@@ -92,7 +94,7 @@ function newTagDefaultBtns() {
 }
 
 function newTagDefaultBtnsTemplate() {
-    return ` <div class="btns_position" id='new_tag_btn_container'>
+    return `<div class="btns_position">
             <button class="edit_text_btn" onclick="editTextBtn(event)"><img
                                         class="subtasks_icon"
                                         id=""
@@ -106,7 +108,7 @@ function newTagDefaultBtnsTemplate() {
                                         src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
                                         alt="Icon"
                                         /></button>
-        </div>
+                                        </div>
     `;
 }
 
@@ -121,6 +123,7 @@ function editTextBtn(event) {
     event.stopPropagation();
     event.preventDefault();
     const newTag = document.getElementById('new_tag_input');
+    newTag.removeAttribute('readonly');
     newTag.focus();
     newTagBtnReplace();
 }
@@ -131,8 +134,7 @@ function newTagBtnReplace() {
 }
 
 function newTagBtnReplaceTemplate() {
-    return `
-        <div class="btns_position" id='new_tag_btn_container'>
+    return ` <div class="btns_position_two">
             <button class="edit_text_btn" onclick="trashBtn()"><img
                                         class="subtasks_icon"
                                         id=""
@@ -146,7 +148,7 @@ function newTagBtnReplaceTemplate() {
                                         src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
                                         alt="Icon"
                                         /></button>
-        </div>
+                                        </div>
     `;
 }
 
@@ -161,7 +163,7 @@ function getBtnsTemplate() {
                                             />
                                     </button>
                                     <hr class="separator_vertically_subtasks" />
-                                    <button type="button" class="confirm_btn" onclick="confirmSubtaskBtn()">
+                                    <button type="button" class="confirm_btn" onclick="confirmSubtaskBtn(); checkValue()">
                                         <img
                                             class="subtasks_icon arrow_bg_hover_color_subtask"
                                             id=""
