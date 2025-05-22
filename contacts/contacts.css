@@ -238,3 +238,18 @@ main {
   gap: 15px;
 }
 
+.separator_vertical {
+    height: 59px;
+    border: 2px solid var(--separator-color);
+    margin: 0;
+    border-radius: 3px;
+}
+
+.separator_horizontally_mobile{
+  width: 90px;
+  border: 2px solid var(--separator-color);
+  display: none;
+  }
+
+
+

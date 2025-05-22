@@ -1,3 +1,9 @@
+function loadCurrentUser() {
+  const currentUserDiv = document.querySelector('.current_user_container');
+  currentUserDiv.innerHTML = getCurrentUserTemplate(currentUser, currentUserInitials);
+}
+
+
 function renderContactGroups(groupedContacts) {
   const contactListDiv = document.getElementById("all_contacts_container");
   const sortedLetters = Object.keys(groupedContacts).sort();
@@ -37,20 +43,23 @@ function showCurrentUserDetails() {
   const currentUserDiv = document.getElementById("current_user");
   const mainContainer = document.querySelector("#contact_detail_container");
   const allContacts = document.querySelectorAll(".contact_side");
+  const anyActive = document.querySelector(".contact_side.active, #current_user.active");
 
   if (currentUserDiv.classList.contains("active")) {
     return;
   } else {
-    allContacts.forEach((contact) => {contact.classList.remove("active")});
+    allContacts.forEach((contact) => contact.classList.remove("active"));
     mainContainer.classList.add("closed");
     currentUserDiv.classList.add("active");
-    setTimeout(() => {
-      mainContainer.innerHTML = getCurrentUserDetailsTemplate(
-        currentUser,
-        currentUserInitials
-      );
+    const render = () => {
+      mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
       mainContainer.classList.remove("closed");
-    }, 300);
+    };
+    if (anyActive) {
+      setTimeout(render, 300);
+    } else {
+      render();
+    }
   }
 }
 
@@ -58,16 +67,20 @@ function handleContactClick(event, contactIndex) {
   const allContacts = document.querySelectorAll(".contact_side");
   const contactMainContainer = document.getElementById("contact_detail_container");
   const clickedContact = event.currentTarget;
+  const anyActive = document.querySelector(".contact_side.active, #current_user.active");
 
   if (clickedContact.classList.contains("active")) {
     return;
   } else {
     contactMainContainer.classList.add("closed");
-    allContacts.forEach((contact) => {contact.classList.remove("active")});
+    allContacts.forEach((contact) => contact.classList.remove("active"));
     clickedContact.classList.add("active");
-    setTimeout(() => {
-      showContactDetails(contactIndex);
-    }, 300);
+    const render = () => showContactDetails(contactIndex);
+    if (anyActive) {
+      setTimeout(render, 300);
+    } else {
+      render();
+    }
   }
 }
 

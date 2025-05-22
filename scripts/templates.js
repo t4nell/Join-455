@@ -307,7 +307,7 @@ function getCurrentUserTemplate(currentUser, currentUserInitials) {
                                   <hr class="separator_horizontal" />
                               </div>
                           <div class="contact_side" id="current_user" onclick="showCurrentUserDetails()">
-                              <div class="profile_icon_mini">
+                              <div class="profile_icon_mini" style="background-color: ${currentUser.profileColor}">
                                   <span>${currentUserInitials}</span>
                               </div>
                               <div class="contact_side_info">
@@ -318,14 +318,13 @@ function getCurrentUserTemplate(currentUser, currentUserInitials) {
                                       <span>${currentUser.email}</span>
                                   </div>
                               </div>
-                          </div></div>
-                          <div id="all_contacts_container"></div>`
+                          `
 }
 
 function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
   return `
 <div class="contact_header">
-          <div class="profile_icon_large" style="background-color: ${currentUser.color}">
+          <div class="profile_icon_large" style="background-color: ${currentUser.profileColor}">
                           <span>${currentUserInitials}</span>
                       </div>
 
@@ -350,7 +349,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
         <div class="contact_details">
           <div class="contact_mail">
             <span class="contact_category">Email</span>
-            <a href="">${currentUser.email}</a>
+            <a href="mailto:${currentUser.email}">${currentUser.email}</a>
           </div>
 
             <div class="contact_phone">
@@ -391,7 +390,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
           <div class="contact_details">
             <div class="contact_mail">
               <span class="contact_category">Email</span>
-              <a href="">${contact.email}</a>
+              <a href="mailto:"${contact.email}">${contact.email}</a>
             </div>
 
             <div class="contact_phone">
@@ -539,7 +538,7 @@ function getCurrentUserEditOverlay(currentUserInitials){
           </div>
           <div>
                 <div class="contact_header">
-            <div class="profile_icon_large contact_overlay_img" >
+            <div class="profile_icon_large contact_overlay_img" style="background-color:${currentUser.profileColor}>
                             <span>${currentUserInitials}</span>
                         </div>
 
@@ -574,7 +573,13 @@ function getCurrentUserEditOverlay(currentUserInitials){
               <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
             </div>
             <div class="overlay_edit_buttons">
-              <button class="delete_contact_btn">Delete</button>
+              <button onclick="toggleOverlay()" class="cancel_btn">
+                Cancel
+                <img
+                  src="../assets/imgs/contactIcons/iconoir_cancel.svg"
+                  alt="cancel button"
+                />
+              </button>
               <button onclick="saveCurrentUserInfo()" class="save_contact_btn">
                 Save
                 <img
