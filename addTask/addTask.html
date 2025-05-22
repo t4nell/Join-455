@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="../addTask/priority.css" />
         <link rel="stylesheet" href="./errorMassages.css" />
         <link rel="stylesheet" href="./addTask.css" />
+        <link rel="stylesheet" href="./addTaskMediaQueries.css" />
+
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
         <link
             rel="stylesheet"
@@ -217,9 +219,15 @@
                         </div>
                     </section>
                 </form>
-
+                <div>
+                    <p class="required_footer_text display_none_required_text_footer">* These fields are required</p>
+                </div>
                 <footer class="create_task">
-                    <div><p class="required_footer_text">* These fields are required</p></div>
+                    <div>
+                        <p class="required_footer_text display_block_required_text_footer">
+                            * These fields are required
+                        </p>
+                    </div>
                     <div class="btn_position">
                         <button
                             class="clear_btn"

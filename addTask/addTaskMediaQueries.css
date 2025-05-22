@@ -1,0 +1,132 @@
+@media (max-width: 1070px) {
+    .separator_vertically_gray {
+        display: none;
+    }
+
+    .main_section {
+        flex-direction: column;
+        display: flex;
+        flex: none;
+        width: 100%;
+    }
+    .main_section_left {
+        max-width: 440px;
+        margin-left: 16px;
+        margin-right: 16px;
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .main_section_right {
+        margin-right: 16px;
+        max-width: 440px;
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        box-sizing: border-box;
+    }
+
+    .title_head {
+        box-sizing: border-box;
+        margin-left: 16px;
+        margin-top: 112px;
+        margin-bottom: 32px;
+    }
+
+    .btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .btn:active {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        box-shadow: none;
+        transition: none;
+    }
+
+    .clear_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color: white;
+        color: #2a3647;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: none;
+    }
+
+    .clear_btn:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #f0f0f0;
+        border-color: #29abe2;
+        color: #29abe2;
+    }
+
+    .clear_btn:active {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .create_task_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color: #2a3647;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: none;
+        transition: none;
+    }
+
+    .create_task_btn:hover {
+        transform: none;
+        box-shadow: none;
+        background-color: #29abe2;
+    }
+
+    .create_task_btn:active {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .create_task {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 79px;
+        margin-top: 56px;
+    }
+
+    .display_block_required_text_footer {
+        display: none;
+    }
+
+    .display_none_required_text_footer {
+        display: block;
+    }
+}
+
