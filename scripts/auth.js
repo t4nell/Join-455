@@ -1,4 +1,14 @@
-// PBKDF2-Funktionen
+/**
+ * Authentication Module
+ * Handles user authentication using PBKDF2 password hashing
+ */
+
+/**
+ * Hashes a password using PBKDF2 algorithm
+ * @async 
+ * @param {string} password - Plain text password to hash
+ * @returns {Promise<string>} Combined salt and hash as hex string
+ */
 async function hashPassword(password) {
     const encoder = new TextEncoder();
     const salt = window.crypto.getRandomValues(new Uint8Array(16));
@@ -24,6 +34,13 @@ async function hashPassword(password) {
     return saltHex + hashHex;
 }
 
+/**
+ * Verifies a password against a stored hash
+ * @async
+ * @param {string} password - Plain text password to verify
+ * @param {string} storedHash - Previously stored hash to compare against
+ * @returns {Promise<boolean>} True if password matches
+ */
 async function verifyPassword(password, storedHash) {
     const encoder = new TextEncoder();
     const salt = new Uint8Array(
@@ -52,7 +69,12 @@ async function verifyPassword(password, storedHash) {
     return newHash === originalHash;
 }
 
-// Registrierungsfunktion
+/**
+ * Handles user registration process
+ * @async
+ * @param {Event} event - Form submission event
+ * @returns {Promise<void>}
+ */
 async function handleSignup(event) {
     event.preventDefault();
     
@@ -60,26 +82,24 @@ async function handleSignup(event) {
     const email = document.getElementById('signupEmail').value;
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
-    const acceptPolicy = document.getElementById('accept_policy').checked;
-
-    // Validierung
+    const acceptPolicy = document.getElementById('accept_policy').checked;    // Validation
     if (!acceptPolicy) {
-        showNotification('Bitte akzeptieren Sie die Datenschutzrichtlinie', true);
+        showNotification('Please accept the privacy policy', true);
         return;
     }
     
     if (password !== confirmPassword) {
-        showNotification('Passwörter stimmen nicht überein', true);
+        showNotification('Passwords do not match', true);
         return;
     }
     
     if (password.length < 8) {
-        showNotification('Passwort muss mindestens 8 Zeichen haben', true);
+        showNotification('Password must be at least 8 characters long', true);
         return;
     }
     
     if (findUser(email)) {
-        showNotification('Ein Benutzer mit dieser E-Mail existiert bereits', true);
+        showNotification('A user with this email already exists', true);
         return;
     }
 
@@ -91,25 +111,26 @@ async function handleSignup(event) {
             password: hashedPassword,
             isGuest: false
         };
-        saveUser(user);
-        showNotification('Registrierung erfolgreich!');
+        saveUser(user);        showNotification('Registration successful!');
         toggleLoginSignup();
-    } catch (error) {
-        console.error("Hashing fehlgeschlagen:", error);
-        showNotification('Technischer Fehler - bitte versuchen Sie es später erneut', true);
+    } catch (error) {        console.error("Hashing failed:", error);
+        showNotification('Technical error - please try again later', true);
     }
 }
 
-// Login-Funktion
+/**
+ * Handles user login process
+ * @async
+ * @param {Event} event - Form submission event
+ * @returns {Promise<void>}
+ */
 async function handleLogin(event) {
     event.preventDefault();
     
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-    const user = findUser(email);
-
-    if (!user) {
-        showNotification('Falsche E-Mail oder Passwort', true);
+    const user = findUser(email);    if (!user) {
+        showNotification('Incorrect email or password', true);
         return;
     }
 
@@ -117,33 +138,45 @@ async function handleLogin(event) {
         const isMatch = await verifyPassword(password, user.password);
         if (isMatch) {
             localStorage.setItem('currentUser', JSON.stringify(user));
-            window.location.href = './summary/summary.html';
-        } else {
-            showNotification('Falsche E-Mail oder Passwort', true);
+            window.location.href = './summary/summary.html';        } else {
+            showNotification('Incorrect email or password', true);
         }
-    } catch (error) {
-        console.error("Verifikation fehlgeschlagen:", error);
-        showNotification('Technischer Fehler beim Login', true);
+    } catch (error) {        console.error("Verification failed:", error);
+        showNotification('Technical error during login', true);
     }
 }
 
-// Benutzer im LocalStorage speichern
+/**
+ * Saves user data to local storage
+ * @param {Object} user - User data object
+ * @param {string} user.name - User's full name
+ * @param {string} user.email - User's email address
+ * @param {string} user.password - Hashed password
+ * @param {boolean} user.isGuest - Whether this is a guest account
+ * @returns {void}
+ */
 function saveUser(user) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-// Benutzer finden
+/**
+ * Finds a user by email address
+ * @param {string} email - Email to search for
+ * @returns {Object|undefined} User object if found
+ */
 function findUser(email) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users.find(u => u.email === email);
 }
 
-// Gast-Login
-function handleGuestLogin() {
-    const guestUser = {
-        name: 'Gast Benutzer',
+/**
+ * Creates a temporary guest account and redirects to summary page
+ * @returns {void}
+ */
+function handleGuestLogin() {    const guestUser = {
+        name: 'Guest User',
         email: 'guest@join.com',
         isGuest: true
     };
@@ -152,6 +185,12 @@ function handleGuestLogin() {
     window.location.href = './summary/summary.html';
 }
 
+/**
+ * Displays a notification message
+ * @param {string} message - Message to display
+ * @param {boolean} [isError=false] - Whether this is an error message
+ * @returns {void}
+ */
 function showNotification(message, isError = false) {
     const notification = document.createElement('div');
     notification.className = `notification ${isError ? 'error' : 'success'}`;

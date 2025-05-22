@@ -1,30 +1,30 @@
 /**
- * @constant {HTMLElement} mainContainer - Container für die Navigationbar
+ * @constant {HTMLElement} mainContainer - Container for the navigation bar
  */
 const mainContainer = document.getElementById("navbar_container");
 
 /**
- * @constant {HTMLElement} greetingContainer - Container für die Begrüßung
+ * @constant {HTMLElement} greetingContainer - Container for the greeting message
  */
 const greetingContainer = document.getElementById("summary_greating_container");
 
 /**
- * Ermittelt die passende Begrüßung basierend auf der Tageszeit
- * @param {number} hours - Aktuelle Stunde (0-23)
- * @returns {string} Passende Begrüßungsformel
+ * Determines the appropriate greeting based on the time of day
+ * @param {number} hours - Current hour (0-23)
+ * @returns {string} Appropriate greeting message
  */
 function getGreeting(hours) {
     if (hours >= 0 && hours < 10) {
-        return "Guten Morgen";
+        return "Good morning";
     } else if (hours >= 10 && hours < 19) {
-        return "Guten Tag";
+        return "Good day";
     } else {
-        return "Guten Abend";
+        return "Good evening";
     }
 }
 
 /**
- * Aktualisiert die Begrüßung mit dem Namen des aktuellen Benutzers
+ * Updates the greeting with the current user's name
  * @returns {void}
  */
 function updateGreeting() {
@@ -40,9 +40,9 @@ function updateGreeting() {
 }
 
 /**
- * Überprüft die Authentifizierung des Benutzers
- * @throws {Error} Wenn kein Benutzer authentifiziert ist
- * @returns {Object} Das aktuelle Benutzerobjekt
+ * Checks user authentication status
+ * @throws {Error} If no user is authenticated
+ * @returns {Object} The current user object
  */
 function checkAuth() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -54,10 +54,10 @@ function checkAuth() {
 }
 
 /**
- * Initialisiert die Benutzeroberfläche
- * @param {Object} currentUser - Das aktuelle Benutzerobjekt
- * @param {string} currentUser.name - Name des Benutzers
- * @param {boolean} currentUser.isGuest - Flag ob Benutzer ein Gast ist
+ * Initializes the user interface components
+ * @param {Object} currentUser - Current user object
+ * @param {string} currentUser.name - User's name
+ * @param {boolean} currentUser.isGuest - Whether user is a guest
  * @returns {void}
  */
 function initializeUI(currentUser) {
@@ -72,9 +72,9 @@ function initializeUI(currentUser) {
 }
 
 /**
- * Lädt und verarbeitet die Task-Daten
+ * Loads and processes task data
  * @async
- * @returns {Promise<Object>} Die berechneten Task-Statistiken
+ * @returns {Promise<Object>} The calculated task statistics
  */
 async function loadAndUpdateTaskData() {
     const tasks = await fetchTasks();
@@ -361,4 +361,10 @@ function makeContainersClickable() {
                          document.querySelector(`.${containerId}`);
         makeContainerClickable(container);
     });
+}
+
+function init () {
+    renderSidebar();
+    renderHeader();
+    updateUserProfile()
 }

@@ -1,0 +1,23 @@
+{
+    "source": {
+        "include": [
+            "scripts/auth.js",
+            "scripts/userprofil.js",
+            "summary/summary.js"
+        ],
+        "includePattern": ".+\\.js$"
+    },
+    "opts": {
+        "destination": "docs/",
+        "recurse": true,
+        "template": "node_modules/clean-jsdoc-theme",
+        "theme_opts": {
+            "default_theme": "dark"
+        }
+    },
+    "plugins": ["plugins/markdown"],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    }
+}

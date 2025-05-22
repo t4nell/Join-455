@@ -1,0 +1,30 @@
+{
+    "name":  "join-455",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "script.js",
+    "directories":  {
+                        "doc":  "docs"
+                    },
+    "scripts":  {
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1"
+                },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/VitaliBanmann/Join-455.git"
+                   },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "commonjs",
+    "bugs":  {
+                 "url":  "https://github.com/VitaliBanmann/Join-455/issues"
+             },
+    "homepage":  "https://github.com/VitaliBanmann/Join-455#readme",
+    "devDependencies":  {
+                            "clean-jsdoc-theme":  "^4.3.0",
+                            "jsdoc":  "^4.0.4"
+                        }
+}

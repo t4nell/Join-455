@@ -1,3 +1,8 @@
 out/
 
 data.Json
+node_modules/
+packege-lock.json
+packege.json
+jsdoc.json
+docs/

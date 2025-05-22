@@ -1,3 +1,12 @@
+/**
+ * User Profile Management Module
+ */
+
+/**
+ * Updates the user profile display in the UI
+ * Sets the profile color and initials based on user data
+ * @returns {void}
+ */
 function updateUserProfile() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const userProfileButton = document.querySelector('.user_profile');
@@ -6,15 +15,15 @@ function updateUserProfile() {
     
     if (currentUser) {
         if (!currentUser.profileColor) {
-            // Nur wenn noch keine Farbe gespeichert ist, eine neue generieren
+            // Only generate a new color if none is saved
             const randomColorNumber = Math.floor(Math.random() * 20) + 1;
             userColor = `var(--profile-color-${randomColorNumber})`;
             
-            // Farbe im currentUser-Objekt speichern
+            // Save color in currentUser object
             currentUser.profileColor = userColor;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
         } else {
-            // Gespeicherte Farbe verwenden
+            // Use saved color
             userColor = currentUser.profileColor;
         }
         
@@ -24,21 +33,30 @@ function updateUserProfile() {
             userProfileButton.textContent = initials;
         }
     } else {
-        userProfileButton.textContent = 'G';  // G für Gast
-        userColor = 'var(--profile-color-1)';  // Standardfarbe für Gäste
+        userProfileButton.textContent = 'G';  // G for Guest
+        userColor = 'var(--profile-color-1)';  // Default color for guests
     }
     
-    // Setze die Farbe als Hintergrund
+    // Set the color as background
     userProfileButton.style.setProperty('--current-profile-color', userColor);
     //close user menu
     document.addEventListener('click', closeUserMenuOnClickOutside);
 }
 
+/**
+ * Toggles the visibility of the user menu dropdown
+ * @returns {void}
+ */
 function toggleUserMenu() {
     const userMenu = document.getElementById('user_dropdown_menu');
     userMenu.classList.toggle('d_none');
 }
 
+/**
+ * Handles click events outside the user menu to close it
+ * @param {Event} event - Click event object
+ * @returns {void}
+ */
 function closeUserMenuOnClickOutside(event) {
     const userMenu = document.getElementById('user_dropdown_menu');
     const userProfile = document.querySelector('.user_profile');
@@ -50,6 +68,11 @@ function closeUserMenuOnClickOutside(event) {
     }
 }
 
+/**
+ * Logs out the current user
+ * Removes user data from localStorage and redirects to login page
+ * @returns {void}
+ */
 function logout() {
     localStorage.removeItem('currentUser');
     window.location.href = '../index.html';
