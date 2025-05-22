@@ -149,12 +149,6 @@
     padding-left: 16px;
 }
 
-/* Villeicht */
-
-/* .dropdown_input_wrapper:hover .arrow {
-    border-top-color: red;
-} */
-
 .assign_dropdown_input {
     -webkit-appearance: none;
     appearance: none;
@@ -198,11 +192,11 @@
 }
 
 .selected_user_group {
+    width: 100%;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-    width: 440px;
 }
 
 .profile_icon:hover {

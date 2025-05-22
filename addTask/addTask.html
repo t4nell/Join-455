@@ -8,11 +8,11 @@
         <link rel="stylesheet" href="../styles/inputIcons.css" />
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="../styles/standard.css" />
-        <link rel="stylesheet" href="../addTask/dropdown-assigned-to.css" />
-        <link rel="stylesheet" href="../addTask/dropdown-category.css" />
-        <link rel="stylesheet" href="../addTask/dropdown-subtask.css" />
-        <link rel="stylesheet" href="../addTask/radiobutton.css" />
-        <link rel="stylesheet" href="./addTask-error-massage.css" />
+        <link rel="stylesheet" href="../addTask/assignedTo.css" />
+        <link rel="stylesheet" href="../addTask/category.css" />
+        <link rel="stylesheet" href="../addTask/subtask.css" />
+        <link rel="stylesheet" href="../addTask/priority.css" />
+        <link rel="stylesheet" href="./errorMassages.css" />
         <link rel="stylesheet" href="./addTask.css" />
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
         <link
@@ -20,17 +20,17 @@
             type="text/css"
             href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css"
             defer />
+
         <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
         <script src="../scripts/templates.js" defer></script>
         <script src="./addTask.js" defer></script>
-        <script src="./assigned-to.js" defer></script>
+        <script src="./assignedTo.js" defer></script>
         <script src="./category.js" defer></script>
         <script src="./priority.js" defer></script>
         <script src="./fetch.js" defer></script>
+        <script src="./post.js" defer></script>
         <script src="./subtask.js" defer></script>
-
-        <script src="./LÖSCHEN-addTask-random-fill.js" defer></script>
 
         <title>Join</title>
     </head>
@@ -217,28 +217,6 @@
                         </div>
                     </section>
                 </form>
-
-                <!-- Löschen -->
-                <div style="text-align: center">
-                    <button
-                        id="randomFillBtn"
-                        type="button"
-                        style="
-                            width: 100px;
-                            height: 100px;
-                            background-color: #e60000;
-                            color: #fff;
-                            font-weight: bold;
-                            font-size: 14px;
-                            border: none;
-                            border-radius: 6px;
-                            box-shadow: 0 0 5px rgba(230, 0, 0, 0.8);
-                            cursor: pointer;
-                        ">
-                        LÖSCHEN Zufällig ausfüllen LÖSCHEN
-                    </button>
-                </div>
-                <!-- Löschen -->
 
                 <footer class="create_task">
                     <div><p class="required_footer_text">* These fields are required</p></div>
