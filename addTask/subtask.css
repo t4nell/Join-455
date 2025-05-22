@@ -91,9 +91,11 @@
 }
 
 .tag_field:hover {
+    border-radius: 10px;
     background-color: var(--subtasks-background-color);
 }
 .tag_field:hover .new_tag_input {
+    border-radius: 10px;
     background-color: var(--subtasks-background-color);
 }
 
@@ -111,9 +113,10 @@
     background: none;
 }
 
-.new_tag_input:focus,
-.new_tag_input.focus {
+.new_tag_input:focus:not([readonly]),
+.new_tag_input.focus:not([readonly]) {
     background-color: white;
+    border-radius: 0;
     border-bottom: solid 2px var(--subtasks-underline-color);
 }
 
@@ -169,6 +172,10 @@
     left: 0.5rem;
 }
 
+.tag_field.editing:before {
+    display: none;
+}
+
 .btns_position {
     position: absolute;
     right: 6px;
@@ -198,5 +205,9 @@
     align-items: center;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.input_error_new_subtask_tag {
+    color: red;
 }
 

@@ -50,27 +50,6 @@ function renderAssignedContacts(assignedTo) {
         }).join('');
 };
 
-function renderAssignedContactsEdit(assignedTo) {
-    if (!assignedTo) return '';
-    return Object.entries(assignedTo)
-        .map(([name, isAssigned]) => {
-            if (isAssigned) {
-                const initials = name.split(' ')
-                    .map(part => part.charAt(0).toUpperCase())
-                    .join('');
-                const bgColor = getContactColor(name);
-                return `
-                    <div class="contact_badge">
-                        <div class="avatar" style="background-color: ${bgColor}">
-                            ${initials}
-                        </div>
-                    </div>
-                `;
-            }
-            return '';
-        }).join('');
-};
-
 function renderSubtasksList(subtasks, taskId) {
     if (!subtasks) return '';
     return Object.entries(subtasks).map(([key, subtask]) => `
