@@ -93,8 +93,20 @@ async function openEditTask(taskId) {
         const taskDetailCard = document.querySelector('.task_detail_card');
         taskDetailCard.innerHTML = getEditTaskTemplate(task);
         initEditTaskVariables();
-        handleClickOutside(event)
+        await loadContactData();
         loadContactsToAssigned();
+        if (task.assignedTo) {
+            contactsArray.forEach((contact, index) => {
+                const fullName = `${contact.name} ${contact.surname}`;
+                if (task.assignedTo[fullName] === true) {
+                    const checkbox = document.getElementById(`users_checkbox_${index}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                        toggleBackground(index);
+                    }
+                }
+            });
+        }
         switchBtnPriority(task.priority);
     }
-}
+};
