@@ -5,6 +5,8 @@ function enableEditing(tagInputId, tagBtnConId, tagId) {
     input.removeAttribute('readonly');
     input.focus();
     input.classList.add('focus');
+    const tagField = input.closest('.tag_field');
+    if (tagField) tagField.classList.add('editing');
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
@@ -12,6 +14,8 @@ function disableEditing(tagInputId) {
     const input = document.getElementById(tagInputId);
     input.setAttribute('readonly', true);
     input.classList.remove('focus');
+    const tagField = input.closest('.tag_field');
+    if (tagField) tagField.classList.remove('editing');
 }
 
 function confirmSubtaskBtn() {
@@ -91,6 +95,8 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
     newTag.removeAttribute('readonly');
     newTag.focus();
     newTag.classList.add('focus');
+    const tagField = newTag.closest('.tag_field');
+    if (tagField) tagField.classList.add('editing');
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
@@ -108,7 +114,7 @@ function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
                                         alt="Icon"
                                         /></button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash_btn" onclick="newTagDefaultBtns('${tagBtnConId}', '${tagInputId}', '${tagId}')"><img
+            <button class="trash_btn" onclick="newTagCheckValue('${tagBtnConId}', '${tagInputId}', '${tagId}')"><img
                                         class="subtasks_icon"
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
@@ -116,6 +122,25 @@ function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
                                         /></button>
                                         </div>
     `;
+}
+
+function newTagCheckValue(tagBtnConId, tagInputId, tagId) {
+    event.preventDefault();
+    event.stopPropagation();
+    const input = document.getElementById(tagInputId);
+    const value = input.value.trim();
+    if (value !== '') {
+        input.setAttribute('readonly', true);
+        input.classList.remove('focus');
+        input.classList.remove('input_error_new_subtask_tag');
+        newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
+    } else {
+        input.value = 'Please fill or Remove';
+        input.focus();
+        input.classList.add('focus');
+        input.classList.add('input_error_new_subtask_tag');
+        newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
+    }
 }
 
 function replaceButtons() {

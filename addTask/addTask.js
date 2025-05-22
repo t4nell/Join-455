@@ -88,7 +88,7 @@ function postTask(taskData) {
     // postData('addTask/meinKey', taskData);
 
     // Deaktivieren DerPost Funktion
-    // postData('addTask', taskData);
+    postData('addTask', taskData);
     // Deaktivieren DerPost Funktion
 }
 

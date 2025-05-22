@@ -116,6 +116,7 @@
 .new_tag_input:focus:not([readonly]),
 .new_tag_input.focus:not([readonly]) {
     background-color: white;
+    border-radius: 0;
     border-bottom: solid 2px var(--subtasks-underline-color);
 }
 
@@ -171,6 +172,10 @@
     left: 0.5rem;
 }
 
+.tag_field.editing:before {
+    display: none;
+}
+
 .btns_position {
     position: absolute;
     right: 6px;
@@ -200,5 +205,9 @@
     align-items: center;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.input_error_new_subtask_tag {
+    color: red;
 }
 
