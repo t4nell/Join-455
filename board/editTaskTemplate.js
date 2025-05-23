@@ -129,10 +129,6 @@ function loadContactsToAssignedTemplate(contact, index) {
 
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
-    if (!dropdown) {
-        console.error("Dropdown element not found!");
-        return;
-    }
     selectedUser = document.getElementById('selected_users_group');
     menu = document.getElementById('dropdown_menu');
     toggle = document.getElementById('dropdown_toggle_btn');
