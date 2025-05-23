@@ -2,7 +2,6 @@ console.log('----------------Funktion zum sammeln der Daten---------------------
 
 function collectTaskData(form) {
     const fd = new FormData(form);
-    const assignedToArray = fd.getAll('assigned_to');
     const subtasksArray = fd.getAll('subtasks');
     const todo = 'todo';
 
