@@ -36,7 +36,7 @@
 
         <title>Join</title>
     </head>
-    <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
+    <body onload="initFetch(); renderHeader(); updateUserProfile()">
         <main id="main_container">
             <div id="header_container"></div>
             <div class="sidebar_container">
@@ -56,6 +56,7 @@
                         <div class="input_title_group">
                             <label for="title" class="required_for_label">Title</label>
                             <input
+                                oninput="validateTitleField()"
                                 name="title"
                                 id="title"
                                 class="input_title"
@@ -75,6 +76,7 @@
                             <label for="due_date" class="required_for_label">Due date</label>
                             <div class="input_date_container">
                                 <input
+                                    oninput="validateDueDateField()"
                                     name="due_date"
                                     type="text"
                                     id="due_date"
