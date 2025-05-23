@@ -24,6 +24,7 @@
 }
 
 .task_detail_card {
+    font-size: 20px;
     background-color: white;
     border-radius: 30px;
     padding: 40px;
@@ -112,6 +113,7 @@
     flex-direction: column;
     gap: 8px;
 }
+
 .priority_badge {
     display: inline-flex;
     align-items: center;

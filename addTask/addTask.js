@@ -2,7 +2,12 @@ const mainContainer = document.getElementById('navbar_container');
 
 function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
-    initFetch();
+}
+
+function initFetch() {
+    renderSidebar();
+    loadContactData();
+    renderCategories();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
