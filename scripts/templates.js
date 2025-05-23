@@ -177,15 +177,15 @@ function getDetailTaskCard(task) {
 function getEditTaskTemplate(task) {
   return `
     
-      <div class="main_section_left">
-        <div class="input_titel_group">
-            <label for="title" class="required_for_label">Title</label>
-            <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
-        </div>
+      
+      <div class="input_titel_group">
+          <label for="title" class="required_for_label">Title</label>
+          <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
       </div>
+      
 
       <div class="textarea_group">
-          <label id="description_label" for="description" class="input-title">Description</label>
+          <label id="description_label" for="description" class="required_for_label">Description</label>
           <textarea name="description" class="textarea" id="description" placeholder="Enter a Description">${task.description}</textarea>
       </div>
 
@@ -198,43 +198,43 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="radio_btn_container">
-      <span>Priority</span>
-      <div class="priority_btn_group">
-        <input type="radio" id="priority_urgent" name="priority" value="urgent" ${task.priority === 'urgent' ? 'checked' : ''} onclick="switchBtnPriority('urgent')" />  
-        <label for="priority_urgent" class="btn btn--red">
-          Urgent
-          <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent"/>
-        </label>
+        <span class="required_for_label">Priority</span>
+        <div class="priority_btn_group">
+          <input type="radio" id="priority_urgent" name="priority" value="urgent" ${task.priority === 'urgent' ? 'checked' : ''} onclick="switchBtnPriority('urgent')" />  
+          <label for="priority_urgent" class="btn btn--red">
+            Urgent
+            <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent"/>
+          </label>
 
-        <input type="radio" id="priority_medium" name="priority" value="medium" ${task.priority === 'medium' ? 'checked' : ''} onclick="switchBtnPriority('medium')"/>
-        <label for="priority_medium" class="btn btn--orange">
-          Medium
-          <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium"/>
-        </label>
+          <input type="radio" id="priority_medium" name="priority" value="medium" ${task.priority === 'medium' ? 'checked' : ''} onclick="switchBtnPriority('medium')"/>
+          <label for="priority_medium" class="btn btn--orange">
+            Medium
+            <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium"/>
+          </label>
 
-        <input type="radio" id="priority_low" name="priority" value="low" ${task.priority === 'low' ? 'checked' : ''} onclick="switchBtnPriority('low')"/>
-        <label for="priority_low" class="btn btn--green">
-          Low
-          <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
-        </label>
+          <input type="radio" id="priority_low" name="priority" value="low" ${task.priority === 'low' ? 'checked' : ''} onclick="switchBtnPriority('low')"/>
+          <label for="priority_low" class="btn btn--green">
+            Low
+            <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
+          </label>
+        </div>
       </div>
-
       <div class="assign_to_group">
-                <label for="dropdown_toggle_btn">Assigned to</label>
-                <div class="dropdown" id="dropdown">
-                    <div class="dropdown_input_wrapper">
-                        <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
-                        <div class="arrow_bg_hover_color">
-                            <span class="arrow"></span>
-                        </div>
-                    </div>
-                    <ul class="dropdown_menu" id="dropdown_menu"></ul>
+        <label for="dropdown_toggle_btn" class="required_for_label">Assigned to</label>
+        <div class="dropdown" id="dropdown">
+            <div class="dropdown_input_wrapper">
+                <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
+                <div class="arrow_bg_hover_color">
+                    <span class="arrow"></span>
                 </div>
             </div>
-            <div id="selected_users_group" class="selected_user_group"> ${renderAssignedContactsEdit(task.assignedTo)}</div>
+            <ul class="dropdown_menu" id="dropdown_menu"></ul>
+        </div>
+        <div id="selected_users_group" class="selected_user_group"> ${renderAssignedContactsEdit(task.assignedTo)}</div>
+      </div>
 
       <div class="tag_input_container">
-        <label for="tag_input_field">Subtasks</label>
+        <label for="tag_input_field" class="required_for_label">Subtasks</label>
         <div class="tag_input">
           <input type="text" placeholder="Add new subtask" id="tag_input_field" onclick="replaceButtons()" onkeydown="onKeyDownEnter(event)"/>
           <div class="subtask_btn_container" id="subtask_btn_container">
