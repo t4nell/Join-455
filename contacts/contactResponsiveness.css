@@ -57,3 +57,40 @@
         font-weight: 400;
     }
 }
+
+@media screen and (max-width: 1050px){
+        .sidebar_container{
+        display: none;
+    }
+
+    .contact_container{
+        display: none;
+    }
+
+    header{
+        width: 100%;
+        left: 0;
+    }
+    
+    #contact_list{
+        max-width: none;
+        width: 100%;
+        align-items: unset;
+        left: 0;
+    }
+    .letter_separator_horizontal{
+        width: 100%;
+    }
+
+    .contact_side{
+        width: 94%;
+        margin: 0 16px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .contact_side{
+        width: 94%;
+        margin: 0 16px;
+    }
+}
