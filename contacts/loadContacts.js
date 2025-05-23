@@ -1,5 +1,6 @@
 let contactsArray = [];
 const groupedContacts = {};
+let tasksArray = [];
 
 
 async function fetchContactData(path = "") {
@@ -23,14 +24,19 @@ async function loadContactData() {
 groupContacts(contactsArray);
 }
 
+loadTaskData()
 
-function loadCurrentUser() {
-  const currentUserDiv = document.createElement("div");
-  currentUserDiv.classList.add("current_user_container");
-  currentUserDiv.innerHTML = getCurrentUserTemplate(currentUser, currentUserInitials);
-  const contactListContainer = document.getElementById("contact_list_container");
-  contactListContainer.appendChild(currentUserDiv);
+async function loadTaskData(){
+  await fetchContactData("addTask");
+  const tasksRef = responseToJson;
+  tasksArray = Object.entries(tasksRef).map(([id, tasks]) => ({
+    ...tasks, id
+  }));
+  console.log(tasksArray);
 }
+
+
+
 
 
 
