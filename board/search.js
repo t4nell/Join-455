@@ -4,6 +4,7 @@ const searchButton = document.getElementById('search_button')
 const searchIcon = searchButton.querySelector('img');
 let isSearchActive = false;
 
+
 /**
  * Search tasks by title or description when search button is clicked
  */
@@ -11,7 +12,6 @@ function searchTasks() {
     const searchValue = searchInput.value.toLowerCase();
     if (!isSearchActive) {
         if (searchValue.length === 0) return;
-        // Aktiviere Suche
         isSearchActive = true;
         searchIcon.src = '../assets/imgs/boardIcons/close.svg';
         const filteredTasks = allTasks.filter(task => 
@@ -20,7 +20,6 @@ function searchTasks() {
         );
         renderFilteredColumns(filteredTasks);
     } else {
-        // Reset Suche
         isSearchActive = false;
         searchIcon.src = '../assets/imgs/boardIcons/search.svg';
         searchInput.value = '';
