@@ -6,7 +6,8 @@ let isSearchActive = false;
 
 
 /**
- * Search tasks by title or description when search button is clicked
+ * Search tasks by title or description when search button is clicked and reset search when click again
+ * 
  */
 function searchTasks() {
     const searchValue = searchInput.value.toLowerCase();
