@@ -107,7 +107,7 @@ function getTaskCard(task) {
           <h3 class="task_title">${task.title}</h3>
           <p class="task_description">${task.description}</p>
       </div>
-      <div class="progress_section">
+      <div class="progress_section" style="${progress.total === 0 ? 'display:none' : ''}">
         <div class="progress_bar">
             <div class="progress_fill" style="width: ${progress.progressPercentage}%"></div>
         </div>
