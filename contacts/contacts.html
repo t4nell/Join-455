@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="./contactsOverlay.css" />
     <link rel="stylesheet" href="./contacts.css" />
+    <link rel="stylesheet" href="./contactResponsiveness.css">
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
     <script src="../script.js" defer></script>
     <script src="../scripts/fetch.js" defer></script>
     <script src="./renderContacts.js" defer></script>
     <script src="../scripts/templates.js" defer></script>
+    <script src="./contactTemplates.js"></script>
     <script src="../scripts/userprofil.js" defer></script>
     <script src="./loadContacts.js" defer></script>
     <script src="./postContact.js" defer></script>
@@ -51,15 +53,17 @@
         </div>
 
         <div id="contact_list_container">
-
+          <div class="current_user_container" ></div>
+          <div id="all_contacts_container"></div>
         </div>
       </div>
 
       <div class="contact_container">
         <div class="headline_container">
           <h2>Contacts</h2>
-          <hr class="separator_vertically" />
+          <hr class="separator_vertical" />
           <span>Better with a team</span>
+          <hr class="separator_horizontally_mobile" />
         </div>
 
         <div class="contact_main closed" id="contact_detail_container">
@@ -71,12 +75,7 @@
         
 
         <!--Overlay for new contact-->
-        <div
-          onclick="eventBubbling(event)"
-          id="contact_popup"
-          class="contact_popup closed"
-        >
-
+        <div onclick="eventBubbling(event)" id="contact_popup" class="contact_popup closed">
 
         </div>
 

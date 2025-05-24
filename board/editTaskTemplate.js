@@ -1,6 +1,12 @@
 let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
+function initEditTaskVariables() {
+    dropdown = document.getElementById('dropdown');
+    selectedUser = document.getElementById('selected_users_group');
+    menu = document.getElementById('dropdown_menu');
+    toggle = document.getElementById('dropdown_toggle_btn');
+};
 
 async function loadContactData(path = '') {
     try {
@@ -75,27 +81,6 @@ function loadContactsToAssigned() {
     });
 };
 
-function renderAssignedContactsEdit(assignedTo) {
-    if (!assignedTo) return '';
-    return Object.entries(assignedTo)
-    .map(([name, isAssigned]) => {
-        if (isAssigned) {
-            const initials = name.split(' ')
-                .map(part => part.charAt(0).toUpperCase())
-                .join('');
-            const bgColor = getContactColor(name);
-            return `
-                <div class="contact_badge">
-                    <div class="avatar" style="background-color: ${bgColor}">
-                        ${initials}
-                    </div>
-                </div>
-            `;
-        }
-        return '';
-    }).join('');
-};
-            
 function loadContactsToAssignedTemplate(contact, index) {
     const bgColor = contactsArray[index].color;
     const nameInitials = contact.name
@@ -110,7 +95,7 @@ function loadContactsToAssignedTemplate(contact, index) {
     return `
     <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
     <div class="symbole_name_group">
-    <div class="profile_icon" style="background-color: ${bgColor}">
+    <div class="avatar" style="background-color: ${bgColor}">
     <span>${nameInitials}${surnameInitials}</span>
     </div>
     <div>
@@ -127,15 +112,25 @@ function loadContactsToAssignedTemplate(contact, index) {
     </li>`;
 };
 
-function initEditTaskVariables() {
-    dropdown = document.getElementById('dropdown');
-    if (!dropdown) {
-        console.error("Dropdown element not found!");
-        return;
-    }
-    selectedUser = document.getElementById('selected_users_group');
-    menu = document.getElementById('dropdown_menu');
-    toggle = document.getElementById('dropdown_toggle_btn');
+function renderAssignedContactsEdit(assignedTo) {
+    if (!assignedTo) return '';
+    return Object.entries(assignedTo)
+    .map(([name, isAssigned]) => {
+        if (isAssigned) {
+            const initials = name.split(' ')
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+            const bgColor = getContactColor(name);
+            return `
+                <div>
+                    <div class="avatar" style="background-color: ${bgColor}">
+                        ${initials}
+                    </div>
+                </div>
+            `;
+        }
+        return '';
+    }).join('');
 };
 
 function selectUser(index, event) {
@@ -179,12 +174,11 @@ function addSelectedUserIcon(index) {
 
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `
-    <div id="selected_user_${index}">
-    <div class="placeholder_icon">
-    <div class="profile_icon" style="background-color: ${bgColor}">
-    <span>${initials}</span>
-    </div>
-    </div>
-    </div>`;
+        <div id="selected_user_${index}">
+            <div class="placeholder_icon">
+                <div class="profile_icon" style="background-color: ${bgColor}">
+                    <span>${initials}</span>
+                </div>
+            </div>
+        </div>`;
 };
-            

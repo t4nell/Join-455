@@ -36,9 +36,8 @@ function toggleDropdownCategory(event) {
 function selectCategory(category) {
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
+    validateCategoryField();
 }
-
-renderCategories();
 
 document.addEventListener('click', (e) => {
     if (!categoryDropdown.contains(e.target)) {

@@ -1,0 +1,131 @@
+@media screen and (max-width: 1300px) {
+
+.headline_container{
+    gap: 16px;
+}    
+
+.headline_container h2 {
+    font-size: 47px;
+}
+
+.headline_container span{
+    font-size: 20px;
+}
+
+.contact_name{
+    font-size: 36px;
+}
+.contact_header{
+    gap: 20px;
+}
+
+}
+
+
+@media screen and (max-width: 1150px) {
+    #contact_list{
+        align-items: flex-end;
+        max-width: 420px;
+    }
+
+    .contact_container{
+        left: 640px;
+        width: calc(100% - 640px);
+    }
+
+    .separator_vertical{
+        display: none; 
+    }
+
+    .separator_horizontally_mobile{
+        display: flex;
+        align-self: flex-start;
+        margin-inline-start: 1px;
+    }
+
+    .headline_container{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile_icon_large {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile_icon_large span{
+        font-size: 27px;
+        font-weight: 400;
+    }
+
+}
+
+@media screen and (max-width: 1050px){
+    header span{
+        display: none;
+    }
+    .new_contact_container{
+        display: none;
+    }
+
+        .sidebar_container{
+        display: none;
+    }
+
+    .contact_container{
+        display: none;
+    }
+
+    header{
+        width: 100%;
+        left: 0;
+    }
+    
+    #contact_list{
+        max-width: none;
+        width: 100%;
+        align-items: unset;
+        left: 0;
+    }
+    .letter_separator_horizontal{
+        width: 98%;
+    }
+
+    .contact_side{
+        width: 94%;
+        margin: 0 16px;
+        overflow-y: hidden;
+    }
+
+    .join_logo_mobile{
+        display: block;
+        padding-left: 16px;
+    }
+
+}
+
+@media screen and (max-width: 700px){
+    .contact_side{
+        width: 90%;
+        margin: 0 10px;
+        gap: 12px;
+        padding-left: 12px;
+
+    }
+
+}
+
+@media screen and (max-width: 400px){
+    .letter_index{
+        width: 260px;
+    }
+    
+    .contact_side_name{
+        font-size: 16px;
+    }
+    
+    .contact_side_mail{
+        font-size: 14px;
+    }
+    
+}

@@ -51,33 +51,24 @@ function saveCurrentUserInfo(){
   localStorage.setItem('currentUser', JSON.stringify(currentUser))
   closeCurrentUserEditProcess();
 }};
+
+
 function renderCurrentUserViews() {
   const mainContainer = document.querySelector('#contact_detail_container');
   const userContainer = document.querySelector('.current_user_container');
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  const currentUserInitials = currentUser.name
-    .split(" ")
-    .map((part) => part.charAt(0).toUpperCase())
-    .join("");
+  const currentUserInitials = currentUser.name.split(" ").map((part) => part.charAt(0).toUpperCase()).join("");
 
-  if (mainContainer) {
-    mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
-  }
-  if (userContainer) {
-    userContainer.innerHTML = getCurrentUserTemplate(currentUser, currentUserInitials);
-  }
+  mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
+  userContainer.innerHTML = getCurrentUserTemplate(currentUser, currentUserInitials);
 }
 
 function closeCurrentUserEditProcess() {
   const mainContainer = document.querySelector("#contact_detail_container");
   mainContainer.innerHTML = "";
   renderCurrentUserViews();
-  clearGroupedContacts();
-  loadContactData();
   toggleOverlay();
   const currentUserDiv = document.getElementById("current_user");
-  if (currentUserDiv) {
-    currentUserDiv.classList.add('active');
-  }
+  currentUserDiv.classList.add('active');
   showNotification('User edited successfully')
 }

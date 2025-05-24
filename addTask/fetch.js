@@ -2,10 +2,6 @@ const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.ap
 
 let contactsArray = [];
 
-function initFetch() {
-    loadContactData();
-}
-
 async function loadContactData(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');

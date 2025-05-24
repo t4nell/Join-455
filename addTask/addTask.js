@@ -2,7 +2,12 @@ const mainContainer = document.getElementById('navbar_container');
 
 function renderSidebar() {
     mainContainer.innerHTML += getSidebarTemplate();
-    initFetch();
+}
+
+function initFetch() {
+    renderSidebar();
+    loadContactData();
+    renderCategories();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -24,23 +29,6 @@ function renderHeader() {
     const headerContainer = document.getElementById('header_container');
     headerContainer.innerHTML = getHeaderTemplate();
 }
-
-// window.onload = async function () {
-//     try {
-//         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-//         if (!currentUser) {
-//             window.location.href = '../index.html';
-//             return;
-//         }
-
-//         renderSidebar();
-//         renderHeader();
-//         updateUserProfile();
-//         initializeAddTask();
-//     } catch (error) {
-//         console.error('Error initializing add task:', error);
-//     }
-// };
 
 console.log('----------------Create Task Button Funktion----------------------');
 function createTask() {
