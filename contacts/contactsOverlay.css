@@ -1,78 +1,88 @@
 
 
   .contact_popup {
-    position: absolute;
-    width: 1212px;
-    height: 592px;
-    z-index: 104;
-    background-color: white;
     display: flex;
-    border-radius: 30px;
+    max-width: 75rem;
+    width: 90%;
+    margin: auto;
+    height: 37rem;
+    position: fixed;
+    overflow: hidden;
+    z-index: 104;
+    /* inset: 0; */
+    background-color: white;
+    border-radius: 1.875rem;
     transition: all 225ms ease-in-out;
     cursor: default;
 }
   
   .overlay_side_img{
-    width: 453px;
     background-color: var(--contact-overlay-color);
+    padding: 3rem 2rem;
     display: flex;
     flex-direction: column;
-    border-radius: 24px 0 0 24px;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 29rem;
+    width: 38%;
   }
   
   .overlay_side_img img{
-    width: 55px;
-    height: 66px;
-    position: absolute;
-    top: 154px;
-    left: 47px;
+    width: 3.5rem;
+    height: auto;
   }
   
   .contact_overlay_img{
-    position: absolute;
-    top: 204px;
-    left: 550px;
+    margin-top: 3rem;
+  }
+
+  .contact_overlay_img img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
   }
   
   .contact_input_fields {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 137px;
-    right: 48px;
-    width: 422px;
-    height: 215px;
-    gap: 32px;
+    width: 100%;
+    max-width: 22rem;
+    align-items: stretch;
+    gap: 1.5rem;
   }
   
   .overlay_buttons{
-    width: 364px;
-    height: 57px;
-    position: absolute;
-    right: 106px;
-    bottom: 135px;
     display: flex;
-    justify-content: space-between;
+    margin-top: 1.05rem;
+    gap: 1rem;
+    width: 100%;
   }
   
   .overlay_input:hover{
     cursor: text;
   }
   .overlay_input{
-    width: 401px;
-    height: 50px;
     border: 1px solid ;
-    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.625rem;
     border-color: var(--input-border-color);
-    font-size: 20px;
-    gap: 8px;
-    padding-left: 21px;
+    width: 100%;
   }
 
   .overlay_input::placeholder{
     color: var(--input-placeholder-color);
-    font-size: 20px;
-    font-weight: 400;  
+  }
+
+  .cancel_btn{
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
   .cancel_btn {
@@ -119,13 +129,13 @@
   }
 
 .overlay_text_left{
-    font-size: 61px;
+    font-size: 3.5rem;
     font-weight: 700;
     color: var(--text-color-white);
 }
 
 .overlay_phrase_left{
-    font-size: 27px;
+    font-size: 1.5rem;
     font-weight: 400;
     color: var(--text-color-white);
 }
@@ -133,19 +143,37 @@
 .overlay_text_container{
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 232px;
-  left: 48px;
+  gap: 1rem;
 }
 
 .overlay_separator_horizontal {
-  width: 90px;
+  width: 5rem;
   border: 1px solid var(--separator-color-grey);
-  border-radius: 3px;
-  align-self: flex-start;
-  display: flex;
-  margin: 0;
+  border-radius: 0.2rem;
   border-color: var(--separator-color);
+}
+
+.new_contact_overlay_right{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.contact_content_row{
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contact_form_fields{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .delete_contact_btn {
@@ -178,7 +206,6 @@
 .overlay_edit_buttons{
   width: 249px;
   height: 57px;
-  position: absolute;
   right: 221px;
   bottom: 135px;
   display: flex;

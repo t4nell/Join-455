@@ -1,4 +1,9 @@
-// PBKDF2-Funktionen
+/**
+ * Hashes a password using PBKDF2 algorithm
+ * @async
+ * @param {string} password - The password to hash
+ * @returns {Promise<string>} The hashed password with salt as hex string
+ */
 async function hashPassword(password) {
     const encoder = new TextEncoder();
     const salt = window.crypto.getRandomValues(new Uint8Array(16));
@@ -24,6 +29,13 @@ async function hashPassword(password) {
     return saltHex + hashHex;
 }
 
+/**
+ * Verifies a password against a stored hash
+ * @async
+ * @param {string} password - The password to verify
+ * @param {string} storedHash - The stored hash to check against
+ * @returns {Promise<boolean>} True if password matches, false otherwise
+ */
 async function verifyPassword(password, storedHash) {
     const encoder = new TextEncoder();
     const salt = new Uint8Array(
@@ -52,7 +64,12 @@ async function verifyPassword(password, storedHash) {
     return newHash === originalHash;
 }
 
-// Registrierungsfunktion
+/**
+ * Handles the signup process
+ * @async
+ * @param {Event} event - The form submission event
+ * @returns {void}
+ */
 async function handleSignup(event) {
     event.preventDefault();
     
@@ -100,7 +117,12 @@ async function handleSignup(event) {
     }
 }
 
-// Login-Funktion
+/**
+ * Handles the login process
+ * @async
+ * @param {Event} event - The form submission event
+ * @returns {void}
+ */
 async function handleLogin(event) {
     event.preventDefault();
     
@@ -127,20 +149,35 @@ async function handleLogin(event) {
     }
 }
 
-// Benutzer im LocalStorage speichern
+/**
+ * Saves a user to local storage
+ * @param {Object} user - The user object to save
+ * @param {string} user.name - User's name
+ * @param {string} user.email - User's email
+ * @param {string} user.password - User's hashed password
+ * @param {boolean} user.isGuest - Flag indicating if user is a guest
+ * @returns {void}
+ */
 function saveUser(user) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-// Benutzer finden
+/**
+ * Finds a user by email in local storage
+ * @param {string} email - The email to search for
+ * @returns {Object|undefined} The found user object or undefined
+ */
 function findUser(email) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users.find(u => u.email === email);
 }
 
-// Gast-Login
+/**
+ * Handles guest login process
+ * @returns {void}
+ */
 function handleGuestLogin() {
     const guestUser = {
         name: 'Gast Benutzer',
@@ -152,6 +189,12 @@ function handleGuestLogin() {
     window.location.href = './summary/summary.html';
 }
 
+/**
+ * Shows a notification message
+ * @param {string} message - The message to display
+ * @param {boolean} [isError=false] - Whether this is an error message
+ * @returns {void}
+ */
 function showNotification(message, isError = false) {
     const notification = document.createElement('div');
     notification.className = `notification ${isError ? 'error' : 'success'}`;

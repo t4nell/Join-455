@@ -1,22 +1,22 @@
 /**
- * @constant {HTMLElement} mainContainer - Container für die Navigationbar
+ * @constant {HTMLElement} mainContainer - Container for the navigation bar
  */
 const mainContainer = document.getElementById("navbar_container");
 
 /**
- * @constant {HTMLElement} greetingContainer - Container für die Begrüßung
+ * @constant {HTMLElement} greetingContainer - Container for the greeting message
  */
 const greetingContainer = document.getElementById("summary_greating_container");
 
 /**
- * @constant {HTMLElement} headerContainer - Container für den Header
+ * @constant {HTMLElement} headerContainer - Container for the header
  */
 const headerContainer = document.getElementById("header_container");
 
 /**
- * Ermittelt die passende Begrüßung basierend auf der Tageszeit
- * @param {number} hours - Aktuelle Stunde (0-23)
- * @returns {string} Passende Begrüßungsformel
+ * Returns appropriate greeting based on time of day
+ * @param {number} hours - Current hour (0-23)
+ * @returns {string} Appropriate greeting message
  */
 function getGreeting(hours) {
     if (hours >= 0 && hours < 10) {
@@ -29,7 +29,7 @@ function getGreeting(hours) {
 }
 
 /**
- * Aktualisiert die Begrüßung mit dem Namen des aktuellen Benutzers
+ * Updates the greeting with current user's name
  * @returns {void}
  */
 function updateGreeting() {
@@ -45,24 +45,24 @@ function updateGreeting() {
 }
 
 /**
- * Überprüft die Authentifizierung des Benutzers
- * @throws {Error} Wenn kein Benutzer authentifiziert ist
- * @returns {Object} Das aktuelle Benutzerobjekt
+ * checks if a user is authenticated
+ * @throws {Error} if no user is found in localStorage
+ * @returns {Object} User object from localStorage
  */
 function checkAuth() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
         window.location.href = '../index.html';
-        throw new Error('Unauthenticated'); // Abbruch, falls kein User
+        throw new Error('Unauthenticated'); // abourt further execution
     }
-    return currentUser; // Für weitere Verwendung
+    return currentUser;
 }
 
 /**
- * Initialisiert die Benutzeroberfläche
- * @param {Object} currentUser - Das aktuelle Benutzerobjekt
- * @param {string} currentUser.name - Name des Benutzers
- * @param {boolean} currentUser.isGuest - Flag ob Benutzer ein Gast ist
+ * initializes the UI components
+ * @param {Object} currentUser - information about the current user
+ * @param {string} currentUser.name - name of the user
+ * @param {boolean} currentUser.isGuest - check if current user is a guest
  * @returns {void}
  */
 function initializeUI(currentUser) {
@@ -77,15 +77,15 @@ function initializeUI(currentUser) {
 }
 
 /**
- * Lädt und verarbeitet die Task-Daten
+ * loads task data from Firebase and updates the UI with calculated statistics
  * @async
- * @returns {Promise<Object>} Die berechneten Task-Statistiken
+ * @returns {Promise<Object>} calculated statistics object
  */
 async function loadAndUpdateTaskData() {
     const tasks = await fetchTasks();
     const stats = calculateTaskStats(tasks);
     updateSummaryUI(stats);
-    return stats; // Optional für weitere Verarbeitung
+    return stats;
 }
 
 window.onload = async function() {
@@ -93,26 +93,37 @@ window.onload = async function() {
         const currentUser = checkAuth();
         initializeUI(currentUser);
         await loadAndUpdateTaskData();
-        makeContainersClickable(); // Neue Zeile
+        makeContainersClickable();
     } catch (error) {
         console.error("Initialization error:", error);
         showNotification(error.message || 'Fehler beim Laden der Daten');
     }
 };
 
-// Firebase zugriffe
+// constants for Firebase database URL
 const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
 
 function getCurrentUser() {
     return JSON.parse(localStorage.getItem('currentUser'));
 }
 
+/**
+ * Fetches task data from Firebase database
+ * @async
+ * @returns {Promise<Object>} Raw task data from Firebase
+ * @throws {Error} If network request fails
+ */
 async function fetchTaskData() {
     const response = await fetch(`${BASE_URL}addTask.json`);
     if (!response.ok) throw new Error('Network response was not ok');
     return await response.json();
 }
 
+/**
+ * Transforms raw task data into a standardized format
+ * @param {Object} rawData - Raw task data from Firebase
+ * @returns {Array<Object>} Array of formatted task objects
+ */
 function transformTaskData(rawData) {
     return Object.entries(rawData || {}).map(([id, task]) => ({
         id,
@@ -127,34 +138,26 @@ function transformTaskData(rawData) {
     }));
 }
 
+/**
+ * Filters out deleted tasks from the task list
+ * @param {Array<Object>} tasks - Array of task objects
+ * @returns {Array<Object>} Array of active tasks
+ */
 function filterActiveTasks(tasks) {
     return tasks.filter(task => task.status !== 'deleted');
 }
 
-async function fetchTasks() {
-    try {
-        const currentUser = getCurrentUser();
-        if (!currentUser) return [];
-
-        const rawData = await fetchTaskData();
-        if (!rawData) return [];
-
-        const allTasks = transformTaskData(rawData);
-        console.log("Geladene Tasks:", allTasks);
-
-        return filterActiveTasks(allTasks);
-    } catch (error) {
-        console.error("Error fetching tasks:", error);
-        return [];
-    }
-}
-
+/**
+ * Normalizes task status strings for consistent comparison
+ * @param {string} status - The status string to normalize
+ * @returns {string} Normalized status string
+ */
 function normalizeTaskStatus(status) {
     if (!status) return '';
     
     return status.toLowerCase().trim()
-        .replace(/\s+/g, '') // Entfernt alle Leerzeichen
-        .replace('awaiting', 'await') // Standardisiert Feedback-Status
+        .replace(/\s+/g, '') // delete all whitespace
+        .replace('awaiting', 'await') // feedback
         .replace('feedback', 'feedback');
 }
 
@@ -180,7 +183,7 @@ function countStatusOccurrences(tasks) {
         for (const statusType in STATUS_MAPPINGS) {
             if (matchesStatus(normalizedStatus, statusType)) {
                 counts[statusType]++;
-                break; // Keine Mehrfachzählung
+                break; // prevent double counting
             }
         }
     });
@@ -230,17 +233,17 @@ function logTaskDebugInfo(tasks) {
 }
 
 /**
- * Berechnet Statistiken für die übergebenen Tasks
- * @param {Array<Object>} tasks - Array von Task-Objekten
- * @param {string} tasks[].status - Status des Tasks
- * @param {string} tasks[].priority - Priorität des Tasks
- * @param {string} tasks[].dueDate - Fälligkeitsdatum des Tasks
- * @returns {Object} Berechnete Statistiken
- * @property {number} todo - Anzahl der Todo-Tasks
- * @property {number} done - Anzahl der erledigten Tasks
- * @property {number} inProgress - Anzahl der Tasks in Bearbeitung
- * @property {number} urgent - Anzahl der dringenden Tasks
- * @property {string|null} upcomingDeadline - Nächstes Fälligkeitsdatum
+ * calculates statistics from an array of task objects
+ * @param {Array<Object>} tasks - Array of task objects
+ * @param {string} tasks[].status - Status of the Task
+ * @param {string} tasks[].priority - Prioryty of the Task
+ * @param {string} tasks[].dueDate - Due date of the Task
+ * @returns {Object} calculated statistics
+ * @property {number} todo - caount of tasks to do
+ * @property {number} done - count of tasks done
+ * @property {number} inProgress - count of tasks in progress
+ * @property {number} urgent - count of urgent tasks
+ * @property {string|null} upcomingDeadline - deadline of the next urgent task
  */
 function calculateTaskStats(tasks) {
     logTaskDebugInfo(tasks);
@@ -307,14 +310,12 @@ function updateDeadlineCard(nextUrgentTask) {
 }
 
 function updateSummaryUI(stats) {
-    // Einfache Statistik-Karten
     updateStatCard('summary_todo_container', stats.todo, 'To-do');
     updateStatCard('summary_done_container', stats.done, 'Done');
     updateStatCard('summary_tasks_board_container', stats.totalTasks, 'Tasks in Board');
     updateStatCard('summary_tasks_progress_container', stats.inProgress, 'Tasks In Progress');
     updateStatCard('summary_await_feedback_container', stats.awaitingFeedback, 'Awaiting Feedback');
     
-    // Spezialkarten
     updateUrgentCard(stats.urgent);
     updateDeadlineCard(stats.nextUrgentTask);
 }
@@ -367,8 +368,6 @@ function makeContainersClickable() {
         makeContainerClickable(container);
     });
 }
-
-// Add these function definitions at the beginning of the file, after the constants
 
 function renderSidebar() {
     mainContainer.innerHTML = getSidebarTemplate();
