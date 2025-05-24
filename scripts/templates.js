@@ -109,7 +109,7 @@ function getTaskCard(task) {
       </div>
       <div class="progress_section" style="${progress.total === 0 ? 'display:none' : ''}">
         <div class="progress_bar">
-            <div class="progress_fill" style="width: ${progress.progressPercentage}%"></div>
+          <div class="progress_fill" style="width: ${progress.progressPercentage}%; background-color: ${progress.completed === progress.total ? 'var(--progress-fill-full-color)' : 'var(--progress-fill-color)'}"></div>
         </div>
         <span class="subtask_counter">${progress.completed}/${progress.total} Subtasks</span>
       </div>
