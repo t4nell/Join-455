@@ -8,6 +8,12 @@
     --lable-text-color: #2A3647;
 }
 
+.edit_task_form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 .required_for_label {
     color: var(--lable-text-color);
 }

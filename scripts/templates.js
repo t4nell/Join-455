@@ -178,7 +178,7 @@ function getDetailTaskCard(task) {
 function getEditTaskTemplate(task) {
   return `
     
-      
+    <form id="edit_task_form" class="edit_task_form">  
       <div class="input_titel_group">
           <label for="title" class="required_for_label">Title</label>
           <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
@@ -252,7 +252,7 @@ function getEditTaskTemplate(task) {
           Save
         </button>
       </div>
-    
+    </form>
   `;
 }
 

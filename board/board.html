@@ -15,12 +15,14 @@
     <link rel="stylesheet" href="./taskDetailTemplate.css" />
     <link rel="stylesheet" href="./editTaskTemplate.css">
     <link rel="stylesheet" href="./board.css" />
+
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
 
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script src="./board.js" defer></script>
+    <script src="./search.js" defer></script>
     <script src="../scripts/templates.js" defer></script>
     <script src="../scripts/userProfil.js" defer></script>
     <script src="./taskCard.js" defer></script>
@@ -54,7 +56,7 @@
         <form id="edit_task_form" class="main_section">
             <!-- Leeres Form Template das später gefüllt wird -->
         </form>
-    </div>
+      </div>
 
       <div class="board_container">
         
@@ -65,13 +67,13 @@
               <h2>Board</h2>
             </div>
             <div class="search_and_addTask_container">
-              <div class="search_container">
+              <div id="search_container" class="search_container">
                 <div>
-                  <input class="input_base_style" placeholder="Find Task" type="search">
+                  <input id="search_input" class="input_base_style" placeholder="Find Task" type="search">
                 </div>
                 <hr class="separator_vertically">
                 <div class="button_container">
-                  <button class="light_btn"><img src="../assets/imgs/boardIcons/search.svg" alt="Lupe"></button>
+                  <button id="search_button" onclick="searchTasks()" class="light_btn"><img src="../assets/imgs/boardIcons/search.svg" alt="Lupe"></button>
                 </div>
               </div>
               <div>
