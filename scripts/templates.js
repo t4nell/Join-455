@@ -100,25 +100,25 @@ function getTaskCard(task) {
   return `
     <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
       <div class="task_category">
-          <span class="category_label">${task.category}</span>
+        <span class="category_label">${task.category}</span>
       </div>
       <div class="task_content">
           <h3 class="task_title">${task.title}</h3>
           <p class="task_description">${task.description}</p>
       </div>
       <div class="progress_section">
-                <div class="progress_bar">
-                    <div class="progress_fill" style="width: ${progress.progressPercentage}%"></div>
-                </div>
-                <span class="subtask_counter">${progress.completed}/${progress.total} Subtasks</span>
-            </div>
+        <div class="progress_bar">
+            <div class="progress_fill" style="width: ${progress.progressPercentage}%"></div>
+        </div>
+        <span class="subtask_counter">${progress.completed}/${progress.total} Subtasks</span>
+      </div>
       <div class="task_footer">
-          <div class="assignee_avatars">
-              ${renderAssignedAvatars(task.assignedTo)}
-          </div>
-          <div class="menu_priority">
-              <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
-          </div>
+        <div class="assignee_avatars">
+          ${renderAssignedAvatars(task.assignedTo)}
+        </div>
+        <div class="menu_priority">
+          <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
+        </div>
       </div>
     </div>
   `
