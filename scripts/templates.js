@@ -163,7 +163,7 @@ function getDetailTaskCard(task) {
           </div>
         </div>
         <div class="task_detail_buttons">
-            <button class="delete_btn">
+            <button class="delete_btn" onclick="deleteTask('${task.id}')">
                 <img src="../assets/imgs/boardIcons/delete.svg" alt="delete">
                 Delete
             </button>
@@ -248,7 +248,7 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="task_detail_buttons">
-        <button type="button" class="dark_btn">
+        <button type="button" class="dark_btn" onclick="saveEditTask('${task.id}')">
           Save
         </button>
       </div>

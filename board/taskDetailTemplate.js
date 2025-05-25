@@ -110,3 +110,23 @@ async function openEditTask(taskId) {
         switchBtnPriority(task.priority);
     }
 };
+
+
+async function deleteTask(taskId) {
+    try {
+        const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete task');
+        }
+        allTasks = allTasks.filter(task => task.id !== taskId);
+        closeDetailTemplate();
+        renderColumns();
+    } catch (error) {
+        console.error('Error deleting task:', error);
+    }
+}

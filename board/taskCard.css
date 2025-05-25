@@ -46,7 +46,7 @@
 
 .task_card:active {
     transform-origin: bottom left;
-    transform: scale(1.01) rotate(5deg);
+    transform: scale(1.05) rotate(5deg);
 }
 
 .task_category {
