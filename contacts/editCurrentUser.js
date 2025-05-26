@@ -25,7 +25,8 @@ function checkValidation(newNameParts, newEmail, newPhone, isEdit){
   }
 }
 
-function saveCurrentUserInfo(){
+function saveCurrentUserInfo(event){
+  event.preventDefault();
   const newName =  document.getElementById('edit_name').value 
   const newEmail = document.getElementById('edit_mail').value 
   const newPhone = document.getElementById('edit_phone').value

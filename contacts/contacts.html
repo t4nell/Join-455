@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="../styles/buttons.css" />
     <link rel="stylesheet" href="./contactsOverlay.css" />
     <link rel="stylesheet" href="./contacts.css" />
-    <link rel="stylesheet" href="./contactResponsiveness.css">
-    <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
+    <link rel="stylesheet" href="./contactResponsiveness.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/joinLogoDark.svg"
+      type="image/x-icon"
+    />
     <script src="../script.js" defer></script>
     <script src="../scripts/fetch.js" defer></script>
     <script src="./renderContacts.js" defer></script>
@@ -32,7 +36,7 @@
       <div id="header_container"></div>
       <div class="sidebar_container">
         <div class="sidebar_img_container">
-          <a href="../index.html">
+          <a class="sidebar_join_logo" href="../index.html">
             <img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" />
           </a>
           <div id="navbar_container"></div>
@@ -53,7 +57,7 @@
         </div>
 
         <div id="contact_list_container">
-          <div class="current_user_container" ></div>
+          <div class="current_user_container"></div>
           <div id="all_contacts_container"></div>
         </div>
       </div>
@@ -66,37 +70,39 @@
           <hr class="separator_horizontally_mobile" />
         </div>
 
-        <div class="contact_main closed" id="contact_detail_container">
-
-        </div>
+        <div class="contact_main closed" id="contact_detail_container"></div>
       </div>
 
-      <div onclick="toggleOverlay()" id="contact_overlay" class="overlay_background_container fade_out">
-        
 
+
+      <div
+        onclick="toggleOverlay()"
+        id="contact_overlay"
+        class="overlay_background_container fade_out"
+      >
         <!--Overlay for new contact-->
-        <div onclick="eventBubbling(event)" id="contact_popup" class="contact_popup closed">
-
-        </div>
+        <div
+          onclick="eventBubbling(event)"
+          id="contact_popup"
+          class="contact_popup closed"
+        ></div>
 
         <!--Overlay for editing contact-->
         <div
           onclick="eventBubbling(event)"
           id="contact_edit_overlay"
           class="contact_popup closed"
-        >
-
-        </div>
+        ></div>
       </div>
 
-        <!-- popup Message for successfull contact save-->
-        <div
-          onclick="eventBubbling(event)"
-          id="contact_notification"
-          class="contact_save_message center_flex closed">
-          <p>Contact successfully created</p>
-        </div>
-
+      <!-- popup Message for successfull contact save-->
+      <div
+        onclick="eventBubbling(event)"
+        id="contact_notification"
+        class="contact_save_message center_flex closed"
+      >
+        <p>Contact successfully created</p>
+      </div>
     </main>
   </body>
 </html>

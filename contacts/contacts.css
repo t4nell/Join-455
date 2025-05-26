@@ -20,7 +20,7 @@ main {
 }
 
 .headline_container span{
-  font-size: 27px;
+  font-size: 1.69rem;
   font-weight: 400;
   color: var(--text-color-headline);
 }
