@@ -82,23 +82,35 @@ function initializeUI(currentUser) {
  * @returns {Promise<Object>} calculated statistics object
  */
 async function loadAndUpdateTaskData() {
-    const tasks = await fetchTasks();
-    const stats = calculateTaskStats(tasks);
-    updateSummaryUI(stats);
-    return stats;
-}
-
-window.onload = async function() {
     try {
-        const currentUser = checkAuth();
-        initializeUI(currentUser);
-        await loadAndUpdateTaskData();
-        makeContainersClickable();
+        const rawData = await fetchTaskData();  // Changed from fetchTasks to fetchTaskData
+        const tasks = transformTaskData(rawData); // Transform the raw data
+        const activeTasks = filterActiveTasks(tasks); // Filter out deleted tasks
+        
+        console.log('Fetched tasks:', activeTasks); // Debug log
+        
+        if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
+            console.warn('No tasks found or invalid data structure');
+            return {
+                todo: 0,
+                done: 0,
+                inProgress: 0,
+                urgent: 0,
+                totalTasks: 0,
+                awaitingFeedback: 0
+            };
+        }
+        
+        const stats = calculateTaskStats(activeTasks);
+        console.log('Calculated stats:', stats);
+        updateSummaryUI(stats);
+        return stats;
     } catch (error) {
-        console.error("Initialization error:", error);
-        showNotification(error.message || 'Fehler beim Laden der Daten');
+        console.error('Error in loadAndUpdateTaskData:', error);
+        showNotification('Fehler beim Laden der Aufgaben');
+        throw error;
     }
-};
+}
 
 // constants for Firebase database URL
 const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -375,4 +387,10 @@ function renderSidebar() {
 
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
+}
+
+function init () {
+    renderSidebar();
+    renderHeader();
+    updateUserProfile()
 }
