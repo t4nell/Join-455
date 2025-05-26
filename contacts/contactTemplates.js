@@ -179,7 +179,7 @@ function getNewContactOverlay() {
   <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
   <div class="overlay_text_container">
     <span class="overlay_text_left">Add Contact</span>
-    <span class="overlay_phrase_left pb_20">
+    <span class="overlay_phrase_left">
       Tasks are better with a Team!
     </span>
     <hr class="overlay_separator_horizontal" />
@@ -187,6 +187,10 @@ function getNewContactOverlay() {
 </div>
 
 <div class="new_contact_overlay_right">
+  <div onclick="toggleOverlay()" class="contact_close_btn">
+    <img src="../assets/imgs/contactIcons/close.svg" alt="">
+  </div>
+  
   <div class="contact_content_row">
     <!-- Profilbild links -->
     <div class="contact_overlay_img">
@@ -254,124 +258,143 @@ function getNewContactOverlay() {
 }
 
 function getEditContactOverlay(contact, index) {
-  return `                     <div class="overlay_side_img">
-            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
-            <div class="overlay_text_container">
-              <span class="overlay_text_left pb_20">Edit Contact</span>
-              <hr class="overlay_separator_horizontal" />
-            </div>
+  return  `
+    <div class="overlay_side_img">
+      <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+      <div class="overlay_text_container">
+        <span class="overlay_text_left">Edit Contact</span>
+        <hr class="overlay_separator_horizontal" />
+      </div>
+    </div>
+
+    <div class="new_contact_overlay_right">
+      <div onclick="toggleOverlay()" class="contact_close_btn">
+        <img src="../assets/imgs/contactIcons/close.svg" alt="">
+      </div>
+
+      <div class="contact_content_row">
+        <!-- Profilbild links -->
+        <div class="profile_icon_large contact_overlay_img" style="background-color: ${contact.color}">
+          <span>
+            ${contact.name?.charAt(0).toUpperCase() || ""}${contact.surname ? contact.surname.charAt(0).toUpperCase() : ""}
+          </span>
+        </div>
+
+        <!-- Formular rechts -->
+        <form id="edit_contact_form" class="contact_form_fields" data-index="${index}" onsubmit="saveEditContact(event)">
+          <div class="contact_input_fields">
+            <input
+              class="overlay_input name_input_icon"
+              type="text"
+              placeholder="Name"
+              id="edit_name"
+              name="edit_contact_name"
+              required
+            />
+            <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+
+            <input
+              class="overlay_input mail_input_icon"
+              type="text"
+              placeholder="Email"
+              id="edit_mail"
+              name="edit_contact_mail"
+              required
+            />
+            <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+
+            <input
+              class="overlay_input phone_input_icon"
+              type="text"
+              placeholder="Phone"
+              id="edit_phone"
+              name="edit_contact_phone"
+              required
+            />
+            <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
           </div>
-          <div>
-                <div class="contact_header">
-            <div class="profile_icon_large contact_overlay_img" style="background-color: ${contact.color}">
-                            <span>${contact.name.charAt(0).toUpperCase()}${contact.surname.charAt(0).toUpperCase() ? `${contact.surname.charAt(0).toUpperCase()}` : ""}</span>
-                        </div>
 
-            <form id="edit_contact_form" data-index="${index}" onsubmit="saveEditContact(event)">
-            <div class="contact_input_fields">
-              <input
-                class="overlay_input name_input_icon"
-                type="text"
-                placeholder="Name"
-                id="edit_name"
-                name="edit_contact_name"
-                required
-              />
-              <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
-              <input
-                class="overlay_input mail_input_icon"
-                type="text"
-                placeholder="Email"
-                id="edit_mail"
-                name="edit_contact_mail"
-                required
-              />
-              <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
-              <input
-                class="overlay_input phone_input_icon"
-                type="text"
-                placeholder="Phone"
-                id="edit_phone"
-                name="edit_contact_phone"
-                required
-              />
-              <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
-            </div>
-            <div class="overlay_edit_buttons">
-              <button type="button" onclick="deleteContact('${contact.id}')" class="delete_contact_btn">Delete</button>
-              <button  type="submit" form="edit_contact_form" class="save_contact_btn">
-                Save
-                <img
-                  src="../assets/imgs/contactIcons/check.svg"
-                  alt="create contact button"
-                />
-              </button>
-            </div>
-            </form>
-
-          </div>`;
+          <div class="overlay_edit_buttons">
+            <button type="button" onclick="deleteContact('${contact.id}')" class="delete_contact_btn">Delete</button>
+            <button type="submit" class="save_contact_btn">
+              Save
+              <img src="../assets/imgs/contactIcons/check.svg" alt="create contact button" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
 }
 
-function getCurrentUserEditOverlay(currentUserInitials) {
-  return  ` <div class="overlay_side_img">
-            <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
-            <div class="overlay_text_container">
-              <span class="overlay_text_left pb_20">Edit Contact</span>
-              <hr class="overlay_separator_horizontal" />
-            </div>
-          </div>
-          <div>
-                <div class="contact_header">
-            <div class="profile_icon_large contact_overlay_img" style="background-color:${currentUser.profileColor}">
-                            <span>${currentUserInitials}</span>
-                        </div>
 
-            <div class="contact_input_fields">
-              <input
-                class="overlay_input name_input_icon"
-                type="text"
-                placeholder="Name"
-                id="edit_name"
-                name="edit_contact_name"
-                value=""
-                required
-              />
-              <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
-              <input
-                class="overlay_input mail_input_icon"
-                type="text"
-                placeholder="Email"
-                id="edit_mail"
-                name="edit_contact_mail"
-                required
-              />
-              <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
-              <input
-                class="overlay_input phone_input_icon"
-                type="text"
-                placeholder="Phone"
-                id="edit_phone"
-                name="edit_contact_phone"
-                required
-              />
-              <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
-            </div>
-            <div class="overlay_edit_buttons">
-              <button onclick="toggleOverlay()" class="cancel_btn">
-                Cancel
-                <img
-                  src="../assets/imgs/contactIcons/iconoir_cancel.svg"
-                  alt="cancel button"
-                />
-              </button>
-              <button onclick="saveCurrentUserInfo()" class="save_contact_btn">
-                Save
-                <img
-                  src="../assets/imgs/contactIcons/check.svg"
-                  alt="create contact button"
-                />
-              </button>
-              </div>
-            </div>
-          </div>`;
+function getCurrentUserEditOverlay(currentUserInitials) {
+  return /*html*/ `
+    <div class="overlay_side_img">
+      <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
+      <div class="overlay_text_container">
+        <span class="overlay_text_left pb_20">Edit Contact</span>
+        <hr class="overlay_separator_horizontal" />
+      </div>
+    </div>
+
+    <div class="new_contact_overlay_right">
+      <div onclick="toggleOverlay()" class="contact_close_btn">
+        <img src="../assets/imgs/contactIcons/close.svg" alt="close button" />
+      </div>
+
+      <div class="contact_content_row">
+        <!-- Profilbild -->
+        <div class="profile_icon_large contact_overlay_img" style="background-color:${currentUser.profileColor}">
+          <span>${currentUserInitials}</span>
+        </div>
+
+        <!-- Formular -->
+        <form class="contact_form_fields" onsubmit="saveCurrentUserInfo(event);">
+          <div class="contact_input_fields">
+            <input
+              class="overlay_input name_input_icon"
+              type="text"
+              placeholder="Name"
+              id="edit_name"
+              name="edit_contact_name"
+              required
+            />
+            <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+
+            <input
+              class="overlay_input mail_input_icon"
+              type="text"
+              placeholder="Email"
+              id="edit_mail"
+              name="edit_contact_mail"
+              required
+            />
+            <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+
+            <input
+              class="overlay_input phone_input_icon"
+              type="text"
+              placeholder="Phone"
+              id="edit_phone"
+              name="edit_contact_phone"
+              required
+            />
+            <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
+          </div>
+
+          <div class="overlay_edit_buttons">
+            <button type="button" onclick="toggleOverlay()" class="cancel_btn">
+              Cancel
+              <img src="../assets/imgs/contactIcons/iconoir_cancel.svg" alt="cancel button" />
+            </button>
+            <button type="submit" class="save_contact_btn">
+              Save
+              <img src="../assets/imgs/contactIcons/check.svg" alt="save button" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
 }
