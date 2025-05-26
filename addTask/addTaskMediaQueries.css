@@ -11,6 +11,8 @@
         position: absolute;
         box-shadow: 0px 4px 4px #88888838;
         z-index: 100;
+        position: fixed;
+        top: 0;
     }
 
     #add_task_container {
@@ -45,17 +47,6 @@
         margin-bottom: 16px;
     }
 
-    .navbar_mobile_container_style {
-        height: 96px;
-        width: 100%;
-        justify-content: center;
-        background-color: var(--background-color-sidebar);
-        display: flex;
-        align-items: center;
-        position: relative;
-        z-index: 101;
-    }
-
     .sidebar_img_container {
         display: flex;
         flex-direction: row;
@@ -70,6 +61,10 @@
         gap: 1rem;
         width: 100%;
         margin: 0;
+        position: fixed;
+        bottom: 0;
+        background-color: var(--background-color-sidebar);
+        padding-bottom: 4px;
     }
 
     .sidebar_nav a {

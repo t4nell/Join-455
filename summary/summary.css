@@ -80,13 +80,11 @@ main {
   color: var(--text-color-sidebar);
 }
 
-/* Weißer Hintergrund beim Hover über Container oder Icon */
 #summary_done_container:hover .check_img_container,
 .check_img_container:hover {
   background-color: #fff;
 }
 
-/* Check-Icon immer dunkel beim Hover auf Container oder Icon */
 #summary_done_container:hover .check_img,
 .check_img_container:hover .check_img,
 .check_img:hover {
@@ -290,13 +288,11 @@ padding: 20px;
     object-fit: contain;
 }
 
-/* Weißer Hintergrund beim Hover über Container oder Icon */
 .pen_img_container:hover, .check_img_container:hover, 
 .summary_hover_container:hover .pen_img_container {
   background-color: #fff;
 }
 
-/* Pen immer dunkel beim Hover auf Container oder Icon */
 .summary_hover_container:hover .pen_img,
 .pen_img_container:hover .pen_img,
 .pen_img:hover {

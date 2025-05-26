@@ -82,23 +82,35 @@ function initializeUI(currentUser) {
  * @returns {Promise<Object>} calculated statistics object
  */
 async function loadAndUpdateTaskData() {
-    const tasks = await fetchTasks();
-    const stats = calculateTaskStats(tasks);
-    updateSummaryUI(stats);
-    return stats;
-}
-
-window.onload = async function() {
     try {
-        const currentUser = checkAuth();
-        initializeUI(currentUser);
-        await loadAndUpdateTaskData();
-        makeContainersClickable();
+        const rawData = await fetchTaskData();  // Changed from fetchTasks to fetchTaskData
+        const tasks = transformTaskData(rawData); // Transform the raw data
+        const activeTasks = filterActiveTasks(tasks); // Filter out deleted tasks
+        
+        console.log('Fetched tasks:', activeTasks); // Debug log
+        
+        if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
+            console.warn('No tasks found or invalid data structure');
+            return {
+                todo: 0,
+                done: 0,
+                inProgress: 0,
+                urgent: 0,
+                totalTasks: 0,
+                awaitingFeedback: 0
+            };
+        }
+        
+        const stats = calculateTaskStats(activeTasks);
+        console.log('Calculated stats:', stats);
+        updateSummaryUI(stats);
+        return stats;
     } catch (error) {
-        console.error("Initialization error:", error);
-        showNotification(error.message || 'Fehler beim Laden der Daten');
+        console.error('Error in loadAndUpdateTaskData:', error);
+        showNotification('Fehler beim Laden der Aufgaben');
+        throw error;
     }
-};
+}
 
 // constants for Firebase database URL
 const BASE_URL = "https://join-455-default-rtdb.europe-west1.firebasedatabase.app/";
@@ -114,9 +126,15 @@ function getCurrentUser() {
  * @throws {Error} If network request fails
  */
 async function fetchTaskData() {
+    console.log('Fetching from:', `${BASE_URL}addTask.json`);
     const response = await fetch(`${BASE_URL}addTask.json`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    return await response.json();
+    if (!response.ok) {
+        console.error('Fetch failed:', response.status, response.statusText);
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log('Fetched data:', data);
+    return data;
 }
 
 /**
@@ -273,10 +291,12 @@ function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
     
-    container.innerHTML = `
-        <span class="summary_number">${value}</span>
-        <span class="summary_text">${label}</span>
-    `;
+    // Finde die entsprechenden Elemente statt den ganzen Container zu überschreiben
+    const numberElement = container.querySelector('.summary_number');
+    const textElement = container.querySelector('.summary_text');
+    
+    if (numberElement) numberElement.textContent = value;
+    if (textElement) textElement.textContent = label;
 }
 
 function updateUrgentCard(urgentCount) {
@@ -375,4 +395,24 @@ function renderSidebar() {
 
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
+}
+
+async function init() {
+    try {
+        console.log('Starting initialization...');
+        const currentUser = checkAuth();
+        console.log('User authenticated:', currentUser);
+        
+        initializeUI(currentUser);
+        console.log('UI initialized');
+        
+        const taskData = await loadAndUpdateTaskData();
+        console.log('Task data loaded:', taskData);
+        
+        makeContainersClickable();
+        console.log('Initialization complete');
+    } catch (error) {
+        console.error("Initialization error:", error);
+        showNotification(error.message || 'Fehler beim Laden der Daten');
+    }
 }
