@@ -134,19 +134,24 @@ function renderAssignedContactsEdit(assignedTo) {
 };
 
 function selectUser(index, event) {
+    initEditTaskVariables()
     event.stopPropagation();
     const checkbox = document.getElementById(`users_checkbox_${index}`);
-    
+    const clickedItem = document.getElementById(`dropdown_item_${index}`);
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
     
+    // Entferne zuerst die active Klasse
+    clickedItem.classList.remove('active');
+    
+    // Füge active Klasse nur hinzu wenn checkbox checked ist
     if (checkbox.checked) {
         addSelectedUserIcon(index);
-        toggleBackground(index);
+        clickedItem.classList.add('active');
     } else {
-        removeSelectedUser(index);
-        toggleBackground(index);
+        removeSelectedUser(index)
+        clickedItem.classList.remove('active');
     }
 };
 
@@ -175,14 +180,15 @@ function addSelectedUserIcon(index) {
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `
         <div id="selected_user_${index}">
-            <div class="placeholder_icon">
-                <div class="profile_icon" style="background-color: ${bgColor}">
-                    <span>${initials}</span>
-                </div>
+           
+            <div class="avatar" style="background-color: ${bgColor}">
+                
+                <div>${initials}</div>
+                
             </div>
+            
         </div>`;
 };
-
 
 //Die Funktion ist so gross um die refactor Funktion von vscode zu üben ^^
 async function saveEditTask(taskId) {

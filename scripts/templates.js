@@ -126,7 +126,7 @@ function getTaskCard(task) {
   `
 }
 
-function getDetailTaskCard(task) {
+function getDetailTaskCard(task, index) {
     return `
         <div class="task_detail_card_header">
             <span class="category_lable_detail">${task.category}</span>
@@ -232,7 +232,7 @@ function getEditTaskTemplate(task) {
             </div>
             <ul class="dropdown_menu" id="dropdown_menu"></ul>
         </div>
-        <div id="selected_users_group" class="selected_user_group"> ${renderAssignedContactsEdit(task.assignedTo)}</div>
+        <div id="selected_users_group" class="selected_user_group"></div>
       </div>
 
       <div class="tag_input_container">

@@ -332,6 +332,19 @@
     padding-top: 8px;
 }
 
+.profile_icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--contact-container-background-color);
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
 .subtask_btn_container {
     position: absolute;
     right: 4px;
