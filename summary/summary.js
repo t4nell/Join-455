@@ -126,9 +126,15 @@ function getCurrentUser() {
  * @throws {Error} If network request fails
  */
 async function fetchTaskData() {
+    console.log('Fetching from:', `${BASE_URL}addTask.json`);
     const response = await fetch(`${BASE_URL}addTask.json`);
-    if (!response.ok) throw new Error('Network response was not ok');
-    return await response.json();
+    if (!response.ok) {
+        console.error('Fetch failed:', response.status, response.statusText);
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log('Fetched data:', data);
+    return data;
 }
 
 /**
@@ -285,10 +291,12 @@ function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
     
-    container.innerHTML = `
-        <span class="summary_number">${value}</span>
-        <span class="summary_text">${label}</span>
-    `;
+    // Finde die entsprechenden Elemente statt den ganzen Container zu überschreiben
+    const numberElement = container.querySelector('.summary_number');
+    const textElement = container.querySelector('.summary_text');
+    
+    if (numberElement) numberElement.textContent = value;
+    if (textElement) textElement.textContent = label;
 }
 
 function updateUrgentCard(urgentCount) {
@@ -389,8 +397,22 @@ function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
-function init () {
-    renderSidebar();
-    renderHeader();
-    updateUserProfile()
+async function init() {
+    try {
+        console.log('Starting initialization...');
+        const currentUser = checkAuth();
+        console.log('User authenticated:', currentUser);
+        
+        initializeUI(currentUser);
+        console.log('UI initialized');
+        
+        const taskData = await loadAndUpdateTaskData();
+        console.log('Task data loaded:', taskData);
+        
+        makeContainersClickable();
+        console.log('Initialization complete');
+    } catch (error) {
+        console.error("Initialization error:", error);
+        showNotification(error.message || 'Fehler beim Laden der Daten');
+    }
 }
