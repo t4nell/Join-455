@@ -89,7 +89,7 @@ header{
     left: 232px;
     display: flex;
     align-items: center;
-    z-index: 100;
+    z-index: 200000;
     position: absolute;
     justify-content: space-between;
     box-shadow: 0px 4px 4px #88888838;
@@ -281,7 +281,7 @@ header span{
     flex-direction: column;
 }
 
-.user_dropdown_menu a {
+.dropdown_header{
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -328,5 +328,9 @@ header span{
 }
 
 .join_logo_mobile{
-    display: none;
+    display: block ; 
+}
+
+.help_mobile{
+    display: none !important;
 }

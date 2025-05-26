@@ -78,12 +78,13 @@ function getHeaderTemplate() {
     <div class="join_logo_mobile"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></div>
       <span>Kanban Project Management Tool</span>
       <div class="user_menu">
-        <a href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
+        <a class="help_def" href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
         <button onclick="toggleUserMenu()" class="user_profile"></button>
         <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
-          <a href="../policy/policy.html">Privacy Policy</a>
-          <a href="../legalNotes/legal.html">Legal Notice</a>
-          <a href="#" onclick="logout(); return false;">Log out</a>
+          <a class="help_mobile dropdown_header"  href="../help/help.html" class="help">Help</a>
+          <a class="dropdown_header" href="../policy/policy.html">Privacy Policy</a>
+          <a class="dropdown_header" href="../legalNotes/legal.html">Legal Notice</a>
+          <a class="dropdown_header" href="#" onclick="logout(); return false;">Log out</a>
         </div>
       </div>
     </header>
