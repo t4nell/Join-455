@@ -258,11 +258,11 @@ main {
         contrast(101%);
 }
 
-.display_none_required_text_footer {
+.hide_mobile_required_text_footer {
     display: none;
 }
 
-.display_block_required_text_footer {
+.show_mobile_required_text_footer {
     display: block;
 }
 
