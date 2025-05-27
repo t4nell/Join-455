@@ -258,12 +258,13 @@ main {
         contrast(101%);
 }
 
-.hide_mobile_required_text_footer {
+.required_footer_text_mobile {
     display: none;
-}
-
-.show_mobile_required_text_footer {
-    display: block;
+    color: red;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: left;
+    margin-left: 16px;
 }
 
 /* colors */

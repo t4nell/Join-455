@@ -9,10 +9,10 @@ async function loadContactData(path = '') {
         const contactsRef = responseToJson.contact;
         const addTask = Object.values(responseToJson.addTask);
         console.log(addTask);
-        console.log(addTask[0].category);
 
         contactsArray = Object.values(contactsRef);
         contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+        console.log(contactsArray);
     } catch (error) {
         console.error('Error loading contact data:', error);
     }

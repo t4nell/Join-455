@@ -75,7 +75,7 @@ function getSidebarTemplate() {
 function getHeaderTemplate() {
   return `
     <header>
-    <div class="join_logo_mobile"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></div>
+    <div class="join_logo_mobile"><a href="../index.html"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></a></div>
       <span>Kanban Project Management Tool</span>
       <div class="user_menu">
         <a class="help_def" href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>

@@ -82,6 +82,24 @@ html{
     width: 100%;
     }
 
+
+    .headline_container{
+        flex-direction: column;
+        align-items: unset;
+    }
+
+    .contact_container {
+        display: flex;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: calc(100% - 100px);
+    width: 100%;
+    z-index: 10000;
+    background-color: wheat;
+    flex-direction: column;
+    }
+
     .sidebar_container{
     display: flex;
     width: 100%;
@@ -122,9 +140,6 @@ html{
         display: none;
     }
 
-    .contact_container{
-        display: none;
-    }
 
     header{
         width: 100%;
@@ -161,6 +176,13 @@ html{
 
         .separator_vertical{
         display: none; 
+    }
+
+    .sec_add_contact_btn{
+        display: flex;
+        position: fixed;
+        right: 16px;
+        bottom: 112px;
     }
 
 }
