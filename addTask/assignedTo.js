@@ -130,11 +130,9 @@ function renderSelectedIcons() {
                 .map((p) => p[0].toUpperCase())
                 .join('');
         selectedUser.innerHTML += `
-        <div id="selected_user_${index}">
-            <div class="placeholder_icon">
-                <div class="profile_icon" style="background-color: ${bgColor}">
-                    <span>${initials}</span>
-                </div>
+         <div>
+            <div class="avatar" style="background-color: ${bgColor}">
+                ${initials}
             </div>
         </div>`;
     });
