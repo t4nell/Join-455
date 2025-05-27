@@ -8,6 +8,7 @@ main {
   left: 685px;
   height: calc(100% - 100px);
   width: calc(100% - 685px);
+  transition: all 225ms ease-in-out;
 }
 
 .active{
@@ -256,3 +257,11 @@ main {
   }
 
 
+.return_arrow{
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 16px;
+  top: 48px;
+  display: none;
+}

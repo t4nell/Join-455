@@ -65,5 +65,12 @@ function editContactOverlay(contactIndex) {
   document.getElementById('edit_name').value = contact.name + " " + contact.surname
   document.getElementById('edit_mail').value = contact.email
   document.getElementById('edit_phone').value = contact.phone
-  
+}
+
+function closeContactMain(){
+  const allContacts = document.querySelectorAll(".contact_side");
+  document.querySelector('.contact_container').classList.add('mobile_closed');
+  allContacts.forEach((contact) => contact.classList.remove('active'));
+  const contactMainContainer = document.getElementById("contact_detail_container");
+  contactMainContainer.classList.add("closed");
 }

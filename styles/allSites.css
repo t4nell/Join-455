@@ -7,8 +7,8 @@
     --text-color-white: #FFFFFF;
     --background-color-sidebar: #2A3647;
     --background-color-header: #ffffff;
-    --background-color-main: #f5f6f7;
-    --background-color-footer: #f5f6f7;
+    --background-color-main: #f6f7f8;
+    --background-color-footer: #f6f7f8;
     --hover-color-footer: #29ABE2;
     --separator-color: #29ABE2;
     --text-color-name: #29ABE2;
@@ -330,7 +330,6 @@ header span{
 .join_logo_mobile{
     display: none ; 
     padding-left: 16px;
-
 }
 
 .help_mobile{

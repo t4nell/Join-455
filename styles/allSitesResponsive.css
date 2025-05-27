@@ -6,4 +6,12 @@
     .help_def{
         display: none;
     }
+
+        .join_logo_mobile{
+        display: block;
+        padding-left: 16px;
+    }
+        header span{
+        display: none;
+    }
 }

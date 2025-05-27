@@ -124,15 +124,12 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
 function getContactDetailsTemplate(contact) {
   return `
                 <div class="contact_header">
-            <div class="profile_icon_large" style="background-color: ${
-              contact.color
-            }">
+                      
+            <div class="profile_icon_large" style="background-color: ${contact.color}">
                             <span>${contact.name.charAt(0).toUpperCase()}${
     contact.surname.charAt(0).toUpperCase()
       ? `${contact.surname.charAt(0).toUpperCase()}`
-      : ""
-  }</span>
-                        </div>
+      : ""}</span></div>
 
             <div class="contact_head">
               <div class="contact_name">

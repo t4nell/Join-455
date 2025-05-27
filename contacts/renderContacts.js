@@ -22,6 +22,7 @@ function showContactDetails(contactIndex) {
       "contact_detail_container"
     );
     contactDetailsContainer.classList.remove("closed");
+    document.querySelector(".contact_container").classList.remove("mobile_closed");
     contactDetailsContainer.innerHTML = "";
     contactDetailsContainer.innerHTML = getContactDetailsTemplate(contact);
   }
@@ -54,6 +55,7 @@ function showCurrentUserDetails() {
     const render = () => {
       mainContainer.innerHTML = getCurrentUserDetailsTemplate(currentUser, currentUserInitials);
       mainContainer.classList.remove("closed");
+      document.querySelector(".contact_container").classList.remove("mobile_closed");
     };
     if (anyActive) {
       setTimeout(render, 300);

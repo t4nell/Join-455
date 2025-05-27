@@ -44,26 +44,27 @@ html{
         left: 640px;
         width: calc(100% - 640px);
     }
-
-
-
-
-
-
-
+    
     .profile_icon_large {
         width: 80px;
         height: 80px;
+        min-width: 80px;
     }
     
     .profile_icon_large span{
         font-size: 27px;
         font-weight: 400;
     }
-
+    
 }
 
 @media screen and (max-width: 1050px){
+
+    header{
+        width: 100%;
+        left: 0;
+    }
+
     header span{
         display: none;
     }
@@ -82,22 +83,31 @@ html{
     width: 100%;
     }
 
-
     .headline_container{
         flex-direction: column;
         align-items: unset;
+        margin-top: 48px;
+    }
+
+    .contact_buttons{
+        display: none;
     }
 
     .contact_container {
-        display: flex;
+    display: flex;
     position: absolute;
     top: 100px;
     left: 0;
     height: calc(100% - 100px);
     width: 100%;
     z-index: 10000;
-    background-color: wheat;
+    background-color: var(--background-color-main);
     flex-direction: column;
+    }
+
+    .mobile_closed{
+     transform: translateX(150%);
+
     }
 
     .sidebar_container{
@@ -141,10 +151,6 @@ html{
     }
 
 
-    header{
-        width: 100%;
-        left: 0;
-    }
     
     #contact_list{
         max-width: none;
@@ -185,16 +191,24 @@ html{
         bottom: 112px;
     }
 
+    .return_arrow{
+        display: flex;
+    }
+
 }
 
 @media screen and (max-width: 700px){
     .contact_side{
         width: 90%;
         margin: 0 10px;
-
         padding-left: 12px;
-
     }
+
+    .headline_container, 
+    .contact_main{
+        padding-left: 16px;
+    }
+
 
 }
 
@@ -209,6 +223,10 @@ html{
     
     .contact_side_mail{
         font-size: 14px;
+    }
+
+    .contact_name{
+        font-size: 24px;
     }
     
 }
