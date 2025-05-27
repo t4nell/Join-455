@@ -284,5 +284,20 @@ main {
     --subtasks-background-color: #f0f0f0;
 
     --add-tasks-input-focus-color: #29abe2;
+
+    --avatare-border-color: #ffffff;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--avatare-border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--avatare-border-color);
+    font-size: 12px;
+    margin-right: -8px;
 }
 
