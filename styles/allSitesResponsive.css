@@ -1,7 +1,10 @@
 @media screen and (max-width: 1050px){
 
     /* header resp*/
-
+    header{
+        width: 100%;
+        left: 0;
+    }
 
     .help_mobile{
         display: flex !important; 
@@ -15,7 +18,7 @@
         display: block;
         padding-left: 16px;
     }
-    
+
         header span{
         display: none;
     }
