@@ -55,7 +55,7 @@
 
       <div class="board_container">
         
-        <div class="board_contend_top">
+        <div class="board_content_top">
           
           <div class="board_controls_container">
             <div class="headline_container">
@@ -77,47 +77,45 @@
             </div>
           </div>
 
-          <div class="category_task_container">
+
+        </div>
+        
+        <div class="board_content_bottom">
+          
+          <div class="drag_and_drop_container" >
             <div class="category">
               <span>To do</span>
               <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
             </div>
-            <div class="category">
-              <span>In progress</span>
-              <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
-            </div>
-            <div class="category">
-              <span>Await feedback</span>
-              <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
-            </div>
-            <div class="category category_done_container">
-              <span>Done</span>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="board_contend_bottom">
-
-          <div class="drag_and_drop_container" >
             <div id="drag_area_todo" class="drag_area" status="todo" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
-
+          
           <div class="drag_and_drop_container" >
+            <div class="category">
+              <span>In progress</span>
+              <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
+            </div>
             <div id="drag_area_in_progress" class="drag_area" status="inProgress" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
           <div class="drag_and_drop_container" >
+            <div class="category">
+              <span>Await feedback</span>
+              <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
+            </div>
             <div id="drag_area_await_feedback" class="drag_area" status="awaitFeedback" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
 
             </div>
           </div>
 
           <div class="drag_and_drop_container">
+            <div class="category category_done_container">
+              <span>Done</span>
+            </div>
             <div id="drag_area_done" class="drag_area" status="done" ondrop="handleDrop(event)" ondragover="allowDrop(event)"> 
 
             </div>

@@ -41,12 +41,11 @@
 .task_card:hover {
     cursor: pointer;
     transform-origin: center;
-    transform: scale(1.05);
 }
 
 .task_card:active {
     transform-origin: bottom left;
-    transform: scale(1.05) rotate(5deg);
+    transform: rotate(5deg);
 }
 
 .task_category {
@@ -93,25 +92,56 @@
     align-items: center;
     gap: 11px;
     margin: 16px 0;
+    height: 17px;
 }
 
 .progress_bar {
-    width: 50%;
+    width: 100%;
     height: 8px;
     background-color: var(--progress-bar-background-color);
     border-radius: 4px;
+}
+
+.task_card:hover .progress_bar {
+    animation: shrinkBar 0.3s 0.3s forwards;
+}
+
+@keyframes shrinkBar {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 50%;
+    }
 }
 
 .progress_fill {
     height: 100%;
     background-color: var(--progress-fill-color);
     border-radius: 4px;
-    width: 50%;
+    width: 100%;
 }
 
 .subtask_counter {
     font-size: 14px;
     color: var(--subtask-counter-text-color);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.task_card:hover .subtask_counter {
+    animation: showCounter 0.3s 0.6s forwards;
+}
+
+@keyframes showCounter {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 .task_footer {
