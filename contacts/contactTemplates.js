@@ -271,7 +271,7 @@ function getEditContactOverlay(contact, index) {
 
       <div class="contact_content_row">
         <!-- Profilbild links -->
-        <div class="profile_icon_large contact_overlay_img" style="background-color: ${contact.color}">
+        <div class="profile_icon_overlay contact_overlay_img" style="background-color: ${contact.color}">
           <span>
             ${contact.name?.charAt(0).toUpperCase() || ""}${contact.surname ? contact.surname.charAt(0).toUpperCase() : ""}
           </span>
@@ -330,7 +330,7 @@ function getCurrentUserEditOverlay(currentUserInitials) {
     <div class="overlay_side_img">
       <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
       <div class="overlay_text_container">
-        <span class="overlay_text_left pb_20">Edit Contact</span>
+        <span class="overlay_text_left">Edit Contact</span>
         <hr class="overlay_separator_horizontal" />
       </div>
     </div>
@@ -342,7 +342,7 @@ function getCurrentUserEditOverlay(currentUserInitials) {
 
       <div class="contact_content_row">
         <!-- Profilbild -->
-        <div class="profile_icon_large contact_overlay_img" style="background-color:${currentUser.profileColor}">
+        <div class="profile_icon_overlay contact_overlay_img" style="background-color:${currentUser.profileColor}">
           <span>${currentUserInitials}</span>
         </div>
 

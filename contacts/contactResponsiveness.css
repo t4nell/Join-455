@@ -67,6 +67,23 @@ html{
         padding: 0;
     }
 
+    .contact_close_btn{
+        filter: brightness(0) invert(1);
+    }
+
+    .cancel_btn{
+        display: none;
+    }
+
+    .create_contact_btn{
+        height: 3.75rem;
+        width: 14.9rem;
+    }
+
+    .overlay_buttons{
+        justify-content: center;
+    }
+
     .headline_container{
         flex-direction: column;
         align-items: unset;
@@ -120,6 +137,27 @@ html{
     .contact_content_row{
         flex-direction: column;
         align-items: center;
+        gap: 0;
+    }
+
+    .contact_input_fields{
+        max-width: 34rem;
+    }
+
+    .overlay_input::placeholder{
+        font-size:  20px;
+    }
+
+
+    .overlay_input{
+            padding: 0.90rem 1rem;
+    }
+
+    .contact_input_fields,
+    .contact_form_fields{
+        padding: 0 2rem 0 1rem;
+        max-width: 37rem;
+
     }
     
     .contact_popup{
@@ -133,10 +171,6 @@ html{
         padding: 0;
     }
 
-    
-
-
-    
     #contact_list{
         max-width: none;
         width: 100%;
@@ -176,6 +210,20 @@ html{
         display: flex;
     }
 
+    /* Edit Area */
+
+    .profile_icon_overlay{
+        position: absolute;
+        transform: translate(-50%, -110%);
+        top: 50%;
+        left: 50%;
+    }
+
+    .overlay_edit_buttons{
+        width: 100%;
+        justify-content: center;
+    }
+
 }
 
 @media screen and (max-width: 700px){
@@ -210,4 +258,14 @@ html{
         font-size: 24px;
     }
     
+}
+
+@media screen and (max-width: 400px){
+.overlay_phrase_left{
+    font-size: 1.3rem;
+}
+
+.overlay_text_left{
+    font-size: 3rem;
+}
 }

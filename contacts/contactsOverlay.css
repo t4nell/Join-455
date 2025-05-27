@@ -59,6 +59,28 @@
     border-radius: 50%;
     object-fit: cover;
   }
+
+  .profile_icon_overlay span{
+      color: white;
+      font-size: 47px;
+      font-weight: 500;
+  }
+
+
+
+
+  .profile_icon_overlay{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid var(--contact-container-background-color);
+  background-color: rgb(8, 52, 119);
+  box-sizing: border-box;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
   
   .contact_input_fields {
     display: flex;
