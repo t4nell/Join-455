@@ -1,6 +1,8 @@
 let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
+
+
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
     selectedUser = document.getElementById('selected_users_group');
@@ -112,26 +114,64 @@ function loadContactsToAssignedTemplate(contact, index) {
     </li>`;
 };
 
+// function renderAssignedContactsEdit(assignedTo) {
+//     initEditTaskVariables();
+//     if (!assignedTo || !selectedUser) return;
+//     selectedUser.innerHTML = '';
+    
+//     for (let index = 0; index < contactsArray.length; index++) {
+//         const contact = contactsArray[index];
+//         const fullName = `${contact.name} ${contact.surname}`;
+
+//         if (assignedTo[fullName]) {
+//             const nameInitials = contact.name
+//                 .split(' ')
+//                 .map((p) => p.charAt(0).toUpperCase())
+//                 .join('');
+//             const surnameInitials = contact.surname
+//                 .split(' ')
+//                 .map((p) => p.charAt(0).toUpperCase())
+//                 .join('');
+//             const initials = nameInitials + surnameInitials;
+
+//             selectedUser.innerHTML += addSelectedUserIconTemplate(index, contact.color, initials);
+
+//             setTimeout(() => {
+//                 const checkBox = document.getElementById(`users_checkbox_${index}`);
+//                 if (checkBox) {
+//                     checkBox.checked = true;
+//                     toggleBackground(index);
+//                 }
+//             }, 0);
+//         }
+//     };
+// }
+
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-    .map(([name, isAssigned]) => {
-        if (isAssigned) {
-            const initials = name.split(' ')
-                .map(part => part.charAt(0).toUpperCase())
-                .join('');
-            const bgColor = getContactColor(name);
-            return `
-                <div>
-                    <div class="avatar" style="background-color: ${bgColor}">
-                        ${initials}
+        .map(([name, isAssigned]) => {
+            if (isAssigned) {
+                // Finde den Index des Kontakts im contactsArray
+                const index = contactsArray.findIndex(contact => 
+                    `${contact.name} ${contact.surname}` === name
+                );
+                
+                const initials = name.split(' ')
+                    .map(part => part.charAt(0).toUpperCase())
+                    .join('');
+                const bgColor = getContactColor(name);
+                return `
+                    <div id="selected_user_${index}">
+                        <div class="avatar" style="background-color: ${bgColor}">
+                            ${initials}
+                        </div>
                     </div>
-                </div>
-            `;
-        }
-        return '';
-    }).join('');
-};
+                `;
+            }
+            return '';
+        }).join('');
+}
 
 function selectUser(index, event) {
     initEditTaskVariables()
