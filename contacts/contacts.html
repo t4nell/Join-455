@@ -46,20 +46,21 @@
       <div id="contact_list">
         <div class="new_contact_container">
           <button
-            onclick="newContactOverlay()"
-            class="dark_btn new_contact_btn"
+          onclick="newContactOverlay()"
+          class="dark_btn new_contact_btn"
           >
-            <span>Add new contact</span>
-            <img
-              src="../assets/imgs/contactIcons/person_add.svg"
-              alt="Person Add Icon"
-            />
-          </button>
-        </div>
-
-        <div id="contact_list_container">
-          <div class="current_user_container"></div>
-          <div id="all_contacts_container"></div>
+          <span>Add new contact</span>
+          <img
+          src="../assets/imgs/contactIcons/person_add.svg"
+          alt="Person Add Icon"
+          />
+        </button>
+      </div>
+      
+      <div id="contact_list_container">
+        <div class="current_user_container"></div>
+        <div id="all_contacts_container"></div>
+        <img class="sec_add_contact_btn" src="../assets/imgs/contactIcons/secondary_add_contact_btn.svg" alt="secondary_add_contact_button" onclick="newContactOverlay()"/>
         </div>
       </div>
 

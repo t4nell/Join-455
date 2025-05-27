@@ -328,7 +328,9 @@ header span{
 }
 
 .join_logo_mobile{
-    display: block ; 
+    display: none ; 
+    padding-left: 16px;
+
 }
 
 .help_mobile{
