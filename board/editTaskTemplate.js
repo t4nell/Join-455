@@ -5,10 +5,11 @@ let contactsArray = [];
 
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
-    selectedUser = document.getElementById('selected_users_group');
+    selectedUser = document.getElementById('selected_user_group');
     menu = document.getElementById('dropdown_menu');
     toggle = document.getElementById('dropdown_toggle_btn');
 };
+
 
 async function loadContactData(path = '') {
     try {
@@ -24,6 +25,7 @@ async function loadContactData(path = '') {
     loadContactsToAssigned();
 };
 
+
 function openCalendar() {
     const calenderInput = document.getElementById('due_date');
     calenderInput.focus();
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
     });
 });
+
 
 function switchBtnPriority(btnPriority) {
     document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
@@ -57,16 +60,19 @@ function switchBtnPriority(btnPriority) {
     }
 };
 
+
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
 };
 
+
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 };
+
 
 function handleClickOutside(event) {
     if (!dropdown.contains(event.target)) {
@@ -75,6 +81,7 @@ function handleClickOutside(event) {
     }
 };
 
+
 function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
@@ -82,6 +89,7 @@ function loadContactsToAssigned() {
         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 };
+
 
 function loadContactsToAssignedTemplate(contact, index) {
     const bgColor = contactsArray[index].color;
@@ -93,7 +101,6 @@ function loadContactsToAssignedTemplate(contact, index) {
     .split(' ')
     .map((part) => part.charAt(0).toUpperCase())
     .join('');
-    
     return `
     <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
     <div class="symbole_name_group">
@@ -114,49 +121,15 @@ function loadContactsToAssignedTemplate(contact, index) {
     </li>`;
 };
 
-// function renderAssignedContactsEdit(assignedTo) {
-//     initEditTaskVariables();
-//     if (!assignedTo || !selectedUser) return;
-//     selectedUser.innerHTML = '';
-    
-//     for (let index = 0; index < contactsArray.length; index++) {
-//         const contact = contactsArray[index];
-//         const fullName = `${contact.name} ${contact.surname}`;
-
-//         if (assignedTo[fullName]) {
-//             const nameInitials = contact.name
-//                 .split(' ')
-//                 .map((p) => p.charAt(0).toUpperCase())
-//                 .join('');
-//             const surnameInitials = contact.surname
-//                 .split(' ')
-//                 .map((p) => p.charAt(0).toUpperCase())
-//                 .join('');
-//             const initials = nameInitials + surnameInitials;
-
-//             selectedUser.innerHTML += addSelectedUserIconTemplate(index, contact.color, initials);
-
-//             setTimeout(() => {
-//                 const checkBox = document.getElementById(`users_checkbox_${index}`);
-//                 if (checkBox) {
-//                     checkBox.checked = true;
-//                     toggleBackground(index);
-//                 }
-//             }, 0);
-//         }
-//     };
-// }
 
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
         .map(([name, isAssigned]) => {
             if (isAssigned) {
-                // Finde den Index des Kontakts im contactsArray
                 const index = contactsArray.findIndex(contact => 
                     `${contact.name} ${contact.surname}` === name
                 );
-                
                 const initials = name.split(' ')
                     .map(part => part.charAt(0).toUpperCase())
                     .join('');
@@ -171,7 +144,8 @@ function renderAssignedContactsEdit(assignedTo) {
             }
             return '';
         }).join('');
-}
+};
+
 
 function selectUser(index, event) {
     initEditTaskVariables()
@@ -181,11 +155,7 @@ function selectUser(index, event) {
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
-    
-    // Entferne zuerst die active Klasse
     clickedItem.classList.remove('active');
-    
-    // Füge active Klasse nur hinzu wenn checkbox checked ist
     if (checkbox.checked) {
         addSelectedUserIcon(index);
         clickedItem.classList.add('active');
@@ -195,10 +165,12 @@ function selectUser(index, event) {
     }
 };
 
+
 function removeSelectedUser(index) {
     const userIconContainer = document.getElementById(`selected_user_${index}`);
     userIconContainer.remove();
 };
+
 
 function addSelectedUserIcon(index) {
     contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -217,6 +189,7 @@ function addSelectedUserIcon(index) {
     selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
 };
 
+
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `
         <div id="selected_user_${index}">
@@ -229,6 +202,7 @@ function addSelectedUserIconTemplate(index, bgColor, initials) {
             
         </div>`;
 };
+
 
 //Die Funktion ist so gross um die refactor Funktion von vscode zu üben ^^
 async function saveEditTask(taskId) {
