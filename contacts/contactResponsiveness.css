@@ -59,28 +59,12 @@ html{
 }
 
 @media screen and (max-width: 1050px){
-
-    header{
-        width: 100%;
-        left: 0;
-    }
-
-    header span{
-        display: none;
-    }
     .new_contact_container{
         display: none;
     }
 
-    .sidebar_join_logo{
-        display: none;
-    }
-
-    .sidebar_img_container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
+    .new_contact_overlay_right{
+        padding: 0;
     }
 
     .headline_container{
@@ -107,48 +91,49 @@ html{
 
     .mobile_closed{
      transform: translateX(150%);
-
     }
 
-    .sidebar_container{
-    display: flex;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    height: 80px;
-    padding: 0;
-    flex-direction: row;
-    }
-
-    .sidebar_nav a {
-    text-decoration: none;
-    color: var(--text-color-sidebar);
-    display: flex;
-    height: 80px;
-    width: 76px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0;
-    border-radius: 1rem;
-    }
-
-    #navbar_container{
-        width: 100%;
-    }
-
-    .sidebar_nav{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: center;
-        justify-content: space-around;
-        margin: 0;
-    }
-
-    .sidebar_footer{
+    .overlay_side_img img{
         display: none;
     }
+
+    .contact_overlay_img img{
+        position: absolute;
+        transform: translate(-50%, -75%);
+        top: 50%;
+        left: 50%;
+        width: 8.75rem;
+        height: 8.75rem;
+    }
+
+    .overlay_side_img{
+        width: 100%;
+        max-width: none;
+        height: 46%;
+        justify-content: center;
+    }
+    
+    .overlay_text_container{
+        padding: 1.5rem;
+    }
+
+    .contact_content_row{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .contact_popup{
+        flex-direction: column;
+        height: 80%;
+        max-height: 760px;
+        max-width: 540px;
+    }
+
+    .overlay_side_img{
+        padding: 0;
+    }
+
+    
 
 
     
@@ -169,10 +154,6 @@ html{
         gap: 12px;
     }
 
-    .join_logo_mobile{
-        display: block;
-        padding-left: 16px;
-    }
 
         .separator_horizontally_mobile{
         display: flex;
