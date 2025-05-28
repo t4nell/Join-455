@@ -125,24 +125,29 @@ function loadContactsToAssignedTemplate(contact, index) {
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-        .map(([name, isAssigned]) => {
-            if (isAssigned) {
-                const index = contactsArray.findIndex(contact => 
-                    `${contact.name} ${contact.surname}` === name
-                );
-                const initials = name.split(' ')
-                    .map(part => part.charAt(0).toUpperCase())
-                    .join('');
-                const bgColor = getContactColor(name);
-                return `
-                    <div id="selected_user_${index}">
-                        <div class="avatar" style="background-color: ${bgColor}">
-                            ${initials}
-                        </div>
+        .map(([id, contactMap]) => {
+            const [[fullName, isAssigned]] = Object.entries(contactMap);
+            if (!isAssigned) return '';
+            const contact = contactsArray.find(c => 
+                `${c.name} ${c.surname}` === fullName
+            );
+            if (!contact) return '';
+            const nameInitials = contact.name
+                .split(' ')
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+            const surnameInitials = contact.surname
+                .split(' ')
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+            const initials = nameInitials + surnameInitials;
+            return `
+                <div id="selected_user_${contact.id}" class="contact_badge">
+                    <div class="avatar" style="background-color: ${contact.color}">
+                        ${initials}
                     </div>
-                `;
-            }
-            return '';
+                </div>
+            `;
         }).join('');
 };
 
