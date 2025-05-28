@@ -104,7 +104,7 @@ async function openEditTask(taskId) {
         taskDetailCard.innerHTML = getEditTaskTemplate(task);
         initEditTaskVariables();
         await loadContactData();
-        // loadContactsToAssigned(assignedTo);
+        loadContactsToAssigned();
         if (task.assignedTo) {
             contactsArray.forEach((contact, index) => {
                 const fullName = `${contact.name} ${contact.surname}`;
@@ -118,7 +118,6 @@ async function openEditTask(taskId) {
             });
         }
         switchBtnPriority(task.priority);
-        loadContactsToAssigned(task.assignedTo);
     }
 }
 
