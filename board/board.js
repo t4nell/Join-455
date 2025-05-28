@@ -16,6 +16,8 @@ async function init() {
     await loadAddTask();
     renderColumns();
     loadContactsToAssigned();
+    setupDragAreas(); // Drag-Bereiche direkt initialisieren
+    // Entfernen Sie den Aufruf von initDragAndDrop()
 };
 
 /**
@@ -55,3 +57,161 @@ function renderAllTaskCards(allTasks, state, id) {
         id.innerHTML += getTaskCard(task);
     });
 };
+
+function startDragging(event, taskId) {
+    const draggedElement = event.target.closest('.task_card');
+    event.dataTransfer.setData('text/plain', taskId);
+    
+    // Füge eine Klasse hinzu für visuelle Effekte während des Ziehens
+    draggedElement.classList.add('dragging');
+    
+    // Speichere Dimensionen sowohl in dataTransfer als auch in sessionStorage
+    const dimensions = {
+        width: draggedElement.offsetWidth,
+        height: draggedElement.offsetHeight
+    };
+    
+    try {
+        // Einige Browser erlauben keine komplexen Daten in dataTransfer
+        event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
+    } catch (e) {
+        console.log('Browser unterstützt keine komplexen Datentypen in dataTransfer');
+    }
+    
+    sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+    const dropzone = event.currentTarget;
+    
+    // Versuche zuerst die Dimensionen aus dem dataTransfer zu bekommen,
+    // falls das nicht funktioniert, nutze sessionStorage
+    let dimensionsStr = event.dataTransfer.getData('dimensions');
+    if (!dimensionsStr) {
+        dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
+    }
+    
+    const dimensions = dimensionsStr ? JSON.parse(dimensionsStr) : {};
+    
+    // Remove any existing placeholders
+    removePlaceholders();
+    
+    // Create new placeholder
+    if (dimensions.width && dimensions.height) {
+        const placeholder = createPlaceholder(dimensions);
+        dropzone.appendChild(placeholder);
+    }
+}
+
+function createPlaceholder(dimensions) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'drag_area_placeholder';
+    placeholder.style.width = `${dimensions.width}px`;
+    placeholder.style.height = `${dimensions.height}px`;
+    return placeholder;
+}
+
+function removePlaceholders() {
+    document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
+        placeholder.remove();
+    });
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    const taskId = event.dataTransfer.getData('text/plain');
+    const dropzone = event.currentTarget;
+    
+    // Entferne visuellen Effekt vom Element
+    document.querySelectorAll('.task_card.dragging').forEach(element => {
+        element.classList.remove('dragging');
+    });
+    
+    // Remove all placeholders
+    removePlaceholders();
+    
+    // Löschen der gespeicherten Dimensionen
+    sessionStorage.removeItem('draggedElementDimensions');
+    
+    let targetStatus;
+    if (dropzone.id === 'drag_area_todo') targetStatus = 'todo';
+    else if (dropzone.id === 'drag_area_in_progress') targetStatus = 'inProgress';
+    else if (dropzone.id === 'drag_area_await_feedback') targetStatus = 'awaitFeedback';
+    else if (dropzone.id === 'drag_area_done') targetStatus = 'done';
+    
+    if (taskId && targetStatus) {
+        moveTo(taskId, targetStatus);
+    }
+}
+
+function handleDragEnd(event) {
+    // Entferne visuellen Effekt vom Element
+    document.querySelectorAll('.task_card.dragging').forEach(element => {
+        element.classList.remove('dragging');
+    });
+    
+    // Entferne alle Platzhalter
+    removePlaceholders();
+    
+    // Lösche Session-Daten
+    sessionStorage.removeItem('draggedElementDimensions');
+}
+
+function setupDragAreas() {
+    const dragAreas = [dragAreaTodo, dragAreaInProgress, dragAreaAwaitFeedback, dragAreaDone];
+    
+    dragAreas.forEach(area => {
+        area.ondragover = allowDrop;
+        area.ondrop = handleDrop;
+    });
+    
+    // Fügen Sie den Event-Listener für dragend hinzu
+    document.addEventListener('dragend', handleDragEnd);
+}
+
+async function moveTo(taskId, targetStatus) {
+    // Finde die Task im allTasks Array
+    const taskIndex = allTasks.findIndex(task => task.id === taskId);
+    if (taskIndex === -1) return;
+
+    // Aktualisiere den Status im lokalen Array
+    allTasks[taskIndex].status = targetStatus;
+
+    // Aktualisiere in der Datenbank
+    const task = allTasks[taskIndex];
+    await updateTaskStatus(taskId, targetStatus);
+
+    // Render columns neu
+    renderColumns();
+}
+
+async function updateTaskStatus(taskId, status) {
+    try {
+        // Aktualisiere nur das status-Feld in Firebase
+        await fetch(`${BASE_URL}addTask/${taskId}.json`, {
+            method: 'PATCH',
+            body: JSON.stringify({ status: status }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    } catch (error) {
+        console.error('Error updating task status:', error);
+    }
+}
+
+function getTaskCard(task) {
+    return `
+        <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
+            <div class="task_card_content">
+                <h3 class="task_card_title">${task.title}</h3>
+                <p class="task_card_description">${task.description}</p>
+                <div class="task_card_footer">
+                    <span class="task_card_due_date">${task.dueDate || ''}</span>
+                    <span class="task_card_priority">${task.priority || ''}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}

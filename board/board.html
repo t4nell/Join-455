@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-
 <html lang="de">
-
   <head>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/allSites.css" />
@@ -16,12 +13,9 @@
     <link rel="stylesheet" href="./editTaskTemplate.css">
     <link rel="stylesheet" href="./board.css" />
     <link rel="stylesheet" href="../styles/allSitesResponsive.css">
-
     <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
-
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
     <script src="./board.js" defer></script>
     <script src="./search.js" defer></script>
     <script src="../scripts/templates.js" defer></script>
@@ -30,15 +24,10 @@
     <script src="./taskDetailTemplate.js" defer></script>
     <script src="./dragAndDrop.js" defer></script>
     <script src="./editTaskTemplate.js" defer></script>
-
     <title>Join</title>
-
   </head>
-
   <body onload="init()">
-
     <main id="main_container">
-
       <div id="header_container"></div>
       <div class="sidebar_container">
         <div class="sidebar_img_container">
@@ -46,25 +35,19 @@
           <div id="navbar_container"></div>
         </div>
       </div>
-      
       <div id="overlay_background_container" class="overlay_background fade_out" onclick="closeDetailTemplate()">
         <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)">
           <!-- Leeres div Template das später gefüllt wird -->
         </div>
       </div>
-
       <div class="board_container">
-        
         <div class="board_content_top">
-          
           <div class="board_controls_container">
             <div class="headline_container">
               <h2>Board</h2>
             </div>
             <div class="search_and_addTask_container">
-
               <div style="display: flex; flex-direction: column; align-items: center; ">  
-
                 <div id="search_container" class="search_container">
                   <div>
                     <input id="search_input" class="input_base_style" oninput="searchOnInput()" placeholder="Find Task" type="search">
@@ -74,65 +57,48 @@
                     <button id="search_button" onclick="resetFilter()" class="light_btn"><img src="../assets/imgs/boardIcons/search.svg" alt="Lupe"></button>
                   </div>
                 </div>
-
                 <span id="no_find_task_mesage" style="display: none; color: brown; ">"find no task"</span>
-
               </div>
-
             <div>
                 <button class="dark_btn">Add Task <img src="../assets/imgs/boardIcons/plus.svg" alt="puls"></button>
               </div>
             </div>
           </div>
-
-
         </div>
-        
         <div class="board_content_bottom">
-          
           <div class="drag_and_drop_container" >
             <div class="category">
               <span>To do</span>
               <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
             </div>
             <div id="drag_area_todo" class="drag_area" status="todo" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-
             </div>
           </div>
-          
           <div class="drag_and_drop_container" >
             <div class="category">
               <span>In progress</span>
               <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
             </div>
             <div id="drag_area_in_progress" class="drag_area" status="inProgress" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-
             </div>
           </div>
-
           <div class="drag_and_drop_container" >
             <div class="category">
               <span>Await feedback</span>
               <button class="plus_button"><img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol"></button>
             </div>
             <div id="drag_area_await_feedback" class="drag_area" status="awaitFeedback" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
-
             </div>
           </div>
-
           <div class="drag_and_drop_container">
             <div class="category category_done_container">
               <span>Done</span>
             </div>
             <div id="drag_area_done" class="drag_area" status="done" ondrop="handleDrop(event)" ondragover="allowDrop(event)"> 
-
             </div>
           </div>
-
         </div>
-
       </div>
-
     </main>
   </body>
 </html>
