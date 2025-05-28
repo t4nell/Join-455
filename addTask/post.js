@@ -51,6 +51,7 @@ function collectTaskData(form) {
         assignedTo[id] = {
             [fullName]: true,
         };
+        console.log(assignedTo[id]);
     });
 
     const subtasks = {};
