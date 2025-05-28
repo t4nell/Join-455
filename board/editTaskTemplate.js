@@ -142,7 +142,7 @@ function renderAssignedContactsEdit(assignedTo) {
                 .join('');
             const initials = nameInitials + surnameInitials;
             return `
-                <div id="selected_user_${contact.id}" class="contact_badge">
+                <div id="selected_user_${id}" class="contact_badge">
                     <div class="avatar" style="background-color: ${contact.color}">
                         ${initials}
                     </div>
