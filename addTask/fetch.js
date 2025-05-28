@@ -4,14 +4,14 @@ let contactsArray = [];
 
 async function loadContactData(path = '') {
     try {
-        let response = await fetch(BASE_URL + path + '.json');
-        let responseToJson = await response.json();
-        const contactsRef = responseToJson.contact;
-        const addTask = Object.values(responseToJson.addTask);
-        console.log(addTask);
+        const response = await fetch(BASE_URL + path + '.json');
+        const data = await response.json();
+        const contactsRef = data.contact || {};
 
-        contactsArray = Object.values(contactsRef);
-        contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+        contactsArray = Object.entries(contactsRef)
+            .map(([id, contact]) => ({ id, ...contact }))
+            .sort((a, b) => a.name.localeCompare(b.name));
+
         console.log(contactsArray);
     } catch (error) {
         console.error('Error loading contact data:', error);
