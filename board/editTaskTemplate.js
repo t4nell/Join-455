@@ -73,59 +73,42 @@ function handleClickOutside(event) {
     }
 }
 
-// function loadContactsToAssigned() {
-//     if (!menu) return;
-//     menu.innerHTML = '';
-//     contactsArray.forEach((contact, index) => {
-//         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
-//     });
-// };
-
-function loadContactsToAssigned(assignedTo) {
+function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
-    return Object.entries(assignedTo).map(([id, contactMap]) => {
-        const [[fullName, isAssigned]] = Object.entries(contactMap);
-
-        if (!isAssigned) return '';
-
-        const initials = fullName
-            .split(' ')
-            .map((part) => part.charAt(0).toUpperCase())
-            .join('');
-
-        const bgColor = getContactColor(fullName);
-        menu.innerHTML += loadContactsToAssignedTemplate(id, fullName, bgColor, initials);
+    contactsArray.forEach((contact, index) => {
+        menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
 
-function loadContactsToAssignedTemplate(id, fullName, bgColor, initials) {
-    // const bgColor = contactsArray[index].color;
-    // const nameInitials = contact.name
-    // .split(' ')
-    // .map((part) => part.charAt(0).toUpperCase())
-    // .join('');
-    // const surnameInitials = contact.surname
-    // .split(' ')
-    // .map((part) => part.charAt(0).toUpperCase())
-    // .join('');
+function loadContactsToAssignedTemplate(contact, index) {
+    const bgColor = contactsArray[index].color;
+    const nameInitials = contact.name
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+    const surnameInitials = contact.surname
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+
     return `
-    <li class="dropdown_item" id="dropdown_item_${id}" onclick="selectUser(${id}, event)">
+    <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
     <div class="symbole_name_group">
     <div class="avatar" style="background-color: ${bgColor}">
-    <span>${initials}</span>
+    <span>${nameInitials}${surnameInitials}</span>
     </div>
     <div>
-    <span class="contact_name">${fullName}</span>
+    <span class="contact_name">${contact.name} ${contact.surname}</span>
     </div>
     </div>
     <input
-    id="users_checkbox_${id}"
+    id="users_checkbox_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
-    value="${fullName}" 
-    onclick="selectUser(${id}, event)"/>
+    value="${contact.name} ${contact.surname}" 
+    onclick="selectUser(${index}, event)"/>
     </li>`;
 }
 
