@@ -9,10 +9,7 @@ console.log('----------------Funktion zum sammeln der Daten---------------------
 //     selectedUserIndices.forEach((index) => {
 //         const contact = contactsArray[index];
 //         const name = `${contact.name} ${contact.surname}`;
-//         assignedTo[name] = {
-//             assigned: true,
-//             contactId: contact.id,
-//         };
+//         assignedTo[name] = true;
 //     });
 
 //     const subtasks = {};
