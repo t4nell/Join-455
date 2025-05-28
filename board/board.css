@@ -30,10 +30,15 @@ main {
   padding-left: 0;
 }
 
+.headline_container h2 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
 .board_controls_container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   width: 85%;
 }
 
@@ -41,7 +46,6 @@ main {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 32px;
 }
 
@@ -53,6 +57,8 @@ main {
   align-items: center;
   border: 1px solid var(--input-border-color);
   border-radius: 10px;
+  height: 46px;
+  overflow: hidden;
 }
 
 .search_container:focus-within {
@@ -91,7 +97,6 @@ main {
   align-items: center;
   padding: 0;
   border: none;
-  /* height: 32px; */
   border-radius: 100%;
 }
 
