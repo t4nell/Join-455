@@ -118,6 +118,10 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
               <span class="contact_category">Phone</span>
               <span>${currentUser.phone ? currentUser.phone : "+49"}</span>
             </div>
+            <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event);"/>
+              <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
+                <button onclick="editCurrentUserOverlay()" id="edit_btn">Edit</button>
+              </div>
           </div>`;
 }
 
@@ -137,14 +141,10 @@ function getContactDetailsTemplate(contact) {
               </div>
 
               <div class="contact_buttons">
-                <button onclick="editContactOverlay(${contactsArray.indexOf(
-                  contact
-                )} )" class="contact_btn">
+                <button onclick="editContactOverlay(${contactsArray.indexOf(contact)})" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
                 </button>
-                <button onclick="deleteContact('${
-                  contact.id
-                }')" class="contact_btn">
+                <button onclick="deleteContact('${contact.id}')" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
                   Delete
                 </button>
@@ -167,6 +167,11 @@ function getContactDetailsTemplate(contact) {
               <span>${contact.phone}</span>
             </div>
           </div>
+          <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event)"/>
+              <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
+                <button onclick="editContactOverlay(${contactsArray.indexOf(contact)})" id="edit_btn"><img src="../assets/imgs/contactIcons/edit.svg" alt="" />Edit</button>
+                <button onclick="deleteContact('${contact.id}')" id="delete_btn"><img src="../assets/imgs/contactIcons/delete.svg" alt="" />Delete</button>
+              </div>
         </div>`;
 }
 

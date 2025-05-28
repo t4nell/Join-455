@@ -74,3 +74,20 @@ function closeContactMain(){
   const contactMainContainer = document.getElementById("contact_detail_container");
   contactMainContainer.classList.add("closed");
 }
+
+function toggleContactOptions(event){
+  event.stopPropagation();
+  document.getElementById('contact_options_dropdown').classList.remove('closed');
+  setTimeout(() => {
+    document.addEventListener('click', closeContactMenuOnClickOutside);
+  }, 0);
+}
+
+
+function closeContactMenuOnClickOutside(event) {
+    const contactMenu = document.getElementById('contact_options_dropdown');
+    if (!contactMenu.classList.contains('closed') && !contactMenu.contains(event.target)) {
+        contactMenu.classList.add('closed');
+        document.removeEventListener('click', closeContactMenuOnClickOutside);
+    }
+}
