@@ -13,19 +13,26 @@ function calculateSubtaskProgress(task) {
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
     const maxVisibleAvatars = 5;
+    
     const assignedContacts = Object.entries(assignedTo)
-        .filter(([_, isAssigned]) => isAssigned)
-        .map(([name, _]) => {
-            const initials = name
+        .map(([id, contactMap]) => {
+            const [[fullName, isAssigned]] = Object.entries(contactMap);
+            
+            if (!isAssigned) return null;
+
+            const initials = fullName
                 .split(' ')
                 .map(part => part.charAt(0).toUpperCase())
                 .join('');
+                
             return {
-                name,
+                name: fullName,
                 initials,
-                color: getContactColor(name)
+                color: getContactColor(fullName)
             };
-        });
+        })
+        .filter(contact => contact !== null);
+
     let avatarHtml = assignedContacts
         .slice(0, maxVisibleAvatars)
         .map(contact => `
@@ -33,6 +40,7 @@ function renderAssignedAvatars(assignedTo) {
                 ${contact.initials}
             </div>
         `).join('');
+
     if (assignedContacts.length > maxVisibleAvatars) {
         avatarHtml += `
             <div class="avatar more-avatar">
@@ -40,6 +48,7 @@ function renderAssignedAvatars(assignedTo) {
             </div>
         `;
     }
+    
     return avatarHtml;
 };
 
