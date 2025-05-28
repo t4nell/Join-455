@@ -267,6 +267,32 @@ main {
     margin-left: 16px;
 }
 
+.contact_save_message {
+    background-color: var(--active-contact-color);
+    color: var(--text-color-white);
+    height: 64px;
+    width: 350px;
+    position: fixed;
+    border-radius: 20px;
+    left: calc(50% + 116px);
+    bottom: -100px;
+    transform: translateX(-50%);
+    transition: all 125ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+}
+
+.contact_save_message.show {
+    bottom: 50%;
+}
+
+.closed {
+    bottom: -100px;
+}
+
 /* colors */
 :root {
     --hover-before-color-assigned-dropdown: #eeeeee;

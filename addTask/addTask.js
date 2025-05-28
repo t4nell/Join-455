@@ -121,6 +121,7 @@ function validateRequiredFields() {
 
     if (titleValid && dateValid && categoryValid) {
         createTask();
+        showNotification('Task added to Board');
     }
 }
 
@@ -167,5 +168,21 @@ function validateCategoryField() {
         categoryMessage.style.display = 'none';
         return true;
     }
+}
+
+function showNotification(notificationText) {
+    const savedContactNotification = document.getElementById('contact_notification');
+    savedContactNotification.innerHTML = `
+        <p>${notificationText}</p>
+        <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
+    `;
+    savedContactNotification.classList.remove('closed');
+    savedContactNotification.classList.add('show');
+
+    setTimeout(() => {
+        savedContactNotification.classList.remove('show');
+        savedContactNotification.classList.add('closed');
+        window.location.href = '../board/board.html';
+    }, 1500);
 }
 
