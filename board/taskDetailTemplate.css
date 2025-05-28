@@ -131,7 +131,6 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    padding-left: 16px;
 }
 
 .subtasks_list {
