@@ -1,12 +1,38 @@
 let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
+
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
     selectedUser = document.getElementById('selected_user_group');
     menu = document.getElementById('dropdown_menu');
     toggle = document.getElementById('dropdown_toggle_btn');
 }
+
+
+function initializeCalendar() {
+    const calendarInput = document.getElementById('due_date');
+    if (calendarInput && !calendarInput._flatpickr) {
+        flatpickr(calendarInput, {
+            dateFormat: 'd/m/Y',
+            minDate: 'today',
+            locale: {
+                firstDayOfWeek: 1
+            }
+        });
+    }
+}
+
+
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    if (calenderInput && calenderInput._flatpickr) {
+        calenderInput._flatpickr.open();
+    } else {
+        console.error('Flatpickr not initialized');
+    }
+}
+
 
 async function loadContactData(path = '') {
     try {
@@ -22,20 +48,6 @@ async function loadContactData(path = '') {
     loadContactsToAssigned();
 }
 
-function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
-        minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-    });
-});
 
 function switchBtnPriority(btnPriority) {
     document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
@@ -55,16 +67,19 @@ function switchBtnPriority(btnPriority) {
     }
 }
 
+
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
 }
 
+
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 }
+
 
 function handleClickOutside(event) {
     if (!dropdown.contains(event.target)) {
@@ -73,6 +88,7 @@ function handleClickOutside(event) {
     }
 }
 
+
 function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
@@ -80,6 +96,7 @@ function loadContactsToAssigned() {
         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
+
 
 function loadContactsToAssignedTemplate(contact, index) {
     const bgColor = contactsArray[index].color;
@@ -112,6 +129,7 @@ function loadContactsToAssignedTemplate(contact, index) {
     </li>`;
 }
 
+
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
@@ -140,6 +158,7 @@ function renderAssignedContactsEdit(assignedTo) {
         .join('');
 }
 
+
 function selectUser(index, event) {
     initEditTaskVariables();
     event.stopPropagation();
@@ -158,10 +177,12 @@ function selectUser(index, event) {
     }
 }
 
+
 function removeSelectedUser(index) {
     const userIconContainer = document.getElementById(`selected_user_${index}`);
     userIconContainer.remove();
 }
+
 
 function addSelectedUserIcon(index) {
     contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -179,6 +200,7 @@ function addSelectedUserIcon(index) {
 
     selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
 }
+
 
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `

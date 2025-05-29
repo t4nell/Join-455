@@ -119,7 +119,8 @@ async function openEditTask(taskId) {
         }
         switchBtnPriority(task.priority);
     }
-}
+    initializeCalendar();
+};
 
 async function deleteTask(taskId) {
     try {
