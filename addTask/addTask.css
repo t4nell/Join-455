@@ -267,7 +267,7 @@ main {
     margin-left: 16px;
 }
 
-.contact_save_message {
+.contact_save_message_addTask {
     background-color: var(--active-contact-color);
     color: var(--text-color-white);
     height: 64px;
@@ -285,7 +285,7 @@ main {
     z-index: 1000;
 }
 
-.contact_save_message.show {
+.contact_save_message_addTask.show {
     bottom: 50%;
 }
 

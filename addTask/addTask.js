@@ -123,7 +123,7 @@ function validateRequiredFields() {
 
     if (titleValid && dateValid && categoryValid) {
         createTask();
-        showNotification('Task added to Board');
+        showAddedNotification('Task added to Board');
     }
 }
 
@@ -172,8 +172,8 @@ function validateCategoryField() {
     }
 }
 
-function showNotification(notificationText) {
-    const savedContactNotification = document.getElementById('contact_notification');
+function showAddedNotification(notificationText) {
+    const savedContactNotification = document.getElementById('contact_added_task_notification');
     savedContactNotification.innerHTML = `
         <p>${notificationText}</p>
         <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
