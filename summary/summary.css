@@ -304,3 +304,10 @@ padding: 20px;
     text-decoration: none;
     color: inherit;
 }
+
+@media screen and (max-width: 1000px) {
+
+#summary_right {
+    display: none;
+    }
+}
