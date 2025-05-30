@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="./editTaskTemplate.css" />
         <link rel="stylesheet" href="./board.css" />
         <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
+        <link rel="stylesheet" href="./boardResponsive.css" />
 
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
 
@@ -38,8 +39,8 @@
             <div class="sidebar_container" id="sidebar_container">
                 <div class="sidebar_img_container">
                     <a class="sidebar_join_logo" href="../index.html"
-                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"
-                    /></a>
+                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"/>
+                    </a>
                     <div id="navbar_container"></div>
                 </div>
             </div>
@@ -57,7 +58,7 @@
                             <h2>Board</h2>
                         </div>
                         <div class="search_and_addTask_container">
-                            <div style="display: flex; flex-direction: column; align-items: center">
+                            <div class="search_container_style">
                                 <div id="search_container" class="search_container">
                                     <div>
                                         <input
@@ -80,7 +81,8 @@
 
                             <div>
                                 <button class="dark_btn">
-                                    Add Task <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
+                                    <p class="button_text">Add Task</p>
+                                    <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
                                 </button>
                             </div>
                         </div>
