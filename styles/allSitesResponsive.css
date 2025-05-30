@@ -1,69 +1,74 @@
-@media screen and (max-width: 1050px){
+@media screen and (max-width: 1150px) {
+    html {
+        font-size: 85%;
+    }
+}
 
+@media screen and (max-width: 1050px) {
     /* header resp*/
-    header{
+    header {
         width: 100%;
         left: 0;
     }
 
-    .help_mobile{
-        display: flex !important; 
+    .help_mobile {
+        display: flex !important;
     }
 
-    .help_def{
+    .help_def {
         display: none;
     }
 
-        .join_logo_mobile{
+    .join_logo_mobile {
         display: block;
         padding-left: 16px;
     }
 
-        header span{
+    header span {
         display: none;
     }
 
-/* sidebar resp */
-    
-    .sidebar_join_logo{
+    /* sidebar resp */
+
+    .sidebar_join_logo {
         display: none;
     }
 
     .sidebar_img_container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    }
-
-    .sidebar_container{
-    display: flex;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    height: 80px;
-    padding: 0;
-    flex-direction: row;
-    }
-
-    .sidebar_nav a {
-    text-decoration: none;
-    color: var(--text-color-sidebar);
-    display: flex;
-    height: 80px;
-    width: 76px;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0;
-    border-radius: 1rem;
-    }
-
-    #navbar_container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         width: 100%;
     }
 
-    .sidebar_nav{
+    .sidebar_container {
+        display: flex;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        height: 80px;
+        padding: 0;
+        flex-direction: row;
+    }
+
+    .sidebar_nav a {
+        text-decoration: none;
+        color: var(--text-color-sidebar);
+        display: flex;
+        height: 80px;
+        width: 76px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+        border-radius: 1rem;
+    }
+
+    #navbar_container {
+        width: 100%;
+    }
+
+    .sidebar_nav {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -72,22 +77,20 @@
         margin: 0;
     }
 
-    .sidebar_footer{
+    .sidebar_footer {
         display: none;
     }
 
     /* contact save message */
 
     .contact_save_message {
-    width: 21.13rem;
-    position: fixed; 
-    left: 50%;
-    bottom: 14%;
-    transform: translate(-50%, -50%); 
-    transition: all 225ms ease-in-out; 
-    pointer-events: none;    
-    font-size: 19px;
-}
-
-
+        width: 21.13rem;
+        position: fixed;
+        left: 50%;
+        bottom: 14%;
+        transform: translate(-50%, -50%);
+        transition: all 225ms ease-in-out;
+        pointer-events: none;
+        font-size: 19px;
+    }
 }
