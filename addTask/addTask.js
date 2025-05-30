@@ -3,7 +3,7 @@ function getSidebarTemplateMobile() {
     return ` 
     <div class="sidebar_container">  
    <nav class="sidebar_nav">
-  <a href="#" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+  <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
     <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
     <span>Summary</span>
   </a>
