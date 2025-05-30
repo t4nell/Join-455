@@ -1,12 +1,38 @@
 let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
+
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
     selectedUser = document.getElementById('selected_user_group');
     menu = document.getElementById('dropdown_menu');
     toggle = document.getElementById('dropdown_toggle_btn');
 }
+
+
+function initializeCalendar() {
+    const calendarInput = document.getElementById('due_date');
+    if (calendarInput && !calendarInput._flatpickr) {
+        flatpickr(calendarInput, {
+            dateFormat: 'd/m/Y',
+            minDate: 'today',
+            locale: {
+                firstDayOfWeek: 1
+            }
+        });
+    }
+}
+
+
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    if (calenderInput && calenderInput._flatpickr) {
+        calenderInput._flatpickr.open();
+    } else {
+        console.error('Flatpickr not initialized');
+    }
+}
+
 
 async function loadContactData(path = '') {
     try {
@@ -19,23 +45,9 @@ async function loadContactData(path = '') {
     } catch (error) {
         console.error('Error loading contact data:', error);
     }
-    // loadContactsToAssigned();
+    loadContactsToAssigned();
 }
 
-function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
-        minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-    });
-});
 
 function switchBtnPriority(btnPriority) {
     document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
@@ -55,16 +67,19 @@ function switchBtnPriority(btnPriority) {
     }
 }
 
+
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
 }
 
+
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 }
+
 
 function handleClickOutside(event) {
     if (!dropdown.contains(event.target)) {
@@ -73,61 +88,47 @@ function handleClickOutside(event) {
     }
 }
 
-// function loadContactsToAssigned() {
-//     if (!menu) return;
-//     menu.innerHTML = '';
-//     contactsArray.forEach((contact, index) => {
-//         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
-//     });
-// };
 
-function loadContactsToAssigned(assignedTo) {
+function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
-    return Object.entries(assignedTo).map(([id, contactMap]) => {
-        const [[fullName, isAssigned]] = Object.entries(contactMap);
-
-        if (!isAssigned) return '';
-
-        const initials = fullName
-            .split(' ')
-            .map((part) => part.charAt(0).toUpperCase())
-            .join('');
-
-        const bgColor = getContactColor(fullName);
-        menu.innerHTML += loadContactsToAssignedTemplate(id, fullName, bgColor, initials);
+    contactsArray.forEach((contact, index) => {
+        menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
 
-function loadContactsToAssignedTemplate(id, fullName, bgColor, initials) {
-    // const bgColor = contactsArray[index].color;
-    // const nameInitials = contact.name
-    // .split(' ')
-    // .map((part) => part.charAt(0).toUpperCase())
-    // .join('');
-    // const surnameInitials = contact.surname
-    // .split(' ')
-    // .map((part) => part.charAt(0).toUpperCase())
-    // .join('');
+
+function loadContactsToAssignedTemplate(contact, index) {
+    const bgColor = contactsArray[index].color;
+    const nameInitials = contact.name
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+    const surnameInitials = contact.surname
+        .split(' ')
+        .map((part) => part.charAt(0).toUpperCase())
+        .join('');
+
     return `
-    <li class="dropdown_item" id="dropdown_item_${id}" onclick="selectUser(${id}, event)">
+    <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
     <div class="symbole_name_group">
     <div class="avatar" style="background-color: ${bgColor}">
-    <span>${initials}</span>
+    <span>${nameInitials}${surnameInitials}</span>
     </div>
     <div>
-    <span class="contact_name">${fullName}</span>
+    <span class="contact_name">${contact.name} ${contact.surname}</span>
     </div>
     </div>
     <input
-    id="users_checkbox_${id}"
+    id="users_checkbox_${index}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
-    value="${fullName}" 
-    onclick="selectUser(${id}, event)"/>
+    value="${contact.name} ${contact.surname}" 
+    onclick="selectUser(${index}, event)"/>
     </li>`;
 }
+
 
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
@@ -157,6 +158,7 @@ function renderAssignedContactsEdit(assignedTo) {
         .join('');
 }
 
+
 function selectUser(index, event) {
     initEditTaskVariables();
     event.stopPropagation();
@@ -175,10 +177,12 @@ function selectUser(index, event) {
     }
 }
 
+
 function removeSelectedUser(index) {
     const userIconContainer = document.getElementById(`selected_user_${index}`);
     userIconContainer.remove();
 }
+
 
 function addSelectedUserIcon(index) {
     contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -196,6 +200,7 @@ function addSelectedUserIcon(index) {
 
     selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
 }
+
 
 function addSelectedUserIconTemplate(index, bgColor, initials) {
     return `

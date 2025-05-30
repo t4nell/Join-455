@@ -99,10 +99,11 @@ function renderPlaceholder() {
 
 function getTaskCard(task) {
   const progress = calculateSubtaskProgress(task);
+  const categoryColor = getCategoryColor(task.category);
   return `
     <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
       <div class="task_category">
-        <span class="category_label">${task.category}</span>
+        <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
       </div>
       <div class="task_content">
           <h3 class="task_title">${task.title}</h3>
@@ -127,51 +128,59 @@ function getTaskCard(task) {
 }
 
 function getDetailTaskCard(task) {
+  const categoryColor = getCategoryColor(task.category);
     return `
         <div class="task_detail_card_header">
-            <span class="category_lable_detail">${task.category}</span>
-            <button onclick="closeDetailTemplate()" class="closed_btn">
-                <img src="../assets/imgs/boardIcons/close.svg" alt="close button">
-            </button>
+          <span class="category_lable_detail" style="background-color: ${categoryColor}">${task.category}</span>
+          <button onclick="closeDetailTemplate()" class="closed_btn">
+            <img src="../assets/imgs/boardIcons/close.svg" alt="close button">
+          </button>
         </div>
+
         <div class="task_detail_title">
-            <h2>${task.title}</h2>
+          <h2>${task.title}</h2>
         </div>
+
         <div class="task_detail_description">
-            <p>${task.description}</p>
+          <p>${task.description}</p>
         </div>
+
         <div class="task_detail_date">
-            <span class="detail_label">Due Date:</span>
-            <span>${task.dueDate}</span>
+          <span class="detail_label">Due Date:</span>
+          <span>${task.dueDate}</span>
         </div>
+
         <div class="task_detail_priority">
-            <span class="detail_label">Priority:</span>
-            <div class="priority_badge">
-                ${task.priority}
-                <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
-            </div>
+          <span class="detail_label">Priority:</span>
+          <div class="priority_badge">
+            ${task.priority}
+            <img src="../assets/imgs/boardIcons/priority${task.priority}.svg" alt="${task.priority}">
+          </div>
         </div>
+
         <div class="task_detail_assigned">
-            <span class="detail_label">Assigned to:</span>
-            <div class="assigned_contacts">
-                ${renderAssignedContacts(task.assignedTo)}
-            </div>
+          <span class="detail_label">Assigned to:</span>
+          <div class="assigned_contacts">
+            ${renderAssignedContacts(task.assignedTo)}
+          </div>
         </div>
+
         <div class="task_detail_subtasks">
           <span class="detail_label">Subtasks:</span>
           <div class="subtasks_list">
             ${renderSubtasksList(task.subtasks, task.id)}
           </div>
         </div>
+
         <div class="task_detail_buttons">
-            <button class="delete_btn" onclick="deleteTask('${task.id}')">
-                <img src="../assets/imgs/boardIcons/delete.svg" alt="delete">
-                Delete
-            </button>
-            <button class="edit_btn" onclick="openEditTask('${task.id}')">
-                <img src="../assets/imgs/boardIcons/edit.svg" alt="edit">
-                Edit
-            </button>
+          <button class="delete_btn" onclick="deleteTask('${task.id}')">
+            <img src="../assets/imgs/boardIcons/delete.svg" alt="delete">
+            Delete
+          </button>
+          <button class="edit_btn" onclick="openEditTask('${task.id}')">
+            <img src="../assets/imgs/boardIcons/edit.svg" alt="edit">
+            Edit
+          </button>
         </div>
     `;
 }
@@ -185,7 +194,6 @@ function getEditTaskTemplate(task) {
           <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
       </div>
       
-
       <div class="textarea_group">
           <label id="description_label" for="description" class="required_for_label">Description</label>
           <textarea name="description" class="textarea" id="description" placeholder="Enter a Description">${task.description}</textarea>
@@ -194,7 +202,7 @@ function getEditTaskTemplate(task) {
       <div class="input_date_group">
         <label for="due_date" class="required_for_label">Due date</label>
         <div class="input_date_container">
-          <input name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
+          <input onclick="openCalendar()" name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
           <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
         </div>
       </div>
@@ -221,6 +229,7 @@ function getEditTaskTemplate(task) {
           </label>
         </div>
       </div>
+
       <div class="assign_to_group">
         <label for="dropdown_toggle_btn" class="required_for_label">Assigned to</label>
         <div class="dropdown" id="dropdown">
@@ -253,6 +262,7 @@ function getEditTaskTemplate(task) {
           Save
         </button>
       </div>
+      
     </form>
   `;
 }
