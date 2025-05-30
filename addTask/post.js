@@ -45,9 +45,15 @@ function collectTaskData(form) {
         const { id, name, surname } = contact;
         const fullName = `${name} ${surname}`;
 
+        // assignedTo[id] = {
+        //     [fullName]: true,
+        // };
+
         assignedTo[id] = {
-            [fullName]: true,
+            name: fullName,
+            assigned: true,
         };
+
         console.log(assignedTo[id]);
     });
 
