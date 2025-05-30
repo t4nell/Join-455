@@ -1,6 +1,7 @@
 function getSidebarTemplateMobile() {
     const currentPage = window.location.pathname;
-    return `    
+    return ` 
+    <div class="sidebar_container">  
    <nav class="sidebar_nav">
   <a href="#" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
     <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
@@ -20,6 +21,7 @@ function getSidebarTemplateMobile() {
     <span>Contacts</span>
   </a>
 </nav>
+</div>
 
   `;
 }
@@ -43,7 +45,7 @@ function renderSidebar() {
 
     function proofSize() {
         const width = window.innerWidth;
-        if (width < 1031) {
+        if (width < 1050) {
             renderSidebarMobile();
         } else {
             renderSidebarDesktop();

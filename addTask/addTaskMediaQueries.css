@@ -1,4 +1,4 @@
-@media (max-width: 1030px) {
+@media (max-width: 1050px) {
     header {
         background-color: var(--background-color-header);
         width: 100%;
@@ -47,7 +47,7 @@
         margin-bottom: 16px;
     }
 
-    .sidebar_img_container {
+    /* .sidebar_img_container {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -90,7 +90,7 @@
 
     .nav_item span {
         text-align: center;
-    }
+    } */
 
     .title_head {
         margin-left: 16px;
