@@ -16,10 +16,10 @@ function validateName(fullName, isEdit) {
   const isValid =
     fullName.length >= 2 && fullName.every((name) => namePattern.test(name));
   if (isValid) {
-    alertName.classList.add("d_none");
+    alertName.classList.remove("show");
     return true;
   } else {
-    alertName.classList.remove("d_none");
+    alertName.classList.add("show");
     return false;
   }
 }
@@ -29,10 +29,10 @@ function validateEmail(email, isEdit) {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const isValid = email.trim() && emailPattern.test(email);
   if (isValid) {
-    alertEmail.classList.add("d_none");
+    alertEmail.classList.remove("show");
     return true;
   } else {
-    alertEmail.classList.remove("d_none");
+    alertEmail.classList.add("show");
     return false;
   }
 }
@@ -42,10 +42,10 @@ function validatePhone(phone, isEdit) {
   const phonePattern = /^\+?[0-9\s\-()]+$/;
   const isValid = phonePattern.test(phone);
   if (isValid) {
-    alertPhone.classList.add("d_none");
+    alertPhone.classList.remove("show");
     return true;
   } else {
-    alertPhone.classList.remove("d_none");
+    alertPhone.classList.add("show");
     return false;
   }
 }
@@ -54,7 +54,7 @@ function checkEmailAlreadyExists(email) {
   const emailExists = contactsArray.some((contact) => contact.email === email);
   if (emailExists) {
     const alertEmail = document.getElementById("mail_alert");
-    alertEmail.classList.remove("d_none");
+    alertEmail.classList.add("show");
     alertEmail.innerHTML = "Email already exists";
     return false;
   }else{

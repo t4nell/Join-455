@@ -66,7 +66,7 @@ function checkEditEmailAlreadyExists(email, currentContact) {
       return true
   }else if (emailExists) {
     const alertEmail = document.getElementById("edit_mail_alert");
-    alertEmail.classList.remove("d_none");
+    alertEmail.classList.remove("show");
     alertEmail.innerHTML = "Email already exists";
     return false;
   }else{

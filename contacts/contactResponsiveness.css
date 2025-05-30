@@ -59,6 +59,26 @@ html{
 }
 
 @media screen and (max-width: 1050px){
+.contact_save_message {
+    width: 19.13rem;
+    position: fixed; 
+    left: 50%;
+    bottom: 14%;
+    transform: translate(-50%, -50%); 
+    transition: all 225ms ease-in-out; 
+    pointer-events: none;    
+    font-size: 19px;
+}
+
+.closed_notification{
+    bottom: -20% !important;
+    transform: none;
+}
+
+#contact_list_container{
+    padding-bottom: 80px;
+}
+
     .new_contact_container{
         display: none;
     }
@@ -101,7 +121,7 @@ html{
     position: absolute;
     top: 95px;
     left: 0;
-    height: calc(100% - 100px);
+    height: calc(100% - 175px);
     width: 100%;
     z-index: 300;
     background-color: var(--background-color-main);

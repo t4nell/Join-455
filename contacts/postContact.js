@@ -73,7 +73,6 @@ async function closeNewContactProcess(mail) {
     clearGroupedContacts();
     await loadContactData();
     showNewContact(mail);
-    // groupContacts();
 }
 
 function showNewContact(email) {
@@ -87,6 +86,7 @@ function showNewContact(email) {
         });
         newContactDiv.classList.add('active');
         contactDetailsContainer.classList.remove('closed');
+        document.querySelector('.contact_container').classList.remove('mobile_closed');
         contactDetailsContainer.innerHTML = getContactDetailsTemplate(contact);
     }
 }
@@ -94,10 +94,10 @@ function showNewContact(email) {
 function showNotification(notficationText) {
     const savedContactNotification = document.getElementById('contact_notification');
     savedContactNotification.innerHTML = `<p>${notficationText}</p>`;
-    savedContactNotification.classList.remove('closed');
+    savedContactNotification.classList.remove('closed_notification');
 
     setTimeout(() => {
-        document.getElementById('contact_notification').classList.add('closed');
-    }, 3000);
+        document.getElementById('contact_notification').classList.add('closed_notification');
+    }, 2000);
 }
 

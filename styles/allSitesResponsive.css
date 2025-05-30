@@ -75,4 +75,19 @@
     .sidebar_footer{
         display: none;
     }
+
+    /* contact save message */
+
+    .contact_save_message {
+    width: 21.13rem;
+    position: fixed; 
+    left: 50%;
+    bottom: 14%;
+    transform: translate(-50%, -50%); 
+    transition: all 225ms ease-in-out; 
+    pointer-events: none;    
+    font-size: 19px;
+}
+
+
 }

@@ -67,5 +67,6 @@ async function reloadDataAfterDelete() {
     clearGroupedContacts();
     contactDetailsContainer.classList.add('closed');
     contactDetailsContainer.innerHTML = '';
+    closeContactMain();
     await loadContactData();
 }
