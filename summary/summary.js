@@ -396,85 +396,87 @@ function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
-async function init() {
-    try {
-        console.log('Starting initialization...');
-        const currentUser = checkAuth();
-        console.log('User authenticated:', currentUser);
-
-        initializeUI(currentUser);
-        console.log('UI initialized');
-
-        const taskData = await loadAndUpdateTaskData();
-        console.log('Task data loaded:', taskData);
-
-        makeContainersClickable();
-        console.log('Initialization complete');
-    } catch (error) {
-        console.error('Initialization error:', error);
-        showNotification(error.message || 'Fehler beim Laden der Daten');
-    }
-}
-
-console.log('----------------Mobile SideBar Template----------------------');
-
-function getSidebarTemplateMobile() {
-    const currentPage = window.location.pathname;
-    return `
-    <div class="sidebar_container">
-   <nav class="sidebar_nav">
-  <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
-    <span>Summary</span>
-  </a>
-   <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
-    <span>Board</span>
-  </a>
-  <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
-    <span>Add Task</span>
-  </a>
-
-  <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
-    <span>Contacts</span>
-  </a>
-</nav>
-</div>
-
+/**
+ * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
+ */
+function showMobileGreeting() {
+  const viewportWidth = window.innerWidth;
+  
+  // Only show the special greeting on screens smaller than 1050px
+  if (viewportWidth >= 1050) {
+    return;
+  }
+  
+  // Get greeting content
+  const now = new Date();
+  const greeting = getGreeting(now.getHours());
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  const userName = currentUser?.name || 'Gast';
+  
+  // Create fullscreen greeting element
+  const fullscreenGreeting = document.createElement('div');
+  fullscreenGreeting.className = 'fullscreen-greeting';
+  fullscreenGreeting.innerHTML = `
+    <h1>${greeting},</h1>
+    <h2>${userName}</h2>
   `;
+  
+  // Hide the main summary content initially
+  const summaryContainer = document.querySelector('.summary_container');
+  summaryContainer.classList.add('summary-content-hidden');
+  
+  // Add the greeting to the body
+  document.body.appendChild(fullscreenGreeting);
+  
+  // After 3 seconds, fade out the greeting and show the summary
+  setTimeout(() => {
+    fullscreenGreeting.classList.add('hidden');
+    
+    // After greeting fade completes, show summary content
+    setTimeout(() => {
+      summaryContainer.classList.remove('summary-content-hidden');
+      summaryContainer.classList.add('summary-content-visible');
+      
+      // Remove the greeting element after it's fully faded out
+      setTimeout(() => {
+        fullscreenGreeting.remove();
+      }, 1000);
+    }, 1000);
+  }, 3000);
 }
 
-console.log('----------------Mobile SideBar----------------------');
+// Modify the init function to call showMobileGreeting
+async function init() {
+  try {
+    console.log('Starting initialization...');
+    const currentUser = checkAuth();
+    console.log('User authenticated:', currentUser);
 
-function renderSidebar() {
-    const mainContainer = document.getElementById('navbar_container');
-    const navContainer = document.getElementById('sidebar_container');
-    const navbarMobileContainer = document.getElementById('navbar_mobile_container');
+    initializeUI(currentUser);
+    console.log('UI initialized');
 
-    function renderSidebarDesktop() {
-        navbarMobileContainer.innerHTML = '';
-        mainContainer.innerHTML = getSidebarTemplate();
-        navContainer.style.display = 'block';
-    }
+    const taskData = await loadAndUpdateTaskData();
+    console.log('Task data loaded:', taskData);
 
-    function renderSidebarMobile() {
-        mainContainer.innerHTML = '';
-        navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
-        navContainer.style.display = 'none';
-    }
-
-    function proofSize() {
-        const width = window.innerWidth;
-        if (width < 1050) {
-            renderSidebarMobile();
-        } else {
-            renderSidebarDesktop();
-        }
-    }
-
-    window.addEventListener('resize', proofSize);
-    proofSize();
+    makeContainersClickable();
+    console.log('Initialization complete');
+    
+    // Add this line to show mobile greeting
+    showMobileGreeting();
+  } catch (error) {
+    console.error('Initialization error:', error);
+    showNotification(error.message || 'Fehler beim Laden der Daten');
+  }
 }
+
+// Add event listener to window resize to handle greeting when orientation changes
+window.addEventListener('resize', () => {
+  // If the greeting is already showing or has been shown, don't show it again
+  if (!document.querySelector('.fullscreen-greeting')) {
+    if (window.innerWidth < 1050) {
+      // Don't show greeting on resize, only on initial load
+      // This prevents triggering the greeting when resizing or rotating device
+    }
+  }
+});
 
