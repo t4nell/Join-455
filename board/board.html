@@ -57,35 +57,35 @@
                         <div class="headline_container">
                             <h2>Board</h2>
                         </div>
-                        <div class="search_and_addTask_container">
-                            <div class="search_container_style">
-                                <div id="search_container" class="search_container">
-                                    <div>
-                                        <input
-                                            id="search_input"
-                                            class="input_base_style"
-                                            oninput="searchOnInput()"
-                                            placeholder="Find Task"
-                                            type="search" />
-                                    </div>
-                                    <hr class="separator_vertically" />
-                                    <div class="button_container">
-                                        <button id="search_button" onclick="resetFilter()" class="light_btn">
-                                            <img src="../assets/imgs/boardIcons/search.svg" alt="Lupe" />
-                                        </button>
-                                    </div>
+                        
+                        <div class="search_container_style">
+                            <div id="search_container" class="search_container">
+                                <div style="width: 100%;">
+                                    <input
+                                        id="search_input"
+                                        class="input_base_style"
+                                        oninput="searchOnInput()"
+                                        placeholder="Find Task"
+                                        type="search" />
                                 </div>
-
-                                <span id="no_find_task_mesage" style="display: none; color: brown">"find no task"</span>
+                                <hr class="separator_vertically" />
+                                <div class="button_container">
+                                    <button id="search_button" onclick="resetFilter()" class="light_btn">
+                                        <img src="../assets/imgs/boardIcons/search.svg" alt="Lupe" />
+                                    </button>
+                                </div>
                             </div>
 
-                            <div>
-                                <button class="dark_btn">
-                                    <p class="button_text">Add Task</p>
-                                    <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
-                                </button>
-                            </div>
+                            <span id="no_find_task_mesage" style="display: none; color: brown">"find no task"</span>
                         </div>
+
+                        <!-- <div> -->
+                            <button class="dark_btn">
+                                <p class="button_text">Add Task</p>
+                                <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
+                            </button>
+                        <!-- </div> -->
+                        
                     </div>
                 </div>
 

@@ -10,25 +10,64 @@
         width: 100%;
         left: 0;
     }
+    
+    .board_controls_container {
+        width: 93%;
+    }
 }
 
-@media screen and (max-width: 844px) {
-    .board_controls_container {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .headline_container {
-        margin-bottom: 20px;
-    }
-
+@media screen and (max-width: 843px) {
     .search_and_addTask_container {
         justify-content: center;
         align-items: center;
     }
 
+    .dark_btn {
+        order: 1;
+    }
+
     .search_container_style {
-        margin: 0;
+        order: 2;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .search_container {
+        width: 100%;
+    }
+
+    .input_base_style {
+        width: 100%;
+    }
+
+    .board_content_bottom {
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .drag_area {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .drag_and_drop_container {
+        height: 286px;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        
+    }
+
+    .task_card {
+        max-width: 212px;
+        min-width: 212px;
+        height: calc(100% - 33px);
+    }
+
+    .category {
+        max-width: 500px;
+        width: 100%;
+        min-width: 244px;
     }
 }
