@@ -215,6 +215,42 @@ function addSelectedUserIconTemplate(index, bgColor, initials) {
         </div>`;
 }
 
+function renderEditableSubtasks(task) {
+    if (!task.subtasks) return '';
+    
+    return Object.entries(task.subtasks).map(([subtaskId, subtask]) => {
+        const subtaskNumber = subtaskId.split('_')[1];
+        const tagId = `tag_field_${subtaskNumber}`;
+        const tagInputId = `new_tag_input_${subtaskNumber}`;
+        const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
+
+        return `
+        <div class="tag_field" id='${tagId}'>
+            <label 
+                name="subtasks" 
+                class="new_tag_input" 
+                id='${tagInputId}' 
+                style="font-size: 16px; font-family: Inter; cursor: text;"
+                ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
+                onblur="disableEditing('${tagInputId}')" 
+                contenteditable="false"
+            >${subtask.title}</label>
+            <div id='${tagBtnConId}' class="new_tag_btn_container">
+                <div class="btns_position">
+                    <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
+                    </button>
+                    <hr class="separator_vertically_subtasks" />
+                    <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+
 //Die Funktion ist so gross um die refactor Funktion von vscode zu üben ^^
 async function saveEditTask(taskId) {
     try {

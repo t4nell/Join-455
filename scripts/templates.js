@@ -254,7 +254,7 @@ function getEditTaskTemplate(task) {
             </button>
           </div>
         </div>
-        <div class="new_tag_container" id="new_tag_container"></div>
+        <div class="new_tag_container" id="new_tag_container">${renderEditableSubtasks(task)}</div>
       </div>
 
       <div class="task_detail_buttons">

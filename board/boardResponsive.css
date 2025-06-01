@@ -126,6 +126,10 @@
     .task_detail_card {
         font-size: 18px;
     }
+
+    .tag_field {
+        margin-bottom: 16px;
+    }
 }
 
 @media screen and (max-width: 385px) {

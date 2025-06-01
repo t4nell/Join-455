@@ -358,6 +358,28 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 100%;
+}
+
+.new_tag_container {
+    max-height: 100%;
+    overflow: visible;
+}
+
+.tag_field {
+    height: auto;
+}
+
+.new_tag_input {
+    flex: 3;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.new_tag_btn_container {
+    flex: 1;
 }
 
 .tag_input {
