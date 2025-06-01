@@ -1,3 +1,30 @@
+@media (max-width: 1345px) {
+    .board_content_bottom {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .drag_area {
+        flex-direction: row;
+        align-items: flex-start;  
+    }    
+    .drag_and_drop_container {
+        height: 286px;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .task_card {
+        max-width: 212px;
+        min-width: 212px;
+        height: calc(100% - 33px);
+    }
+    .category {
+        max-width: 500px;
+        width: 100%;
+        min-width: 244px;
+    }
+}
+    
 @media (max-width: 1130px) {
     .button_text {
         display: none;
@@ -40,34 +67,34 @@
         width: 100%;
     }
 
-    .board_content_bottom {
-        flex-direction: column;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
+    .task_detail_card{
+        width: 62%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .task_detail_card h2 {
+        font-size: 40px;
     }
 
-    .drag_area {
-        flex-direction: row;
-        align-items: flex-start;
+    .task_detail_card{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .subtasks_list label {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .task_detail_card h2 {
+        font-size: 32px;
     }
 
-    .drag_and_drop_container {
-        height: 286px;
-        width: 100%;
-        align-items: flex-start;
-        justify-content: flex-start;
-        
-    }
-
-    .task_card {
-        max-width: 212px;
-        min-width: 212px;
-        height: calc(100% - 33px);
-    }
-
-    .category {
-        max-width: 500px;
-        width: 100%;
-        min-width: 244px;
+    .task_detail_card {
+        font-size: 18px;
     }
 }

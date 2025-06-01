@@ -28,7 +28,7 @@
     background-color: white;
     border-radius: 30px;
     padding: 40px;
-    max-height: 931px;
+    max-height: 800px;
     width: 525px;
     position: relative;
     display: flex;
@@ -148,11 +148,11 @@
 .subtask_background {
     border-radius: 10px;
     cursor: pointer;
-    padding: 4px 16px;
+    padding: 4px 0 4px 16px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
-    width: fit-content;
+    width: 100%;
 }
 
 .subtask_item:hover {
@@ -172,6 +172,8 @@
     background-repeat: no-repeat;
     background-size: 16px;
     background-image: url('../assets/imgs/boardIcons/CheckButtonNoCheckt.svg');
+    min-width: 24px;
+    flex-shrink: 0;
 }
 
 .subtask_chbox:hover {
@@ -187,6 +189,13 @@
 .subtask_chbox:checked:hover {
     background-image: url('../assets/imgs/boardIcons/CheckButtonCheckt.svg');
     background-color: var(--checkbox-checked-hover-bg);
+}
+
+.subtask_background label {
+    flex: 1;
+    word-wrap: break-word;
+    word-break: break-word;
+    padding-right: 16px;
 }
 
 .task_detail_buttons {

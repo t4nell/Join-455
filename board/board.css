@@ -158,7 +158,6 @@ main {
   overflow-y: auto;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 26px;
   width: calc(100% - 60px);
   height: calc(100% - 232px);
