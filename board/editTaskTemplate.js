@@ -40,7 +40,10 @@ async function loadContactData(path = '') {
         let responseToJson = await response.json();
         const contactsRef = responseToJson.contact;
         const addTask = Object.values(responseToJson.addTask);
-        contactsArray = Object.values(contactsRef);
+        contactsArray = Object.entries(contactsRef).map(([id, contact]) => ({
+            ...contact,
+            id
+        }));
         contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     } catch (error) {
         console.error('Error loading contact data:', error);
@@ -53,7 +56,6 @@ function switchBtnPriority(btnPriority) {
     document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
     document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMedium.svg';
     document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLow.svg';
-
     switch (btnPriority) {
         case 'urgent':
             document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
@@ -92,14 +94,14 @@ function handleClickOutside(event) {
 function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
-    contactsArray.forEach((contact, index) => {
-        menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
+    contactsArray.forEach((contact) => {
+        menu.innerHTML += loadContactsToAssignedTemplate(contact);
     });
 }
 
 
-function loadContactsToAssignedTemplate(contact, index) {
-    const bgColor = contactsArray[index].color;
+function loadContactsToAssignedTemplate(contact) {
+    const bgColor = contact.color;
     const nameInitials = contact.name
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
@@ -108,9 +110,11 @@ function loadContactsToAssignedTemplate(contact, index) {
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
         .join('');
-
+    const isSelected = document.getElementById(`selected_user_${contact.id}`) !== null;
+    const checkedAttr = isSelected ? 'checked' : '';
+    const activeClass = isSelected ? 'active' : '';
     return `
-    <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
+    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
     <div class="symbole_name_group">
     <div class="avatar" style="background-color: ${bgColor}">
     <span>${nameInitials}${surnameInitials}</span>
@@ -120,12 +124,13 @@ function loadContactsToAssignedTemplate(contact, index) {
     </div>
     </div>
     <input
-    id="users_checkbox_${index}"
+    id="users_checkbox_${contact.id}"
     class="assign_dropdown_input"
     type="checkbox"
     name="assigned_to"
     value="${contact.name} ${contact.surname}" 
-    onclick="selectUser(${index}, event)"/>
+    ${checkedAttr}
+    onclick="selectUser('${contact.id}', event)"/>
     </li>`;
 }
 
@@ -159,35 +164,35 @@ function renderAssignedContactsEdit(assignedTo) {
 }
 
 
-function selectUser(index, event) {
+function selectUser(id, event) {
     initEditTaskVariables();
     event.stopPropagation();
-    const checkbox = document.getElementById(`users_checkbox_${index}`);
-    const clickedItem = document.getElementById(`dropdown_item_${index}`);
+    const checkbox = document.getElementById(`users_checkbox_${id}`);
+    const clickedItem = document.getElementById(`dropdown_item_${id}`);
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
-    clickedItem.classList.remove('active');
+    const contact = contactsArray.find(c => c.id === id);
+    if (!contact) return;
     if (checkbox.checked) {
-        addSelectedUserIcon(index);
+        addSelectedUserIcon(contact);
         clickedItem.classList.add('active');
     } else {
-        removeSelectedUser(index);
+        removeSelectedUser(id);
         clickedItem.classList.remove('active');
     }
 }
 
 
-function removeSelectedUser(index) {
-    const userIconContainer = document.getElementById(`selected_user_${index}`);
-    userIconContainer.remove();
+function removeSelectedUser(id) {
+    const userIconContainer = document.getElementById(`selected_user_${id}`);
+    if (userIconContainer) {
+        userIconContainer.remove();
+    }
 }
 
 
-function addSelectedUserIcon(index) {
-    contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    const bgColor = contactsArray[index].color;
-    const contact = contactsArray[index];
+function addSelectedUserIcon(contact) {
     const nameInitials = contact.name
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
@@ -197,44 +202,39 @@ function addSelectedUserIcon(index) {
         .map((part) => part.charAt(0).toUpperCase())
         .join('');
     const initials = nameInitials + surnameInitials;
-
-    selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
+    selectedUser.innerHTML += addSelectedUserIconTemplate(contact.id, contact.color, initials);
 }
 
 
-function addSelectedUserIconTemplate(index, bgColor, initials) {
+function addSelectedUserIconTemplate(id, bgColor, initials) {
     return `
-        <div id="selected_user_${index}">
-           
+        <div id="selected_user_${id}">
             <div class="avatar" style="background-color: ${bgColor}">
-                
                 <div>${initials}</div>
-                
             </div>
-            
         </div>`;
 }
 
 function renderEditableSubtasks(task) {
     if (!task.subtasks) return '';
-    
     return Object.entries(task.subtasks).map(([subtaskId, subtask]) => {
         const subtaskNumber = subtaskId.split('_')[1];
         const tagId = `tag_field_${subtaskNumber}`;
         const tagInputId = `new_tag_input_${subtaskNumber}`;
         const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
-
         return `
         <div class="tag_field" id='${tagId}'>
-            <label 
+            <input 
                 name="subtasks" 
                 class="new_tag_input" 
                 id='${tagInputId}' 
+                type="text"
                 style="font-size: 16px; font-family: Inter; cursor: text;"
+                value="${subtask.title}"
                 ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
                 onblur="disableEditing('${tagInputId}')" 
-                contenteditable="false"
-            >${subtask.title}</label>
+                readonly
+            />
             <div id='${tagBtnConId}' class="new_tag_btn_container">
                 <div class="btns_position">
                     <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
