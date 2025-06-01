@@ -21,7 +21,32 @@ function getCategoryColor(category) {
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
     const maxVisibleAvatars = 5;
-    const assignedContacts = Object.entries(assignedTo)
+    const assignedContacts = getAssignedContacts(assignedTo);
+    let avatarHtml = assignedContacts
+        .slice(0, maxVisibleAvatars)
+        .map(contact => `
+            <div class="avatar" style="background-color: ${contact.color}">
+                ${contact.initials}
+            </div>
+        `).join('');
+    if (assignedContacts.length > maxVisibleAvatars) {
+        avatarHtml += renderMoreAvatarsButton(assignedContacts.length, maxVisibleAvatars);
+    }
+    return avatarHtml;
+}
+
+
+function renderMoreAvatarsButton(totalContacts, maxVisible) {
+    return `
+        <div class="avatar more-avatar">
+            +${totalContacts - maxVisible}
+        </div>
+    `;
+}
+
+
+function getAssignedContacts(assignedTo) {
+    return Object.entries(assignedTo)
         .map(([contactId, isAssigned]) => {
             if (!isAssigned) return null;
             const contact = contactsArray.find(c => c.id === contactId);
@@ -42,29 +67,13 @@ function renderAssignedAvatars(assignedTo) {
             };
         })
         .filter(contact => contact !== null);
-    let avatarHtml = assignedContacts
-        .slice(0, maxVisibleAvatars)
-        .map(contact => `
-            <div class="avatar" style="background-color: ${contact.color}">
-                ${contact.initials}
-            </div>
-        `).join('');
-    if (assignedContacts.length > maxVisibleAvatars) {
-        avatarHtml += `
-            <div class="avatar more-avatar">
-                +${assignedContacts.length - maxVisibleAvatars}
-            </div>
-        `;
-    }
-    return avatarHtml;
-};
+}
 
     
 function calculateSubtaskProgress(task) {
     const subtasks = task.subtasks || {};
     const totalSubtasks = Object.keys(subtasks).length;
     const completedSubtasks = Object.values(subtasks).filter(subtask => subtask.done).length;
-    
     return {
         total: totalSubtasks,
         completed: completedSubtasks,
