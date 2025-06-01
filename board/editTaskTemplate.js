@@ -252,65 +252,65 @@ function renderEditableSubtasks(task) {
 
 
 //Die Funktion ist so gross um die refactor Funktion von vscode zu üben ^^
-async function saveEditTask(taskId) {
-    try {
-        const form = document.getElementById('edit_task_form');
-        const formData = new FormData(form);
+// async function saveEditTask(taskId) {
+//     try {
+//         const form = document.getElementById('edit_task_form');
+//         const formData = new FormData(form);
 
-        // Get current task to preserve status
-        const currentTask = allTasks.find((task) => task.id === taskId);
+//         // Get current task to preserve status
+//         const currentTask = allTasks.find((task) => task.id === taskId);
 
-        // Collect assigned contacts
-        const assignedTo = {};
-        const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
-        checkboxes.forEach((checkbox) => {
-            assignedTo[checkbox.value] = true;
-        });
+//         // Collect assigned contacts
+//         const assignedTo = {};
+//         const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
+//         checkboxes.forEach((checkbox) => {
+//             assignedTo[checkbox.value] = true;
+//         });
 
-        // Collect subtasks
-        const subtasks = {};
-        const subtaskInputs = document.querySelectorAll('input[name="subtasks"]');
-        subtaskInputs.forEach((input, index) => {
-            subtasks[`subtask_${index}`] = {
-                title: input.value,
-                done: false,
-            };
-        });
+//         // Collect subtasks
+//         const subtasks = {};
+//         const subtaskInputs = document.querySelectorAll('input[name="subtasks"]');
+//         subtaskInputs.forEach((input, index) => {
+//             subtasks[`subtask_${index}`] = {
+//                 title: input.value,
+//                 done: false,
+//             };
+//         });
 
-        // Create updated task object
-        const updatedTask = {
-            title: formData.get('title'),
-            description: formData.get('description'),
-            dueDate: formData.get('due_date'),
-            priority: formData.get('priority'),
-            category: currentTask.category,
-            assignedTo: assignedTo,
-            subtasks: subtasks,
-            status: currentTask.status,
-        };
+//         // Create updated task object
+//         const updatedTask = {
+//             title: formData.get('title'),
+//             description: formData.get('description'),
+//             dueDate: formData.get('due_date'),
+//             priority: formData.get('priority'),
+//             category: currentTask.category,
+//             assignedTo: assignedTo,
+//             subtasks: subtasks,
+//             status: currentTask.status,
+//         };
 
-        // Update in Firebase
-        const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
-            method: 'PUT',
-            body: JSON.stringify(updatedTask),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+//         // Update in Firebase
+//         const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
+//             method: 'PUT',
+//             body: JSON.stringify(updatedTask),
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         });
 
-        if (!response.ok) {
-            throw new Error('Failed to update task');
-        }
+//         if (!response.ok) {
+//             throw new Error('Failed to update task');
+//         }
 
-        // Update local tasks array
-        const taskIndex = allTasks.findIndex((task) => task.id === taskId);
-        allTasks[taskIndex] = { ...updatedTask, id: taskId };
+//         // Update local tasks array
+//         const taskIndex = allTasks.findIndex((task) => task.id === taskId);
+//         allTasks[taskIndex] = { ...updatedTask, id: taskId };
 
-        // Close detail view and refresh board
-        closeDetailTemplate();
-        renderColumns();
-    } catch (error) {
-        console.error('Error updating task:', error);
-    }
-}
+//         // Close detail view and refresh board
+//         closeDetailTemplate();
+//         renderColumns();
+//     } catch (error) {
+//         console.error('Error updating task:', error);
+//     }
+// }
 
