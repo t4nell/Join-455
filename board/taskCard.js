@@ -21,43 +21,42 @@ function getCategoryColor(category) {
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
     const maxVisibleAvatars = 5;
-    
     const assignedContacts = Object.entries(assignedTo)
-    .map(([id, contactMap]) => {
-        const [[fullName, isAssigned]] = Object.entries(contactMap);
-        
-        if (!isAssigned) return null;
-        
-        const initials = fullName
-        .split(' ')
-        .map(part => part.charAt(0).toUpperCase())
-        .join('');
-        
-        return {
-            name: fullName,
-            initials,
-            color: getContactColor(fullName)
-        };
-    })
-    .filter(contact => contact !== null);
-    
+        .map(([contactId, isAssigned]) => {
+            if (!isAssigned) return null;
+            const contact = contactsArray.find(c => c.id === contactId);
+            if (!contact) return null;
+            const nameInitials = contact.name
+                .split(' ')
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+            const surnameInitials = contact.surname
+                .split(' ')
+                .map(part => part.charAt(0).toUpperCase())
+                .join('');
+            const initials = nameInitials + surnameInitials;
+            return {
+                id: contactId,
+                initials,
+                color: contact.color
+            };
+        })
+        .filter(contact => contact !== null);
     let avatarHtml = assignedContacts
-    .slice(0, maxVisibleAvatars)
-    .map(contact => `
-        <div class="avatar" style="background-color: ${contact.color}">
-        ${contact.initials}
-        </div>
-        `).join('');
-        
-        if (assignedContacts.length > maxVisibleAvatars) {
-            avatarHtml += `
-            <div class="avatar more-avatar">
-            +${assignedContacts.length - maxVisibleAvatars}
+        .slice(0, maxVisibleAvatars)
+        .map(contact => `
+            <div class="avatar" style="background-color: ${contact.color}">
+                ${contact.initials}
             </div>
-            `;
-        }
-        
-        return avatarHtml;
+        `).join('');
+    if (assignedContacts.length > maxVisibleAvatars) {
+        avatarHtml += `
+            <div class="avatar more-avatar">
+                +${assignedContacts.length - maxVisibleAvatars}
+            </div>
+        `;
+    }
+    return avatarHtml;
 };
 
     
@@ -71,12 +70,4 @@ function calculateSubtaskProgress(task) {
         completed: completedSubtasks,
         progressPercentage: totalSubtasks ? (completedSubtasks/totalSubtasks * 100) : 0
     };
-};
-
-
-function getContactColor(name) {
-    const contacts = contactsArray.find(contact => 
-        `${contact.name} ${contact.surname}` === name
-    );
-    return contacts ? contacts.color : '#0052ff';
 };

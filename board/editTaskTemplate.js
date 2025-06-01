@@ -115,22 +115,21 @@ function loadContactsToAssignedTemplate(contact) {
     const activeClass = isSelected ? 'active' : '';
     return `
     <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
-    <div class="symbole_name_group">
-    <div class="avatar" style="background-color: ${bgColor}">
-    <span>${nameInitials}${surnameInitials}</span>
-    </div>
-    <div>
-    <span class="contact_name">${contact.name} ${contact.surname}</span>
-    </div>
-    </div>
-    <input
-    id="users_checkbox_${contact.id}"
-    class="assign_dropdown_input"
-    type="checkbox"
-    name="assigned_to"
-    value="${contact.name} ${contact.surname}" 
-    ${checkedAttr}
-    onclick="selectUser('${contact.id}', event)"/>
+        <div class="symbole_name_group">
+            <div class="avatar" style="background-color: ${bgColor}">
+                <span>${nameInitials}${surnameInitials}</span>
+            </div>
+            <div>
+                <span class="contact_name">${contact.name} ${contact.surname}</span>
+            </div>
+        </div>
+        <input id="users_checkbox_${contact.id}"
+        class="assign_dropdown_input"
+        type="checkbox"
+        name="assigned_to"
+        value="${contact.name} ${contact.surname}" 
+        ${checkedAttr}
+        onclick="selectUser('${contact.id}', event)"/>
     </li>`;
 }
 
@@ -138,10 +137,9 @@ function loadContactsToAssignedTemplate(contact) {
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-        .map(([id, contactMap]) => {
-            const [[fullName, isAssigned]] = Object.entries(contactMap);
+        .map(([contactId, isAssigned]) => {
             if (!isAssigned) return '';
-            const contact = contactsArray.find((c) => `${c.name} ${c.surname}` === fullName);
+            const contact = contactsArray.find((c) => c.id === contactId);
             if (!contact) return '';
             const nameInitials = contact.name
                 .split(' ')
@@ -153,7 +151,7 @@ function renderAssignedContactsEdit(assignedTo) {
                 .join('');
             const initials = nameInitials + surnameInitials;
             return `
-                <div id="selected_user_${id}" class="contact_badge">
+                <div id="selected_user_${contactId}" class="contact_badge">
                     <div class="avatar" style="background-color: ${contact.color}">
                         ${initials}
                     </div>

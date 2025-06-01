@@ -32,24 +32,28 @@ function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
 
     return Object.entries(assignedTo)
-        .map(([id, contactMap]) => {
-            const [[fullName, isAssigned]] = Object.entries(contactMap);
-
+        .map(([contactId, isAssigned]) => {
             if (!isAssigned) return '';
 
-            const initials = fullName
+            const contact = contactsArray.find((c) => c.id === contactId);
+            if (!contact) return '';
+
+            const nameInitials = contact.name
                 .split(' ')
                 .map((part) => part.charAt(0).toUpperCase())
                 .join('');
-
-            const bgColor = getContactColor(fullName);
+            const surnameInitials = contact.surname
+                .split(' ')
+                .map((part) => part.charAt(0).toUpperCase())
+                .join('');
+            const initials = nameInitials + surnameInitials;
 
             return `
-        <div class="contact_badge" data-contact-id="${id}">
-          <div class="avatar" style="background-color: ${bgColor}">
+        <div class="contact_badge" data-contact-id="${contactId}">
+          <div class="avatar" style="background-color: ${contact.color}">
             ${initials}
           </div>
-          <span>${fullName}</span>
+          <span>${contact.name} ${contact.surname}</span>
         </div>
       `;
         })
