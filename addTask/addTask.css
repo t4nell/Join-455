@@ -22,6 +22,7 @@ main {
     display: flex;
     flex: 1;
     width: 100%;
+    font-size: 20px;
 }
 
 .main_section_left {
@@ -172,7 +173,7 @@ main {
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
@@ -202,9 +203,8 @@ main {
     color: white;
     border: none;
     border-radius: 8px;
-    padding-top: 12px;
-    padding-bottom: 24px;
-    font-size: 16px;
+    padding: 12px 24px;
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
@@ -223,7 +223,7 @@ main {
 
 .required_footer_text {
     color: red;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 8px;
     text-align: left;
     margin-left: 96px;
@@ -262,7 +262,7 @@ main {
 .required_footer_text_mobile {
     display: none;
     color: red;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 8px;
     text-align: left;
     margin-left: 16px;
