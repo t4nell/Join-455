@@ -42,23 +42,39 @@ function trashBtn(tagId) {
 function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
     return `
     <div class="tag_field" id='${tagId}'>
-    <input name="subtasks" class="new_tag_input" id='${tagInputId}' type="text" ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" onblur="disableEditing('${tagInputId}')" value='${value}' readonly />
+        <textarea
+
+            name="subtasks"
+            class="new_tag_input"
+            id='${tagInputId}'
+            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')"
+            onblur="disableEditing('${tagInputId}')"
+            readonly
+        >${value}</textarea>
         <div id='${tagBtnConId}'>
-        <div class="btns_position">
-            <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
-                                        alt="Icon"
-                                        /></button>
-            <hr class="separator_vertically_subtasks" />
-            <button class="trash_btn" onclick="trashBtn('${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
-                                        alt="Icon"
-                                    /></button>
-        </div>
+            <div class="btns_position">
+                <button
+                    class="edit_text_btn"
+                    onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"
+                >
+                    <img
+                        class="subtasks_icon"
+                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
+                        alt="Icon"
+                    />
+                </button>
+                <hr class="separator_vertically_subtasks" />
+                <button
+                    class="trash_btn"
+                    onclick="trashBtn('${tagId}')"
+                >
+                    <img
+                        class="subtasks_icon"
+                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
+                        alt="Icon"
+                    />
+                </button>
+            </div>
         </div>
     </div>
     `;
