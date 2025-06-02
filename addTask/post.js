@@ -1,39 +1,5 @@
 console.log('----------------Funktion zum sammeln der Daten----------------------');
 
-// function collectTaskData(form) {
-//     const fd = new FormData(form);
-//     const subtasksArray = fd.getAll('subtasks');
-//     const todo = 'todo';
-
-//     const assignedTo = {};
-//     selectedUserIndices.forEach((index) => {
-//         const contact = contactsArray[index];
-//         const name = `${contact.name} ${contact.surname}`;
-//         assignedTo[name] = true;
-//     });
-
-//     const subtasks = {};
-//     subtasksArray.forEach((subtask, index) => {
-//         subtasks[`subtask_${index}`] = {
-//             title: subtask,
-//             done: false,
-//         };
-//     });
-
-//     const task = {
-//         title: fd.get('title'),
-//         description: fd.get('description'),
-//         dueDate: fd.get('due_date'),
-//         priority: fd.get('priority'),
-//         assignedTo: assignedTo,
-//         category: fd.get('category'),
-//         subtasks: subtasks,
-//         status: todo,
-//     };
-
-//     return task;
-// }
-
 function collectTaskData(form) {
     const fd = new FormData(form);
     const subtasksArray = fd.getAll('subtasks');
@@ -45,14 +11,14 @@ function collectTaskData(form) {
         const { id, name, surname } = contact;
         const fullName = `${name} ${surname}`;
 
-        // assignedTo[id] = {
-        //     [fullName]: true,
-        // };
-
         assignedTo[id] = {
-            name: fullName,
-            assigned: true,
+            [fullName]: true,
         };
+
+        // assignedTo[id] = {
+        //     name: fullName,
+        //     assigned: true,
+        // };
 
         console.log(assignedTo[id]);
     });

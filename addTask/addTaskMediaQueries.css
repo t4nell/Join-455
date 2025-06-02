@@ -28,6 +28,7 @@
         flex-direction: column;
         flex: none;
         justify-content: center;
+        margin-top: 140px;
     }
 
     .main_section_left,
@@ -47,61 +48,25 @@
         margin-bottom: 16px;
     }
 
-    /* .sidebar_img_container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .sidebar_nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        gap: 1rem;
+    .title_head {
+        box-sizing: border-box;
+        position: fixed;
+        top: 90px;
         width: 100%;
         margin: 0;
-        position: fixed;
-        bottom: 0;
-        background-color: var(--background-color-sidebar);
-        padding-bottom: 4px;
+        padding-bottom: 16px;
+        padding-top: 48px;
+        padding-left: 16px;
+        background-color: #f5f6f7;
+        z-index: 1;
     }
 
-    .sidebar_nav a {
-        padding: 9px;
-        border-radius: 10px;
-        width: unset;
-    }
-
-    .nav_item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        color: inherit;
-        font-size: 14px;
-    }
-
-    .nav_item img {
-        width: 24px;
-        height: 24px;
-        margin-bottom: 4px;
-    }
-
-    .nav_item span {
-        text-align: center;
-    } */
-
-    .title_head {
-        margin-left: 16px;
-        margin-top: 112px;
-        margin-bottom: 32px;
-        box-sizing: border-box;
+    h2 {
+        font-size: 47px;
     }
 
     .btn,
-    .clear_btn,
-    .create_task_btn {
+    .clear_btn {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -126,6 +91,19 @@
         background-color: white;
         color: #2a3647;
         border: 2px solid #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: none;
+        box-shadow: none;
     }
 
     .clear_btn:hover {
@@ -138,6 +116,19 @@
         background-color: #2a3647;
         color: white;
         border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: none;
+        box-shadow: none;
     }
 
     .create_task_btn:hover {
@@ -176,6 +167,32 @@
     }
     .required_footer_text_mobile_container {
         margin-bottom: 200px;
+    }
+
+    .contact_save_message_addTask {
+        background-color: var(--active-contact-color);
+        color: var(--text-color-white);
+        height: 64px;
+        width: 280px;
+        position: fixed;
+        border-radius: 20px;
+        left: 50%;
+        bottom: -100px;
+        transform: translateX(-50%);
+        transition: all 125ms ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        z-index: 1000;
+    }
+
+    .contact_save_message_addTask.show {
+        bottom: 50%;
+    }
+
+    .closed {
+        bottom: -100px;
     }
 }
 

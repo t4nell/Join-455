@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: {
             firstDayOfWeek: 1,
         },
+        disableMobile: true,
     });
 });
 
@@ -123,7 +124,7 @@ function validateRequiredFields() {
 
     if (titleValid && dateValid && categoryValid) {
         createTask();
-        // showAddedNotification('Task added to Board');
+        showAddedNotification('Task added to Board');
     }
 }
 

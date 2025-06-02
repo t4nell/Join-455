@@ -202,7 +202,8 @@ main {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 12px 24px;
+    padding-top: 12px;
+    padding-bottom: 24px;
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
