@@ -231,6 +231,7 @@ function renderEditableSubtasks(task) {
                 style="font-size: 16px; font-family: Inter; cursor: pointer;"  
                 ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
                 onblur="disableEditing('${tagInputId}')" 
+                oninput="autoResizeTextarea(this)"
                 readonly 
             >${subtask.title}</textarea>
             <div id='${tagBtnConId}' class="new_tag_btn_container">
