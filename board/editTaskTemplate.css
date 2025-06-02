@@ -6,6 +6,10 @@
     --checkbox-hover-background_color:#eeeeee;
     --checkbox-active-hover-background_color:#2A3647;
     --lable-text-color: #2A3647;
+    --subtasks-underline-color: #29abe2;
+    --subtasks-icon-divider-color: #a8a8a8;
+    --subtasks-background-color: #f0f0f0;
+
 }
 
 .edit_task_form {
@@ -372,10 +376,6 @@
 
 .new_tag_input {
     flex: 3;
-    word-wrap: break-word;
-    word-break: break-word;
-    white-space: normal;
-    overflow-wrap: break-word;
 }
 
 .new_tag_btn_container {

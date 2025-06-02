@@ -103,11 +103,12 @@
 }
 
 @media screen and (max-width: 570px) {
-    .subtasks_list label {
+    .subtasks_list input {
         display: flex;
         flex-wrap: wrap;
     }
 }
+
 @media screen and (max-width: 450px) {
     .task_detail_card {
         padding: 40px 20px;
