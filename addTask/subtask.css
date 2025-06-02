@@ -31,6 +31,7 @@
     border: none;
     outline: none;
     font-size: 16px;
+    padding-right: 68px;
 }
 
 .tag-list {
@@ -111,6 +112,7 @@
     padding-top: 11px;
     padding-bottom: 9px;
     background: none;
+    padding-right: 80px;
 }
 
 .new_tag_input:focus:not([readonly]),
