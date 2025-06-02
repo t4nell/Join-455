@@ -223,6 +223,7 @@ function renderEditableSubtasks(task) {
         return `
         <div class="tag_field" id='${tagId}'>
             <textarea 
+                rows="1"
                 name="subtasks" 
                 class="new_tag_input" 
                 id='${tagInputId}' 
