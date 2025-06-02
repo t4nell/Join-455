@@ -222,17 +222,16 @@ function renderEditableSubtasks(task) {
         const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
         return `
         <div class="tag_field" id='${tagId}'>
-            <input 
+            <textarea 
                 name="subtasks" 
                 class="new_tag_input" 
                 id='${tagInputId}' 
-                type="text"
-                style="font-size: 16px; font-family: Inter; cursor: text;"
-                value="${subtask.title}"
+                type="text" 
+                style="font-size: 16px; font-family: Inter; cursor: pointer;"  
                 ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
                 onblur="disableEditing('${tagInputId}')" 
-                readonly
-            />
+                readonly 
+            >${subtask.title}</textarea>
             <div id='${tagBtnConId}' class="new_tag_btn_container">
                 <div class="btns_position">
                     <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
