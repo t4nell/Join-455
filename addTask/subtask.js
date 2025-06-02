@@ -41,41 +41,41 @@ function trashBtn(tagId) {
 
 function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
     return `
-    <div class="tag_field" id='${tagId}'>
-        <textarea
-
-            name="subtasks"
-            class="new_tag_input"
-            id='${tagInputId}'
-            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')"
-            onblur="disableEditing('${tagInputId}')"
-            readonly
-        >${value}</textarea>
-        <div id='${tagBtnConId}'>
-            <div class="btns_position">
-                <button
-                    class="edit_text_btn"
-                    onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"
-                >
-                    <img
-                        class="subtasks_icon"
-                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
-                        alt="Icon"
-                    />
-                </button>
-                <hr class="separator_vertically_subtasks" />
-                <button
-                    class="trash_btn"
-                    onclick="trashBtn('${tagId}')"
-                >
-                    <img
-                        class="subtasks_icon"
-                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
-                        alt="Icon"
-                    />
-                </button>
-            </div>
+    <div class="tag_field" id="${tagId}">
+      <textarea
+      rows="1"
+        name="subtasks"
+        class="new_tag_input"
+        id="${tagInputId}"
+        ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')"
+        onblur="disableEditing('${tagInputId}')"
+        oninput="autoResizeTextarea(this)"
+        readonly>${value}</textarea>
+      <div id="${tagBtnConId}">
+        <div class="btns_position">
+          <button
+            class="edit_text_btn"
+            onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"
+          >
+            <img
+              class="subtasks_icon"
+              src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
+              alt="Icon"
+            />
+          </button>
+          <hr class="separator_vertically_subtasks" />
+          <button
+            class="trash_btn"
+            onclick="trashBtn('${tagId}')"
+          >
+            <img
+              class="subtasks_icon"
+              src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
+              alt="Icon"
+            />
+          </button>
         </div>
+      </div>
     </div>
     `;
 }
@@ -113,15 +113,15 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
     newTag.classList.add('focus');
     const tagField = newTag.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
-    newTagBtnReplace(tagInputId, tagBtnConId, tagId);
+    newTagBtnReplace(tagInputId, tagBtnConId, tagId, event);
 }
 
-function newTagBtnReplace(tagInputId, tagBtnConId, tagId) {
+function newTagBtnReplace(tagInputId, tagBtnConId, tagId, event) {
     const newTagReplaceBtn = document.getElementById(tagBtnConId);
-    newTagReplaceBtn.innerHTML = newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId);
+    newTagReplaceBtn.innerHTML = newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId, event);
 }
 
-function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
+function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId, event) {
     return ` <div class="btns_position_two">
             <button class="edit_text_btn" onclick="trashBtn('${tagId}')"><img
                                         class="subtasks_icon"
@@ -130,7 +130,7 @@ function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
                                         alt="Icon"
                                         /></button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash_btn" onclick="newTagCheckValue('${tagBtnConId}', '${tagInputId}', '${tagId}')"><img
+            <button class="trash_btn" onclick="newTagCheckValue('${tagBtnConId}', '${tagInputId}', '${tagId}', event)"><img
                                         class="subtasks_icon"
                                         id=""
                                         src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
@@ -140,7 +140,7 @@ function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
     `;
 }
 
-function newTagCheckValue(tagBtnConId, tagInputId, tagId) {
+function newTagCheckValue(tagBtnConId, tagInputId, tagId, event) {
     event.preventDefault();
     event.stopPropagation();
     const input = document.getElementById(tagInputId);
@@ -222,5 +222,12 @@ function resetButtons() {
             />
         </button>
     `;
+}
+
+function autoResizeTextarea(el) {
+    // 1. Höhe zurücksetzen, damit scrollHeight korrekt gemessen wird
+    el.style.height = 'auto';
+    // 2. Höhe auf den aktuellen scrollHeight-Wert setzen
+    el.style.height = el.scrollHeight + 'px';
 }
 
