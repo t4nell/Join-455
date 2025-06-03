@@ -7,6 +7,7 @@ function enableEditing(tagInputId, tagBtnConId, tagId) {
     input.classList.add('focus');
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
+    input.classList.remove('input_error_new_subtask_tag');
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
@@ -107,12 +108,15 @@ function newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId) {
 function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
     event.stopPropagation();
     event.preventDefault();
+    const input = document.getElementById(tagInputId);
+    input.classList.remove('input_error_new_subtask_tag');
     const newTag = document.getElementById(tagInputId);
     newTag.removeAttribute('readonly');
     newTag.focus();
     newTag.classList.add('focus');
     const tagField = newTag.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
+
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
@@ -152,10 +156,9 @@ function newTagCheckValue(tagBtnConId, tagInputId, tagId) {
         newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
     } else {
         input.value = 'Please fill or Remove';
+        input.classList.add('input_error_new_subtask_tag');
         input.focus();
         input.classList.add('focus');
-        input.classList.add('input_error_new_subtask_tag');
-        newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
     }
 }
 

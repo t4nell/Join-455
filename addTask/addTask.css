@@ -2,6 +2,10 @@ main {
     height: 100vh;
 }
 
+* {
+    font-family: Inter;
+}
+
 #add_task_container {
     display: flex;
     flex-direction: column;
