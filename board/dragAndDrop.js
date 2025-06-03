@@ -106,17 +106,6 @@ function setupDragAreas() {
     document.addEventListener('dragend', handleDragEnd);
 }
 
-// Diese Funktion in init() aufrufen
-async function init() {
-    renderContent();
-    updateUserProfile();
-    await loadContactData();
-    await loadAddTask();
-    renderColumns();
-    loadContactsToAssigned();
-    setupDragAreas(); // Drag-Bereiche initialisieren
-}
-
 // Diese Funktion sollte in board.js aufgerufen werden
 function initDragAndDrop() {
     setupDragAreas(); // Drag-Bereiche initialisieren
