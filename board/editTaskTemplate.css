@@ -370,17 +370,15 @@
     overflow: visible;
 }
 
+.new_tag_input {
+    cursor: pointer;
+    font-family: Inter;
+    font-size: 16px;
+}
+
 .tag_field {
     height: auto;
 }
-
-/* .new_tag_input {
-    flex: 3;
-} */
-
-/* .new_tag_btn_container {
-    flex: 1;
-} */
 
 .tag_input {
     position: relative;
@@ -394,11 +392,4 @@
     border-radius: 10px;
     padding: 8px 12px;
     background-color: #fff;
-}
-
-.tag_input input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
 }
