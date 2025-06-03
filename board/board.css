@@ -184,7 +184,14 @@ main {
   overflow-y: auto;
 }
 
+.task_card.dragging {
+    opacity: 0.6;
+    transform: scale(0.95);
+    cursor: grabbing;
+}
+
 .drag_area_placeholder {
+    transition: all 0.2s ease;
   margin: 0 5px 0 5px;
   display: flex;
   justify-content: center;
