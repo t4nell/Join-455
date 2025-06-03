@@ -1,8 +1,9 @@
 function getSidebarTemplateMobile() {
     const currentPage = window.location.pathname;
-    return `    
+    return ` 
+    <div class="sidebar_container">  
    <nav class="sidebar_nav">
-  <a href="#" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+  <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
     <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
     <span>Summary</span>
   </a>
@@ -20,6 +21,7 @@ function getSidebarTemplateMobile() {
     <span>Contacts</span>
   </a>
 </nav>
+</div>
 
   `;
 }
@@ -43,7 +45,7 @@ function renderSidebar() {
 
     function proofSize() {
         const width = window.innerWidth;
-        if (width < 1031) {
+        if (width < 1050) {
             renderSidebarMobile();
         } else {
             renderSidebarDesktop();
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         locale: {
             firstDayOfWeek: 1,
         },
+        disableMobile: true,
     });
 });
 
@@ -121,7 +124,7 @@ function validateRequiredFields() {
 
     if (titleValid && dateValid && categoryValid) {
         createTask();
-        showNotification('Task added to Board');
+        showAddedNotification('Task added to Board');
     }
 }
 
@@ -170,8 +173,8 @@ function validateCategoryField() {
     }
 }
 
-function showNotification(notificationText) {
-    const savedContactNotification = document.getElementById('contact_notification');
+function showAddedNotification(notificationText) {
+    const savedContactNotification = document.getElementById('contact_added_task_notification');
     savedContactNotification.innerHTML = `
         <p>${notificationText}</p>
         <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />

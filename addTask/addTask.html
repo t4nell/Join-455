@@ -57,7 +57,7 @@
                 <form id="add_task_form" class="main_section">
                     <section class="main_section_left">
                         <div class="input_title_group">
-                            <label for="title" class="required_for_label">Title</label>
+                            <label for="title" class="required_for_label" onclick="event.preventDefault()">Title</label>
                             <input
                                 oninput="validateTitleField()"
                                 name="title"
@@ -68,7 +68,13 @@
                             <span id="required_message_title" class="required_message">This field is required</span>
                         </div>
                         <div class="textarea_group">
-                            <label id="description_label" for="description" class="input-title">Description</label>
+                            <label
+                                id="description_label"
+                                for="description"
+                                class="input-title"
+                                onclick="event.preventDefault()"
+                                >Description</label
+                            >
                             <textarea
                                 name="description"
                                 class="textarea"
@@ -76,7 +82,9 @@
                                 placeholder="Enter a Description"></textarea>
                         </div>
                         <div class="input_date_group">
-                            <label for="due_date" class="required_for_label">Due date</label>
+                            <label for="due_date" class="required_for_label" onclick="event.preventDefault()"
+                                >Due date</label
+                            >
                             <div class="input_date_container">
                                 <input
                                     oninput="validateDueDateField()"
@@ -263,13 +271,12 @@
                         </button>
                     </div>
                 </footer>
-
                 <div class="navbar_mobile_container_style" id="navbar_mobile_container"></div>
             </div>
             <div
                 onclick="eventBubbling(event)"
-                id="contact_notification"
-                class="contact_save_message center_flex closed"></div>
+                id="contact_added_task_notification"
+                class="contact_save_message_addTask center_flex closed"></div>
         </main>
     </body>
 </html>

@@ -2,6 +2,10 @@ main {
     height: 100vh;
 }
 
+* {
+    font-family: Inter;
+}
+
 #add_task_container {
     display: flex;
     flex-direction: column;
@@ -22,6 +26,7 @@ main {
     display: flex;
     flex: 1;
     width: 100%;
+    font-size: 20px;
 }
 
 .main_section_left {
@@ -172,7 +177,7 @@ main {
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
@@ -203,7 +208,7 @@ main {
     border: none;
     border-radius: 8px;
     padding: 12px 24px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
@@ -222,7 +227,7 @@ main {
 
 .required_footer_text {
     color: red;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 8px;
     text-align: left;
     margin-left: 96px;
@@ -261,13 +266,13 @@ main {
 .required_footer_text_mobile {
     display: none;
     color: red;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 8px;
     text-align: left;
     margin-left: 16px;
 }
 
-.contact_save_message {
+.contact_save_message_addTask {
     background-color: var(--active-contact-color);
     color: var(--text-color-white);
     height: 64px;
@@ -285,7 +290,7 @@ main {
     z-index: 1000;
 }
 
-.contact_save_message.show {
+.contact_save_message_addTask.show {
     bottom: 50%;
 }
 
@@ -310,7 +315,5 @@ main {
     --subtasks-background-color: #f0f0f0;
 
     --add-tasks-input-focus-color: #29abe2;
-
-    --avatare-border-color: #ffffff;
 }
 

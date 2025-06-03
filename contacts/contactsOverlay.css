@@ -88,7 +88,6 @@
     width: 100%;
     max-width: 26rem;
     align-items: stretch;
-    gap: 1.5rem;
   }
   
   .overlay_buttons{
@@ -269,9 +268,10 @@
 }
 
 .alert{
-  position: absolute;
   color: var(--alert-font-color);
   font-size: 13px;
+  margin: 0.25rem 0;
+  opacity: 0;
 }
 
 #name_alert, #edit_name_alert{
@@ -284,17 +284,20 @@
   top: 210px
 }
 
-
+.show{
+  opacity: 1;
+}
 
 
 .contact_save_message{
   background-color: var(--active-contact-color);
   color: var(--text-color-white);
-  height: 80px;
-  width: 370px;
+  height: 5rem;
+  width: 23.13rem;
   position: absolute;
   border-radius: 20px;
-  bottom: 100px;
-  right: 100px;
+  bottom: 40px;
+  right: 16px;
   transition: all 225ms ease-in-out;
+  z-index: 400;
 }

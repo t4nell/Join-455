@@ -31,6 +31,7 @@
     border: none;
     outline: none;
     font-size: 16px;
+    padding-right: 68px;
 }
 
 .tag-list {
@@ -62,7 +63,8 @@
 .tag_field {
     align-items: center;
     position: relative;
-    height: 32px;
+    /* Höhe bleibt minimal, die Textarea bestimmt selbst die Höhe */
+    min-height: 32px;
     margin-bottom: 8px;
     box-sizing: border-box;
     margin-top: 8px;
@@ -107,10 +109,25 @@
 
 .new_tag_input {
     width: 100%;
-    padding-left: 24px;
-    padding-top: 11px;
-    padding-bottom: 9px;
+    padding: 6px 80px 6px 24px;
     background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    line-height: 1.2;
+    box-sizing: border-box;
+
+    /* 1. Statt fester Höhe verwenden wir nur eine min-height */
+    min-height: 32px;
+
+    /* 2. Scrollbars unterdrücken */
+    overflow: hidden;
+
+    /* 3. Kein manuelles Ziehen */
+    resize: none;
+
+    /* Cursor zeigt, dass man gerade nicht tippen kann (readonly) */
+    cursor: pointer;
 }
 
 .new_tag_input:focus:not([readonly]),
@@ -170,6 +187,8 @@
     font-size: 1rem;
     position: absolute;
     left: 0.5rem;
+    top: 48%;
+    transform: translateY(-50%);
 }
 
 .tag_field.editing:before {

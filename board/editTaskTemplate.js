@@ -1,6 +1,7 @@
 let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
+
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown');
     selectedUser = document.getElementById('selected_user_group');
@@ -8,13 +9,41 @@ function initEditTaskVariables() {
     toggle = document.getElementById('dropdown_toggle_btn');
 }
 
+
+function initializeCalendar() {
+    const calendarInput = document.getElementById('due_date');
+    if (calendarInput && !calendarInput._flatpickr) {
+        flatpickr(calendarInput, {
+            dateFormat: 'd/m/Y',
+            minDate: 'today',
+            locale: {
+                firstDayOfWeek: 1
+            }
+        });
+    }
+}
+
+
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    if (calenderInput && calenderInput._flatpickr) {
+        calenderInput._flatpickr.open();
+    } else {
+        console.error('Flatpickr not initialized');
+    }
+}
+
+
 async function loadContactData(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');
         let responseToJson = await response.json();
         const contactsRef = responseToJson.contact;
         const addTask = Object.values(responseToJson.addTask);
-        contactsArray = Object.values(contactsRef);
+        contactsArray = Object.entries(contactsRef).map(([id, contact]) => ({
+            ...contact,
+            id
+        }));
         contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     } catch (error) {
         console.error('Error loading contact data:', error);
@@ -22,26 +51,11 @@ async function loadContactData(path = '') {
     loadContactsToAssigned();
 }
 
-function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
-        minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-    });
-});
 
 function switchBtnPriority(btnPriority) {
     document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
     document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMedium.svg';
     document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLow.svg';
-
     switch (btnPriority) {
         case 'urgent':
             document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
@@ -55,16 +69,19 @@ function switchBtnPriority(btnPriority) {
     }
 }
 
+
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
 }
 
+
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 }
+
 
 function handleClickOutside(event) {
     if (!dropdown.contains(event.target)) {
@@ -73,16 +90,18 @@ function handleClickOutside(event) {
     }
 }
 
+
 function loadContactsToAssigned() {
     if (!menu) return;
     menu.innerHTML = '';
-    contactsArray.forEach((contact, index) => {
-        menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
+    contactsArray.forEach((contact) => {
+        menu.innerHTML += loadContactsToAssignedTemplate(contact);
     });
 }
 
-function loadContactsToAssignedTemplate(contact, index) {
-    const bgColor = contactsArray[index].color;
+
+function loadContactsToAssignedTemplate(contact) {
+    const bgColor = contact.color;
     const nameInitials = contact.name
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
@@ -91,34 +110,36 @@ function loadContactsToAssignedTemplate(contact, index) {
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
         .join('');
-
+    const isSelected = document.getElementById(`selected_user_${contact.id}`) !== null;
+    const checkedAttr = isSelected ? 'checked' : '';
+    const activeClass = isSelected ? 'active' : '';
     return `
-    <li class="dropdown_item" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
-    <div class="symbole_name_group">
-    <div class="avatar" style="background-color: ${bgColor}">
-    <span>${nameInitials}${surnameInitials}</span>
-    </div>
-    <div>
-    <span class="contact_name">${contact.name} ${contact.surname}</span>
-    </div>
-    </div>
-    <input
-    id="users_checkbox_${index}"
-    class="assign_dropdown_input"
-    type="checkbox"
-    name="assigned_to"
-    value="${contact.name} ${contact.surname}" 
-    onclick="selectUser(${index}, event)"/>
+    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
+        <div class="symbole_name_group">
+            <div class="avatar" style="background-color: ${bgColor}">
+                <span>${nameInitials}${surnameInitials}</span>
+            </div>
+            <div>
+                <span class="contact_name">${contact.name} ${contact.surname}</span>
+            </div>
+        </div>
+        <input id="users_checkbox_${contact.id}"
+        class="assign_dropdown_input"
+        type="checkbox"
+        name="assigned_to"
+        value="${contact.name} ${contact.surname}" 
+        ${checkedAttr}
+        onclick="selectUser('${contact.id}', event)"/>
     </li>`;
 }
+
 
 function renderAssignedContactsEdit(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
-        .map(([id, contactMap]) => {
-            const [[fullName, isAssigned]] = Object.entries(contactMap);
+        .map(([contactId, isAssigned]) => {
             if (!isAssigned) return '';
-            const contact = contactsArray.find((c) => `${c.name} ${c.surname}` === fullName);
+            const contact = contactsArray.find((c) => c.id === contactId);
             if (!contact) return '';
             const nameInitials = contact.name
                 .split(' ')
@@ -130,7 +151,7 @@ function renderAssignedContactsEdit(assignedTo) {
                 .join('');
             const initials = nameInitials + surnameInitials;
             return `
-                <div id="selected_user_${id}" class="contact_badge">
+                <div id="selected_user_${contactId}" class="contact_badge">
                     <div class="avatar" style="background-color: ${contact.color}">
                         ${initials}
                     </div>
@@ -140,33 +161,36 @@ function renderAssignedContactsEdit(assignedTo) {
         .join('');
 }
 
-function selectUser(index, event) {
+
+function selectUser(id, event) {
     initEditTaskVariables();
     event.stopPropagation();
-    const checkbox = document.getElementById(`users_checkbox_${index}`);
-    const clickedItem = document.getElementById(`dropdown_item_${index}`);
+    const checkbox = document.getElementById(`users_checkbox_${id}`);
+    const clickedItem = document.getElementById(`dropdown_item_${id}`);
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
-    clickedItem.classList.remove('active');
+    const contact = contactsArray.find(c => c.id === id);
+    if (!contact) return;
     if (checkbox.checked) {
-        addSelectedUserIcon(index);
+        addSelectedUserIcon(contact);
         clickedItem.classList.add('active');
     } else {
-        removeSelectedUser(index);
+        removeSelectedUser(id);
         clickedItem.classList.remove('active');
     }
 }
 
-function removeSelectedUser(index) {
-    const userIconContainer = document.getElementById(`selected_user_${index}`);
-    userIconContainer.remove();
+
+function removeSelectedUser(id) {
+    const userIconContainer = document.getElementById(`selected_user_${id}`);
+    if (userIconContainer) {
+        userIconContainer.remove();
+    }
 }
 
-function addSelectedUserIcon(index) {
-    contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
-    const bgColor = contactsArray[index].color;
-    const contact = contactsArray[index];
+
+function addSelectedUserIcon(contact) {
     const nameInitials = contact.name
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
@@ -176,48 +200,102 @@ function addSelectedUserIcon(index) {
         .map((part) => part.charAt(0).toUpperCase())
         .join('');
     const initials = nameInitials + surnameInitials;
-
-    selectedUser.innerHTML += addSelectedUserIconTemplate(index, bgColor, initials);
+    selectedUser.innerHTML += addSelectedUserIconTemplate(contact.id, contact.color, initials);
 }
 
-function addSelectedUserIconTemplate(index, bgColor, initials) {
+
+function addSelectedUserIconTemplate(id, bgColor, initials) {
     return `
-        <div id="selected_user_${index}">
-           
+        <div id="selected_user_${id}">
             <div class="avatar" style="background-color: ${bgColor}">
-                
                 <div>${initials}</div>
-                
             </div>
-            
         </div>`;
 }
 
-//Die Funktion ist so gross um die refactor Funktion von vscode zu üben ^^
+function renderEditableSubtasks(task) {
+    if (!task.subtasks) return '';
+    return Object.entries(task.subtasks).map(([subtaskId, subtask]) => {
+        const subtaskNumber = subtaskId.split('_')[1];
+        const tagId = `tag_field_${subtaskNumber}`;
+        const tagInputId = `new_tag_input_${subtaskNumber}`;
+        const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
+        return `
+        <div class="tag_field" id='${tagId}'>
+            <textarea 
+                rows="1"
+                name="subtasks" 
+                class="new_tag_input" 
+                id='${tagInputId}' 
+                type="text"  
+                ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
+                onblur="disableEditing('${tagInputId}')" 
+                oninput="autoResizeTextarea(this)"
+                readonly 
+            >${subtask.title}</textarea>
+            <div id='${tagBtnConId}' class="new_tag_btn_container">
+                <div class="btns_position">
+                    <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
+                    </button>
+                    <hr class="separator_vertically_subtasks" />
+                    <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
+                    </button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+
+//Die Funktion ist so gross um die refactor Funktion von vscode zu üben
 async function saveEditTask(taskId) {
     try {
+
+        // Collect contacts
         const form = document.getElementById('edit_task_form');
         const formData = new FormData(form);
-
-        // Get current task to preserve status
         const currentTask = allTasks.find((task) => task.id === taskId);
-
-        // Collect assigned contacts
         const assignedTo = {};
         const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
         checkboxes.forEach((checkbox) => {
-            assignedTo[checkbox.value] = true;
+            const contactId = checkbox.closest('.dropdown_item').id.replace('dropdown_item_', '');
+            const contact = contactsArray.find(c => c.id === contactId);
+            if (contact) {
+                const fullName = `${contact.name} ${contact.surname}`;
+                assignedTo[contactId] = {
+                    [fullName]: true
+                };
+            }
         });
 
         // Collect subtasks
+        const subtaskInputs = document.querySelectorAll('textarea[name="subtasks"]');
         const subtasks = {};
-        const subtaskInputs = document.querySelectorAll('input[name="subtasks"]');
-        subtaskInputs.forEach((input, index) => {
-            subtasks[`subtask_${index}`] = {
-                title: input.value,
-                done: false,
-            };
+        let subtaskIndex = 0;
+        subtaskInputs.forEach((input) => {
+            if (input.value.trim()) {
+                const subtaskKey = `subtask_${subtaskIndex}`;
+                const existingSubtask = currentTask.subtasks ? 
+                    currentTask.subtasks[subtaskKey] : null;
+                subtasks[subtaskKey] = {
+                    title: input.value,
+                    done: existingSubtask ? existingSubtask.done : false
+                };
+                subtaskIndex++;
+            }
         });
+
+        // Neue Subtask hinzufügen
+        const newSubtaskInput = document.getElementById('tag_input_field');
+            if (newSubtaskInput && newSubtaskInput.value.trim()) {
+                const newSubtaskKey = `subtask_${subtaskIndex}`;
+                subtasks[newSubtaskKey] = {
+                    title: newSubtaskInput.value.trim(),
+                    done: false
+                };
+            }  
 
         // Create updated task object
         const updatedTask = {

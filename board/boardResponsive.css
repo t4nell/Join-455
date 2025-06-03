@@ -1,0 +1,147 @@
+@media (max-width: 1345px) {
+    .plus_button {
+        margin-right: 16px;
+    }
+
+    .board_content_bottom {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .drag_area {
+        flex-direction: row;
+        align-items: flex-start;  
+    }    
+    .drag_and_drop_container {
+        height: 286px;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .task_card {
+        max-width: 212px;
+        min-width: 212px;
+        height: calc(100% - 33px);
+    }
+    .category {
+        max-width: 500px;
+        width: 100%;
+        min-width: 244px;
+    }
+}
+    
+@media (max-width: 1130px) {
+    .button_text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .board_container {
+        height: calc(100% - 180px);
+        width: 100%;
+        left: 0;
+    }
+    
+    .board_controls_container {
+        width: 93%;
+    }
+}
+
+@media screen and (max-width: 843px) {
+    .search_and_addTask_container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dark_btn {
+        order: 1;
+    }
+
+    .search_container_style {
+        order: 2;
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .search_container {
+        width: 100%;
+    }
+
+    .input_base_style {
+        width: 100%;
+    }
+
+    .task_detail_card{
+        width: 62%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .task_detail_card h2 {
+        font-size: 40px;
+    }
+
+    .task_detail_card{
+        width: 70%;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .priority_btn_group .btn {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+
+    .priority_icon {
+        width: 16px;
+    }
+
+    .task_detail_card {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .subtasks_list input {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .task_detail_card {
+        padding: 40px 20px;
+    }
+    
+    .task_detail_card {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .task_detail_card h2 {
+        font-size: 32px;
+    }
+
+    .task_detail_card {
+        font-size: 18px;
+    }
+
+    .tag_field {
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 385px) {
+    .priority_btn_group .btn {
+        padding: 6px 8px;
+        gap: 4px;
+    }
+}
+@media screen and (max-width: 385px) {
+    .priority_btn_group .btn {
+        padding: 4px 6px;
+        gap: 2px;
+    }
+}

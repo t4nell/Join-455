@@ -120,7 +120,7 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
             </div>
             <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event);"/>
               <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
-                <button onclick="editCurrentUserOverlay()" id="edit_btn">Edit</button>
+                <button onclick="editCurrentUserOverlay()" id="edit_btn"><img src="../assets/imgs/contactIcons/edit.svg" alt="" />Edit</button>
               </div>
           </div>`;
 }
@@ -213,7 +213,7 @@ function getNewContactOverlay() {
           placeholder="Name"
           required
         />
-        <p class="alert d_none" id="name_alert">*Please enter first-and surname.</p>
+        <p class="alert" id="name_alert">*Please enter first-and surname.</p>
 
         <input
           class="overlay_input mail_input_icon"
@@ -223,7 +223,7 @@ function getNewContactOverlay() {
           placeholder="Email"
           required
         />
-        <p class="alert d_none" id="mail_alert">*Please enter a valid email address.</p>
+        <p class="alert" id="mail_alert">*Please enter a valid email address.</p>
 
         <input
           class="overlay_input phone_input_icon"
@@ -234,7 +234,7 @@ function getNewContactOverlay() {
           placeholder="Phone"
           required
         />
-        <p class="alert d_none" id="phone_alert">*Please enter a valid phone number.</p>
+        <p class="alert" id="phone_alert">*Please enter a valid phone number.</p>
       </div>
 
       <div class="overlay_buttons">
@@ -293,7 +293,7 @@ function getEditContactOverlay(contact, index) {
               name="edit_contact_name"
               required
             />
-            <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+            <p class="alert" id="edit_name_alert">*Please enter first-and surname.</p>
 
             <input
               class="overlay_input mail_input_icon"
@@ -303,7 +303,7 @@ function getEditContactOverlay(contact, index) {
               name="edit_contact_mail"
               required
             />
-            <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+            <p class="alert" id="edit_mail_alert">*Please enter a valid email address.</p>
 
             <input
               class="overlay_input phone_input_icon"
@@ -313,7 +313,7 @@ function getEditContactOverlay(contact, index) {
               name="edit_contact_phone"
               required
             />
-            <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
+            <p class="alert" id="edit_phone_alert">*Please enter a valid phone number.</p>
           </div>
 
           <div class="overlay_edit_buttons">
@@ -362,7 +362,7 @@ function getCurrentUserEditOverlay(currentUserInitials) {
               name="edit_contact_name"
               required
             />
-            <p class="alert d_none" id="edit_name_alert">*Please enter first-and surname.</p>
+            <p class="alert" id="edit_name_alert">*Please enter first-and surname.</p>
 
             <input
               class="overlay_input mail_input_icon"
@@ -372,7 +372,7 @@ function getCurrentUserEditOverlay(currentUserInitials) {
               name="edit_contact_mail"
               required
             />
-            <p class="alert d_none" id="edit_mail_alert">*Please enter a valid email address.</p>
+            <p class="alert" id="edit_mail_alert">*Please enter a valid email address.</p>
 
             <input
               class="overlay_input phone_input_icon"
@@ -382,7 +382,7 @@ function getCurrentUserEditOverlay(currentUserInitials) {
               name="edit_contact_phone"
               required
             />
-            <p class="alert d_none" id="edit_phone_alert">*Please enter a valid phone number.</p>
+            <p class="alert" id="edit_phone_alert">*Please enter a valid phone number.</p>
           </div>
 
           <div class="overlay_edit_buttons">

@@ -110,10 +110,10 @@ function selectUser(index, event) {
     renderSelectedIcons();
 }
 
-function removeSelectedUser(index) {
-    const userIconContainer = document.getElementById(`selected_user_${index}`);
-    userIconContainer.remove();
-}
+// function removeSelectedUser(index) {
+//     const userIconContainer = document.getElementById(`selected_user_${index}`);
+//     userIconContainer.remove();
+// }
 
 function renderSelectedIcons() {
     selectedUser.innerHTML = '';
