@@ -115,6 +115,10 @@ async function loadAndUpdateTaskData() {
 // constants for Firebase database URL
 const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
+/**
+ * Gets the current user from localStorage
+ * @returns {Object|null} The current user object or null if not found
+ */
 function getCurrentUser() {
     return JSON.parse(localStorage.getItem('currentUser'));
 }
