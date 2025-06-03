@@ -58,6 +58,7 @@ function renderAllTaskCards(allTasks, state, id) {
     todos.forEach((task) => {
         id.innerHTML += getTaskCard(task);
     });
+}    
 
 function startDragging(event, taskId) {
     const draggedElement = event.target.closest('.task_card');
