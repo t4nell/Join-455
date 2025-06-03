@@ -1,7 +1,38 @@
-@media (max-width: 1081px) {
-    #add_task_container {
+@media (max-width: 1200px) {
+    /* header {
         left: 180px;
+        width: calc(100% - 180px);
+    } */
+
+    #add_task_container {
+        /* left: 130px; */
+        width: calc(100% - 180px);
     }
+
+    .btn {
+        padding: 12px 16px;
+        gap: 4px;
+    }
+
+    .main_section_left {
+        margin-right: 35px;
+    }
+
+    .main_section_right {
+        margin-left: 35px;
+    }
+
+    .create_task_btn {
+        padding: 12px 16px;
+    }
+
+    /* .sidebar_container {
+        width: 180px;
+    }
+
+    .sidebar_nav a {
+        padding: 8px 0 8px 32px;
+    } */
 }
 
 @media (max-width: 1050px) {
