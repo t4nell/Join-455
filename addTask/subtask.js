@@ -1,3 +1,4 @@
+let allowBlur = false;
 let tagCounter = 0;
 
 function enableEditing(tagInputId, tagBtnConId, tagId) {
@@ -7,12 +8,20 @@ function enableEditing(tagInputId, tagBtnConId, tagId) {
     input.classList.add('focus');
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
-    input.classList.remove('input_error_new_subtask_tag');
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
 function disableEditing(tagInputId) {
     const input = document.getElementById(tagInputId);
+    if (!input) return;
+    const value = input.value.trim();
+
+    if (!allowBlur && value === '') {
+        input.focus();
+        input.placeholder = 'Please fill or Remove';
+        input.classList.add('input_error_new_subtask_tag');
+        return;
+    }
     input.setAttribute('readonly', true);
     input.classList.remove('focus');
     const tagField = input.closest('.tag_field');
@@ -43,41 +52,31 @@ function trashBtn(tagId) {
 function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
     return `
     <div class="tag_field" id="${tagId}">
-      <textarea
-      rows="1"
-        name="subtasks"
-        class="new_tag_input"
-        id="${tagInputId}"
-        ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')"
-        onblur="disableEditing('${tagInputId}')"
-        oninput="autoResizeTextarea(this)"
-        readonly>${value}</textarea>
-      <div id="${tagBtnConId}">
-        <div class="btns_position">
-          <button
-            class="edit_text_btn"
-            onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"
-          >
-            <img
-              class="subtasks_icon"
-              src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
-              alt="Icon"
-            />
-          </button>
-          <hr class="separator_vertically_subtasks" />
-          <button
-            class="trash_btn"
-            onclick="trashBtn('${tagId}')"
-          >
-            <img
-              class="subtasks_icon"
-              src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
-              alt="Icon"
-            />
-          </button>
+            <textarea
+                rows="1"
+                name="subtasks"
+                class="new_tag_input"
+                id="${tagInputId}"
+                ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')"
+                onblur="disableEditing('${tagInputId}')"
+                oninput="autoResizeTextarea(this)"
+                readonly>
+                ${value}
+            </textarea>
+            <div id="${tagBtnConId}">
+                <div class="btns_position">
+                    <button
+                        class="edit_text_btn"
+                        onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon" />
+                    </button>
+                    <hr class="separator_vertically_subtasks" />
+                    <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon" />
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
     `;
 }
 
@@ -87,21 +86,16 @@ function newTagDefaultBtns(tagBtnConId, tagInputId, tagId) {
 }
 
 function newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId) {
-    return `<div class="btns_position">
-            <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg"
-                                        alt="Icon"
-                                        /></button>
+    return `
+    <div class="btns_position">
+            <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                <img class="subtasks_icon" id="" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon" />
+            </button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash_btn" onclick="trashBtn('${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
-                                        alt="Icon"
-                                        /></button>
-                                        </div>
+            <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                <img class="subtasks_icon" id="" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon" />
+            </button>
+    </div>
     `;
 }
 
@@ -116,7 +110,6 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
     newTag.classList.add('focus');
     const tagField = newTag.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
-
     newTagBtnReplace(tagInputId, tagBtnConId, tagId);
 }
 
@@ -126,39 +119,31 @@ function newTagBtnReplace(tagInputId, tagBtnConId, tagId) {
 }
 
 function newTagBtnReplaceTemplate(tagBtnConId, tagInputId, tagId) {
-    return ` <div class="btns_position_two">
-            <button class="edit_text_btn" onclick="trashBtn('${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg"
-                                        alt="Icon"
-                                        /></button>
+    return ` 
+    <div class="btns_position_two">
+            <button class="edit_text_btn" onclick="trashBtn('${tagId}')">
+                <img class="subtasks_icon" id="" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon" />
+            </button>
             <hr class="separator_vertically_subtasks" />
-            <button class="trash_btn" onclick="newTagCheckValue('${tagBtnConId}', '${tagInputId}', '${tagId}')"><img
-                                        class="subtasks_icon"
-                                        id=""
-                                        src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
-                                        alt="Icon"
-                                        /></button>
-                                        </div>
+            <button class="trash_btn" onclick="newTagCheckValue(event,'${tagBtnConId}', '${tagInputId}', '${tagId}')">
+                <img class="subtasks_icon" id="" src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg" alt="Icon" />
+            </button>
+    </div>
     `;
 }
 
-function newTagCheckValue(tagBtnConId, tagInputId, tagId) {
+function newTagCheckValue(event, tagBtnConId, tagInputId, tagId) {
     event.stopPropagation();
     event.preventDefault();
     const input = document.getElementById(tagInputId);
     const value = input.value.trim();
+
     if (value !== '') {
-        input.setAttribute('readonly', true);
-        input.classList.remove('focus');
-        input.classList.remove('input_error_new_subtask_tag');
+        allowBlur = true;
         newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
+        allowBlur = false;
     } else {
-        input.value = 'Please fill or Remove';
         input.classList.add('input_error_new_subtask_tag');
-        input.focus();
-        input.classList.add('focus');
     }
 }
 
@@ -171,23 +156,21 @@ function replaceButtons() {
 
 function getBtnsTemplate() {
     return `
-        <button class="delete_text_btn" onclick="deleteTextBtn()">
-                                        <img
-                                            class="subtasks_icon arrow_bg_hover_color_subtask"
-                                            id=""
-                                            src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg"
-                                            alt="Icon"
-                                            />
-                                    </button>
-                                    <hr class="separator_vertically_subtasks" />
-                                    <button type="button" class="confirm_btn" onclick="checkValue()">
-                                        <img
-                                            class="subtasks_icon arrow_bg_hover_color_subtask"
-                                            id=""
-                                            src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
-                                            alt="Icon"
-                                        />
-                                    </button>
+    <button class="delete_text_btn" onclick="deleteTextBtn()">
+            <img
+                class="subtasks_icon arrow_bg_hover_color_subtask"
+                id=""
+                src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg"
+                alt="Icon" />
+    </button>
+        <hr class="separator_vertically_subtasks" />
+    <button type="button" class="confirm_btn" onclick="checkValue()">
+            <img
+                class="subtasks_icon arrow_bg_hover_color_subtask"
+                id=""
+                src="../assets/imgs/addTaskIcons/subtasksDoneIcon.svg"
+                alt="Icon" />
+    </button>
         `;
 }
 
@@ -217,13 +200,12 @@ function deleteTextBtn() {
 function resetButtons() {
     const subtaskBtnContainer = document.getElementById('subtask_btn_container');
     subtaskBtnContainer.innerHTML = `
-        <button class="plus_btn" onclick="replaceButtons()">
+    <button class="plus_btn" onclick="replaceButtons()">
             <img
                 class="subtasks_icon arrow_bg_hover_color_subtask"
                 src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
-                alt="New Button Icon"
-            />
-        </button>
+                alt="New Button Icon" />
+    </button>
     `;
 }
 

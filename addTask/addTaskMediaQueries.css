@@ -1,11 +1,5 @@
 @media (max-width: 1200px) {
-    /* header {
-        left: 180px;
-        width: calc(100% - 180px);
-    } */
-
     #add_task_container {
-        /* left: 130px; */
         width: calc(100% - 180px);
     }
 
@@ -25,14 +19,6 @@
     .create_task_btn {
         padding: 12px 16px;
     }
-
-    /* .sidebar_container {
-        width: 180px;
-    }
-
-    .sidebar_nav a {
-        padding: 8px 0 8px 32px;
-    } */
 }
 
 @media (max-width: 1050px) {
@@ -40,6 +26,9 @@
         font-size: 16px;
     }
 
+    * {
+        font-size: 16px;
+    }
     header {
         background-color: var(--background-color-header);
         width: 100%;
@@ -234,6 +223,10 @@
 
     .closed {
         bottom: -100px;
+    }
+
+    .required_footer_text_mobile {
+        font-size: 16px;
     }
 }
 
