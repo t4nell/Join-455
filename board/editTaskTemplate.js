@@ -264,7 +264,6 @@ async function saveEditTask(taskId) {
         let { subtaskIndex, subtasks } = subtasksCollect(currentTask);
         // Neue Subtask hinzufügen
         newSubtask(subtaskIndex, subtasks);  
-        
         // Create updated task object
         const updatedTask = newFunction(formData, currentTask, assignedTo, subtasks);
 
