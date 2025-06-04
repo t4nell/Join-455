@@ -12,7 +12,6 @@ window.onload = async function () {
             return;
         }
 
-        renderSidebar();
         renderHeader();
         updateUserProfile();
     } catch (error) {
@@ -20,6 +19,11 @@ window.onload = async function () {
     }
 };
 
+function init() {
+    renderSidebar();
+    renderHeader();
+    updateUserProfile();
+}
 
 function renderSidebar() {
     const mainContainer = document.getElementById('navbar_container');
