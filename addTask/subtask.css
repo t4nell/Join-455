@@ -74,12 +74,18 @@
     background: none;
 }
 
-.edit_text_btn,
+.edit_text_btn {
+    background: none;
+}
 .done_btn {
     background: none;
 }
 
-.edit_text_btn,
+.edit_text_btn:hover img {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
 .done_btn:hover img {
     transform: translateY(-2px);
     transition: transform 0.2s ease;
