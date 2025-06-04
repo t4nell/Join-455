@@ -1,15 +1,8 @@
-// Reference to allTasks from board.js - KEINE erneute Deklaration hier!
+const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
-/**
- * Hilfsfunktion zum zuverlässigen Ermitteln des gezogenen Elements
- */
-function getDraggedElement(event) {
-    return event.target.closest('.task_card') || event.target;
-}
+// Reference to allTasks from board.js
+let allTasks = window.allTasks || [];
 
-/**
- * Erlaubt das Droppen und erstellt einen Platzhalter
- */
 function allowDrop(event) {
     event.preventDefault();
     const dropzone = event.currentTarget;
