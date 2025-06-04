@@ -6,6 +6,7 @@
     .board_content_bottom {
         flex-direction: column;
         justify-content: flex-start;
+        gap: 32px;
     }
     .drag_area {
         flex-direction: row;
