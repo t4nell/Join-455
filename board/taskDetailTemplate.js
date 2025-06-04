@@ -83,10 +83,12 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
     const task = allTasks.find((task) => task.id === taskId);
     if (!task || !task.subtasks) return;
     task.subtasks[subtaskKey].done = checkbox.checked;
+    const title = task.subtasks[subtaskKey].title;
     try {
         const response = await fetch(`${BASE_URL}addTask/${taskId}/subtasks/${subtaskKey}.json`, {
             method: 'PUT',
             body: JSON.stringify({
+                title: title,
                 done: checkbox.checked,
             }),
             headers: {
