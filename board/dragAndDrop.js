@@ -1,5 +1,4 @@
 // Reference to allTasks from board.js
-let allTasks = window.allTasks || [];
 
 function allowDrop(event) {
     event.preventDefault();

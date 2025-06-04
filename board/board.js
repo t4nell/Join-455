@@ -40,6 +40,8 @@ async function loadAddTask(path = '') {
         ...task,
         id,
     }));
+    console.log('allTasks:', allTasks);
+    
 };
 
 
