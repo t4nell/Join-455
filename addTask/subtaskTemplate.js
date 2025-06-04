@@ -65,7 +65,7 @@ function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
                 onblur="disableEditing('${tagInputId}')"
                 oninput="autoResizeTextarea(this)"
                 readonly>${value}</textarea>
-
+                
             <div id="${tagBtnConId}">
                 <div class="btns_position">
                     <button
