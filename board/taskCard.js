@@ -15,7 +15,7 @@ const CATEGORY_COLORS = {
 
 function getCategoryColor(category) {
     return CATEGORY_COLORS[category] || '#0052ff';
-}
+};
 
 
 function renderAssignedAvatars(assignedTo) {
@@ -33,7 +33,7 @@ function renderAssignedAvatars(assignedTo) {
         avatarHtml += renderMoreAvatarsButton(assignedContacts.length, maxVisibleAvatars);
     }
     return avatarHtml;
-}
+};
 
 
 function renderMoreAvatarsButton(totalContacts, maxVisible) {
