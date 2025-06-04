@@ -238,8 +238,7 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
             ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
             onblur="disableEditing('${tagInputId}')" 
             oninput="autoResizeTextarea(this)"
-            readonly 
-        >${subtask.title}</textarea>
+            readonly>${subtask.title}</textarea>
         <div id='${tagBtnConId}' class="new_tag_btn_container">
             <div class="btns_position">
                 <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
