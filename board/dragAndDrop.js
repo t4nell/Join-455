@@ -1,8 +1,16 @@
+const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+
+// Reference to allTasks from board.js
+let allTasks = window.allTasks || [];
+
 function allowDrop(event) {
     event.preventDefault();
     
     const dropzone = event.currentTarget;
-    const dimensions = JSON.parse(sessionStorage.getItem('draggedElementDimensions') || '{}');
+    
+    // Just use the sessionStorage directly
+    const dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
+    const dimensions = dimensionsStr ? JSON.parse(dimensionsStr) : {};
     
     // Remove all existing placeholders
     removePlaceholders();
@@ -15,28 +23,41 @@ function allowDrop(event) {
 };
 
 function startDragging(event, taskId) {
-    const draggedElement = event.target.closest('.task_card');
+    console.log("startDragging called with taskId:", taskId);
+    const draggedElement = getDraggedElement(event);
     event.dataTransfer.setData('text/plain', taskId);
-    
-    // Für visuelle Effekte während des Ziehens
-    draggedElement.classList.add('dragging');
-    
-    // Speichere Dimensionen als Session-Daten
-    const dimensions = {
-        width: draggedElement.offsetWidth,
-        height: draggedElement.offsetHeight
-    };
-    
+    addDraggingClass(draggedElement);
+    const dimensions = getElementDimensions(draggedElement);
+    storeDimensions(dimensions);
+    trySetDataTransfer(event, dimensions);
+}
+
+function getDraggedElement(event) {
+    return event.target.closest('.task_card');
+}
+
+function addDraggingClass(element) {
+    element.classList.add('dragging');
+}
+
+function getElementDimensions(element) {
+    return { width: element.offsetWidth, height: element.offsetHeight };
+}
+
+function storeDimensions(dimensions) {
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
-    
+}
+
+function trySetDataTransfer(event, dimensions) {
     try {
         event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
     } catch (e) {
         console.log('Browser unterstützt keine komplexen Datentypen in dataTransfer');
     }
-};
+}
 
 function handleDrop(event) {
+    console.log("handleDrop called");
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;

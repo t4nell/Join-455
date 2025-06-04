@@ -17,9 +17,7 @@ async function init() {
     await loadAddTask();
     renderColumns();
     loadContactsToAssigned();
-
-    setupDragAreas(); // Drag-Bereiche direkt initialisieren
-    // Entfernen Sie den Aufruf von initDragAndDrop()
+    await initDragAndDrop();
 };
 
 /**
