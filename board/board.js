@@ -18,7 +18,7 @@ async function init() {
     await loadAddTask();
     renderColumns();
     loadContactsToAssigned();
-    setupDragAreas();
+    await initDragAndDrop();
 };
 
 
