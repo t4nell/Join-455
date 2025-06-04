@@ -1,4 +1,3 @@
-
 // Reference to allTasks from board.js
 
 function allowDrop(event) {
