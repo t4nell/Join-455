@@ -1,3 +1,8 @@
+const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+
+// Reference to allTasks from board.js
+let allTasks = window.allTasks || [];
+
 function allowDrop(event) {
     event.preventDefault();
     const dropzone = event.currentTarget;
@@ -13,7 +18,8 @@ function allowDrop(event) {
 
 
 function startDragging(event, taskId) {
-    const draggedElement = event.target.closest('.task_card');
+    console.log("startDragging called with taskId:", taskId);
+    const draggedElement = getDraggedElement(event);
     event.dataTransfer.setData('text/plain', taskId);
     // Für visuelle Effekte während des Ziehens
     draggedElement.classList.add('dragging');
@@ -32,6 +38,7 @@ function startDragging(event, taskId) {
 
 
 function handleDrop(event) {
+    console.log("handleDrop called");
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;

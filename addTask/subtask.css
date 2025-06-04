@@ -116,17 +116,9 @@
     font-size: 16px;
     line-height: 1.2;
     box-sizing: border-box;
-
-    /* 1. Statt fester Höhe verwenden wir nur eine min-height */
     min-height: 32px;
-
-    /* 2. Scrollbars unterdrücken */
     overflow: hidden;
-
-    /* 3. Kein manuelles Ziehen */
     resize: none;
-
-    /* Cursor zeigt, dass man gerade nicht tippen kann (readonly) */
     cursor: pointer;
 }
 
@@ -226,7 +218,7 @@
     transform: translateY(-50%);
 }
 
-.input_error_new_subtask_tag {
+.input_error_new_subtask_tag::placeholder {
     color: red;
 }
 
