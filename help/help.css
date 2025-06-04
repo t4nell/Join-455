@@ -1,5 +1,6 @@
 main {
     height: 100vh;
+    display: flex;
 }
 
 .legal_container {
@@ -11,5 +12,6 @@ main {
     padding: 0 96px;
     overflow-y: auto;
     display: block;
+    flex: 1;
 }
 

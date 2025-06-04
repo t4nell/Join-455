@@ -27,10 +27,11 @@ function renderSidebar() {
     proofSize();
 }
 
-function initFetch() {
+function init() {
     renderSidebar();
     loadContactData();
     renderCategories();
+    renderHeader();
 }
 
 document.addEventListener('DOMContentLoaded', function () {

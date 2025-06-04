@@ -9,23 +9,27 @@
         <link rel="stylesheet" href="../styles/standard.css" />
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="./help.css" />
+        <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
+
         <script src="../scripts/templates.js" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
         <script src="./help.js" defer></script>
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
         <title>Join</title>
     </head>
-    <body onload="renderSidebar(); renderHeader(); updateUserProfile()">
+    <body>
         <main id="main_container">
             <div id="header_container"></div>
-
-            <div class="sidebar_container">
+            <div id="sidebar_container" class="sidebar_container">
                 <div class="sidebar_img_container">
-                    <a class="sidebar_join_logo" href="../index.html"><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" /></a>
+                    <a class="sidebar_join_logo" href="../index.html"
+                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"
+                    /></a>
 
                     <div id="navbar_container"></div>
                 </div>
             </div>
+            <div id="navbar_mobile_container"></div>
 
             <div class="legal_container">
                 <a href="#" class="back" aria-label="Zurück">←</a>
@@ -107,6 +111,7 @@
 
                 <h2>Enjoy using <strong>Join</strong>!</h2>
             </div>
+            <div class="navbar_mobile_container_style" id="navbar_mobile_container"></div>
         </main>
     </body>
 </html>
