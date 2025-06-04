@@ -75,7 +75,7 @@ async function updateTaskStatus(taskId, status) {
     try {
         // Aktualisiere nur das status-Feld in Firebase
         await fetch(`${BASE_URL}addTask/${taskId}.json`, {
-            method: 'PATCH',
+            method: 'PUT',
             body: JSON.stringify({ status: status }),
             headers: {
                 'Content-Type': 'application/json'
