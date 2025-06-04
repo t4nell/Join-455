@@ -51,7 +51,7 @@ function postTask(taskData) {
     console.log('Post Funktioniert');
 
     // Deaktivieren DerPost Funktion
-    // postData('addTask', taskData);
+    postData('addTask', taskData);
     // Deaktivieren DerPost Funktion
 }
 

@@ -33,15 +33,29 @@ function renderContent() {
 
 
 async function loadAddTask(path = '') {
-    let response = await fetch(BASE_URL + path + '.json');
-    let responseToJson = await response.json();
-    const addTaskData = responseToJson.addTask;
-    allTasks = Object.entries(addTaskData).map(([id, task]) => ({
-        ...task,
-        id,
-    }));
-    console.log('allTasks:', allTasks);
-    
+    try {
+        let response = await fetch(BASE_URL + path + '.json');
+        let responseToJson = await response.json();
+        
+        if (!responseToJson || !responseToJson.addTask) {
+            console.error('Keine Tasks gefunden oder ungültiges Format:', responseToJson);
+            allTasks = [];
+            return;
+        }
+        
+        const addTaskData = responseToJson.addTask;
+        
+        // Konvertiere Objekt zu Array mit IDs
+        allTasks = Object.entries(addTaskData).map(([id, task]) => ({
+            ...task,
+            id // Füge die ID als Eigenschaft hinzu
+        }));
+        
+        console.log('allTasks geladen:', allTasks);
+    } catch (error) {
+        console.error('Fehler beim Laden der Tasks:', error);
+        allTasks = [];
+    }
 };
 
 
@@ -199,11 +213,16 @@ async function updateTaskStatus(taskId, status) {
 
 
 function getTaskCard(task) {
+    if (!task) {
+        console.error('Versuch, eine Task-Karte für undefined zu rendern');
+        return '';
+    }
+    
     return `
         <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
             <div class="task_card_content">
-                <h3 class="task_card_title">${task.title}</h3>
-                <p class="task_card_description">${task.description}</p>
+                <h3 class="task_card_title">${task.title || 'Ohne Titel'}</h3>
+                <p class="task_card_description">${task.description || 'Keine Beschreibung'}</p>
                 <div class="task_card_footer">
                     <span class="task_card_due_date">${task.dueDate || ''}</span>
                     <span class="task_card_priority">${task.priority || ''}</span>
