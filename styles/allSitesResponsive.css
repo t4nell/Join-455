@@ -1,6 +1,7 @@
 @media screen and (max-width: 1050px) {
     /* header resp*/
     header {
+        height: 80px;
         width: 100%;
         left: 0;
     }
@@ -57,6 +58,15 @@
         flex-direction: column;
         padding: 0;
         border-radius: 1rem;
+    }
+
+    .nav_item span{
+        font-size: 14px;
+    }
+
+    .nav_item img{
+        width: 24px;
+        height: 24px;
     }
 
     #navbar_container {

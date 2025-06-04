@@ -400,7 +400,7 @@ padding: 20px;
   margin-top: 48px;
 }
 .separator_vertically{
-height: 1px;
+height: 0px;
 width: 90px;
 Order: 2;
 }
