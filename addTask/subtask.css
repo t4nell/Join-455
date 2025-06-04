@@ -27,6 +27,7 @@
 }
 
 .tag_input input {
+    background-color: white;
     flex: 1;
     border: none;
     outline: none;
@@ -63,7 +64,6 @@
 .tag_field {
     align-items: center;
     position: relative;
-    /* Höhe bleibt minimal, die Textarea bestimmt selbst die Höhe */
     min-height: 32px;
     margin-bottom: 8px;
     box-sizing: border-box;
