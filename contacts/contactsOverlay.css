@@ -6,7 +6,7 @@
     width: 90%;
     margin: auto;
     height: 33rem;
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     z-index: 300;
     /* inset: 0; */

@@ -56,10 +56,11 @@
             <div class="board_container">
                 <div class="board_content_top">
                     <div class="board_controls_container">
+
                         <div class="headline_container">
                             <h2>Board</h2>
                         </div>
-                        
+
                         <div class="search_container_style">
                             <div id="search_container" class="search_container">
                                 <div style="width: 100%;">
@@ -70,28 +71,29 @@
                                         placeholder="Find Task"
                                         type="search" />
                                 </div>
+
                                 <hr class="separator_vertically" />
+
                                 <div class="button_container">
                                     <button id="search_button" onclick="resetFilter()" class="light_btn">
                                         <img src="../assets/imgs/boardIcons/search.svg" alt="Lupe" />
                                     </button>
                                 </div>
-                            </div>
 
+                            </div>
                             <span id="no_find_task_mesage" style="display: none; color: brown">"find no task"</span>
                         </div>
 
-                        <!-- <div> -->
-                            <button class="dark_btn">
-                                <p class="button_text">Add Task</p>
-                                <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
-                            </button>
-                        <!-- </div> -->
-                        
+                        <button class="dark_btn">
+                            <p class="button_text">Add Task</p>
+                            <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
+                        </button>
+
                     </div>
                 </div>
 
                 <div class="board_content_bottom">
+
                     <div class="drag_and_drop_container">
                         <div class="category">
                             <span>To do</span>
@@ -99,12 +101,14 @@
                                 <img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
                             </button>
                         </div>
+
                         <div
                             id="drag_area_todo"
                             class="drag_area"
                             status="todo"
                             ondrop="handleDrop(event)"
-                            ondragover="allowDrop(event)"></div>
+                            ondragover="allowDrop(event)">
+                        </div>
                     </div>
 
                     <div class="drag_and_drop_container">

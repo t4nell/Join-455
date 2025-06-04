@@ -220,94 +220,53 @@ function renderEditableSubtasks(task) {
         const tagId = `tag_field_${subtaskNumber}`;
         const tagInputId = `new_tag_input_${subtaskNumber}`;
         const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
-        return `
-        <div class="tag_field" id='${tagId}'>
-            <textarea 
-                rows="1"
-                name="subtasks" 
-                class="new_tag_input" 
-                id='${tagInputId}' 
-                type="text"  
-                ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
-                onblur="disableEditing('${tagInputId}')" 
-                oninput="autoResizeTextarea(this)"
-                readonly 
-            >${subtask.title}</textarea>
-            <div id='${tagBtnConId}' class="new_tag_btn_container">
-                <div class="btns_position">
-                    <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
-                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
-                    </button>
-                    <hr class="separator_vertically_subtasks" />
-                    <button class="trash_btn" onclick="trashBtn('${tagId}')">
-                        <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
-                    </button>
-                </div>
-            </div>
-        </div>`;
+        return renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask);
     }).join('');
-}
+
+};
+
+
+function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
+    return `
+    <div class="tag_field" id='${tagId}'>
+        <textarea 
+            rows="1"
+            name="subtasks" 
+            class="new_tag_input" 
+            id='${tagInputId}' 
+            type="text"  
+            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
+            onblur="disableEditing('${tagInputId}')" 
+            oninput="autoResizeTextarea(this)"
+            readonly 
+        >${subtask.title}</textarea>
+        <div id='${tagBtnConId}' class="new_tag_btn_container">
+            <div class="btns_position">
+                <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
+                </button>
+                <hr class="separator_vertically_subtasks" />
+                <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
+                </button>
+            </div>
+        </div>
+    </div>`;
+};
 
 
 //Die Funktion ist so gross um die refactor Funktion von vscode zu üben
 async function saveEditTask(taskId) {
     try {
-
         // Collect contacts
-        const form = document.getElementById('edit_task_form');
-        const formData = new FormData(form);
-        const currentTask = allTasks.find((task) => task.id === taskId);
-        const assignedTo = {};
-        const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
-        checkboxes.forEach((checkbox) => {
-            const contactId = checkbox.closest('.dropdown_item').id.replace('dropdown_item_', '');
-            const contact = contactsArray.find(c => c.id === contactId);
-            if (contact) {
-                const fullName = `${contact.name} ${contact.surname}`;
-                assignedTo[contactId] = {
-                    [fullName]: true
-                };
-            }
-        });
-
+        const { currentTask, formData, assignedTo } = contactsCollects(taskId);
         // Collect subtasks
-        const subtaskInputs = document.querySelectorAll('textarea[name="subtasks"]');
-        const subtasks = {};
-        let subtaskIndex = 0;
-        subtaskInputs.forEach((input) => {
-            if (input.value.trim()) {
-                const subtaskKey = `subtask_${subtaskIndex}`;
-                const existingSubtask = currentTask.subtasks ? 
-                    currentTask.subtasks[subtaskKey] : null;
-                subtasks[subtaskKey] = {
-                    title: input.value,
-                    done: existingSubtask ? existingSubtask.done : false
-                };
-                subtaskIndex++;
-            }
-        });
-
+        let { subtaskIndex, subtasks } = subtasksCollect(currentTask);
         // Neue Subtask hinzufügen
-        const newSubtaskInput = document.getElementById('tag_input_field');
-            if (newSubtaskInput && newSubtaskInput.value.trim()) {
-                const newSubtaskKey = `subtask_${subtaskIndex}`;
-                subtasks[newSubtaskKey] = {
-                    title: newSubtaskInput.value.trim(),
-                    done: false
-                };
-            }  
-
+        newSubtask(subtaskIndex, subtasks);  
+        
         // Create updated task object
-        const updatedTask = {
-            title: formData.get('title'),
-            description: formData.get('description'),
-            dueDate: formData.get('due_date'),
-            priority: formData.get('priority'),
-            category: currentTask.category,
-            assignedTo: assignedTo,
-            subtasks: subtasks,
-            status: currentTask.status,
-        };
+        const updatedTask = newFunction(formData, currentTask, assignedTo, subtasks);
 
         // Update in Firebase
         const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
@@ -332,5 +291,69 @@ async function saveEditTask(taskId) {
     } catch (error) {
         console.error('Error updating task:', error);
     }
+};
+
+
+function newFunction(formData, currentTask, assignedTo, subtasks) {
+    return {
+        title: formData.get('title'),
+        description: formData.get('description'),
+        dueDate: formData.get('due_date'),
+        priority: formData.get('priority'),
+        category: currentTask.category,
+        assignedTo: assignedTo,
+        subtasks: subtasks,
+        status: currentTask.status,
+    };
 }
 
+function newSubtask(subtaskIndex, subtasks) {
+    const newSubtaskInput = document.getElementById('tag_input_field');
+    if (newSubtaskInput && newSubtaskInput.value.trim()) {
+        const newSubtaskKey = `subtask_${subtaskIndex}`;
+        subtasks[newSubtaskKey] = {
+            title: newSubtaskInput.value.trim(),
+            done: false
+        };
+    };
+};
+
+
+function subtasksCollect(currentTask) {
+    const subtaskInputs = document.querySelectorAll('textarea[name="subtasks"]');
+    const subtasks = {};
+    let subtaskIndex = 0;
+    subtaskInputs.forEach((input) => {
+        if (input.value.trim()) {
+            const subtaskKey = `subtask_${subtaskIndex}`;
+            const existingSubtask = currentTask.subtasks ?
+                currentTask.subtasks[subtaskKey] : null;
+            subtasks[subtaskKey] = {
+                title: input.value,
+                done: existingSubtask ? existingSubtask.done : false
+            };
+            subtaskIndex++;
+        }
+    });
+    return { subtaskIndex, subtasks };
+};
+
+
+function contactsCollects(taskId) {
+    const form = document.getElementById('edit_task_form');
+    const formData = new FormData(form);
+    const currentTask = allTasks.find((task) => task.id === taskId);
+    const assignedTo = {};
+    const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
+    checkboxes.forEach((checkbox) => {
+        const contactId = checkbox.closest('.dropdown_item').id.replace('dropdown_item_', '');
+        const contact = contactsArray.find(c => c.id === contactId);
+        if (contact) {
+            const fullName = `${contact.name} ${contact.surname}`;
+            assignedTo[contactId] = {
+                [fullName]: true
+            };
+        }
+    });
+    return { currentTask, formData, assignedTo };
+};
