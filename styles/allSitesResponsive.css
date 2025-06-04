@@ -101,10 +101,12 @@
 
     .legal_container,
     .policy_container {
+        top: 80px;
         left: 0;
-        width: calc(100% - 195px);
-        height: calc(100% - 200px);
+        width: calc(100% - 32px);
+        height: calc(100% - 180px);
         padding-bottom: 20px;
-  }
+        padding: 0 16px 20px 16px;
+    }
 }
 
