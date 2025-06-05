@@ -51,25 +51,29 @@ function getAssignedContacts(assignedTo) {
             if (!isAssigned) return null;
             const contact = contactsArray.find(c => c.id === contactId);
             if (!contact) return null;
-            const nameInitials = contact.name
-                .split(' ')
-                .map(part => part.charAt(0).toUpperCase())
-                .join('');
-            const surnameInitials = contact.surname
-                .split(' ')
-                .map(part => part.charAt(0).toUpperCase())
-                .join('');
-            const initials = nameInitials + surnameInitials;
-            return {
-                id: contactId,
-                initials,
-                color: contact.color
-            };
+            return createBatch(contact, contactId);
         })
         .filter(contact => contact !== null);
 }
 
     
+function createBatch(contact, contactId) {
+    const nameInitials = contact.name
+        .split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .join('');
+    const surnameInitials = contact.surname
+        .split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .join('');
+    const initials = nameInitials + surnameInitials;
+    return {
+        id: contactId,
+        initials,
+        color: contact.color
+    };
+}
+
 function calculateSubtaskProgress(task) {
     const subtasks = task.subtasks || {};
     const totalSubtasks = Object.keys(subtasks).length;
