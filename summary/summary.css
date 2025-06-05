@@ -362,6 +362,10 @@ padding: 20px;
 }
 @media screen and (max-width: 1050px) {
 
+  .summary_container {
+    overflow-y: auto;
+  }
+
   .summary_content{
     justify-content: center;
     align-items: center;
