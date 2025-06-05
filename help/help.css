@@ -3,21 +3,8 @@ main {
     display: flex;
 }
 
-.help_container {
-    position: absolute;
-    top: 100px;
-    left: 232px;
-    height: calc(100% - 100px);
-    width: calc(100% - 424px);
-    padding: 0 96px;
-    overflow-y: auto;
-    display: block;
-    flex: 1;
-}
-.help_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.navbar_mobile_container_style {
+    display: contents;
 }
 
 .help_title {
@@ -32,13 +19,39 @@ main {
     font-size: 20px;
 }
 
-.arrow_button_container {
-    position: fixed;
-    right: 16px;
-}
-
 .section_title_end {
     padding-bottom: 20px;
     font-size: 27px;
+}
+
+.help_container {
+    display: flex;
+    width: 56px;
+    position: relative;
+    top: 100px;
+    height: calc(100% - 100px);
+    width: calc(100% - 424px);
+    padding: 0 48px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.arrow_button_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 32px;
+    z-index: 10;
+}
+
+.arrow_button_position {
+    position: absolute;
+    top: 32px;
+    right: 0px;
+}
+
+.p_tag_style {
+    padding-bottom: 20px;
 }
 

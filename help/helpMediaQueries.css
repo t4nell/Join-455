@@ -4,8 +4,8 @@
     }
 
     .arrow_button_container {
-        position: static;
-        right: 0px;
+        position: absolute;
+        right: 16px;
     }
 }
 
