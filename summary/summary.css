@@ -361,59 +361,85 @@ padding: 20px;
   }
 }
 @media screen and (max-width: 1050px) {
-.summary_container{
-  height: calc(100% - 180px);
-  width: calc(100%-60px);
-  left: 0;
+
+  .summary_content{
+    justify-content: center;
+    align-items: center;
   }
-.summary_content{
-  justify-content: center;
-  align-items: center;
+
+  .headline_container {
+    padding-top: 16px;
+    padding-left: 16px;
+    margin: 0;
   }
-.summary_absolute {
-  left: 0;
+
+  .summary_absolute {
+    top: 120px;
+    left: 0;
+    height: calc(100% - 120px);
+  }
+
+  .summary_content {
+    height: 100%;
+  }
+
+  #summary_left{
+    height: calc(100% - 20px);
+    width: 100%;
+    margin: 0 30px 20px 30px;
+  }
 }
-#summary_left{
-  width: 100%;
-  margin: 0 30px;
-  }
-}
+
 @media screen and (max-width: 650px) {
 .summary_wrap {
     display: flex;
     flex-wrap: nowrap;
   }
+
   body{
     font-size: 1rem;
   }
+
+  #summary_left {
+    margin-top: 30px;
+    height: calc(100% - 50px);
+    gap: 15px;
+  }
+
+  .summary_column {
+    padding: 0;
+  }
+
   .summary_section2_container{
     padding: 28px 24px;
   }
-.summary_number {
-    font-size: 48px;
-  }
-.headline_container {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 15px;
-  margin-top: 48px;
-}
-.separator_vertically{
-height: 0px;
-width: 90px;
-Order: 2;
-}
-.headline_container {
-  padding-left: 24px;
-}
-}
 
-@media screen and (max-width: 400px) {
-  .summary_absolute {
-    height: 50%;
+  .summary_number {
+    font-size: 32px;
   }
 
+  .headline_container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+  }
+
+  .clickable-container {
+    padding: 16px;
+  }
+
+  .separator_vertically{
+    height: 0px;
+    width: 90px;
+    Order: 2;
+  }
+  .headline_container {
+    padding-left: 24px;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .check_img {
     height: 50%;
     width: 50%;
@@ -445,17 +471,5 @@ Order: 2;
 
   .summary_section3_container {
     gap: 8px;
-  }
-
-  #summary_left {
-    margin: 0 16px;
-  }
-
-  .clickable-container {
-    padding: 16px 0;
-  }
-
-  .summary_column {
-    padding: 16px 0;
   }
 };

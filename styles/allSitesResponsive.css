@@ -101,6 +101,7 @@
     .legal_container,
     .help_container,
     .policy_container,
+    .summary_container,
     .board_container {
         top: 80px;
         left: 0;
