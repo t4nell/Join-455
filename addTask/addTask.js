@@ -17,12 +17,13 @@ function renderSidebar() {
 
     function proofSize() {
         const width = window.innerWidth;
-        if (width < 1050) {
+        if (width < 1052) {
             renderSidebarMobile();
         } else {
             renderSidebarDesktop();
         }
     }
+
     window.addEventListener('resize', proofSize);
     proofSize();
 }

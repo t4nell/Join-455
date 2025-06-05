@@ -7,7 +7,7 @@
         flex-direction: column;
         justify-content: flex-start;
         gap: 32px;
-        margin: 0 30px 0 50px;
+        margin: 0;
     }
     .drag_area {
         flex-direction: row;
@@ -42,14 +42,12 @@
 }
 
 @media screen and (max-width: 1050px) {
-    .board_container {
-        height: calc(100% - 180px);
-        width: 100%;
-        left: 0;
-    }
-    
     .board_controls_container {
-        width: 93%;
+        width: 100%;
+    }
+
+    .task_detail_card {
+        height: 70%;
     }
 }
 
@@ -57,6 +55,13 @@
     .search_and_addTask_container {
         justify-content: center;
         align-items: center;
+    }
+
+    .board_content_top {
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: auto;
+        margin-bottom: 16px;
     }
 
     .dark_btn {
@@ -75,6 +80,11 @@
 
     .input_base_style {
         width: 100%;
+    }
+
+    .board_content_bottom {
+        width: 100%;
+        height: calc(100% - 133px);
     }
 
     .task_detail_card{

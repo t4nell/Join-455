@@ -9,7 +9,8 @@ function renderDetailTemplate(taskId) {
         overlay.classList.remove('fade_out');
         taskDetailCard.classList.remove('closed');
     }
-}
+};
+
 
 /**
  * Schließt das Task-Detail Template
@@ -18,7 +19,8 @@ function renderDetailTemplate(taskId) {
 function closeDetailTemplate() {
     overlay.classList.add('fade_out');
     taskDetailCard.classList.add('closed');
-}
+};
+
 
 /**
  * Verhindert das Schließen beim Klick auf die Karte
@@ -26,58 +28,45 @@ function closeDetailTemplate() {
  */
 function eventBubbling(event) {
     event.stopPropagation();
-}
+};
+
 
 function renderAssignedContacts(assignedTo) {
     if (!assignedTo) return '';
-
     return Object.entries(assignedTo)
         .map(([contactId, isAssigned]) => {
             if (!isAssigned) return '';
-
             const contact = contactsArray.find((c) => c.id === contactId);
             if (!contact) return '';
-
-            const nameInitials = contact.name
-                .split(' ')
-                .map((part) => part.charAt(0).toUpperCase())
-                .join('');
-            const surnameInitials = contact.surname
-                .split(' ')
-                .map((part) => part.charAt(0).toUpperCase())
-                .join('');
-            const initials = nameInitials + surnameInitials;
-
-            return `
-        <div class="contact_badge" data-contact-id="${contactId}">
-          <div class="avatar" style="background-color: ${contact.color}">
-            ${initials}
-          </div>
-          <span>${contact.name} ${contact.surname}</span>
-        </div>
-      `;
+            const initials = getBatch(contact);
+            return getAssignedContactsTemplate(contactId, contact, initials);
         })
         .join('');
-}
+};
+
+
+function getBatch(contact) {
+    const nameInitials = contact.name
+        .split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .join('');
+    const surnameInitials = contact.surname
+        .split(' ')
+        .map(part => part.charAt(0).toUpperCase())
+        .join('');
+    const initials = nameInitials + surnameInitials;
+    return initials;
+};
+
 
 function renderSubtasksList(subtasks, taskId) {
     if (!subtasks) return '';
     return Object.entries(subtasks)
-        .map(
-            ([key, subtask]) => `
-        <div class="subtask_item">
-            <div class="subtask_background">
-                <input type="checkbox" class= "subtask_chbox"
-                       id="subtask_${key}" 
-                       ${subtask.done ? 'checked' : ''} 
-                       onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">
-                <label for="subtask_${key}">${subtask.title}</label>
-            </div>
-        </div>
-    `
+        .map(([key, subtask]) => getSubtaskTemplate(key, subtask, taskId)
         )
         .join('');
-}
+};
+
 
 async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
     const task = allTasks.find((task) => task.id === taskId);
@@ -100,8 +89,9 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
     } catch (error) {
         console.error('Error updating subtask:', error);
         checkbox.checked = !checkbox.checked;
-    }
-}
+    };
+};
+
 
 async function openEditTask(taskId) {
     const task = allTasks.find((task) => task.id === taskId);
@@ -119,14 +109,15 @@ async function openEditTask(taskId) {
                     if (checkbox) {
                         checkbox.checked = true;
                         toggleBackground(index);
-                    }
-                }
+                    };
+                };
             });
-        }
+        };
         switchBtnPriority(task.priority);
-    }
+    };
     initializeCalendar();
 };
+
 
 async function deleteTask(taskId) {
     try {
@@ -138,12 +129,11 @@ async function deleteTask(taskId) {
         });
         if (!response.ok) {
             throw new Error('Failed to delete task');
-        }
+        };
         allTasks = allTasks.filter((task) => task.id !== taskId);
         closeDetailTemplate();
         renderColumns();
     } catch (error) {
         console.error('Error deleting task:', error);
-    }
-}
-
+    };
+};

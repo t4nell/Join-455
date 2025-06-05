@@ -1,0 +1,11 @@
+@media (max-width: 1050px) {
+    .hide_mobile {
+        display: none;
+    }
+
+    .arrow_button_container {
+        position: static;
+        right: 0px;
+    }
+}
+
