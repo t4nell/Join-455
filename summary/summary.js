@@ -180,8 +180,8 @@ function normalizeTaskStatus(status) {
     return status
         .toLowerCase()
         .trim()
-        .replace(/\s+/g, '') // delete all whitespace
-        .replace('awaiting', 'await') // feedback
+        .replace(/\s+/g, '')
+        .replace('awaiting', 'await')
         .replace('feedback', 'feedback');
 }
 
@@ -205,7 +205,7 @@ function countStatusOccurrences(tasks) {
         for (const statusType in STATUS_MAPPINGS) {
             if (matchesStatus(normalizedStatus, statusType)) {
                 counts[statusType]++;
-                break; // prevent double counting
+                break;
             }
         }
     });
@@ -295,7 +295,6 @@ function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Finde die entsprechenden Elemente statt den ganzen Container zu überschreiben
     const numberElement = container.querySelector('.summary_number');
     const textElement = container.querySelector('.summary_text');
 
@@ -406,18 +405,15 @@ function renderHeader() {
 function showMobileGreeting() {
   const viewportWidth = window.innerWidth;
   
-  // Only show the special greeting on screens smaller than 1050px
   if (viewportWidth >= 1050) {
     return;
   }
   
-  // Get greeting content
   const now = new Date();
   const greeting = getGreeting(now.getHours());
   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
   const userName = currentUser?.name || 'Gast';
   
-  // Create fullscreen greeting element
   const fullscreenGreeting = document.createElement('div');
   fullscreenGreeting.className = 'fullscreen-greeting';
   fullscreenGreeting.innerHTML = `
@@ -425,23 +421,18 @@ function showMobileGreeting() {
     <h2>${userName}</h2>
   `;
   
-  // Hide the main summary content initially
   const summaryContainer = document.querySelector('.summary_container');
   summaryContainer.classList.add('summary-content-hidden');
   
-  // Add the greeting to the body
   document.body.appendChild(fullscreenGreeting);
   
-  // After 3 seconds, fade out the greeting and show the summary
   setTimeout(() => {
     fullscreenGreeting.classList.add('hidden');
     
-    // After greeting fade completes, show summary content
     setTimeout(() => {
       summaryContainer.classList.remove('summary-content-hidden');
       summaryContainer.classList.add('summary-content-visible');
       
-      // Remove the greeting element after it's fully faded out
       setTimeout(() => {
         fullscreenGreeting.remove();
       }, 1000);
@@ -449,7 +440,6 @@ function showMobileGreeting() {
   }, 3000);
 }
 
-// Modify the init function to call showMobileGreeting
 async function init() {
   try {
     console.log('Starting initialization...');
@@ -465,7 +455,6 @@ async function init() {
     makeContainersClickable();
     console.log('Initialization complete');
     
-    // Add this line to show mobile greeting
     showMobileGreeting();
   } catch (error) {
     console.error('Initialization error:', error);
@@ -473,13 +462,9 @@ async function init() {
   }
 }
 
-// Add event listener to window resize to handle greeting when orientation changes
 window.addEventListener('resize', () => {
-  // If the greeting is already showing or has been shown, don't show it again
   if (!document.querySelector('.fullscreen-greeting')) {
     if (window.innerWidth < 1050) {
-      // Don't show greeting on resize, only on initial load
-      // This prevents triggering the greeting when resizing or rotating device
     }
   }
 });
