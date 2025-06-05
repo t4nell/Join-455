@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="./contacts.css" />
         <link rel="stylesheet" href="./contactResponsiveness.css" />
         <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
+        <link rel="stylesheet" href="./landscape.css">
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
         <script src="../script.js" defer></script>
         <script src="../scripts/fetch.js" defer></script>
@@ -26,6 +27,7 @@
         <script src="./editCurrentUser.js"></script>
         <script src="./validation.js"></script>
         <script src="./deleteContact.js"></script>
+        <script src="./landscape.js" defer></script>
         <title>Join</title>
     </head>
     <body onload="contactInit()">
@@ -98,6 +100,13 @@
                 <p>Notification Message</p>
             </div>
             <div class="navbar_mobile_container_style" id="navbar_mobile_container"></div>
+            <div id="landscape_wrapper">
+                <div id="landscape_modal" class="landscape_modal">
+                    <div class="landscape_modal_content">
+                        "Please rotate your device to portrait mode for a better experience."
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
