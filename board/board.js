@@ -1,62 +1,14 @@
-/**
- * Base URL for the Firebase database API
- * @type {string}
- */
 BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-
-/**
- * DOM element references for easier access
- * @type {HTMLElement}
- */
 const mainContainer = document.getElementById('navbar_container');
-
-/**
- * Container for the header content
- * @type {HTMLElement}
- */
 const headerContainer = document.getElementById('header_container');
-
-/**
- * Overlay background for task details and forms
- * @type {HTMLElement}
- */
 const overlay = document.getElementById('overlay_background_container');
-
-/**
- * Container for displaying task details
- * @type {HTMLElement}
- */
 const taskDetailCard = document.getElementById('task_detail_card');
-
-/**
- * Container for tasks with 'todo' status
- * @type {HTMLElement}
- */
 const dragAreaTodo = document.getElementById('drag_area_todo');
-
-/**
- * Container for tasks with 'inProgress' status
- * @type {HTMLElement}
- */
 const dragAreaInProgress = document.getElementById('drag_area_in_progress');
-
-/**
- * Container for tasks with 'awaitFeedback' status
- * @type {HTMLElement}
- */
 const dragAreaAwaitFeedback = document.getElementById('drag_area_await_feedback');
-
-/**
- * Container for tasks with 'done' status
- * @type {HTMLElement}
- */
 const dragAreaDone = document.getElementById('drag_area_done');
-
-/**
- * Array storing all tasks loaded from the database
- * @type {Array}
- */
 let allTasks = [];
+
 
 /**
  * Initializes the board page by setting up all required components
@@ -74,6 +26,7 @@ async function init() {
     await initDragAndDrop();
 };
 
+
 /**
  * Renders the header content for the board page
  * @returns {void}
@@ -81,6 +34,7 @@ async function init() {
 function renderContent() {
     headerContainer.innerHTML += getHeaderTemplate();
 };
+
 
 /**
  * Loads all tasks from the Firebase database
@@ -92,26 +46,21 @@ async function loadAddTask(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');
         let responseToJson = await response.json();
-        
         if (!responseToJson || !responseToJson.addTask) {
-            console.error('No tasks found or invalid format:', responseToJson);
             allTasks = [];
             return;
         }
-        
         const addTaskData = responseToJson.addTask;
-        
         allTasks = Object.entries(addTaskData).map(([id, task]) => ({
             ...task,
             id
         }));
-        
-        console.log('Tasks loaded:', allTasks);
     } catch (error) {
         console.error('Error loading tasks:', error);
         allTasks = [];
-    }
+    };
 };
+
 
 /**
  * Renders all task columns with their respective task cards
@@ -123,6 +72,7 @@ function renderColumns() {
     renderAllTaskCards(allTasks, 'awaitFeedback', dragAreaAwaitFeedback);
     renderAllTaskCards(allTasks, 'done', dragAreaDone);
 };
+
 
 /**
  * Renders all task cards for a specific status column
@@ -142,6 +92,7 @@ function renderAllTaskCards(allTasks, state, container) {
         container.innerHTML += getTaskCard(task);
     });
 };
+
 
 /**
  * Handles the start of dragging a task
@@ -297,35 +248,35 @@ async function updateTaskStatus(taskId, status) {
     }
 };
 
-/**
- * Generates HTML for a single task card
- * @param {Object} task - Task object containing all task properties
- * @param {string} task.id - The unique identifier for the task
- * @param {string} task.title - The title of the task
- * @param {string} task.description - The description of the task
- * @param {string} task.dueDate - The due date of the task
- * @param {string} task.priority - The priority level of the task
- * @returns {string} HTML string for the task card
- */
-function getTaskCard(task) {
-    if (!task) {
-        console.error('Attempted to render a task card for undefined');
-        return '';
-    }
+// /**
+//  * Generates HTML for a single task card
+//  * @param {Object} task - Task object containing all task properties
+//  * @param {string} task.id - The unique identifier for the task
+//  * @param {string} task.title - The title of the task
+//  * @param {string} task.description - The description of the task
+//  * @param {string} task.dueDate - The due date of the task
+//  * @param {string} task.priority - The priority level of the task
+//  * @returns {string} HTML string for the task card
+//  */
+// function getTaskCard(task) {
+//     if (!task) {
+//         console.error('Attempted to render a task card for undefined');
+//         return '';
+//     }
     
-    return `
-        <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
-            <div class="task_card_content">
-                <h3 class="task_card_title">${task.title || 'No Title'}</h3>
-                <p class="task_card_description">${task.description || 'No Description'}</p>
-                <div class="task_card_footer">
-                    <span class="task_card_due_date">${task.dueDate || ''}</span>
-                    <span class="task_card_priority">${task.priority || ''}</span>
-                </div>
-            </div>
-        </div>
-    `;
-};
+//     return `
+//         <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
+//             <div class="task_card_content">
+//                 <h3 class="task_card_title">${task.title || 'No Title'}</h3>
+//                 <p class="task_card_description">${task.description || 'No Description'}</p>
+//                 <div class="task_card_footer">
+//                     <span class="task_card_due_date">${task.dueDate || ''}</span>
+//                     <span class="task_card_priority">${task.priority || ''}</span>
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+// };
 
 /**
  * Generates the HTML template for the mobile sidebar

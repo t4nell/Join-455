@@ -430,6 +430,7 @@ padding: 20px;
   }
 
   .clickable-container {
+    max-height: 100px;
     padding: 16px;
   }
 
