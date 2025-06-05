@@ -26,7 +26,6 @@ main {
 
 .help_container {
     display: flex;
-    width: 56px;
     position: relative;
     top: 100px;
     height: calc(100% - 100px);
@@ -38,6 +37,7 @@ main {
 
 .arrow_button_container {
     display: flex;
+    width: 56px;
     justify-content: space-between;
     align-items: center;
     position: sticky;
