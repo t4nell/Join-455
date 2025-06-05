@@ -60,11 +60,11 @@
         border-radius: 1rem;
     }
 
-    .nav_item span{
+    .nav_item span {
         font-size: 14px;
     }
 
-    .nav_item img{
+    .nav_item img {
         width: 24px;
         height: 24px;
     }
@@ -98,8 +98,8 @@
         pointer-events: none;
         font-size: 19px;
     }
-
     .legal_container,
+    .help_container,
     .policy_container,
     .board_container {
         top: 80px;
