@@ -69,3 +69,7 @@ function getSidebarTemplateMobile() {
 `;
 }
 
+function goBack() {
+    window.history.back();
+}
+
