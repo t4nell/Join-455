@@ -100,7 +100,8 @@
     }
 
     .legal_container,
-    .policy_container {
+    .policy_container,
+    .board_container {
         top: 80px;
         left: 0;
         width: calc(100% - 32px);
