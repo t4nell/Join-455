@@ -56,27 +56,12 @@ function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
-console.log('----------------Create Task Button Funktion----------------------');
 function createTask() {
     const form = document.getElementById('add_task_form');
     const taskData = collectTaskData(form);
 
-    console.group('taskData');
-    console.table(taskData);
-    console.groupEnd();
-
-    console.group('subtasks');
-    console.table(taskData.subtasks);
-    console.groupEnd();
-
-    console.group('assignedTo');
-    console.table(taskData.assignedTo);
-    console.groupEnd();
-
     postTask(taskData);
-
     clearTasks();
-
     document.getElementById('clear_btn').click();
 }
 
