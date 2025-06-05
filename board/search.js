@@ -12,31 +12,32 @@ let isSearchActive = false;
 function searchOnInput() {
     const searchValue = searchInput.value.toLowerCase();
     const noTaskMessage = document.getElementById('no_find_task_mesage');
-
     if (!isSearchActive && searchValue.length > 0) {
         isSearchActive = true;
         searchIcon.src = '../assets/imgs/boardIcons/close.svg';
-    }
-
+    };
     if (searchValue.length === 0) {
         resetFilter();
         noTaskMessage.style.display = 'none';
         return;
-    }
+    };
+    const filteredTasks = getFilteredTasks(searchValue, noTaskMessage);
+    renderFilteredColumns(filteredTasks);
+};
 
-    const filteredTasks = allTasks.filter(task => 
-        task.title.toLowerCase().includes(searchValue) || 
+
+function getFilteredTasks(searchValue, noTaskMessage) {
+    const filteredTasks = allTasks.filter(task => task.title.toLowerCase().includes(searchValue) ||
         task.description.toLowerCase().includes(searchValue)
     );
-
     if (filteredTasks.length === 0) {
         noTaskMessage.style.display = 'block';
     } else {
         noTaskMessage.style.display = 'none';
-    }
-    
-    renderFilteredColumns(filteredTasks);
-}
+    };
+    return filteredTasks;
+};
+
 
 function resetFilter() {
     if (isSearchActive) {
@@ -48,6 +49,7 @@ function resetFilter() {
         renderColumns();
     }
 };
+
 
 /**
  * Render columns with filtered tasks

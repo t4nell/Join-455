@@ -7,7 +7,7 @@ function initEditTaskVariables() {
     selectedUser = document.getElementById('selected_user_group');
     menu = document.getElementById('dropdown_menu');
     toggle = document.getElementById('dropdown_toggle_btn');
-}
+};
 
 
 function initializeCalendar() {
@@ -20,8 +20,8 @@ function initializeCalendar() {
                 firstDayOfWeek: 1
             }
         });
-    }
-}
+    };
+};
 
 
 function openCalendar() {
@@ -31,7 +31,7 @@ function openCalendar() {
     } else {
         console.error('Flatpickr not initialized');
     }
-}
+};
 
 
 async function loadContactData(path = '') {
@@ -49,7 +49,7 @@ async function loadContactData(path = '') {
         console.error('Error loading contact data:', error);
     }
     loadContactsToAssigned();
-}
+};
 
 
 function switchBtnPriority(btnPriority) {
@@ -66,29 +66,29 @@ function switchBtnPriority(btnPriority) {
         case 'low':
             document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
             break;
-    }
-}
+    };
+};
 
 
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
-}
+};
 
 
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
-}
+};
 
 
 function handleClickOutside(event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
-    }
-}
+    };
+};
 
 
 function loadContactsToAssigned() {
@@ -97,7 +97,7 @@ function loadContactsToAssigned() {
     contactsArray.forEach((contact) => {
         menu.innerHTML += loadContactsToAssignedTemplate(contact);
     });
-}
+};
 
 
 function loadContactsToAssignedTemplate(contact) {
@@ -113,24 +113,7 @@ function loadContactsToAssignedTemplate(contact) {
     const isSelected = document.getElementById(`selected_user_${contact.id}`) !== null;
     const checkedAttr = isSelected ? 'checked' : '';
     const activeClass = isSelected ? 'active' : '';
-    return `
-    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
-        <div class="symbole_name_group">
-            <div class="avatar" style="background-color: ${bgColor}">
-                <span>${nameInitials}${surnameInitials}</span>
-            </div>
-            <div>
-                <span class="contact_name">${contact.name} ${contact.surname}</span>
-            </div>
-        </div>
-        <input id="users_checkbox_${contact.id}"
-        class="assign_dropdown_input"
-        type="checkbox"
-        name="assigned_to"
-        value="${contact.name} ${contact.surname}" 
-        ${checkedAttr}
-        onclick="selectUser('${contact.id}', event)"/>
-    </li>`;
+    return createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr);
 }
 
 
@@ -150,16 +133,10 @@ function renderAssignedContactsEdit(assignedTo) {
                 .map((part) => part.charAt(0).toUpperCase())
                 .join('');
             const initials = nameInitials + surnameInitials;
-            return `
-                <div id="selected_user_${contactId}" class="contact_badge">
-                    <div class="avatar" style="background-color: ${contact.color}">
-                        ${initials}
-                    </div>
-                </div>
-            `;
+            return generateContactBadge(contactId, contact, initials);
         })
         .join('');
-}
+};
 
 
 function selectUser(id, event) {
@@ -178,16 +155,16 @@ function selectUser(id, event) {
     } else {
         removeSelectedUser(id);
         clickedItem.classList.remove('active');
-    }
-}
+    };
+};
 
 
 function removeSelectedUser(id) {
     const userIconContainer = document.getElementById(`selected_user_${id}`);
     if (userIconContainer) {
         userIconContainer.remove();
-    }
-}
+    };
+};
 
 
 function addSelectedUserIcon(contact) {
@@ -201,17 +178,8 @@ function addSelectedUserIcon(contact) {
         .join('');
     const initials = nameInitials + surnameInitials;
     selectedUser.innerHTML += addSelectedUserIconTemplate(contact.id, contact.color, initials);
-}
+};
 
-
-function addSelectedUserIconTemplate(id, bgColor, initials) {
-    return `
-        <div id="selected_user_${id}">
-            <div class="avatar" style="background-color: ${bgColor}">
-                <div>${initials}</div>
-            </div>
-        </div>`;
-}
 
 function renderEditableSubtasks(task) {
     if (!task.subtasks) return '';
@@ -222,35 +190,6 @@ function renderEditableSubtasks(task) {
         const tagBtnConId = `new_tag_btn_container_${subtaskNumber}`;
         return renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask);
     }).join('');
-
-};
-
-
-function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
-    return `
-    <div class="tag_field" id='${tagId}'>
-        <textarea 
-            rows="1"
-            name="subtasks" 
-            class="new_tag_input" 
-            id='${tagInputId}' 
-            type="text"  
-            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
-            onblur="disableEditing('${tagInputId}')" 
-            oninput="autoResizeTextarea(this)"
-            readonly>${subtask.title}</textarea>
-        <div id='${tagBtnConId}' class="new_tag_btn_container">
-            <div class="btns_position">
-                <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
-                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
-                </button>
-                <hr class="separator_vertically_subtasks" />
-                <button class="trash_btn" onclick="trashBtn('${tagId}')">
-                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
-                </button>
-            </div>
-        </div>
-    </div>`;
 };
 
 
@@ -270,7 +209,7 @@ async function saveEditTask(taskId) {
         renderColumns();
     } catch (error) {
         console.error('Error updating task:', error);
-    }
+    };
 };
 
 

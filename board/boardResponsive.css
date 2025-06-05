@@ -43,7 +43,7 @@
 
 @media screen and (max-width: 1050px) {
     .board_controls_container {
-        width: 93%;
+        width: 100%;
     }
 }
 

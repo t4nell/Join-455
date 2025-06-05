@@ -35,6 +35,23 @@ function getTaskCard(task) {
   `
 };
 
+function getAvatarTemplate(contact) {
+    return `
+            <div class="avatar" style="background-color: ${contact.color}">
+                ${contact.initials}
+            </div>
+        `;
+};
+
+
+function renderMoreAvatarsButton(totalContacts, maxVisible) {
+    return `
+        <div class="avatar more-avatar">
+            +${totalContacts - maxVisible}
+        </div>
+    `;
+};
+
 
 function getDetailTaskCard(task) {
   const categoryColor = getCategoryColor(task.category);
@@ -90,6 +107,33 @@ function getDetailTaskCard(task) {
             <img src="../assets/imgs/boardIcons/edit.svg" alt="edit">
             Edit
           </button>
+        </div>
+    `;
+};
+
+
+function getAssignedContactsTemplate(contactId, contact, initials) {
+    return `
+        <div class="contact_badge" data-contact-id="${contactId}">
+          <div class="avatar" style="background-color: ${contact.color}">
+            ${initials}
+          </div>
+          <span>${contact.name} ${contact.surname}</span>
+        </div>
+      `;
+};
+
+
+function getSubtaskTemplate(key, subtask, taskId) {
+    return `
+        <div class="subtask_item">
+            <div class="subtask_background">
+                <input type="checkbox" class= "subtask_chbox"
+                       id="subtask_${key}" 
+                       ${subtask.done ? 'checked' : ''} 
+                       onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">
+                <label for="subtask_${key}">${subtask.title}</label>
+            </div>
         </div>
     `;
 };
@@ -175,4 +219,75 @@ function getEditTaskTemplate(task) {
       
     </form>
   `;
+};
+
+
+function createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr) {
+    return `
+    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
+        <div class="symbole_name_group">
+            <div class="avatar" style="background-color: ${bgColor}">
+                <span>${nameInitials}${surnameInitials}</span>
+            </div>
+            <div>
+                <span class="contact_name">${contact.name} ${contact.surname}</span>
+            </div>
+        </div>
+        <input id="users_checkbox_${contact.id}"
+        class="assign_dropdown_input"
+        type="checkbox"
+        name="assigned_to"
+        value="${contact.name} ${contact.surname}" 
+        ${checkedAttr}
+        onclick="selectUser('${contact.id}', event)"/>
+    </li>`;
+};
+
+
+function generateContactBadge(contactId, contact, initials) {
+    return `
+                <div id="selected_user_${contactId}" class="contact_badge">
+                    <div class="avatar" style="background-color: ${contact.color}">
+                        ${initials}
+                    </div>
+                </div>
+            `;
+};
+
+
+function addSelectedUserIconTemplate(id, bgColor, initials) {
+    return `
+        <div id="selected_user_${id}">
+            <div class="avatar" style="background-color: ${bgColor}">
+                <div>${initials}</div>
+            </div>
+        </div>`;
+};
+
+
+function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
+    return `
+    <div class="tag_field" id='${tagId}'>
+        <textarea 
+            rows="1"
+            name="subtasks" 
+            class="new_tag_input" 
+            id='${tagInputId}' 
+            type="text"  
+            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
+            onblur="disableEditing('${tagInputId}')" 
+            oninput="autoResizeTextarea(this)"
+            readonly>${subtask.title}</textarea>
+        <div id='${tagBtnConId}' class="new_tag_btn_container">
+            <div class="btns_position">
+                <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
+                </button>
+                <hr class="separator_vertically_subtasks" />
+                <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                    <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
+                </button>
+            </div>
+        </div>
+    </div>`;
 };
