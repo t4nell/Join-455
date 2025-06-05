@@ -3,7 +3,7 @@ main {
     display: flex;
 }
 
-.legal_container {
+.help_container {
     position: absolute;
     top: 100px;
     left: 232px;
@@ -13,5 +13,32 @@ main {
     overflow-y: auto;
     display: block;
     flex: 1;
+}
+.help_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.help_title {
+    font-size: 73px;
+}
+
+.section_title {
+    font-size: 27px;
+}
+
+.instruction_title {
+    font-size: 20px;
+}
+
+.arrow_button_container {
+    position: fixed;
+    right: 16px;
+}
+
+.section_title_end {
+    padding-bottom: 20px;
+    font-size: 27px;
 }
 

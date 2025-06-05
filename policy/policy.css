@@ -13,3 +13,14 @@ main {
     display: block;
   }
 
+@media screen and (max-width: 1050px) {
+  h2{
+    font-size: 40px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  h2{
+    font-size: 30px;
+  }
+}

@@ -174,7 +174,7 @@ header span{
     align-items: center;
     flex-direction: column;
     padding: 64px 0;
-    z-index: 101;
+    z-index: 320;
     position: relative;
 }
 
