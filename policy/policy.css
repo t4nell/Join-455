@@ -2,6 +2,12 @@ main {
     height: 100vh;
   }
 
+  html{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
   .policy_container {
     position: absolute;
     top: 100px;
