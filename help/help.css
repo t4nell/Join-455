@@ -56,6 +56,18 @@ li::marker {
     right: 0px;
 }
 
+.arrow_button_position:hover {
+    background-color: #ffffff;
+    border-radius: 50%;
+    /* scale: 1.1; */
+    /* transform: translateX(-2px);
+    transition: transform 0.2s ease; */
+}
+
+.arrow_hover:hover {
+    scale: 1.1;
+}
+
 .p_tag_style {
     padding-bottom: 20px;
 }
