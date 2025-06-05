@@ -80,6 +80,7 @@
         align-items: flex-start;
         height: auto;
         margin-bottom: 16px;
+        margin-top: 8px;
     }
 
     .dark_btn {
@@ -89,7 +90,7 @@
     .search_container_style {
         order: 2;
         width: 100%;
-        margin-top: 16px;
+        margin-top: 8px;
     }
 
     .search_container {
