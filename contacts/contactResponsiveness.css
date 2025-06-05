@@ -285,14 +285,48 @@ html{
         font-size: 24px;
     }
     
+    .overlay_phrase_left{
+        font-size: 1.3rem;
+    }
+    
+    .overlay_text_left{
+        font-size: 3rem;
+    }
+
+    .alert{
+        font-size: 11px;
+    }
 }
 
-@media screen and (max-width: 400px){
-.overlay_phrase_left{
-    font-size: 1.3rem;
+@media screen and (max-height: 900px){
+    .profile_icon_overlay span {
+        font-size: 40px;
+    }
+
+    .profile_icon_overlay {
+        top: 42%;
+        width: 90px;
+        height: 90px;
+    }
+
+    .overlay_side_img{
+        height: 40%;
+    }
+
+    .contact_overlay_img img {
+        top: 44%;
+        width: 90px;
+        height: 90px;
+    }
+
+    .contact_form_fields{
+        gap: 0;
+    }
+
+    .overlay_buttons{
+        padding-bottom: 16px;
+    }
+
 }
 
-.overlay_text_left{
-    font-size: 3rem;
-}
-}
+
