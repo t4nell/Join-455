@@ -3,6 +3,10 @@ main {
     display: flex;
 }
 
+li::marker {
+    font-size: 27px;
+}
+
 .navbar_mobile_container_style {
     display: contents;
 }
@@ -22,6 +26,7 @@ main {
 .section_title_end {
     padding-bottom: 20px;
     font-size: 27px;
+    padding-left: 8px;
 }
 
 .help_container {
