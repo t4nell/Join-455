@@ -19,7 +19,7 @@ main {
   position: absolute;
   top: 239px;
   left: 96px;
-  width: calc(100%);
+  width: 100%;
 }
 
 .summary_content{
@@ -361,36 +361,35 @@ padding: 20px;
   }
 }
 @media screen and (max-width: 1050px) {
-
   .summary_container {
     overflow-y: auto;
   }
-
   .summary_content{
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
-
   .headline_container {
     padding-top: 16px;
     padding-left: 16px;
     margin: 0;
   }
-
   .summary_absolute {
     top: 120px;
     left: 0;
     height: calc(100% - 120px);
   }
-
   .summary_content {
     height: 100%;
   }
-
   #summary_left{
     height: calc(100% - 20px);
     width: 100%;
+    max-width: 600px;
+    max-height: 400px;
     margin: 0 30px 20px 30px;
+  }
+    .summary_number {
+    font-size: 48px;
   }
 }
 
@@ -405,9 +404,9 @@ padding: 20px;
   }
 
   #summary_left {
-    margin-top: 30px;
     height: calc(100% - 50px);
     gap: 15px;
+    margin: 30px 16px 20px 16px;
   }
 
   .summary_column {
@@ -415,7 +414,7 @@ padding: 20px;
   }
 
   .summary_section2_container{
-    padding: 28px 24px;
+    padding: 20px 16px;
   }
 
   .summary_number {
@@ -431,7 +430,7 @@ padding: 20px;
 
   .clickable-container {
     max-height: 100px;
-    padding: 16px;
+    padding: 8px;
   }
 
   .separator_vertically{
