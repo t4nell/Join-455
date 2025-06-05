@@ -254,36 +254,18 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
 };
 
 
-//Die Funktion ist so gross um die refactor Funktion von vscode zu üben
 async function saveEditTask(taskId) {
     try {
-        // Collect contacts
-        const { currentTask, formData, assignedTo } = contactsCollects(taskId);
-        // Collect subtasks
-        let { subtaskIndex, subtasks } = subtasksCollect(currentTask);
-        // Neue Subtask hinzufügen
-        newSubtask(subtaskIndex, subtasks);  
-        // Create updated task object
-        const updatedTask = newFunction(formData, currentTask, assignedTo, subtasks);
-
-        // Update in Firebase
-        const response = await fetch(`${BASE_URL}addTask/${taskId}.json`, {
-            method: 'PUT',
-            body: JSON.stringify(updatedTask),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
+        const { currentTask, formData, assignedTo } = contactsCollects(taskId);  // Collect contacts
+        let { subtaskIndex, subtasks } = subtasksCollect(currentTask);  // Collect subtasks
+        newSubtask(subtaskIndex, subtasks);  // add new Subtask
+        const updatedTask = createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks);  // Create updated task object
+        const response = await firebaseUpdate(taskId, updatedTask);  // Update in Firebase
         if (!response.ok) {
             throw new Error('Failed to update task');
         }
-
-        // Update local tasks array
         const taskIndex = allTasks.findIndex((task) => task.id === taskId);
         allTasks[taskIndex] = { ...updatedTask, id: taskId };
-
-        // Close detail view and refresh board
         closeDetailTemplate();
         renderColumns();
     } catch (error) {
@@ -292,7 +274,18 @@ async function saveEditTask(taskId) {
 };
 
 
-function newFunction(formData, currentTask, assignedTo, subtasks) {
+async function firebaseUpdate(taskId, updatedTask) {
+    return await fetch(`${BASE_URL}addTask/${taskId}.json`, {
+        method: 'PUT',
+        body: JSON.stringify(updatedTask),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+};
+
+
+function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
     return {
         title: formData.get('title'),
         description: formData.get('description'),
@@ -303,7 +296,8 @@ function newFunction(formData, currentTask, assignedTo, subtasks) {
         subtasks: subtasks,
         status: currentTask.status,
     };
-}
+};
+
 
 function newSubtask(subtaskIndex, subtasks) {
     const newSubtaskInput = document.getElementById('tag_input_field');
