@@ -37,6 +37,13 @@
         width: calc(100% - 30px);
         padding-left: 20px;
     }
+    .board_content_top {
+        align-items: flex-start;
+
+    }
+    .board_controls_container {
+        margin-left: 20px;
+    }
 }
     
 @media (max-width: 1130px) {
@@ -46,6 +53,9 @@
 }
 
 @media screen and (max-width: 1050px) {
+    .board_controls_container {
+        margin-left: 0;
+    }
     .board_content_bottom {
         width: 100%;
         padding-left: 0;
