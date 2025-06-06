@@ -164,19 +164,19 @@ function getEditTaskTemplate(task) {
       <div class="radio_btn_container">
         <span class="required_for_label">Priority</span>
         <div class="priority_btn_group">
-          <input type="radio" id="priority_urgent" name="priority" value="urgent" ${task.priority === 'urgent' ? 'checked' : ''} onclick="switchBtnPriority('urgent')" />  
+          <input type="radio" id="priority_urgent" name="priority" value="Urgent" ${task.priority === 'Urgent' ? 'checked' : ''} onclick="switchBtnPriority('Urgent')" />  
           <label for="priority_urgent" class="btn btn--red">
             Urgent
             <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent"/>
           </label>
 
-          <input type="radio" id="priority_medium" name="priority" value="medium" ${task.priority === 'medium' ? 'checked' : ''} onclick="switchBtnPriority('medium')"/>
+          <input type="radio" id="priority_medium" name="priority" value="Medium" ${task.priority === 'Medium' ? 'checked' : ''} onclick="switchBtnPriority('Medium')"/>
           <label for="priority_medium" class="btn btn--orange">
             Medium
             <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium"/>
           </label>
 
-          <input type="radio" id="priority_low" name="priority" value="low" ${task.priority === 'low' ? 'checked' : ''} onclick="switchBtnPriority('low')"/>
+          <input type="radio" id="priority_low" name="priority" value="Low" ${task.priority === 'Low' ? 'checked' : ''} onclick="switchBtnPriority('Low')"/>
           <label for="priority_low" class="btn btn--green">
             Low
             <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>

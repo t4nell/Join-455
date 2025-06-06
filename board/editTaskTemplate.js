@@ -57,13 +57,13 @@ function switchBtnPriority(btnPriority) {
     document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMedium.svg';
     document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLow.svg';
     switch (btnPriority) {
-        case 'urgent':
+        case 'Urgent':
             document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
             break;
-        case 'medium':
+        case 'Medium':
             document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMediumIconWhite.svg';
             break;
-        case 'low':
+        case 'Low':
             document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
             break;
     };
