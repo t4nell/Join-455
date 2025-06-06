@@ -32,10 +32,9 @@ main {
 }
 
 .signup_login_mobile{
-    align-items: center;
-    height: 49px;
-    gap: 35px;
-    margin-top: 50px;
+  align-items: center;
+  height: 49px;
+  gap: 35px;
 }
 
 main {
@@ -43,10 +42,11 @@ main {
 }
 
 .login_wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 32px;
 }
 
 .login_card {
@@ -125,8 +125,8 @@ footer a:hover {
       transform: translate(-50%, -50%) scale(1);
     }
     100% {
-        top: -15px;
-        left: 10px;
+        top: -65px;
+        left: -20px;
         transform: translate(0, 0) scale(0.365);
     }
   }
@@ -242,4 +242,46 @@ footer a:hover {
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+@media screen and (max-width: 660px) {
+  .login_card {
+    width: 80%;
+  }
+
+  #loginForm {
+    width: 100%;
+  }
+
+  .input_login_container {
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login_card input {
+    width: 80%;
+    max-width: 422px;
+  }
+
+  .login_btn {
+    width: 80px;
+  }
+
+  .guest_login_btn {
+    width: 135px;
+  }
+
+
+}
+
+@media screen and (max-width: 420px) {
+  .button_login_container {
+    gap: 16px;
+  }
+  .signup_login_mobile {
+    gap: 16px;
+  }
 }

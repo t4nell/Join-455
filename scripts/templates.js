@@ -1,6 +1,6 @@
 function getLoginSignupTemplate() {
     return `
-      <div class="login_card id="loginCard">
+      <div class="login_card" id="loginCard">
         <div>
           <h2>Log in</h2>
           <hr class="separator_horizontally">
