@@ -120,9 +120,7 @@ function removeActiveBgColor() {
 
 function clearSelectedUserIndices() {
     selectedUserIndices = [];
-
     filterContacts();
-
     renderSelectedIcons();
 }
 

@@ -33,18 +33,18 @@ function init() {
     loadContactData();
     renderCategories();
     renderHeader();
+    datePicker('#due_date');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    flatpickr('#due_date', {
-        dateFormat: 'd/m/Y',
+function datePicker(selectedDate) {
+    flatpickr(selectedDate, {
         minDate: 'today',
-        locale: {
-            firstDayOfWeek: 1,
-        },
-        disableMobile: true,
+        dateFormat: 'd/m/Y',
+        altInput: false,
+        firstDayOfWeek: 1,
+        disableMobile: 'true',
     });
-});
+}
 
 function openCalendar() {
     const calenderInput = document.getElementById('due_date');

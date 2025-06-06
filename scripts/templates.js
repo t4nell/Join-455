@@ -48,27 +48,30 @@ function getLoginSignupTemplate() {
 
 function getSidebarTemplate() {
     const currentPage = window.location.pathname;
-    return `    
-    <nav class="sidebar_nav">
-      <a href="../summary/summary.html" class="${currentPage.includes('summary') ? 'active' : ''}">
-        <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">Summary
-      </a>
-      <a href="../addTask/addTask.html" class="${currentPage.includes('addTask') ? 'active' : ''}">
-        <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">Add Task
-      </a>
-      <a href="../board/board.html" class="${currentPage.includes('board') ? 'active' : ''}">
-        <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">Board
-      </a>
-      <a href="../contacts/contacts.html" class="${currentPage.includes('contacts') ? 'active' : ''}">
-        <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">Contacts
-      </a>
-    </nav>
-    <div class="sidebar_footer">
-      <a href="../policy/policy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
-      <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
-    </div>
-  `;
-};
+    return ` 
+            <nav class="sidebar_nav">
+                <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
+                    <span>Summary</span>
+                </a>
+                <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon" />
+                    <span>Board</span>
+                </a>
+                <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon" />
+                    <span>Add Task</span>
+                </a>
+
+                <a
+                    href="../contacts/contacts.html"
+                    class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon" />
+                    <span>Contacts</span>
+                </a>
+            </nav>
+`;
+}
 
 function getHeaderTemplate() {
     return `
