@@ -1,3 +1,17 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.main_section {
+  height: calc(100% - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .join_logo{
     position: absolute;
     top: 50%;
@@ -9,7 +23,6 @@
 }
 
 .signup_login{
-    display: none;
     align-items: center;
     position: absolute;
     height: 49px;
@@ -18,27 +31,33 @@
     gap: 35px;
 }
 
+.signup_login_mobile{
+    align-items: center;
+    height: 49px;
+    gap: 35px;
+    margin-top: 50px;
+}
+
 main {
   height: 100vh;
 }
 
 .login_wrapper {
-    height: calc(100% - 100px);
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .login_card {
-    height: 449px;
-    width: 652px;
+    height: 400px;
+    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: white;
-    border-radius: 30px;
+    background-color: rgb(207, 31, 31);
+    border-radius: 30px;;
 }
 
 .login_card input {

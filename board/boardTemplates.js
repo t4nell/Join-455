@@ -144,17 +144,17 @@ function getEditTaskTemplate(task) {
     
     <form id="edit_task_form" class="edit_task_form">  
       <div class="input_titel_group">
-          <label for="title" class="required_for_label">Title</label>
+          <label for="title" class="required_for_label" onclick="event.preventDefault()">Title</label>
           <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
       </div>
       
       <div class="textarea_group">
-          <label id="description_label" for="description" class="required_for_label">Description</label>
+          <label id="description_label" for="description" class="required_for_label" onclick="event.preventDefault()">Description</label>
           <textarea name="description" class="textarea" id="description" placeholder="Enter a Description">${task.description}</textarea>
       </div>
 
       <div class="input_date_group">
-        <label for="due_date" class="required_for_label">Due date</label>
+        <label for="due_date" class="required_for_label" onclick="event.preventDefault()">Due date</label>
         <div class="input_date_container">
           <input onclick="openCalendar()" name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
           <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
@@ -185,7 +185,7 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="assign_to_group">
-        <label for="dropdown_toggle_btn" class="required_for_label">Assigned to</label>
+        <label for="dropdown_toggle_btn" class="required_for_label" onclick="event.preventDefault()">Assigned to</label>
         <div class="dropdown" id="dropdown">
             <div class="dropdown_input_wrapper">
                 <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
@@ -199,7 +199,7 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="tag_input_container">
-        <label for="tag_input_field" class="required_for_label">Subtasks</label>
+        <label for="tag_input_field" class="required_for_label" onclick="event.preventDefault()">Subtasks</label>
         <div class="tag_input">
           <input type="text" placeholder="Add new subtask" id="tag_input_field" onclick="replaceButtons()" onkeydown="onKeyDownEnter(event)"/>
           <div class="subtask_btn_container" id="subtask_btn_container">
