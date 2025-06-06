@@ -9,11 +9,9 @@ const dragAreaAwaitFeedback = document.getElementById('drag_area_await_feedback'
 const dragAreaDone = document.getElementById('drag_area_done');
 let allTasks = [];
 
-
 /**
- * Initializes the board page by setting up all required components
- * @async
- * @returns {Promise<void>}
+ * Starts the app and loads all necessary data
+ * This function runs when the page is loaded
  */
 async function init() {
     renderSidebar();
@@ -24,215 +22,283 @@ async function init() {
     renderColumns();
     loadContactsToAssigned();
     await initDragAndDrop();
-};
-
+}
 
 /**
- * Renders the header content for the board page
- * @returns {void}
+ * Adds the header to the page
  */
 function renderContent() {
     headerContainer.innerHTML += getHeaderTemplate();
-};
-
+}
 
 /**
- * Loads all tasks from the Firebase database
- * @async
- * @param {string} path - Optional path parameter for the API request
- * @returns {Promise<void>}
+ * Loads all tasks from the database
+ * @param {string} path - Optional path for the database query
  */
 async function loadAddTask(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');
-        let responseToJson = await response.json();
-        if (!responseToJson || !responseToJson.addTask) {
-            allTasks = [];
+        let data = await response.json();
+        
+        if (!data || !data.addTask) {
+            handleNoTasksFound(data);
             return;
         }
-        const addTaskData = responseToJson.addTask;
-        allTasks = Object.entries(addTaskData).map(([id, task]) => ({
-            ...task,
-            id
-        }));
+        
+        convertTasksToArray(data.addTask);
     } catch (error) {
-        console.error('Error loading tasks:', error);
-        allTasks = [];
-    };
-};
-
+        handleTaskError(error);
+    }
+}
 
 /**
- * Renders all task columns with their respective task cards
- * @returns {void}
+ * Handles the case when no tasks are found
+ * @param {Object} data - The data received from the server
+ */
+function handleNoTasksFound(data) {
+    console.error('No tasks found or invalid format:', data);
+    allTasks = [];
+}
+
+/**
+ * Handles errors when loading tasks
+ * @param {Error} error - The error that occurred
+ */
+function handleTaskError(error) {
+    console.error('Error loading tasks:', error);
+    allTasks = [];
+}
+
+/**
+ * Converts task data from object format to array format
+ * @param {Object} taskData - Task data from the database
+ */
+function convertTasksToArray(taskData) {
+    allTasks = Object.entries(taskData).map(([id, task]) => {
+        return {
+            ...task,
+            id
+        };
+    });
+    
+    console.log('Tasks loaded:', allTasks);
+}
+
+/**
+ * Displays all task columns with their tasks
  */
 function renderColumns() {
     renderAllTaskCards(allTasks, 'todo', dragAreaTodo);
     renderAllTaskCards(allTasks, 'inProgress', dragAreaInProgress);
     renderAllTaskCards(allTasks, 'awaitFeedback', dragAreaAwaitFeedback);
     renderAllTaskCards(allTasks, 'done', dragAreaDone);
-};
-
+}
 
 /**
- * Renders all task cards for a specific status column
- * @param {Array} allTasks - Array of all task objects
- * @param {string} state - The status filter to apply ('todo', 'inProgress', etc.)
- * @param {HTMLElement} container - The DOM element to render tasks into
- * @returns {void}
+ * Shows all tasks for a specific column
+ * @param {Array} allTasks - Array of all tasks
+ * @param {string} state - The column status (todo, inProgress, etc.)
+ * @param {Element} container - The HTML container for the column
  */
 function renderAllTaskCards(allTasks, state, container) {
-    const todos = allTasks.filter((task) => task.status === state);
+    const tasksForColumn = allTasks.filter((task) => task.status === state);
     container.innerHTML = '';
-    if (todos.length === 0) {
+    
+    if (tasksForColumn.length === 0) {
         container.innerHTML = renderPlaceholder();
         return;
     }
-    todos.forEach((task) => {
+    
+    tasksForColumn.forEach((task) => {
         container.innerHTML += getTaskCard(task);
     });
-};
-
+}
 
 /**
- * Handles the start of dragging a task
- * @param {DragEvent} event - The drag start event
- * @param {string} taskId - ID of the task being dragged
- * @returns {void}
+ * Creates an empty placeholder for columns with no tasks
+ * @returns {string} HTML string for the placeholder
  */
-function startDragging(event, taskId) { // ich bin nicht ok
+function renderPlaceholder() {
+    return `<div class="empty-column-placeholder">No tasks yet</div>`;
+}
+
+/**
+ * Starts the drag process for a task
+ * @param {Event} event - The drag event
+ * @param {string} taskId - ID of the task being dragged
+ */
+function startDragging(event, taskId) {
     const draggedElement = event.target.closest('.task_card');
     event.dataTransfer.setData('text/plain', taskId);
     draggedElement.classList.add('dragging');
-    const dimensions = {
-        width: draggedElement.offsetWidth,
-        height: draggedElement.offsetHeight
+    
+    const dimensions = getElementDimensions(draggedElement);
+    saveElementDimensions(dimensions, event);
+}
+
+/**
+ * Gets the width and height of an element
+ * @param {Element} element - The element to measure
+ * @returns {Object} Object containing width and height
+ */
+function getElementDimensions(element) {
+    return {
+        width: element.offsetWidth,
+        height: element.offsetHeight
     };
+}
+
+/**
+ * Saves the dimensions for later use
+ * @param {Object} dimensions - Width and height values
+ * @param {Event} event - The drag event
+ */
+function saveElementDimensions(dimensions, event) {
     try {
         event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
     } catch (e) {
-        console.log('Browser does not support complex data types in dataTransfer');
-    };
+        console.log('Browser does not support complex data in dataTransfer');
+    }
+    
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
-};
+}
 
 /**
- * Enables dropping by preventing default behavior and showing a visual placeholder
- * @param {DragEvent} event - The drag over event
- * @returns {void}
+ * Allows an element to be dropped in a drop zone
+ * @param {Event} event - The dragover event
  */
-function allowDrop(event) { // erkläre mich
+function allowDrop(event) {
     event.preventDefault();
     const dropzone = event.currentTarget;
-    let dimensionsStr = event.dataTransfer.getData('dimensions');
-    if (!dimensionsStr) {
-        dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
-    }
-    const dimensions = dimensionsStr ? JSON.parse(dimensionsStr) : {};
+    
+    const dimensions = getDimensionsFromStorage(event);
     removePlaceholders();
+    
     if (dimensions.width && dimensions.height) {
         const placeholder = createPlaceholder(dimensions);
         dropzone.appendChild(placeholder);
     }
-};
+}
 
 /**
- * Creates a placeholder element to show where the dragged item will be placed
- * @param {Object} dimensions - Width and height of the placeholder
- * @param {number} dimensions.width - Width in pixels
- * @param {number} dimensions.height - Height in pixels
- * @returns {HTMLElement} - The created placeholder element
+ * Gets stored dimensions from dataTransfer or sessionStorage
+ * @param {Event} event - The drag event
+ * @returns {Object} The dimensions object
  */
-function createPlaceholder(dimensions) { // ich bin nicht ok
+function getDimensionsFromStorage(event) {
+    let dimensionsStr = event.dataTransfer.getData('dimensions');
+    if (!dimensionsStr) {
+        dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
+    }
+    
+    return dimensionsStr ? JSON.parse(dimensionsStr) : {};
+}
+
+/**
+ * Creates a visual placeholder element
+ * @param {Object} dimensions - Width and height for the placeholder
+ * @returns {Element} The created placeholder element
+ */
+function createPlaceholder(dimensions) {
     const placeholder = document.createElement('div');
     placeholder.className = 'drag_area_placeholder';
     placeholder.style.width = `${dimensions.width}px`;
     placeholder.style.height = `${dimensions.height}px`;
     return placeholder;
-};
+}
 
 /**
- * Removes all placeholder elements from the document
- * @returns {void}
+ * Removes all placeholder elements from the page
  */
 function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
         placeholder.remove();
     });
-};
+}
 
 /**
- * Handles the drop event when a task is released in a drop zone
- * @param {DragEvent} event - The drop event
- * @returns {void}
+ * Handles when a task is dropped into a column
+ * @param {Event} event - The drop event
  */
-function handleDrop(event) { // ich bin zu gross
+function handleDrop(event) {
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;
+    
+    cleanupAfterDrag();
+    
+    const targetStatus = getTargetStatus(dropzone);
+    
+    if (taskId && targetStatus) {
+        moveTo(taskId, targetStatus);
+    }
+}
+
+/**
+ * Cleans up visual effects after dragging
+ */
+function cleanupAfterDrag() {
     document.querySelectorAll('.task_card.dragging').forEach(element => {
         element.classList.remove('dragging');
     });
+    
     removePlaceholders();
     sessionStorage.removeItem('draggedElementDimensions');
-    let targetStatus;
-    if (dropzone.id === 'drag_area_todo') targetStatus = 'todo';
-    else if (dropzone.id === 'drag_area_in_progress') targetStatus = 'inProgress';
-    else if (dropzone.id === 'drag_area_await_feedback') targetStatus = 'awaitFeedback';
-    else if (dropzone.id === 'drag_area_done') targetStatus = 'done';
-    if (taskId && targetStatus) {
-        moveTo(taskId, targetStatus);
-    };
-};
+}
+
+/**
+ * Gets the status based on which column was used
+ * @param {Element} dropzone - The column element
+ * @returns {string} The status (todo, inProgress, etc.)
+ */
+function getTargetStatus(dropzone) {
+    if (dropzone.id === 'drag_area_todo') return 'todo';
+    if (dropzone.id === 'drag_area_in_progress') return 'inProgress';
+    if (dropzone.id === 'drag_area_await_feedback') return 'awaitFeedback';
+    if (dropzone.id === 'drag_area_done') return 'done';
+    return null;
+}
 
 /**
  * Handles the end of a drag operation
- * @param {DragEvent} event - The drag end event
- * @returns {void}
+ * @param {Event} event - The dragend event
  */
 function handleDragEnd(event) {
-    document.querySelectorAll('.task_card.dragging').forEach(element => {
-        element.classList.remove('dragging');
-    });
-    removePlaceholders();
-    sessionStorage.removeItem('draggedElementDimensions');
-};
+    cleanupAfterDrag();
+}
 
 /**
- * Sets up all drag areas with event listeners for drag and drop functionality
- * @returns {void}
+ * Sets up all drop areas for drag and drop
  */
-function setupDragAreas() { // erkläre mich
+function setupDragAreas() {
     const dragAreas = [dragAreaTodo, dragAreaInProgress, dragAreaAwaitFeedback, dragAreaDone];
+    
     dragAreas.forEach(area => {
         area.ondragover = allowDrop;
         area.ondrop = handleDrop;
     });
+    
     document.addEventListener('dragend', handleDragEnd);
-};
+}
 
 /**
- * Moves a task to a new status column and updates the database
- * @async
+ * Moves a task to a different column
  * @param {string} taskId - ID of the task to move
  * @param {string} targetStatus - The new status for the task
- * @returns {Promise<void>}
  */
 async function moveTo(taskId, targetStatus) {
     const taskIndex = allTasks.findIndex(task => task.id === taskId);
     if (taskIndex === -1) return;
+    
     allTasks[taskIndex].status = targetStatus;
-    const task = allTasks[taskIndex];
     await updateTaskStatus(taskId, targetStatus);
     renderColumns();
-};
+}
 
 /**
- * Updates a task's status in the Firebase database
- * @async
+ * Updates the task status in the database
  * @param {string} taskId - ID of the task to update
- * @param {string} status - New status value
- * @returns {Promise<void>}
+ * @param {string} status - The new status value
  */
 async function updateTaskStatus(taskId, status) {
     try {
@@ -246,108 +312,93 @@ async function updateTaskStatus(taskId, status) {
     } catch (error) {
         console.error('Error updating task status:', error);
     }
-};
-
-// /**
-//  * Generates HTML for a single task card
-//  * @param {Object} task - Task object containing all task properties
-//  * @param {string} task.id - The unique identifier for the task
-//  * @param {string} task.title - The title of the task
-//  * @param {string} task.description - The description of the task
-//  * @param {string} task.dueDate - The due date of the task
-//  * @param {string} task.priority - The priority level of the task
-//  * @returns {string} HTML string for the task card
-//  */
-// function getTaskCard(task) {
-//     if (!task) {
-//         console.error('Attempted to render a task card for undefined');
-//         return '';
-//     }
-    
-//     return `
-//         <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
-//             <div class="task_card_content">
-//                 <h3 class="task_card_title">${task.title || 'No Title'}</h3>
-//                 <p class="task_card_description">${task.description || 'No Description'}</p>
-//                 <div class="task_card_footer">
-//                     <span class="task_card_due_date">${task.dueDate || ''}</span>
-//                     <span class="task_card_priority">${task.priority || ''}</span>
-//                 </div>
-//             </div>
-//         </div>
-//     `;
-// };
+}
 
 /**
- * Generates the HTML template for the mobile sidebar
- * @returns {string} HTML string for mobile sidebar
+ * Creates HTML for a task card
+ * @param {Object} task - The task object
+ * @returns {string} HTML string for the task card
+ */
+function getTaskCard(task) {
+    if (!task) {
+        console.error('Cannot create task card: task is undefined');
+        return '';
+    }
+    
+    return `
+        <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
+            <div class="task_card_content">
+                <h3 class="task_card_title">${task.title || 'No Title'}</h3>
+                <p class="task_card_description">${task.description || 'No Description'}</p>
+                <div class="task_card_footer">
+                    <span class="task_card_due_date">${task.dueDate || ''}</span>
+                    <span class="task_card_priority">${task.priority || ''}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+/**
+ * Creates the mobile sidebar HTML
+ * @returns {string} HTML string for the mobile sidebar
  */
 function getSidebarTemplateMobile() {
     const currentPage = window.location.pathname;
+    
     return ` 
     <div class="sidebar_container">  
-   <nav class="sidebar_nav">
-  <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
-    <span>Summary</span>
-  </a>
-   <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
-    <span>Board</span>
-  </a>
-  <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
-    <span>Add Task</span>
-  </a>
- 
-  <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
-    <span>Contacts</span>
-  </a>
-</nav>
-</div>
-
-  `;
-};
+        <nav class="sidebar_nav">
+            <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
+                <span>Summary</span>
+            </a>
+            <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
+                <span>Board</span>
+            </a>
+            <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
+                <span>Add Task</span>
+            </a>
+            <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
+                <span>Contacts</span>
+            </a>
+        </nav>
+    </div>
+    `;
+}
 
 /**
- * Renders the appropriate sidebar based on screen size
- * @returns {void}
+ * Renders the correct sidebar based on screen size
  */
 function renderSidebar() {
     const mainContainer = document.getElementById('navbar_container');
     const navContainer = document.getElementById('sidebar_container');
-    const navbarMobileContainer = document.getElementById('navbar_mobile_container');
-    /**
-     * Renders the desktop version of the sidebar
-     * @returns {void}
-     */
+    const mobileContainer = document.getElementById('navbar_mobile_container');
+    
     function renderSidebarDesktop() {
-        navbarMobileContainer.innerHTML = '';
+        mobileContainer.innerHTML = '';
         mainContainer.innerHTML = getSidebarTemplate();
         navContainer.style.display = 'block';
-    };
-    /**
-     * Renders the mobile version of the sidebar
-     * @returns {void}
-     */
+    }
+    
     function renderSidebarMobile() {
         mainContainer.innerHTML = '';
-        navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
+        mobileContainer.innerHTML = getSidebarTemplateMobile();
         navContainer.style.display = 'none';
-    };
-    /**
-     * Checks screen size and renders the appropriate sidebar
-     * @returns {void}
-     */
+    }
+    
     function checkScreenSize() {
         const width = window.innerWidth;
         if (width < 1050) {
             renderSidebarMobile();
         } else {
             renderSidebarDesktop();
-        };
-    };
+        }
+    }
+    
     window.addEventListener('resize', checkScreenSize);
     checkScreenSize();
-};
+}
