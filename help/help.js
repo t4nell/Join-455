@@ -29,7 +29,7 @@ function renderSidebar() {
 
     function proofSize() {
         const width = window.innerWidth;
-        if (width < 1052) {
+        if (width < 1050) {
             renderSidebarMobile();
         } else {
             renderSidebarDesktop();
