@@ -100,7 +100,7 @@ function renderAllTaskCards(allTasks, state, container) {
  * @param {string} taskId - ID of the task being dragged
  * @returns {void}
  */
-function startDragging(event, taskId) {
+function startDragging(event, taskId) { // ich bin nicht ok
     const draggedElement = event.target.closest('.task_card');
     event.dataTransfer.setData('text/plain', taskId);
     draggedElement.classList.add('dragging');
@@ -121,7 +121,7 @@ function startDragging(event, taskId) {
  * @param {DragEvent} event - The drag over event
  * @returns {void}
  */
-function allowDrop(event) {
+function allowDrop(event) { // erkläre mich
     event.preventDefault();
     const dropzone = event.currentTarget;
     let dimensionsStr = event.dataTransfer.getData('dimensions');
@@ -143,7 +143,7 @@ function allowDrop(event) {
  * @param {number} dimensions.height - Height in pixels
  * @returns {HTMLElement} - The created placeholder element
  */
-function createPlaceholder(dimensions) {
+function createPlaceholder(dimensions) { // ich bin nicht ok
     const placeholder = document.createElement('div');
     placeholder.className = 'drag_area_placeholder';
     placeholder.style.width = `${dimensions.width}px`;
@@ -166,7 +166,7 @@ function removePlaceholders() {
  * @param {DragEvent} event - The drop event
  * @returns {void}
  */
-function handleDrop(event) {
+function handleDrop(event) { // ich bin zu gross
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;
@@ -202,7 +202,7 @@ function handleDragEnd(event) {
  * Sets up all drag areas with event listeners for drag and drop functionality
  * @returns {void}
  */
-function setupDragAreas() {
+function setupDragAreas() { // erkläre mich
     const dragAreas = [dragAreaTodo, dragAreaInProgress, dragAreaAwaitFeedback, dragAreaDone];
     dragAreas.forEach(area => {
         area.ondragover = allowDrop;
