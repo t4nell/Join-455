@@ -42,7 +42,7 @@
 
         <title>Join</title>
     </head>
-    <body onload="init(); updateUserProfile();">
+    <body onload="init(); updateUserProfile();" onclick="closeDropdown(event)">
         <main id="main_container">
             <div id="header_container"></div>
             <div class="sidebar_container" id="sidebar_container">
@@ -92,10 +92,10 @@
                                 <input
                                     oninput="validateDueDateField()"
                                     name="due_date"
-                                    type="text"
+                                    type="date"
                                     id="due_date"
                                     placeholder="dd/mm/yyyy"
-                                    class="flatpickr_input input_date"
+                                    class="input_date"
                                     required />
                                 <img
                                     class="calendar_icon"

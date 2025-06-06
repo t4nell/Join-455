@@ -20,25 +20,30 @@
   </head>
   <body onload="init()">
     <main>
-      
-      <div class="signup_login">
-        <span class="font_size_20px">Not a Join user?</span>
-        <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
-      </div>
-
-      <div class="join_logo">
-        <a class="sidebar_join_logo" href="./summary/summary.html"><img src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
-      </div>
-
-      <div id="login_container" class="login_wrapper"></div>
-      <div id="signup_container" class="signup_wrapper"></div>
-
-      <footer> 
-        <div>
-          <a href="./policy/policy.html">Privacy Policy</a>
-          <a href="./legalNotes/legal.html">Legal Notice</a>
+      <section class="main_section">
+        <div id="signup_login_desktop" class="signup_login" style="display: none;">
+          <span class="font_size_20px">Not a Join user?</span>
+          <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
         </div>
-      </footer>  
+
+        <div class="join_logo">
+          <a class="sidebar_join_logo" style="display: block !important;" href="./summary/summary.html"><img src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
+        </div>
+
+        <div id="login_container" class="login_wrapper"></div>
+        <div id="signup_container" class="signup_wrapper"></div>
+
+        <div id="signup_login_mobile" class="signup_login_mobile" style="display: none;">
+          <span class="font_size_20px">Not a Join user?</span>
+          <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
+        </div>
+      </section>
+    <footer> 
+      <div>
+        <a href="./policy/policy.html">Privacy Policy</a>
+        <a href="./legalNotes/legal.html">Legal Notice</a>
+      </div>
+    </footer>  
       
     </main>
   </body>

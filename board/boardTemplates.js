@@ -144,17 +144,17 @@ function getEditTaskTemplate(task) {
     
     <form id="edit_task_form" class="edit_task_form">  
       <div class="input_titel_group">
-          <label for="title" class="required_for_label">Title</label>
+          <label for="title" class="required_for_label" onclick="event.preventDefault()">Title</label>
           <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
       </div>
       
       <div class="textarea_group">
-          <label id="description_label" for="description" class="required_for_label">Description</label>
+          <label id="description_label" for="description" class="required_for_label" onclick="event.preventDefault()">Description</label>
           <textarea name="description" class="textarea" id="description" placeholder="Enter a Description">${task.description}</textarea>
       </div>
 
       <div class="input_date_group">
-        <label for="due_date" class="required_for_label">Due date</label>
+        <label for="due_date" class="required_for_label" onclick="event.preventDefault()">Due date</label>
         <div class="input_date_container">
           <input onclick="openCalendar()" name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
           <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
@@ -164,19 +164,19 @@ function getEditTaskTemplate(task) {
       <div class="radio_btn_container">
         <span class="required_for_label">Priority</span>
         <div class="priority_btn_group">
-          <input type="radio" id="priority_urgent" name="priority" value="urgent" ${task.priority === 'urgent' ? 'checked' : ''} onclick="switchBtnPriority('urgent')" />  
+          <input type="radio" id="priority_urgent" name="priority" value="Urgent" ${task.priority === 'Urgent' ? 'checked' : ''} onclick="switchBtnPriority('Urgent')" />  
           <label for="priority_urgent" class="btn btn--red">
             Urgent
             <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent"/>
           </label>
 
-          <input type="radio" id="priority_medium" name="priority" value="medium" ${task.priority === 'medium' ? 'checked' : ''} onclick="switchBtnPriority('medium')"/>
+          <input type="radio" id="priority_medium" name="priority" value="Medium" ${task.priority === 'Medium' ? 'checked' : ''} onclick="switchBtnPriority('Medium')"/>
           <label for="priority_medium" class="btn btn--orange">
             Medium
             <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium"/>
           </label>
 
-          <input type="radio" id="priority_low" name="priority" value="low" ${task.priority === 'low' ? 'checked' : ''} onclick="switchBtnPriority('low')"/>
+          <input type="radio" id="priority_low" name="priority" value="Low" ${task.priority === 'Low' ? 'checked' : ''} onclick="switchBtnPriority('Low')"/>
           <label for="priority_low" class="btn btn--green">
             Low
             <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
@@ -185,7 +185,7 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="assign_to_group">
-        <label for="dropdown_toggle_btn" class="required_for_label">Assigned to</label>
+        <label for="dropdown_toggle_btn" class="required_for_label" onclick="event.preventDefault()">Assigned to</label>
         <div class="dropdown" id="dropdown">
             <div class="dropdown_input_wrapper">
                 <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
@@ -199,7 +199,7 @@ function getEditTaskTemplate(task) {
       </div>
 
       <div class="tag_input_container">
-        <label for="tag_input_field" class="required_for_label">Subtasks</label>
+        <label for="tag_input_field" class="required_for_label" onclick="event.preventDefault()">Subtasks</label>
         <div class="tag_input">
           <input type="text" placeholder="Add new subtask" id="tag_input_field" onclick="replaceButtons()" onkeydown="onKeyDownEnter(event)"/>
           <div class="subtask_btn_container" id="subtask_btn_container">

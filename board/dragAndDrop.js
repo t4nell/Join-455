@@ -1,7 +1,6 @@
 let BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-
-// Reference to allTasks from board.js
 allTasks = window.allTasks || [];
+
 
 /**
  * Finds the task card element being dragged
@@ -10,13 +9,14 @@ allTasks = window.allTasks || [];
  */
 function getDraggedElement(event) {
     return event.target.closest('.task_card');
-}
+};
+
 
 /**
  * Allows dropping elements by preventing default behavior
  * @param {Event} event - The dragover event
  */
-function allowDrop(event) {
+function allowDrop(event) { // ich bin nicht ok
     event.preventDefault();
     const dropzone = event.currentTarget;
     const dimensions = getDraggedDimensions();
@@ -87,7 +87,8 @@ function setDragData(event, taskId, element) {
     };
     
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
-}
+};
+
 
 /**
  * Handles drop event when a task is dropped in a column
@@ -96,7 +97,6 @@ function setDragData(event, taskId, element) {
 function handleDrop(event) {
     console.log("Drop event occurred");
     event.preventDefault();
-    
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;
     
@@ -116,7 +116,6 @@ function cleanupAfterDrag() {
     document.querySelectorAll('.task_card.dragging').forEach(element => {
         element.classList.remove('dragging');
     });
-    
     removePlaceholders();
     sessionStorage.removeItem('draggedElementDimensions');
 }
@@ -142,7 +141,7 @@ function getTargetStatusFromDropzone(dropzone) {
  * @param {string} taskId - ID of the task to update
  * @param {string} status - New status value
  */
-async function updateTaskStatus(taskId, status) {
+async function updateTaskStatus(taskId, status) { // erkläre mich
     try {
         const existingTask = await fetchTaskById(taskId);
         
@@ -197,12 +196,12 @@ async function moveTo(taskId, targetStatus) {
     if (taskIndex === -1) {
         console.error('Task not found in allTasks:', taskId);
         return;
-    }
-    
+    };
     allTasks[taskIndex].status = targetStatus;
     await updateTaskStatus(taskId, targetStatus);
     renderColumns();
-}
+};
+
 
 /**
  * Finds the index of a task in the allTasks array
@@ -225,11 +224,11 @@ function setupDragAreas() {
         if (area) {
             area.ondragover = allowDrop;
             area.ondrop = handleDrop;
-        }
+        };
     });
-    
     document.addEventListener('dragend', handleDragEnd);
-}
+};
+
 
 /**
  * Gets all drag area elements from the page
@@ -248,17 +247,18 @@ function getAllDragAreas() {
  * Initializes the drag and drop functionality
  * @returns {Promise} Promise that resolves when setup is complete
  */
-function initDragAndDrop() {
+function initDragAndDrop() { // erkläre mich
     setupDragAreas();
     return Promise.resolve();
-}
+};
+
 
 /**
  * Creates a visual placeholder element with specified dimensions
  * @param {Object} dimensions - Width and height values
  * @returns {HTMLElement} The created placeholder element
  */
-function createPlaceholder(dimensions) {
+function createPlaceholder(dimensions) { // ich bin viel zu gross
     const placeholder = document.createElement('div');
     placeholder.className = 'drag_area_placeholder';
     placeholder.style.width = `${dimensions.width}px`;
@@ -376,7 +376,8 @@ function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
         placeholder.remove();
     });
-}
+};
+
 
 /**
  * Handles the end of a drag operation

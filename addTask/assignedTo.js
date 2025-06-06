@@ -35,13 +35,28 @@ function toggleBackground(index) {
     clickedItem.classList.toggle('active');
 }
 
-document.onclick = function (event) {
-    if (!dropdown.contains(event.target)) {
+function closeDropdown(event) {
+    let currentElement = event.target;
+    let clickedInside = false;
+
+    while (currentElement) {
+        if (
+            currentElement.id === 'dropdown' ||
+            currentElement.id === 'toggleInput' ||
+            currentElement.id === 'selectedUser'
+        ) {
+            clickedInside = true;
+            break;
+        }
+        currentElement = currentElement.parentElement;
+    }
+
+    if (!clickedInside) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
         toggle.value = '';
     }
-};
+}
 
 function loadContactsToAssigned() {
     menu.innerHTML = '';
@@ -105,9 +120,7 @@ function removeActiveBgColor() {
 
 function clearSelectedUserIndices() {
     selectedUserIndices = [];
-
     filterContacts();
-
     renderSelectedIcons();
 }
 
