@@ -17,6 +17,7 @@ async function init() {
     renderSidebar();
     renderContent();
     updateUserProfile();
+    checkOrientation()
     await loadContactData();
     await loadAddTask();
     renderColumns();

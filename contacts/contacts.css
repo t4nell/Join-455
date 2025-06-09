@@ -319,3 +319,8 @@ main {
 #delete_btn:hover img {
   filter: brightness(0) saturate(100%) invert(48%) sepia(98%) saturate(384%) hue-rotate(153deg) brightness(98%) contrast(94%);
 }
+
+.hidden {
+  display: none !important;
+}
+

@@ -2,6 +2,7 @@ const loginContainer = document.getElementById("login_container");
 
 
 function init() {
+    checkOrientation()
     checkLoggedInUser();
     renderLogin();
 };

@@ -9,6 +9,7 @@ const currentUserInitials = currentUser.name
     .join('');
 
 async function contactInit() {
+    checkOrientation();
     renderHeader();
     renderSidebar();
     updateUserProfile();
@@ -126,31 +127,28 @@ function renderSidebar() {
     const navContainer = document.getElementById('sidebar_container');
     const navbarMobileContainer = document.getElementById('navbar_mobile_container');
 
-    renderSidebarDesktop(mainContainer, navContainer);
-    renderSidebarMobile(mainContainer, navbarMobileContainer, navContainer);
-    
-    
-    
+    function renderSidebarDesktop() {
+        navbarMobileContainer.innerHTML = '';
+        mainContainer.innerHTML = getSidebarTemplate();
+        navContainer.style.display = 'block';
+    }
+
+    function renderSidebarMobile() {
+        mainContainer.innerHTML = '';
+        navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
+        navContainer.style.display = 'none';
+    }
+
+    function proofSize() {
+        const width = window.innerWidth;
+        if (width < 1052) {
+            renderSidebarMobile();
+        } else {
+            renderSidebarDesktop();
+        }
+    }
+
     window.addEventListener('resize', proofSize);
     proofSize();
 }
 
-
-function renderSidebarDesktop() {
-    navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = getSidebarTemplate();
-    navContainer.style.display = 'block';
-}
-function renderSidebarMobile() {
-    mainContainer.innerHTML = '';
-    navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
-    navContainer.style.display = 'none';
-}
-function proofSize() {
-    const width = window.innerWidth;
-    if (width < 1052) {
-        renderSidebarMobile();
-    } else {
-        renderSidebarDesktop();
-    }
-}
