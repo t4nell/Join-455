@@ -3,7 +3,6 @@ const loginContainer = document.getElementById("login_container");
 
 function init() {
     checkLoggedInUser();
-    checkScreenSize();
     renderLogin();
 };
 
@@ -32,6 +31,7 @@ function renderLogin() {
     setTimeout(() => {
         loginContainer.innerHTML = getLoginSignupTemplate();
         loginContainer.style.display = 'flex';
+        checkScreenSize();
         document.querySelector('.guest_login_btn').addEventListener('click', handleGuestLogin);
     }, 3000);
 };
