@@ -3,6 +3,7 @@ const loginContainer = document.getElementById("login_container");
 
 function init() {
     checkLoggedInUser();
+    checkScreenSize();
     renderLogin();
 };
 
@@ -14,24 +15,23 @@ function checkLoggedInUser() {
     };
 };
 
+function checkScreenSize() {
+    const desktopSignup = document.getElementById("signup_login_desktop");
+    const mobileSignup = document.getElementById("signup_login_mobile");
+    if (window.innerWidth > 660) {
+        desktopSignup.style.display = "flex";
+        mobileSignup.style.display = "none";
+    } else {
+        desktopSignup.style.display = "none"; 
+        mobileSignup.style.display = "flex";
+    };
+    window.addEventListener('resize', checkScreenSize);
+};
 
 function renderLogin() {
     setTimeout(() => {
         loginContainer.innerHTML = getLoginSignupTemplate();
         loginContainer.style.display = 'flex';
-        const desktopSignup = document.getElementById("signup_login_desktop");
-        const mobileSignup = document.getElementById("signup_login_mobile");
-        function checkScreenSize() {
-            if (window.innerWidth > 660) {
-                desktopSignup.style.display = "flex";
-                mobileSignup.style.display = "none";
-            } else {
-                desktopSignup.style.display = "none"; 
-                mobileSignup.style.display = "flex";
-            };
-        };
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
         document.querySelector('.guest_login_btn').addEventListener('click', handleGuestLogin);
     }, 3000);
 };
