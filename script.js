@@ -39,6 +39,7 @@ function renderLogin() {
 
 function toggleLoginSignup() {
     const signupLoginDiv = document.querySelector('.signup_login');
+    const mobileSignup = document.getElementById("signup_login_mobile");
     const loginCard = document.querySelector('.login_card');
     const signupCard = document.querySelector('.signup_card');
     const mainSectionIndex = document.getElementById('main_section_index');
@@ -47,12 +48,27 @@ function toggleLoginSignup() {
         signupCard.classList.toggle('d_none');
         if (loginCard.classList.contains('d_none')) {
             signupLoginDiv.style.display = 'none';
-            if (window.innerHeight < 1170) {
-                mainSectionIndex.style.justifyContent = 'flex-end';
-            };
+            mobileSignup.style.display = 'none';
+            setFlexEndForMobile(mainSectionIndex);
         } else {
-            signupLoginDiv.style.display = 'flex';
+            toggleLoginSignupDisplay(signupLoginDiv, mobileSignup);
             mainSectionIndex.style.justifyContent = 'center';
         };
+    };
+};
+
+
+function toggleLoginSignupDisplay(signupLoginDiv, mobileSignup) {
+    if (window.innerWidth > 660) {
+        signupLoginDiv.style.display = 'flex';
+    } else {
+        mobileSignup.style.display = 'flex';
+    };
+};
+
+
+function setFlexEndForMobile(mainSectionIndex) {
+    if (window.innerHeight < 1170) {
+        mainSectionIndex.style.justifyContent = 'flex-end';
     };
 };

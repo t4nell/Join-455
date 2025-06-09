@@ -244,16 +244,12 @@ footer a:hover {
     to { opacity: 0; }
 }
 
-/* @media screen and (max-height: 1170px){
-  .login_card.d_none ~ .main_section {
-    justify-content: flex-end;
-  }
-  .main_section {
-    justify-content: center; 
-  }
-} */
 
 @media screen and (max-width: 660px) {
+  .join_logo_img {
+    height: 290px;
+    width: 200px;
+  }
   .login_card {
     width: 80%;
   }
