@@ -29,6 +29,7 @@ function renderSidebar() {
 }
 
 function init() {
+    checkOrientation()
     renderSidebar();
     loadContactData();
     renderCategories();

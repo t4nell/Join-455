@@ -70,6 +70,10 @@ function getSidebarTemplate() {
                     <span>Contacts</span>
                 </a>
             </nav>
+            <div class="sidebar_footer">
+      <a href="../policy/policy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
+    </div>
 `;
 }
 
