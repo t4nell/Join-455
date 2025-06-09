@@ -41,16 +41,18 @@ function toggleLoginSignup() {
     const signupLoginDiv = document.querySelector('.signup_login');
     const loginCard = document.querySelector('.login_card');
     const signupCard = document.querySelector('.signup_card');
-    // const mainSectionIndex = document.getElementById('main_section_index');
+    const mainSectionIndex = document.getElementById('main_section_index');
     if (loginCard && signupCard) {
         loginCard.classList.toggle('d_none');
         signupCard.classList.toggle('d_none');
         if (loginCard.classList.contains('d_none')) {
             signupLoginDiv.style.display = 'none';
-            // mainSectionIndex.style.justifyContent = 'flex-end'
+            if (window.innerHeight < 1170) {
+                mainSectionIndex.style.justifyContent = 'flex-end';
+            };
         } else {
             signupLoginDiv.style.display = 'flex';
-            // mainSectionIndex.style.justifyContent = 'center';
+            mainSectionIndex.style.justifyContent = 'center';
         };
     };
 };
