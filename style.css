@@ -149,6 +149,8 @@ footer a:hover {
     border-radius: 30px;
     width: 598px;
     height: 630px;
+    background-color: rgb(207, 31, 31);
+    margin: 0 16px;
   }
 
   .signup_card input {
@@ -213,7 +215,6 @@ footer a:hover {
     background-color: unset;
   }
 
-  /* notification CSS*/
   .notification {
     position: fixed;
     top: 20px;
@@ -244,9 +245,17 @@ footer a:hover {
     to { opacity: 0; }
 }
 
+
 @media screen and (max-width: 660px) {
+  .join_logo_img {
+    height: 290px;
+    width: 200px;
+  }
   .login_card {
     width: 80%;
+    height: auto;
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 
   #loginForm {
@@ -274,13 +283,51 @@ footer a:hover {
     width: 135px;
   }
 
+  .signup_card {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    height: auto;
+  }
+
+  .left_arrow_icon {
+    left: 20px;
+  }
+
+  .login_wrapper h2 {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .signupForm {
+    width: 100%;
+  }
+
+  .input_login_container {
+    gap: 32px;
+    margin-bottom: 56px;
+  }
+
+  .input_login_container input {
+    margin-top: 0;
+    margin-bottom: 0;
+    width: calc(100% - 64px);
+  }
+
+  .button_login_container {
+    flex-direction: column;
+    gap: 21px;
+  }
+  .login_btn {
+    width: 180px;
+  }
+
+  .guest_login_btn {
+    width: 180px;
+  }
 
 }
 
 @media screen and (max-width: 420px) {
-  .button_login_container {
-    gap: 16px;
-  }
   .signup_login_mobile {
     gap: 16px;
   }

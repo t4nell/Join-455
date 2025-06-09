@@ -25,7 +25,7 @@ function getLoginSignupTemplate() {
         <h2>Sign up</h2>
         <hr class="separator_horizontally">
       </div>
-      <form id="signupForm" onsubmit="handleSignup(event)">
+      <form id="signupForm" class="signupForm" onsubmit="handleSignup(event)">
         <div class="input_login_container">
           <input id="signupName" class="name_input_icon" type="text" placeholder="Name">
           <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail">
@@ -70,6 +70,10 @@ function getSidebarTemplate() {
                     <span>Contacts</span>
                 </a>
             </nav>
+            <div class="sidebar_footer">
+      <a href="../policy/policy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
+    </div>
 `;
 }
 

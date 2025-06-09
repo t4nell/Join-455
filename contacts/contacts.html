@@ -1,113 +1,180 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../styles/allSites.css" />
-        <link rel="stylesheet" href="../styles/font.css" />
-        <link rel="stylesheet" href="../styles/standard.css" />
-        <link rel="stylesheet" href="../styles/inputIcons.css" />
-        <link rel="stylesheet" href="../styles/buttons.css" />
-        <link rel="stylesheet" href="./contactsOverlay.css" />
-        <link rel="stylesheet" href="./contacts.css" />
-        <link rel="stylesheet" href="./contactResponsiveness.css" />
-        <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
-        <link rel="stylesheet" href="./landscape.css">
-        <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
-        <script src="../script.js" defer></script>
-        <script src="../scripts/fetch.js" defer></script>
-        <script src="./renderContacts.js" defer></script>
-        <script src="../scripts/templates.js" defer></script>
-        <script src="./contactTemplates.js"></script>
-        <script src="../scripts/userProfil.js" defer></script>
-        <script src="./loadContacts.js" defer></script>
-        <script src="./postContact.js" defer></script>
-        <script src="./editContact.js" defer></script>
-        <script src="./contacts.js" defer></script>
-        <script src="./editCurrentUser.js"></script>
-        <script src="./validation.js"></script>
-        <script src="./deleteContact.js"></script>
-        <script src="./landscape.js" defer></script>
-        <title>Join</title>
-    </head>
-    <body onload="contactInit()">
-        <main id="main_container">
-            <div id="header_container"></div>
-            <div class="sidebar_container" id="sidebar_container">
-                <div class="sidebar_img_container">
-                    <a class="sidebar_join_logo" href="../index.html">
-                        <img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" />
-                    </a>
-                    <div id="navbar_container"></div>
-                </div>
-            </div>
-            <div id="contact_list">
-                <div class="new_contact_container">
-                    <button onclick="newContactOverlay()" class="dark_btn new_contact_btn">
-                        <span>Add new contact</span>
-                        <img src="../assets/imgs/contactIcons/person_add.svg" alt="Person Add Icon" />
-                    </button>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/allSites.css" />
+    <link rel="stylesheet" href="../styles/font.css" />
+    <link rel="stylesheet" href="../styles/standard.css" />
+    <link rel="stylesheet" href="../styles/inputIcons.css" />
+    <link rel="stylesheet" href="../styles/buttons.css" />
+    <link rel="stylesheet" href="./contactsOverlay.css" />
+    <link rel="stylesheet" href="./contacts.css" />
+    <link rel="stylesheet" href="./contactResponsiveness.css" />
+    <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
+    <link rel="stylesheet" href="../styles/landscape.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/joinLogoDark.svg"
+      type="image/x-icon"
+    />
+    <script src="../script.js" defer></script>
+    <script src="../scripts/fetch.js" defer></script>
+    <script src="./renderContacts.js" defer></script>
+    <script src="../scripts/templates.js" defer></script>
+    <script src="./contactTemplates.js"></script>
+    <script src="../scripts/userProfil.js" defer></script>
+    <script src="./loadContacts.js" defer></script>
+    <script src="./postContact.js" defer></script>
+    <script src="./editContact.js" defer></script>
+    <script src="./contacts.js" defer></script>
+    <script src="./editCurrentUser.js"></script>
+    <script src="./validation.js"></script>
+    <script src="./deleteContact.js"></script>
+    <script src="../scripts/landscape.js" defer></script>
+    <title>Join</title>
+  </head>
+  <body onload="contactInit()">
+    <main id="main_container">
+      <div id="header_container"></div>
+      <div class="sidebar_container" id="sidebar_container">
+        <div class="sidebar_img_container">
+          <a class="sidebar_join_logo" href="../index.html">
+            <img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" />
+          </a>
+          <div id="navbar_container"></div>
+        </div>
+      </div>
+      <div id="contact_list">
+        <div class="new_contact_container">
+          <button
+            onclick="newContactOverlay()"
+            class="dark_btn new_contact_btn"
+          >
+            <span>Add new contact</span>
+            <img
+              src="../assets/imgs/contactIcons/person_add.svg"
+              alt="Person Add Icon"
+            />
+          </button>
+        </div>
 
-                <div id="contact_list_container">
-                    <div class="current_user_container"></div>
-                    <div id="all_contacts_container"></div>
-                    <img
-                        class="sec_add_contact_btn"
-                        src="../assets/imgs/contactIcons/secondary_add_contact_btn.svg"
-                        alt="secondary_add_contact_button"
-                        onclick="newContactOverlay()" />
-                </div>
-            </div>
+        <div id="contact_list_container">
+          <div class="current_user_container"></div>
+          <div id="all_contacts_container"></div>
+          <img
+            class="sec_add_contact_btn"
+            src="../assets/imgs/contactIcons/secondary_add_contact_btn.svg"
+            alt="secondary_add_contact_button"
+            onclick="newContactOverlay()"
+          />
+        </div>
+      </div>
 
-            <div class="contact_container mobile_closed">
-                <div class="headline_container">
-                    <img
-                        onclick="closeContactMain()"
-                        class="return_arrow"
-                        src="../assets/imgs/contactIcons/arrow-left-line.svg"
-                        alt="return_arrow" />
-                    <h2>Contacts</h2>
-                    <hr class="separator_vertical" />
-                    <span>Better with a team</span>
-                    <hr class="separator_horizontally_mobile" />
-                </div>
+      <div class="contact_container mobile_closed">
+        <div class="headline_container">
+          <img
+            onclick="closeContactMain()"
+            class="return_arrow"
+            src="../assets/imgs/contactIcons/arrow-left-line.svg"
+            alt="return_arrow"
+          />
+          <h2>Contacts</h2>
+          <hr class="separator_vertical" />
+          <span>Better with a team</span>
+          <hr class="separator_horizontally_mobile" />
+        </div>
 
-                <div class="contact_main closed" id="contact_detail_container"></div>
-            </div>
+        <div class="contact_main closed" id="contact_detail_container"></div>
+      </div>
 
-            <div onclick="toggleOverlay()" id="contact_overlay" class="overlay_background_container fade_out">
-                <!--Overlay for new contact-->
-                <div onclick="eventBubbling(event)" id="contact_popup" class="contact_popup closed"></div>
+      <div
+        onclick="toggleOverlay()"
+        id="contact_overlay"
+        class="overlay_background_container fade_out"
+      >
+        <!--Overlay for new contact-->
+        <div
+          onclick="eventBubbling(event)"
+          id="contact_popup"
+          class="contact_popup closed"
+        ></div>
 
-                <!--Overlay for editing contact-->
-                <div onclick="eventBubbling(event)" id="contact_edit_overlay" class="contact_popup closed"></div>
-            </div>
+        <!--Overlay for editing contact-->
+        <div
+          onclick="eventBubbling(event)"
+          id="contact_edit_overlay"
+          class="contact_popup closed"
+        ></div>
+      </div>
 
-            <div onclick="toggleOverlay()" id="contact_overlay" class="overlay_background_container fade_out">
-                <!--Overlay for new contact-->
-                <div onclick="eventBubbling(event)" id="contact_popup" class="contact_popup closed"></div>
+      <div
+        onclick="toggleOverlay()"
+        id="contact_overlay"
+        class="overlay_background_container fade_out"
+      >
+        <!--Overlay for new contact-->
+        <div
+          onclick="eventBubbling(event)"
+          id="contact_popup"
+          class="contact_popup closed"
+        ></div>
 
-                <!--Overlay for editing contact-->
-                <div onclick="eventBubbling(event)" id="contact_edit_overlay" class="contact_popup closed"></div>
-            </div>
+        <!--Overlay for editing contact-->
+        <div
+          onclick="eventBubbling(event)"
+          id="contact_edit_overlay"
+          class="contact_popup closed"
+        ></div>
+      </div>
 
-            <!-- popup Message for successfull contact save-->
-            <div
-                onclick="eventBubbling(event)"
-                id="contact_notification"
-                class="contact_save_message center_flex closed_notification">
-                <p>Notification Message</p>
-            </div>
-            <div class="navbar_mobile_container_style" id="navbar_mobile_container"></div>
-            <div id="landscape_wrapper">
-                <div id="landscape_modal" class="landscape_modal">
-                    <div class="landscape_modal_content">
-                        "Please rotate your device to portrait mode for a better experience."
-                    </div>
-                </div>
-            </div>
-        </main>
-    </body>
+      <!-- popup Message for successfull contact save-->
+      <div
+        onclick="eventBubbling(event)"
+        id="contact_notification"
+        class="contact_save_message center_flex closed_notification"
+      >
+        <p>Notification Message</p>
+      </div>
+      <div
+        class="navbar_mobile_container_style"
+        id="navbar_mobile_container"
+      ></div>
+
+      <div id="landscape_wrapper">
+        <div id="landscape_modal" class="landscape_modal d_none">
+          <div class="landscape_modal_content">
+            <svg
+              viewBox="0 0 100 200"
+              class="phone"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="10"
+                y="10"
+                width="80"
+                height="180"
+                rx="15"
+                ry="15"
+                fill="#333"
+              />
+              <circle cx="50" cy="180" r="5" fill="#aaa" />
+              <rect
+                x="35"
+                y="20"
+                width="30"
+                height="10"
+                rx="2"
+                ry="2"
+                fill="#666"
+              />
+            </svg>
+            "Please rotate your device to portrait mode for a better
+            experience."
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </body>
 </html>
-

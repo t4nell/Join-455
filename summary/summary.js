@@ -441,6 +441,7 @@ function showMobileGreeting() {
 }
 
 async function init() {
+    checkOrientation()
   try {
     console.log('Starting initialization...');
     const currentUser = checkAuth();
@@ -460,6 +461,7 @@ async function init() {
     console.error('Initialization error:', error);
     showNotification(error.message || 'Fehler beim Laden der Daten');
   }
+
 }
 
 window.addEventListener('resize', () => {

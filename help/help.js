@@ -5,6 +5,7 @@ function renderHeader() {
 }
 
 function init() {
+    checkOrientation()
     renderSidebar();
     renderHeader();
     updateUserProfile();
