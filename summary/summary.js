@@ -83,11 +83,11 @@ function initializeUI(currentUser) {
  */
 async function loadAndUpdateTaskData() {
     try {
-        const rawData = await fetchTaskData(); // Changed from fetchTasks to fetchTaskData
-        const tasks = transformTaskData(rawData); // Transform the raw data
-        const activeTasks = filterActiveTasks(tasks); // Filter out deleted tasks
+        const rawData = await fetchTaskData();
+        const tasks = transformTaskData(rawData);
+        const activeTasks = filterActiveTasks(tasks);
 
-        console.log('Fetched tasks:', activeTasks); // Debug log
+        console.log('Fetched tasks:', activeTasks);
 
         if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
             console.warn('No tasks found or invalid data structure');
@@ -112,7 +112,6 @@ async function loadAndUpdateTaskData() {
     }
 }
 
-// constants for Firebase database URL
 const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
@@ -185,17 +184,21 @@ function normalizeTaskStatus(status) {
         .replace('feedback', 'feedback');
 }
 
-const STATUS_MAPPINGS = {
-    todo: ['todo'],
-    done: ['done'],
-    inProgress: ['inprogress', 'in progress'],
-    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback'],
-};
-
+/**
+ * Checks if a normalized status string matches a target status category
+ * @param {string} normalizedStatus - The normalized status string
+ * @param {string} targetStatus - The target status category to check against
+ * @returns {boolean} True if the status matches the target category
+ */
 function matchesStatus(normalizedStatus, targetStatus) {
     return STATUS_MAPPINGS[targetStatus].some((pattern) => normalizedStatus.includes(pattern));
 }
 
+/**
+ * Counts occurrences of each status type in the tasks array
+ * @param {Array<Object>} tasks - Array of task objects
+ * @returns {Object} Object containing counts for each status type
+ */
 function countStatusOccurrences(tasks) {
     const counts = Object.keys(STATUS_MAPPINGS).reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
 
@@ -213,10 +216,20 @@ function countStatusOccurrences(tasks) {
     return counts;
 }
 
+/**
+ * Checks if a task has urgent priority
+ * @param {Object} task - Task object to check
+ * @returns {boolean} True if the task has urgent priority
+ */
 function isUrgentTask(task) {
     return task.priority && normalizeTaskStatus(task.priority) === 'urgent';
 }
 
+/**
+ * Safely parses a date string into a Date object
+ * @param {string} dateString - Date string in format "DD/MM/YYYY"
+ * @returns {Date|null} Parsed Date object or null if parsing fails
+ */
 function safeParseDate(dateString) {
     try {
         return dateString ? parseDate(dateString) : null;
@@ -225,6 +238,11 @@ function safeParseDate(dateString) {
     }
 }
 
+/**
+ * Finds the next urgent task based on due date
+ * @param {Array<Object>} urgentTasks - Array of urgent task objects
+ * @returns {Object|null} The next urgent task or null if none found
+ */
 function findNextUrgentTask(urgentTasks) {
     return urgentTasks.reduce((closest, task) => {
         const taskDate = safeParseDate(task.dueDate);
@@ -234,6 +252,11 @@ function findNextUrgentTask(urgentTasks) {
     }, null);
 }
 
+/**
+ * Analyzes urgent tasks and finds the next upcoming deadline
+ * @param {Array<Object>} tasks - Array of task objects
+ * @returns {Object} Object containing urgent task count and the next urgent task
+ */
 function analyzeUrgentTasks(tasks) {
     const urgentTasks = tasks.filter(isUrgentTask);
 
@@ -285,12 +308,23 @@ function calculateTaskStats(tasks) {
     return stats;
 }
 
+/**
+ * Parses a date string into a Date object
+ * @param {string} dateString - Date string in format "DD/MM/YYYY"
+ * @returns {Date|null} Parsed Date object or null if input is invalid
+ */
 function parseDate(dateString) {
     if (!dateString) return null;
     const [day, month, year] = dateString.split('/').map(Number);
     return new Date(year, month - 1, day);
 }
 
+/**
+ * Updates a statistic card with new values
+ * @param {string} containerId - ID of the container element
+ * @param {number} value - The numeric value to display
+ * @param {string} label - The text label to display
+ */
 function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -302,6 +336,10 @@ function updateStatCard(containerId, value, label) {
     if (textElement) textElement.textContent = label;
 }
 
+/**
+ * Updates the urgent tasks card with count and icon
+ * @param {number} urgentCount - Number of urgent tasks
+ */
 function updateUrgentCard(urgentCount) {
     const container = document.getElementById('summary_importance_container');
     if (!container) return;
@@ -318,6 +356,10 @@ function updateUrgentCard(urgentCount) {
     `;
 }
 
+/**
+ * Updates the deadline card with the next urgent task deadline
+ * @param {Object|null} nextUrgentTask - The next urgent task object or null
+ */
 function updateDeadlineCard(nextUrgentTask) {
     const container = document.getElementById('summary_deadline_container');
     if (!container) return;
@@ -332,6 +374,10 @@ function updateDeadlineCard(nextUrgentTask) {
     `;
 }
 
+/**
+ * Updates all summary UI elements with task statistics
+ * @param {Object} stats - Object containing all task statistics
+ */
 function updateSummaryUI(stats) {
     updateStatCard('summary_todo_container', stats.todo, 'To-do');
     updateStatCard('summary_done_container', stats.done, 'Done');
@@ -343,6 +389,11 @@ function updateSummaryUI(stats) {
     updateDeadlineCard(stats.nextUrgentTask);
 }
 
+/**
+ * Formats a Date object into a readable date string
+ * @param {Date} date - Date object to format
+ * @returns {string} Formatted date string (e.g., "May 21, 2025")
+ */
 function formatDate(date) {
     return date.toLocaleDateString('en-US', {
         month: 'long',
@@ -351,6 +402,10 @@ function formatDate(date) {
     });
 }
 
+/**
+ * Shows a temporary notification message
+ * @param {string} message - The message to display
+ */
 function showNotification(message) {
     const notification = document.createElement('div');
     notification.className = 'notification';
@@ -362,6 +417,10 @@ function showNotification(message) {
     }, 3000);
 }
 
+/**
+ * Returns an array of container IDs that should be clickable
+ * @returns {Array<string>} Array of container IDs
+ */
 function getClickableContainerIds() {
     return [
         'summary_todo_container',
@@ -373,6 +432,10 @@ function getClickableContainerIds() {
     ];
 }
 
+/**
+ * Makes a container element clickable and adds styling
+ * @param {HTMLElement} containerElement - The container element to make clickable
+ */
 function makeContainerClickable(containerElement) {
     if (!containerElement) return;
 
@@ -380,10 +443,16 @@ function makeContainerClickable(containerElement) {
     containerElement.addEventListener('click', navigateToBoard);
 }
 
+/**
+ * Navigates to the board page
+ */
 function navigateToBoard() {
     window.location.href = '../board/board.html';
 }
 
+/**
+ * Makes all summary containers clickable
+ */
 function makeContainersClickable() {
     getClickableContainerIds().forEach((containerId) => {
         const container = document.getElementById(containerId) || document.querySelector(`.${containerId}`);
@@ -391,23 +460,33 @@ function makeContainersClickable() {
     });
 }
 
+/**
+ * Renders the sidebar using template
+ */
 function renderSidebar() {
     mainContainer.innerHTML = getSidebarTemplate();
 }
 
+/**
+ * Renders the header using template
+ */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
 /**
  * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
+ * Only shown on first visit per session
  */
 function showMobileGreeting() {
-  const viewportWidth = window.innerWidth;
+  const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');
   
-  if (viewportWidth >= 1050) {
+  const viewportWidth = window.innerWidth;
+  if (viewportWidth >= 1050 || hasSeenGreeting === 'true') {
     return;
   }
+  
+  sessionStorage.setItem('hasSeenGreeting', 'true');
   
   const now = new Date();
   const greeting = getGreeting(now.getHours());
@@ -440,34 +519,41 @@ function showMobileGreeting() {
   }, 3000);
 }
 
+/**
+ * Initializes the page by checking authentication, setting up UI,
+ * loading task data, and enabling interactive elements
+ * @async
+ */
 async function init() {
-    checkOrientation()
-  try {
-    console.log('Starting initialization...');
-    const currentUser = checkAuth();
-    console.log('User authenticated:', currentUser);
-
-    initializeUI(currentUser);
-    console.log('UI initialized');
-
-    const taskData = await loadAndUpdateTaskData();
-    console.log('Task data loaded:', taskData);
-
-    makeContainersClickable();
-    console.log('Initialization complete');
+    if (typeof checkOrientation === 'function') {
+        checkOrientation();
+    }
     
-    showMobileGreeting();
-  } catch (error) {
-    console.error('Initialization error:', error);
-    showNotification(error.message || 'Fehler beim Laden der Daten');
-  }
+    try {
+        console.log('Starting initialization...');
+        const currentUser = checkAuth();
+        console.log('User authenticated:', currentUser);
 
+        initializeUI(currentUser);
+        console.log('UI initialized');
+
+        const taskData = await loadAndUpdateTaskData();
+        console.log('Task data loaded:', taskData);
+
+        makeContainersClickable();
+        console.log('Initialization complete');
+        
+        showMobileGreeting();
+    } catch (error) {
+        console.error('Initialization error:', error);
+        showNotification(error.message || 'Fehler beim Laden der Daten');
+    }
 }
 
 window.addEventListener('resize', () => {
-  if (!document.querySelector('.fullscreen-greeting')) {
-    if (window.innerWidth < 1050) {
+    if (!document.querySelector('.fullscreen-greeting')) {
+        if (window.innerWidth < 1050) {
+            // Mobile-spezifischer Code hier
+        }
     }
-  }
 });
-
