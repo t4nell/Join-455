@@ -78,7 +78,7 @@ function setFlexEndForMobileLogin(mainSectionIndex) {
 
 
 function setFlexEndForMobileSignup(mainSectionIndex) {
-    if (window.innerHeight < 1170) {
+    if (window.innerHeight < 930) {
         mainSectionIndex.style.justifyContent = 'flex-end';
     } else {
         mainSectionIndex.style.justifyContent = 'center';

@@ -85,6 +85,12 @@
   }
 }
 
+@media screen and (max-height: 1030px) {
+    .input_login_container{
+        gap: 16px;
+    }
+}
+
 @media screen and (max-height: 990px) {
     .input_login_container {
         gap: 16px;
@@ -108,11 +114,7 @@
     }
 }
 
-@media screen and (max-height: 675px) {
-    .join_logo_img{
-        height: 240px;
-        width: 160px;
-    }
+@media screen and (max-height: 720px) {
     footer {
         margin-top: 20px;
         height: 50px;
@@ -120,7 +122,21 @@
     .main_section {
         height: calc(100% - 50px);
     }
-    .login_wrapper {
-        margin-bottom: 24px;
+}
+
+@media screen and (max-height: 690px) {
+    .signup_card input {
+        height: 40px;
     }
 }
+
+@media screen and (max-height: 675px) {
+    .join_logo_img{
+        height: 240px;
+        width: 160px;
+    }
+    .signup_login_mobile {
+        margin-top: 24px;
+    }
+}
+
