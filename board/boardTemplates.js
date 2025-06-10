@@ -9,7 +9,7 @@ function getTaskCard(task) {
   const progress = calculateSubtaskProgress(task);
   const categoryColor = getCategoryColor(task.category);
   return `
-    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
+    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" data-id="${task.id}" onclick="renderDetailTemplate('${task.id}')">
       <div class="task_card_header">
         <div class="task_category">
           <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
