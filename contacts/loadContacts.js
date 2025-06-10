@@ -19,12 +19,9 @@ async function loadContactData() {
   contactsArray = Object.entries(contactsRef).map(([id, contact]) => ({
     ...contact, id
   }));
-  console.log(contactsArray);
-  
 groupContacts(contactsArray);
 }
 
-loadTaskData()
 
 async function loadTaskData(){
   await fetchContactData("addTask");
@@ -32,14 +29,7 @@ async function loadTaskData(){
   tasksArray = Object.entries(tasksRef).map(([id, tasks]) => ({
     ...tasks, id
   }));
-  console.log(tasksArray);
 }
-
-
-
-
-
-
 
 function getRandomUserColor() {
     const randomColorNumber = Math.floor(Math.random() * 20) + 1;

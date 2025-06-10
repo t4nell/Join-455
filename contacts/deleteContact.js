@@ -1,11 +1,3 @@
-function deleteContact(contactId) {
-    // const delContact = contactId;
-    // console.log(delContact);
-
-    // deleteContactData('contact/' + delContact);
-    deleteContactAndUpdateTasks(contactId);
-}
-
 async function deleteContactData(path = '') {
     let response = await fetch(BASE_URL + path + '.json', {
         method: 'DELETE',

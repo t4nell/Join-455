@@ -39,11 +39,7 @@ function saveCurrentUserInfo(event){
       users = users.map(user => {
       if(user.email === currentUser.email){
         return{
-          ...user,
-          name: newName,
-          email: newEmail,
-          phone : newPhone 
-        };
+          ...user, name: newName, email: newEmail, phone : newPhone};
       }
     return user;
 });

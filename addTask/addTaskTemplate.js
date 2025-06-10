@@ -1,5 +1,4 @@
-function getSidebarTemplateMobile() {
-    const currentPage = window.location.pathname;
+function getSidebarTemplateMobile(currentPage) {
     return ` 
     <div class="sidebar_container">
             <nav class="sidebar_nav">

@@ -144,7 +144,7 @@ function getContactDetailsTemplate(contact) {
                 <button onclick="editContactOverlay(${contactsArray.indexOf(contact)})" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/edit.svg" alt="" /> Edit
                 </button>
-                <button onclick="deleteContact('${contact.id}')" class="contact_btn">
+                <button onclick="deleteContactAndUpdateTasks('${contact.id}')" class="contact_btn">
                   <img src="../assets/imgs/contactIcons/delete.svg" alt="" />
                   Delete
                 </button>
@@ -170,13 +170,13 @@ function getContactDetailsTemplate(contact) {
           <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event)"/>
               <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
                 <button onclick="editContactOverlay(${contactsArray.indexOf(contact)})" id="edit_btn"><img src="../assets/imgs/contactIcons/edit.svg" alt="" />Edit</button>
-                <button onclick="deleteContact('${contact.id}')" id="delete_btn"><img src="../assets/imgs/contactIcons/delete.svg" alt="" />Delete</button>
+                <button onclick="deleteContactAndUpdateTasks('${contact.id}')" id="delete_btn"><img src="../assets/imgs/contactIcons/delete.svg" alt="" />Delete</button>
               </div>
         </div>`;
 }
 
 function getNewContactOverlay() {
-  return  /*html*/`
+  return  `
   <div class="overlay_side_img">
   <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
   <div class="overlay_text_container">
@@ -317,7 +317,7 @@ function getEditContactOverlay(contact, index) {
           </div>
 
           <div class="overlay_edit_buttons">
-            <button type="button" onclick="deleteContact('${contact.id}')" class="delete_contact_btn">Delete</button>
+            <button type="button" onclick="deleteContactAndUpdateTasks('${contact.id}')" class="delete_contact_btn">Delete</button>
             <button type="submit" class="save_contact_btn">
               Save
               <img src="../assets/imgs/contactIcons/check.svg" alt="create contact button" />
@@ -331,7 +331,7 @@ function getEditContactOverlay(contact, index) {
 
 
 function getCurrentUserEditOverlay(currentUserInitials) {
-  return /*html*/ `
+  return `
     <div class="overlay_side_img">
       <img src="../assets/imgs/contactIcons/Capa_1.svg" alt="Join Logo" />
       <div class="overlay_text_container">
@@ -346,12 +346,10 @@ function getCurrentUserEditOverlay(currentUserInitials) {
       </div>
 
       <div class="contact_content_row">
-        <!-- Profilbild -->
         <div class="profile_icon_overlay contact_overlay_img" style="background-color:${currentUser.profileColor}">
           <span>${currentUserInitials}</span>
         </div>
 
-        <!-- Formular -->
         <form class="contact_form_fields" onsubmit="saveCurrentUserInfo(event);">
           <div class="contact_input_fields">
             <input

@@ -2,7 +2,6 @@ function createNewContact(event) {
     event.preventDefault();
     const contactData = collectContactData();
 
-    console.log(contactData.name);
     if (contactData) {
         postContactData('contact', contactData, contactData.email);
         return;
@@ -29,22 +28,6 @@ function collectContactData() {
         return;
     }
 }
-
-// async function postContactData(path = "", data = {}, email) {
-//   let response = await fetch(BASE_URL + path + ".json", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   });
-//   if (response.ok) {
-//     closeNewContactProcess(email)
-//     return (responseToJson = await response.json());
-//   } else {
-//     console.error("Error posting contact data:", response.statusText);
-//   }
-//   }
 
 async function postContactData(path = '', data = {}, email) {
     let response = await fetch(BASE_URL + path + '.json', {
