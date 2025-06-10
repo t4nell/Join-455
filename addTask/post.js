@@ -1,4 +1,4 @@
-console.log('----------------Funktion zum sammeln der Daten----------------------');
+BASE_URL;
 
 function collectTaskData(form) {
     const fd = new FormData(form);
@@ -14,12 +14,6 @@ function collectTaskData(form) {
         assignedTo[id] = {
             [fullName]: true,
         };
-
-        // assignedTo[id] = {
-        //     name: fullName,
-        //     assigned: true,
-        // };
-
         console.log(assignedTo[id]);
     });
 
@@ -43,29 +37,18 @@ function collectTaskData(form) {
     };
 }
 
-console.log('----------------Firebase POST Funktion----------------------');
-const BASE_URL_TWO = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-console.log('----------------Base url ist noch nicht richtig implementiert ?????----------------------');
-
 function postTask(taskData) {
-    console.log('Post Funktioniert');
-
-    // Deaktivieren DerPost Funktion
     postData('addTask', taskData);
-    // Deaktivieren DerPost Funktion
 }
 
 async function postData(path = '', data = {}) {
-    let response = await fetch(BASE_URL_TWO + path + '.json', {
+    let response = await fetch(BASE_URL + path + '.json', {
         method: 'POST',
-
         headers: {
             'Content-Type': 'application/json',
         },
-
         body: JSON.stringify(data),
     });
-
     return (responseToJson = await response.json());
 }
 

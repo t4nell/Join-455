@@ -110,7 +110,6 @@ function renderAllTaskCards(allTasks, status, container) {
         container.innerHTML = renderPlaceholder();
         return;
     }
-
     renderTasks(filteredTasks, container);
 }
 
@@ -134,6 +133,7 @@ function clearContainer(container) {
 function renderTasks(tasks, container) {
     tasks.forEach(task => {
         container.innerHTML += getTaskCard(task);
+        toggleSectionButton()
     });
 }
 
@@ -336,59 +336,17 @@ async function updateTaskStatus(taskId, status) {
 }
 
 /**
- * Creates HTML for a task card
+ * Checks the task object and returns its card HTML
  * @param {Object} task - The task object with all properties
- * @returns {string} HTML string for the task card
+ * @returns {string} HTML string for the task card or empty string if invalid
  */
 function getTaskCard(task) {
     if (!task) {
         console.error('Cannot create task card: task is undefined');
         return '';
     }
-    
-    return `
-        <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
-            <div class="task_card_content">
-                <h3 class="task_card_title">${task.title || 'No Title'}</h3>
-                <p class="task_card_description">${task.description || 'No Description'}</p>
-                <div class="task_card_footer">
-                    <span class="task_card_due_date">${task.dueDate || ''}</span>
-                    <span class="task_card_priority">${task.priority || ''}</span>
-                </div>
-            </div>
-        </div>
-    `;
-}
 
-/**
- * Creates the mobile sidebar HTML
- * @returns {string} HTML string for the mobile sidebar
- */
-function getSidebarTemplateMobile() {
-    const currentPage = window.location.pathname;
-    
-    return ` 
-    <div class="sidebar_container">  
-        <nav class="sidebar_nav">
-            <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-                <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
-                <span>Summary</span>
-            </a>
-            <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
-                <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
-                <span>Board</span>
-            </a>
-            <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
-                <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
-                <span>Add Task</span>
-            </a>
-            <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
-                <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
-                <span>Contacts</span>
-            </a>
-        </nav>
-    </div>
-    `;
+    return generateTaskCardHTML(task);
 }
 
 /**

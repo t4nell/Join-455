@@ -1,3 +1,4 @@
+
 const CATEGORY_COLORS = {
     'User Story': '#FF7A00',        // Orange
     'Technical Task': '#1FD7C1',    // Türkis
@@ -12,11 +13,24 @@ const CATEGORY_COLORS = {
     'Archived': '#787878'           // Grau
 };
 
-
 function getCategoryColor(category) {
     return CATEGORY_COLORS[category] || '#0052ff';
 };
 
+function toggleSectionButton() {
+    const sectionButtons = document.querySelectorAll('#section_button_container')
+    sectionButtons.forEach(button => {
+        if (window.innerWidth < 1345) {
+            button.style.display = 'flex'; 
+        }else {
+            button.style.display = 'none';
+        };
+    });
+};
+
+// function renderSwapStatusTemplate() {
+    
+// }
 
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';

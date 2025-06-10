@@ -9,9 +9,14 @@ function getTaskCard(task) {
   const progress = calculateSubtaskProgress(task);
   const categoryColor = getCategoryColor(task.category);
   return `
-    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" onclick="renderDetailTemplate('${task.id}')">
-      <div class="task_category">
-        <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
+    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" data-id="${task.id}" onclick="renderDetailTemplate('${task.id}')">
+      <div class="task_card_header">
+        <div class="task_category">
+          <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
+        </div>
+        <div id="section_button_container" style="display: none">
+          <button class="dark_btn_task_cart"><img src="../assets/imgs/boardIcons/swapButton.svg" alt="Swap Button Icon"/></button>
+        </div>
       </div>
       <div class="task_content">
           <h3 class="task_title">${task.title}</h3>
@@ -34,6 +39,57 @@ function getTaskCard(task) {
     </div>
   `
 };
+
+/**
+ * Creates the mobile sidebar HTML
+ * @returns {string} HTML string for the mobile sidebar
+ */
+function getSidebarTemplateMobile() {
+    const currentPage = window.location.pathname;
+    
+    return ` 
+    <div class="sidebar_container">  
+        <nav class="sidebar_nav">
+            <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
+                <span>Summary</span>
+            </a>
+            <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
+                <span>Board</span>
+            </a>
+            <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
+                <span>Add Task</span>
+            </a>
+            <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
+                <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
+                <span>Contacts</span>
+            </a>
+        </nav>
+    </div>
+    `;
+}
+
+/**
+ * Generates the HTML template for a task card
+ * @param {Object} task - The task object with all properties
+ * @returns {string} HTML string for the task card
+ */
+function generateTaskCardHTML(task) {
+    return `
+        <div class="task_card" draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}">
+            <div class="task_card_content">
+                <h3 class="task_card_title">${task.title || 'No Title'}</h3>
+                <p class="task_card_description">${task.description || 'No Description'}</p>
+                <div class="task_card_footer">
+                    <span class="task_card_due_date">${task.dueDate || ''}</span>
+                    <span class="task_card_priority">${task.priority || ''}</span>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 function getAvatarTemplate(contact) {
     return `
