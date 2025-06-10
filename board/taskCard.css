@@ -70,11 +70,10 @@
     justify-content: center;
     font-size: 18px;
     font-weight: 500;
-    background-color: var(--dark-button);
     color: var(--text-color-white-button);
     border-radius: 8px;
-    height: 25px;
     border: unset;
+    padding: 0;
 }
 
 .category_label {

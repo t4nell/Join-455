@@ -28,6 +28,10 @@ function toggleSectionButton() {
     });
 };
 
+function name(params) {
+    
+}
+
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
     const maxVisibleAvatars = 5;

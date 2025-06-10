@@ -15,7 +15,7 @@ function getTaskCard(task) {
           <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
         </div>
         <div id="section_button_container" style="display: none">
-          <button class="dark_btn_task_cart">-></button>
+          <button class="dark_btn_task_cart"><img src="../assets/imgs/boardIcons/swapButton.svg" alt="Swap Button Icon"/></button>
         </div>
       </div>
       <div class="task_content">
