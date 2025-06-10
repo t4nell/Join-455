@@ -69,7 +69,7 @@ function toggleLoginSignupDisplay(signupLoginDiv, mobileSignup) {
 
 
 function setFlexEndForMobileLogin(mainSectionIndex) {
-    if (window.innerHeight < 990) {
+    if (window.innerHeight < 880) {
         mainSectionIndex.style.justifyContent = 'flex-end';
     } else {
         mainSectionIndex.style.justifyContent = 'center';
