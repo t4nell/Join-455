@@ -76,7 +76,6 @@ function confirmSubtaskBtn() {
     const newTagCon = document.getElementById('new_tag_container');
     if (value) {
         tagCounter++;
-
         const tagId = `tag_field_${tagCounter}`;
         const tagInputId = `new_tag_input_${tagCounter}`;
         const tagBtnConId = `new_tag_btn_container_${tagCounter}`;
@@ -91,7 +90,6 @@ function newTagCheckValue(event, tagBtnConId, tagInputId, tagId) {
     event.preventDefault();
     const input = document.getElementById(tagInputId);
     const value = input.value.trim();
-
     if (value !== '') {
         allowBlur = true;
         newTagDefaultBtns(tagBtnConId, tagInputId, tagId);
@@ -105,7 +103,6 @@ function disableEditing(tagInputId) {
     const input = document.getElementById(tagInputId);
     if (!input) return;
     const value = input.value.trim();
-
     if (!allowBlur && value === '') {
         input.focus();
         input.placeholder = 'Please fill or Remove';

@@ -1,5 +1,5 @@
 const loginContainer = document.getElementById("login_container");
-
+const mainSectionIndex = document.getElementById('main_section_index');
 
 function init() {
     checkOrientation()
@@ -32,6 +32,7 @@ function renderLogin() {
     setTimeout(() => {
         loginContainer.innerHTML = getLoginSignupTemplate();
         loginContainer.style.display = 'flex';
+        setFlexEndForMobileLogin(mainSectionIndex)
         checkScreenSize();
         document.querySelector('.guest_login_btn').addEventListener('click', handleGuestLogin);
     }, 3000);
@@ -43,17 +44,16 @@ function toggleLoginSignup() {
     const mobileSignup = document.getElementById("signup_login_mobile");
     const loginCard = document.querySelector('.login_card');
     const signupCard = document.querySelector('.signup_card');
-    const mainSectionIndex = document.getElementById('main_section_index');
     if (loginCard && signupCard) {
         loginCard.classList.toggle('d_none');
         signupCard.classList.toggle('d_none');
         if (loginCard.classList.contains('d_none')) {
             signupLoginDiv.style.display = 'none';
             mobileSignup.style.display = 'none';
-            setFlexEndForMobile(mainSectionIndex);
+            setFlexEndForMobileSignup(mainSectionIndex);
         } else {
             toggleLoginSignupDisplay(signupLoginDiv, mobileSignup);
-            mainSectionIndex.style.justifyContent = 'center';
+            setFlexEndForMobileLogin(mainSectionIndex)
         };
     };
 };
@@ -68,8 +68,19 @@ function toggleLoginSignupDisplay(signupLoginDiv, mobileSignup) {
 };
 
 
-function setFlexEndForMobile(mainSectionIndex) {
-    if (window.innerHeight < 1170) {
+function setFlexEndForMobileLogin(mainSectionIndex) {
+    if (window.innerHeight < 880) {
         mainSectionIndex.style.justifyContent = 'flex-end';
+    } else {
+        mainSectionIndex.style.justifyContent = 'center';
+    };
+};
+
+
+function setFlexEndForMobileSignup(mainSectionIndex) {
+    if (window.innerHeight < 930) {
+        mainSectionIndex.style.justifyContent = 'flex-end';
+    } else {
+        mainSectionIndex.style.justifyContent = 'center';
     };
 };

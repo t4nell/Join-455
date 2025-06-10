@@ -1,40 +1,51 @@
-function renderSidebar() {
+async function init() {
+    renderTask();
+    checkOrientation();
+    initSidebar();
+    loadContactData();
+    renderCategories();
+    renderHeader();
+    updateUserProfile();
+}
+
+function renderTask() {
+    const taskContainer = document.getElementById('add_task_container');
+    taskContainer.innerHTML = renderTaskTemplate();
+    datePicker('#due_date');
+}
+
+function renderSidebarDesktop() {
     const mainContainer = document.getElementById('navbar_container');
     const navContainer = document.getElementById('sidebar_container');
     const navbarMobileContainer = document.getElementById('navbar_mobile_container');
 
-    function renderSidebarDesktop() {
-        navbarMobileContainer.innerHTML = '';
-        mainContainer.innerHTML = getSidebarTemplate();
-        navContainer.style.display = 'block';
-    }
+    navbarMobileContainer.innerHTML = '';
+    mainContainer.innerHTML = getSidebarTemplate();
+    navContainer.style.display = 'block';
+}
 
-    function renderSidebarMobile() {
-        mainContainer.innerHTML = '';
-        navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
-        navContainer.style.display = 'none';
-    }
+function renderSidebarMobile() {
+    const mainContainer = document.getElementById('navbar_container');
+    const navContainer = document.getElementById('sidebar_container');
+    const navbarMobileContainer = document.getElementById('navbar_mobile_container');
 
-    function proofSize() {
-        const width = window.innerWidth;
-        if (width < 1051) {
-            renderSidebarMobile();
-        } else {
-            renderSidebarDesktop();
-        }
-    }
+    mainContainer.innerHTML = '';
+    navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
+    navContainer.style.display = 'none';
+}
 
+function initSidebar() {
     window.addEventListener('resize', proofSize);
     proofSize();
 }
 
-function init() {
-    checkOrientation()
-    renderSidebar();
-    loadContactData();
-    renderCategories();
-    renderHeader();
-    datePicker('#due_date');
+function proofSize() {
+    const width = window.innerWidth;
+    if (width < 1051) {
+        renderSidebarMobile();
+    } else {
+        renderSidebarDesktop();
+    }
 }
 
 function datePicker(selectedDate) {

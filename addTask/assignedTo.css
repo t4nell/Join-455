@@ -203,3 +203,7 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
 }
 
+.dropdown_toggle::placeholder {
+    color: black;
+}
+

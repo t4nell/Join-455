@@ -1,3 +1,13 @@
+* {
+    font-size: 100%;
+}
+
+@media screen and (max-width: 1300px) {
+    html {
+        font-size: 93.75%;
+    }
+}
+
 @media (max-width: 1200px) {
     #add_task_container {
         width: calc(100% - 180px);
@@ -22,14 +32,6 @@
 }
 
 @media (max-width: 1050px) {
-    main {
-        font-size: 16px;
-    }
-
-    * {
-        font-size: 16px;
-    }
-
     header {
         background-color: var(--background-color-header);
         width: 100%;

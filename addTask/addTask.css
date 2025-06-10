@@ -174,7 +174,7 @@ main {
     gap: 8px;
     background-color: white;
     color: #2a3647;
-    border: 2px solid #ccc;
+    border: 2px solid transparent;
     border-radius: 8px;
     padding: 12px 24px;
     font-size: 20px;

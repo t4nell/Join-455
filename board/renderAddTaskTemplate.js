@@ -1,62 +1,23 @@
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../styles/allSites.css" />
-        <link rel="stylesheet" href="../styles/buttons.css" />
-        <link rel="stylesheet" href="../styles/inputIcons.css" />
-        <link rel="stylesheet" href="../styles/font.css" />
-        <link rel="stylesheet" href="../styles/standard.css" />
-        <link rel="stylesheet" href="../addTask/assignedTo.css" />
-        <link rel="stylesheet" href="../addTask/category.css" />
-        <link rel="stylesheet" href="../addTask/subtask.css" />
-        <link rel="stylesheet" href="../addTask/priority.css" />
-        <link rel="stylesheet" href="./errorMassages.css" />
-        <link rel="stylesheet" href="./addTask.css" />
-        <link rel="stylesheet" href="./addTaskMediaQueries.css" />
-        <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
-        <link rel="stylesheet" href="../styles/landscape.css" defer />
+function openOverlay() {
+    const overlay = document.getElementById('overlay');
+    overlay.classList.remove('d-none');
+    renderTask();
+}
 
-        <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css"
-            defer />
+function closeOverlay() {
+    const overlay = document.getElementById('overlay');
+    overlay.classList.add('d-none');
+}
 
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
-        <script src="../scripts/userProfil.js" defer></script>
-        <script src="../scripts/templates.js" defer></script>
-        <script src="./addTaskTemplate.js" defer></script>
-        <script src="./categoryDb.js" defer></script>
-        <script src="./categoryTemplate.js" defer></script>
-        <script src="./assignedToTemplate.js" defer></script>
-        <script src="./subtaskTemplate.js" defer></script>
-        <script src="./addTask.js" defer></script>
-        <script src="./assignedTo.js" defer></script>
-        <script src="./category.js" defer></script>
-        <script src="./priority.js" defer></script>
-        <script src="./fetch.js" defer></script>
-        <script src="./post.js" defer></script>
-        <script src="./subtask.js" defer></script>
-        <script src="../scripts/landscape.js"></script>
+function renderTask() {
+    const taskContainer = document.getElementById('add_task_container_board');
+    taskContainer.innerHTML = renderTaskTemplate();
+}
 
-        <title>Join</title>
-    </head>
-    <body onload="init(); ;" onclick="closeDropdown(event)">
-        <main id="main_container">
-            <div id="header_container"></div>
-            <div class="sidebar_container" id="sidebar_container">
-                <div class="sidebar_img_container">
-                    <a class="sidebar_join_logo" href="../index.html"
-                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"
-                    /></a>
-                    <div id="navbar_container"></div>
-                </div>
-            </div>
-            <div id="add_task_container">
-                <!-- <div class="title_head">
+function renderTaskTemplate() {
+    return `
+        <div class="title_head">
+        <button class="close_button" onclick="closeOverlay()">Close</button>
                     <h2>Add Task</h2>
                 </div>
                 <form id="add_task_form" class="main_section">
@@ -195,7 +156,7 @@
                                         placeholder="Select task category"
                                         readonly
                                         required
-                                        onclick="toggleDropdownCategory(event)" />
+                                        onclick="toggleDropdownCategory(event); closeCategoryDropdown(event)" />
                                     <span class="category_arrow_bg_hover_color">
                                         <span class="arrow"></span>
                                     </span>
@@ -285,8 +246,7 @@
                         "Please rotate your device to portrait mode for a better experience."
                     </div>
                 </div>
-            </div> -->
-        </main>
-    </body>
-</html>
+            </div>
+    `;
+}
 

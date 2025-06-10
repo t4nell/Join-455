@@ -112,3 +112,6 @@
     background-color: skyblue;
 }
 
+.category_dropdown_toggle::placeholder {
+    color: black;
+}

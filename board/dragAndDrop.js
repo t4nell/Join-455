@@ -9,7 +9,7 @@ allTasks = window.allTasks || [];
  */
 function getDraggedElement(event) {
     return event.target.closest('.task_card');
-}
+};
 
 /**
  * Allows dropping by preventing the default behavior and adding a placeholder
@@ -27,7 +27,7 @@ function allowDrop(event) {
     if (dimensions.width && dimensions.height) {
         createAndInsertPlaceholder(dropzone, dimensions, event);
     }
-}
+};
 
 /**
  * Gets the dimensions of the card currently being dragged
@@ -36,7 +36,7 @@ function allowDrop(event) {
 function getCardDimensions() {
     const dimensionsString = sessionStorage.getItem('draggedElementDimensions') || '{}';
     return JSON.parse(dimensionsString);
-}
+};
 
 /**
  * Creates a placeholder and inserts it at the right position based on mouse location
@@ -54,7 +54,7 @@ function createAndInsertPlaceholder(dropzone, dimensions, event) {
     const mousePosition = mouseY - rect.top;
     
     insertPlaceholderAtPosition(dropzone, placeholder, mousePosition);
-}
+};
 
 /**
  * Starts the dragging process for a task
@@ -71,7 +71,7 @@ function startDragging(event, taskId) {
     draggedElement.classList.add('dragging');
     
     saveCardDimensions(draggedElement);
-}
+};
 
 /**
  * Saves the dimensions of a card to session storage
@@ -84,7 +84,7 @@ function saveCardDimensions(element) {
     };
     
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
-}
+};
 
 /**
  * Handles when a task is dropped into a column
@@ -105,7 +105,7 @@ function handleDrop(event) {
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
     }
-}
+};
 
 /**
  * Removes visual effects and stored data after drop
@@ -134,7 +134,7 @@ function getColumnStatus(dropzone) {
     };
     
     return statusMap[dropzone.id];
-}
+};
 
 /**
  * Updates a task's status in the database
@@ -155,7 +155,7 @@ async function updateTaskStatus(taskId, status) {
     } catch (error) {
         console.error('Error updating task status:', error);
     }
-}
+};
 
 /**
  * Gets a task from the database by ID
@@ -165,7 +165,7 @@ async function updateTaskStatus(taskId, status) {
 async function getTaskFromDatabase(taskId) {
     const response = await fetch(`${BASE_URL}addTask/${taskId}.json`);
     return await response.json();
-}
+};
 
 /**
  * Saves a task with its new status to the database
@@ -184,7 +184,7 @@ async function saveTaskWithNewStatus(taskId, existingTask, newStatus) {
             'Content-Type': 'application/json'
         }
     });
-}
+};
 
 /**
  * Moves a task to a new column by updating its status
@@ -207,7 +207,7 @@ async function moveTo(taskId, targetStatus) {
     await updateTaskStatus(taskId, targetStatus);
     
     renderColumns();
-}
+};
 
 /**
  * Finds the index of a task in the allTasks array
@@ -218,7 +218,7 @@ function findTaskIndex(taskId) {
     return allTasks.findIndex(task => 
         String(task.id) === String(taskId)
     );
-}
+};
 
 /**
  * Sets up all drag areas with event handlers
@@ -239,7 +239,7 @@ function setupDragAreas() {
     });
     
     document.addEventListener('dragend', handleDragEnd);
-}
+};
 
 /**
  * Sets up the drag and drop system
@@ -248,7 +248,7 @@ function setupDragAreas() {
 function initDragAndDrop() {
     setupDragAreas();
     return Promise.resolve();
-}
+};
 
 /**
  * Template: Shows correct sidebar depending on screen size.
@@ -273,7 +273,7 @@ function setupResponsiveSidebar(breakpoint, desktopContainerId, sidebarId, mobil
 
     window.addEventListener('resize', updateSidebar);
     updateSidebar();
-}
+};
 
 
 /**
@@ -287,7 +287,7 @@ function setupPlaceholderEvents(placeholder) {
     };
     
     placeholder.ondrop = handlePlaceholderDrop;
-}
+};
 
 /**
  * Handles drops directly onto a placeholder
@@ -327,7 +327,7 @@ function insertPlaceholderAtPosition(dropzone, placeholder, mouseY) {
     const insertPosition = findInsertPosition(items, mouseY, dropzone);
     
     insertPlaceholder(dropzone, placeholder, items, insertPosition);
-}
+};
 
 /**
  * Gets all items in a container except placeholders
@@ -338,7 +338,7 @@ function getNonPlaceholderItems(container) {
     return Array.from(container.children).filter(child => 
         !child.classList.contains('drag_area_placeholder')
     );
-}
+};
 
 /**
  * Finds where to insert the placeholder based on mouse position
@@ -366,7 +366,7 @@ function findInsertPosition(items, mouseY, dropzone) {
     }
     
     return insertPosition;
-}
+};
 
 /**
  * Inserts a placeholder at a specific position
@@ -381,7 +381,7 @@ function insertPlaceholder(dropzone, placeholder, items, position) {
     } else {
         dropzone.insertBefore(placeholder, items[position]);
     }
-}
+};
 
 /**
  * Removes all placeholder elements from the page
@@ -390,7 +390,7 @@ function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
         placeholder.remove();
     });
-}
+};
 
 /**
  * Handles the end of a drag operation
@@ -398,4 +398,4 @@ function removePlaceholders() {
  */
 function handleDragEnd(event) {
     cleanupAfterDrop();
-}
+};
