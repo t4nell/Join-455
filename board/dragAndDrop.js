@@ -47,6 +47,8 @@ function getCardDimensions() {
 function createAndInsertPlaceholder(dropzone, dimensions, event) {
     const placeholder = createPlaceholder(dimensions);
     
+    setupPlaceholderEvents(placeholder);
+    
     const mouseY = event.clientY;
     const rect = dropzone.getBoundingClientRect();
     const mousePosition = mouseY - rect.top;
