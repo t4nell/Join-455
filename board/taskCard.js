@@ -28,9 +28,9 @@ function toggleSectionButton() {
     });
 };
 
-function name(params) {
+// function renderSwapStatusTemplate() {
     
-}
+// }
 
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
