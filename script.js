@@ -18,6 +18,7 @@ function checkLoggedInUser() {
 function checkScreenSize() {
     const desktopSignup = document.getElementById("signup_login_desktop");
     const mobileSignup = document.getElementById("signup_login_mobile");
+    const loginCard = document.getElementById('loginCard');
     if (window.innerWidth > 660) {
         desktopSignup.style.display = "flex";
         mobileSignup.style.display = "none";
@@ -25,6 +26,10 @@ function checkScreenSize() {
         desktopSignup.style.display = "none"; 
         mobileSignup.style.display = "flex";
     };
+    if (loginCard.classList.contains('d_none')) {
+        desktopSignup.style.display = "none";
+        mobileSignup.style.display = "none";
+    }
     window.addEventListener('resize', checkScreenSize);
 };
 

@@ -15,17 +15,8 @@ async function contactInit() {
     updateUserProfile();
     loadCurrentUser();
     await loadContactData();
-    // groupContacts();
 }
 
-//kontakte fetchen
-//kontakte nach name sortieren
-//kontakte in array speichern
-//kontakte in html rendern
-
-// function renderSidebar() {
-//   mainContainer.innerHTML += getSidebarTemplate();
-// }
 
 function toggleOverlayNewContact() {
     popup.classList.toggle('closed');
@@ -57,7 +48,6 @@ function editContactOverlay(contactIndex) {
     overlay.classList.remove('fade_out');
     editContactPopup.classList.remove('closed');
 
-    // const clickedContact = event.currentTarget
     const contact = contactsArray[contactIndex];
     editContactPopup.innerHTML = getEditContactOverlay(contact, contactIndex);
     console.log(contact);
@@ -90,7 +80,6 @@ function closeContactMenuOnClickOutside(event) {
     }
 }
 
-console.log('----------------Mobile SideBar Template----------------------');
 
 function getSidebarTemplateMobile() {
     const currentPage = window.location.pathname;
