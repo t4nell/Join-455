@@ -85,7 +85,7 @@
   }
 }
 
-@media screen and (max-height: 800px) {
+@media screen and (max-height: 990px) {
     .input_login_container {
         gap: 16px;
         margin-bottom: 24px;
