@@ -1,3 +1,13 @@
+async function init() {
+    checkOrientation();
+    renderSidebar();
+    loadContactData();
+    renderCategories();
+    renderHeader();
+    datePicker('#due_date');
+    updateUserProfile();
+}
+
 function renderSidebar() {
     const mainContainer = document.getElementById('navbar_container');
     const navContainer = document.getElementById('sidebar_container');
@@ -26,15 +36,6 @@ function renderSidebar() {
 
     window.addEventListener('resize', proofSize);
     proofSize();
-}
-
-function init() {
-    checkOrientation()
-    renderSidebar();
-    loadContactData();
-    renderCategories();
-    renderHeader();
-    datePicker('#due_date');
 }
 
 function datePicker(selectedDate) {
