@@ -17,7 +17,7 @@ function renderTask() {
 function renderTaskTemplate() {
     return `
         <div class="title_head">
-        <button onclick="closeOverlay()">Close</button>
+        <button class="close_button" onclick="closeOverlay()">Close</button>
                     <h2>Add Task</h2>
                 </div>
                 <form id="add_task_form" class="main_section">
