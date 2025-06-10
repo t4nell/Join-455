@@ -1,7 +1,16 @@
 /**
+ * @fileoverview UI-related functions for the summary page
+ */
+
+/**
  * @constant {HTMLElement} greetingContainer - Container for the greeting message
  */
 const greetingContainer = document.getElementById('summary_greating_container');
+
+/**
+ * @constant {HTMLElement} headerContainer - Container for the header
+ */
+const headerContainer = document.getElementById('header_container');
 
 /**
  * @constant {HTMLElement} mainContainer - Container for the navigation bar
@@ -9,9 +18,14 @@ const greetingContainer = document.getElementById('summary_greating_container');
 const mainContainer = document.getElementById('navbar_container');
 
 /**
- * @constant {HTMLElement} headerContainer - Container for the header
+ * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
  */
-const headerContainer = document.getElementById('header_container');
+const STATUS_MAPPINGS = {
+    todo: ['todo'],
+    done: ['done'],
+    inProgress: ['inprogress', 'in progress'],
+    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
+};
 
 /**
  * Returns appropriate greeting based on time of day
@@ -30,6 +44,7 @@ function getGreeting(hours) {
 
 /**
  * Updates the greeting with current user's name
+ * Uses getGreeting function to determine appropriate greeting based on time of day
  * @returns {void}
  */
 function updateGreeting() {
@@ -177,6 +192,9 @@ function navigateToBoard() {
 
 /**
  * Makes all summary containers clickable
+ * Uses IDs from getClickableContainerIds() to find elements and make them clickable
+ * @see getClickableContainerIds
+ * @returns {void}
  */
 function makeContainersClickable() {
     getClickableContainerIds().forEach((containerId) => {
@@ -186,22 +204,25 @@ function makeContainersClickable() {
 }
 
 /**
- * Renders the sidebar using template
- */
-function renderSidebar() {
-    mainContainer.innerHTML = getSidebarTemplate();
-}
-
-/**
  * Renders the header using template
+ * @returns {void}
  */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
 }
 
 /**
+ * Renders the sidebar using template
+ * @returns {void}
+ */
+function renderSidebar() {
+    mainContainer.innerHTML = getSidebarTemplate();
+}
+
+/**
  * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
- * Only shown on first visit per session
+ * Only shown on first visit per session and only on mobile devices (width < 1050px)
+ * @returns {void}
  */
 function showMobileGreeting() {
   const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');

@@ -4,45 +4,11 @@
 const mainContainer = document.getElementById('navbar_container');
 
 /**
- * @constant {HTMLElement} greetingContainer - Container for the greeting message
- */
-const greetingContainer = document.getElementById('summary_greating_container');
-
-/**
- * @constant {HTMLElement} headerContainer - Container for the header
+ * @constant {HTMLElement} headerContainer - Container for the page header
  */
 const headerContainer = document.getElementById('header_container');
 
-/**
- * Returns appropriate greeting based on time of day
- * @param {number} hours - Current hour (0-23)
- * @returns {string} Appropriate greeting message
- */
-function getGreeting(hours) {
-    if (hours >= 0 && hours < 10) {
-        return 'Guten Morgen';
-    } else if (hours >= 10 && hours < 19) {
-        return 'Guten Tag';
-    } else {
-        return 'Guten Abend';
-    }
-}
-
-/**
- * Updates the greeting with current user's name
- * @returns {void}
- */
-function updateGreeting() {
-    const now = new Date();
-    const greeting = getGreeting(now.getHours());
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const userName = currentUser?.name || 'Gast';
-
-    greetingContainer.innerHTML = `
-        <h1>${greeting},</h1>
-        <h2>${userName}</h2>
-    `;
-}
+const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
  * checks if a user is authenticated
@@ -53,7 +19,7 @@ function checkAuth() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
         window.location.href = '../index.html';
-        throw new Error('Unauthenticated'); // abourt further execution
+        throw new Error('Unauthenticated');
     }
     return currentUser;
 }
@@ -87,10 +53,7 @@ async function loadAndUpdateTaskData() {
         const tasks = transformTaskData(rawData);
         const activeTasks = filterActiveTasks(tasks);
 
-        console.log('Fetched tasks:', activeTasks);
-
         if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
-            console.warn('No tasks found or invalid data structure');
             return {
                 todo: 0,
                 done: 0,
@@ -102,17 +65,13 @@ async function loadAndUpdateTaskData() {
         }
 
         const stats = calculateTaskStats(activeTasks);
-        console.log('Calculated stats:', stats);
         updateSummaryUI(stats);
         return stats;
     } catch (error) {
-        console.error('Error in loadAndUpdateTaskData:', error);
         showNotification('Fehler beim Laden der Aufgaben');
         throw error;
     }
 }
-
-const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
  * Gets the current user from localStorage
@@ -129,14 +88,11 @@ function getCurrentUser() {
  * @throws {Error} If network request fails
  */
 async function fetchTaskData() {
-    console.log('Fetching from:', `${BASE_URL}addTask.json`);
     const response = await fetch(`${BASE_URL}addTask.json`);
     if (!response.ok) {
-        console.error('Fetch failed:', response.status, response.statusText);
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    console.log('Fetched data:', data);
     return data;
 }
 
@@ -266,33 +222,20 @@ function analyzeUrgentTasks(tasks) {
     };
 }
 
-function logTaskDebugInfo(tasks) {
-    console.log('Alle Task-Status vor der Verarbeitung:');
-    tasks.forEach((task) => {
-        console.log(
-            `Task "${task.title}": ` +
-                `Original Status = "${task.status}", ` +
-                `Normalisiert = "${normalizeTaskStatus(task.status)}"`
-        );
-    });
-}
-
 /**
  * calculates statistics from an array of task objects
  * @param {Array<Object>} tasks - Array of task objects
  * @param {string} tasks[].status - Status of the Task
- * @param {string} tasks[].priority - Prioryty of the Task
+ * @param {string} tasks[].priority - Priority of the Task (korrigiert von "Prioryty")
  * @param {string} tasks[].dueDate - Due date of the Task
  * @returns {Object} calculated statistics
- * @property {number} todo - caount of tasks to do
+ * @property {number} todo - count of tasks to do (korrigiert von "caount")
  * @property {number} done - count of tasks done
  * @property {number} inProgress - count of tasks in progress
  * @property {number} urgent - count of urgent tasks
  * @property {string|null} upcomingDeadline - deadline of the next urgent task
  */
 function calculateTaskStats(tasks) {
-    logTaskDebugInfo(tasks);
-
     const statusCounts = countStatusOccurrences(tasks);
     const { urgentCount, nextUrgent } = analyzeUrgentTasks(tasks);
 
@@ -304,7 +247,6 @@ function calculateTaskStats(tasks) {
         totalTasks: tasks.length,
     };
 
-    console.log('Finale Statistiken:', stats);
     return stats;
 }
 
@@ -530,22 +472,12 @@ async function init() {
     }
     
     try {
-        console.log('Starting initialization...');
         const currentUser = checkAuth();
-        console.log('User authenticated:', currentUser);
-
         initializeUI(currentUser);
-        console.log('UI initialized');
-
         const taskData = await loadAndUpdateTaskData();
-        console.log('Task data loaded:', taskData);
-
         makeContainersClickable();
-        console.log('Initialization complete');
-        
         showMobileGreeting();
     } catch (error) {
-        console.error('Initialization error:', error);
         showNotification(error.message || 'Fehler beim Laden der Daten');
     }
 }
@@ -553,7 +485,16 @@ async function init() {
 window.addEventListener('resize', () => {
     if (!document.querySelector('.fullscreen-greeting')) {
         if (window.innerWidth < 1050) {
-            // Mobile-spezifischer Code hier
         }
     }
 });
+
+/**
+ * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
+ */
+const STATUS_MAPPINGS = {
+    todo: ['todo'],
+    done: ['done'],
+    inProgress: ['inprogress', 'in progress'],
+    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
+};
