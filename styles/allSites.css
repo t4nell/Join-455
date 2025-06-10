@@ -68,6 +68,8 @@
     --profile-color-20: #6E52FF;
 }
 
+
+
 body {
     display: flex;
     justify-content: center;
@@ -310,6 +312,7 @@ header span{
     width: 130px;
     height: 48px;
     font-size: 16px;
+    padding-left: 16px;
 }
 
 .user_dropdown_menu a:hover {
@@ -355,4 +358,9 @@ header span{
 
 .help_mobile{
     display: none !important;
+}
+
+.no_scroll{
+    overflow: hidden;
+    
 }
