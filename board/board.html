@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="../addTask/subtask.css" />
         <link rel="stylesheet" href="./editTaskTemplate.css" />
         <link rel="stylesheet" href="./boardResponsive.css" />
-        <link rel="stylesheet" href="../styles/landscape.css">
+        <link rel="stylesheet" href="./boardAddTask.css" />
+        <link rel="stylesheet" href="../styles/landscape.css" />
 
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
 
@@ -24,7 +25,7 @@
 
         <script src="./board.js" defer></script>
         <script src="./search.js" defer></script>
-        <script src="./renderAddTaskTemolate.js" defer></script>
+        <script src="./renderAddTaskTemplate.js" defer></script>
         <script src="../scripts/templates.js" defer></script>
         <script src="./boardTemplates.js" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
@@ -45,7 +46,7 @@
             <div class="sidebar_container" id="sidebar_container">
                 <div class="sidebar_img_container">
                     <a class="sidebar_join_logo" href="../index.html"
-                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo"/>
+                        ><img src="../assets/imgs/joinLogoLight.svg" alt="Join Logo" />
                     </a>
                     <div id="navbar_container"></div>
                 </div>
@@ -60,14 +61,13 @@
             <div class="board_container">
                 <div class="board_content_top">
                     <div class="board_controls_container">
-
                         <div class="headline_container">
                             <h2>Board</h2>
                         </div>
 
                         <div class="search_container_style">
                             <div id="search_container" class="search_container">
-                                <div style="width: 100%;">
+                                <div style="width: 100%">
                                     <input
                                         id="search_input"
                                         class="input_base_style"
@@ -83,21 +83,18 @@
                                         <img src="../assets/imgs/boardIcons/search.svg" alt="Lupe" />
                                     </button>
                                 </div>
-
                             </div>
                             <span id="no_find_task_mesage" style="display: none; color: brown">"find no task"</span>
                         </div>
 
-                        <button class="dark_btn">
+                        <button class="dark_btn" onclick="openOverlay()">
                             <p class="button_text">Add Task</p>
                             <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
                         </button>
-
                     </div>
                 </div>
 
                 <div class="board_content_bottom">
-
                     <div class="drag_and_drop_container">
                         <div class="category">
                             <span>To do</span>
@@ -111,8 +108,7 @@
                             class="drag_area"
                             status="todo"
                             ondrop="handleDrop(event, moveTo)"
-                            ondragover="allowDrop(event)">
-                        </div>
+                            ondragover="allowDrop(event)"></div>
                     </div>
 
                     <div class="drag_and_drop_container">
@@ -159,39 +155,22 @@
                 </div>
             </div>
             <div class="navbar_mobile_container_style" id="navbar_mobile_container"></div>
-                  <div id="landscape_wrapper">
-        <div id="landscape_modal" class="landscape_modal d_none">
-          <div class="landscape_modal_content">
-            <svg
-              viewBox="0 0 100 200"
-              class="phone"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                x="10"
-                y="10"
-                width="80"
-                height="180"
-                rx="15"
-                ry="15"
-                fill="#333"
-              />
-              <circle cx="50" cy="180" r="5" fill="#aaa" />
-              <rect
-                x="35"
-                y="20"
-                width="30"
-                height="10"
-                rx="2"
-                ry="2"
-                fill="#666"
-              />
-            </svg>
-            "Please rotate your device to portrait mode for a better
-            experience."
-          </div>
-        </div>
-      </div>
+            <div id="landscape_wrapper">
+                <div id="landscape_modal" class="landscape_modal d_none">
+                    <div class="landscape_modal_content">
+                        <svg viewBox="0 0 100 200" class="phone" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="80" height="180" rx="15" ry="15" fill="#333" />
+                            <circle cx="50" cy="180" r="5" fill="#aaa" />
+                            <rect x="35" y="20" width="30" height="10" rx="2" ry="2" fill="#666" />
+                        </svg>
+                        "Please rotate your device to portrait mode for a better experience."
+                    </div>
+                </div>
+            </div>
+            <div id="overlay" class="overlay d-none">
+                <div class="overlay-content" id="add_task_container_board"></div>
+            </div>
         </main>
     </body>
 </html>
+
