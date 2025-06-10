@@ -110,7 +110,6 @@ function renderAllTaskCards(allTasks, status, container) {
         container.innerHTML = renderPlaceholder();
         return;
     }
-
     renderTasks(filteredTasks, container);
 }
 
@@ -134,6 +133,7 @@ function clearContainer(container) {
 function renderTasks(tasks, container) {
     tasks.forEach(task => {
         container.innerHTML += getTaskCard(task);
+        toggleSectionButton()
     });
 }
 
