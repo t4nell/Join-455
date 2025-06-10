@@ -14,7 +14,7 @@
 
 .overlay-content {
     background: white;
-    padding: 2rem;
+    padding: 32px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     text-align: center;
