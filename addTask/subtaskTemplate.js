@@ -31,7 +31,7 @@ function getBtnsTemplate() {
 
 function newTagTrashDoneBtnTemplate(tagBtnConId, tagInputId, tagId) {
     return ` 
-    <div class="btns_position_two">
+    <div class="btns_position_done_trash">
             <button class="edit_text_btn" onclick="trashBtn('${tagId}')">
                 <img class="subtasks_icon" id="" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon" />
             </button>
