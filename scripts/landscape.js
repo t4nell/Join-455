@@ -1,7 +1,7 @@
-function checkOrientation(){
-    window.addEventListener("resize", checkOrientation);
+function checkOrientation() {
+    window.addEventListener('resize', checkOrientation);
     const isProbablyMobile = window.innerWidth <= 940;
-    const isLandscape = window.matchMedia("(orientation: landscape)").matches;
+    const isLandscape = window.matchMedia('(orientation: landscape)').matches;
     const landscapeWrapper = document.getElementById('landscape_modal');
     const body = document.body;
     if (isLandscape && isProbablyMobile) {
@@ -12,8 +12,4 @@ function checkOrientation(){
         body.classList.remove('no_scroll');
     }
 }
-
-
-
-
 
