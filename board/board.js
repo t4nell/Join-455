@@ -359,13 +359,13 @@ function renderSidebar() {
     const side = document.getElementById('sidebar_container');
     const mobile = document.getElementById('navbar_mobile_container');
 
-    function updateSidebar() {
-        const isMobile = window.innerWidth < 1050;
-        main.innerHTML = isMobile ? '' : getSidebarTemplate();
-        mobile.innerHTML = isMobile ? getSidebarTemplateMobile() : '';
-        side.style.display = isMobile ? 'none' : 'block';
-    }
-
     window.addEventListener('resize', updateSidebar);
-    updateSidebar(); // Show correct sidebar at first load
+    updateSidebar(main, side, mobile); // Show correct sidebar at first load
+}
+
+function updateSidebar(main, side, mobile) {
+    const isMobile = window.innerWidth < 1050;
+    main.innerHTML = isMobile ? '' : getSidebarTemplate();
+    mobile.innerHTML = isMobile ? getSidebarTemplateMobile() : '';
+    side.style.display = isMobile ? 'none' : 'block';
 }
