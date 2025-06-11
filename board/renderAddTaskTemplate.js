@@ -20,7 +20,11 @@ function renderTaskTemplate() {
 
         <div class="title_head">
             <h2>Add Task</h2>
-            <button class="close_button" onclick="closeOverlay()">Close</button>
+            <div class="close_button_container">
+                <button class="close_button" onclick="closeOverlay()">
+                    <img class="clear_icon" id="icon-X" src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg" alt="Icon" />
+                </button>
+            </div>
         </div>
         
         <form id="add_task_form" class="main_section">
