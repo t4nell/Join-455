@@ -11,12 +11,12 @@
     }
     .drag_area {
         flex-direction: row;
-        align-items: flex-start; 
+        align-items: flex-start;
         margin: -25px 0;
         padding: 25px 0;
         overflow-y: clip;
-        overflow-x: scroll; 
-    }    
+        overflow-x: scroll;
+    }
     .drag_and_drop_container {
         height: 286px;
         width: 100%;
@@ -39,16 +39,29 @@
     }
     .board_content_top {
         align-items: flex-start;
-
     }
     .board_controls_container {
         margin-left: 20px;
     }
 }
-    
-@media (max-width: 1130px) {
+
+@media (max-width: 1050px) {
     .button_text {
         display: none;
+    }
+
+    .input_container_style {
+        width: 85%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .input_container_style {
+        width: 85%;
+    }
+
+    .search_container {
+        max-width: 330px;
     }
 }
 
@@ -106,7 +119,7 @@
         height: calc(100% - 133px);
     }
 
-    .task_detail_card{
+    .task_detail_card {
         width: 62%;
     }
 }
@@ -116,9 +129,8 @@
         font-size: 40px;
     }
 
-    .task_detail_card{
+    .task_detail_card {
         width: 70%;
-
     }
 }
 
@@ -148,7 +160,7 @@
     .task_detail_card {
         padding: 40px 20px;
     }
-    
+
     .task_detail_card {
         width: 80%;
     }
@@ -180,3 +192,4 @@
         gap: 2px;
     }
 }
+
