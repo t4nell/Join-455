@@ -11,6 +11,7 @@ async function init() {
 function renderTask() {
     const taskContainer = document.getElementById('add_task_container');
     taskContainer.innerHTML = renderTaskTemplate();
+
     datePicker('#due_date');
 }
 
