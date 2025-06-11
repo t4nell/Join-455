@@ -108,6 +108,7 @@
 
     .search_container {
         width: 100%;
+        max-width: 100%;
     }
 
     .input_base_style {
