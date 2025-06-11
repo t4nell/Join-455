@@ -11,6 +11,37 @@ const headerContainer = document.getElementById('header_container');
 const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
+ * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
+ */
+const STATUS_MAPPINGS = {
+    todo: ['todo'],
+    done: ['done'],
+    inProgress: ['inprogress', 'in progress'],
+    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
+};
+
+/**
+ * Initializes the page by checking authentication, setting up UI,
+ * loading task data, and enabling interactive elements
+ * @async
+ */
+async function init() {
+    if (typeof checkOrientation === 'function') {
+        checkOrientation();
+    }
+    
+    try {
+        const currentUser = checkAuth();
+        initializeUI(currentUser);
+        await loadAndUpdateTaskData();
+        makeContainersClickable();
+        showMobileGreeting();
+    } catch (error) {
+        showNotification(error.message || 'Fehler beim Laden der Daten');
+    }
+}
+
+/**
  * checks if a user is authenticated
  * @throws {Error} if no user is found in localStorage
  * @returns {Object} User object from localStorage
@@ -43,6 +74,24 @@ function initializeUI(currentUser) {
 }
 
 /**
+ * Renders the header using template
+ * @returns {void}
+ */
+function renderHeader() {
+    const headerContainer = document.getElementById('header_container');
+    headerContainer.innerHTML = getHeaderTemplate();
+}
+
+/**
+ * Renders the sidebar using template
+ * @returns {void}
+ */
+function renderSidebar() {
+    const mainContainer = document.getElementById('navbar_container');
+    mainContainer.innerHTML = getSidebarTemplate();
+}
+
+/**
  * loads task data from Firebase and updates the UI with calculated statistics
  * @async
  * @returns {Promise<Object>} calculated statistics object
@@ -54,7 +103,7 @@ async function loadAndUpdateTaskData() {
         const activeTasks = filterActiveTasks(tasks);
 
         if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
-            return {
+            const emptyStats = {
                 todo: 0,
                 done: 0,
                 inProgress: 0,
@@ -62,6 +111,8 @@ async function loadAndUpdateTaskData() {
                 totalTasks: 0,
                 awaitingFeedback: 0,
             };
+            updateSummaryUI(emptyStats);
+            return emptyStats;
         }
 
         const stats = calculateTaskStats(activeTasks);
@@ -226,14 +277,9 @@ function analyzeUrgentTasks(tasks) {
  * calculates statistics from an array of task objects
  * @param {Array<Object>} tasks - Array of task objects
  * @param {string} tasks[].status - Status of the Task
- * @param {string} tasks[].priority - Priority of the Task (korrigiert von "Prioryty")
+ * @param {string} tasks[].priority - Priority of the Task
  * @param {string} tasks[].dueDate - Due date of the Task
  * @returns {Object} calculated statistics
- * @property {number} todo - count of tasks to do (korrigiert von "caount")
- * @property {number} done - count of tasks done
- * @property {number} inProgress - count of tasks in progress
- * @property {number} urgent - count of urgent tasks
- * @property {string|null} upcomingDeadline - deadline of the next urgent task
  */
 function calculateTaskStats(tasks) {
     const statusCounts = countStatusOccurrences(tasks);
@@ -403,20 +449,6 @@ function makeContainersClickable() {
 }
 
 /**
- * Renders the sidebar using template
- */
-function renderSidebar() {
-    mainContainer.innerHTML = getSidebarTemplate();
-}
-
-/**
- * Renders the header using template
- */
-function renderHeader() {
-    headerContainer.innerHTML = getHeaderTemplate();
-}
-
-/**
  * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
  * Only shown on first visit per session
  */
@@ -461,40 +493,11 @@ function showMobileGreeting() {
   }, 3000);
 }
 
-/**
- * Initializes the page by checking authentication, setting up UI,
- * loading task data, and enabling interactive elements
- * @async
- */
-async function init() {
+// Add event listener for window resize
+window.addEventListener('resize', () => {
     if (typeof checkOrientation === 'function') {
         checkOrientation();
     }
-    
-    try {
-        const currentUser = checkAuth();
-        initializeUI(currentUser);
-        const taskData = await loadAndUpdateTaskData();
-        makeContainersClickable();
-        showMobileGreeting();
-    } catch (error) {
-        showNotification(error.message || 'Fehler beim Laden der Daten');
-    }
-}
-
-window.addEventListener('resize', () => {
-    if (!document.querySelector('.fullscreen-greeting')) {
-        if (window.innerWidth < 1050) {
-        }
-    }
 });
 
-/**
- * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
- */
-const STATUS_MAPPINGS = {
-    todo: ['todo'],
-    done: ['done'],
-    inProgress: ['inprogress', 'in progress'],
-    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
-};
+init();
