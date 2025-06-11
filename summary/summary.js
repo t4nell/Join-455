@@ -1,7 +1,3 @@
-const mainContainer = document.getElementById('navbar_container');
-
-const headerContainer = document.getElementById('header_container');
-
 const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
@@ -65,7 +61,6 @@ async function fetchAndProcessTaskData() {
     if (!isValidTasksArray(activeTasks)) {
         return createEmptyStatsObject();
     }
-    
     return calculateTaskStats(activeTasks);
 }
 
@@ -126,22 +121,59 @@ async function fetchTaskData() {
 }
 
 /**
- * Transforms raw task data into a standardized format
- * @param {Object} rawData - Raw task data from Firebase
- * @returns {Array<Object>} Array of formatted task objects
+ * Transformiert die Rohdaten der Tasks in ein standardisiertes Format
+ * @param {Object} rawData - Rohdaten der Tasks aus Firebase
+ * @returns {Array<Object>} Array mit formatierten Task-Objekten
  */
 function transformTaskData(rawData) {
-    return Object.entries(rawData || {}).map(([id, task]) => ({
-        id,
+    let transformedTasks = [];
+    
+    if (rawData) {
+        for (let id in rawData) {
+            let transformedTask = createTransformedTask(id, rawData[id]);
+            transformedTasks.push(transformedTask);
+        }
+    }
+    
+    return transformedTasks;
+}
+
+/**
+ * Erstellt ein transformiertes Task-Objekt aus einem einzelnen Task
+ * @param {string} id - Die ID des Tasks
+ * @param {Object} task - Das ursprüngliche Task-Objekt
+ * @returns {Object} Das transformierte Task-Objekt
+ */
+function createTransformedTask(id, task) {
+    let newTask = {
+        id: id,
         category: task.category,
         title: task.title,
         description: task.description,
         dueDate: task.dueDate,
         priority: task.priority,
-        status: task.status,
-        subtasks: Object.values(task.subtasks || {}),
-        assignedTo: task.assignedTo || {},
-    }));
+        status: task.status
+    };
+    
+    newTask.subtasks = extractSubtasks(task);
+    newTask.assignedTo = task.assignedTo || {};
+    return newTask;
+}
+
+/**
+ * Extrahiert die Subtasks aus einem Task
+ * @param {Object} task - Das Task-Objekt
+ * @returns {Array} Liste der Subtasks
+ */
+function extractSubtasks(task) {
+    let subtasksList = [];
+    
+    if (task.subtasks) {
+        for (let subtaskId in task.subtasks) {
+            subtasksList.push(task.subtasks[subtaskId]);
+        }
+    }
+    return subtasksList;
 }
 
 /**
@@ -151,54 +183,6 @@ function transformTaskData(rawData) {
  */
 function filterActiveTasks(tasks) {
     return tasks.filter((task) => task.status !== 'deleted');
-}
-
-/**
- * Normalizes task status strings for consistent comparison
- * @param {string} status - The status string to normalize
- * @returns {string} Normalized status string
- */
-function normalizeTaskStatus(status) {
-    if (!status) return '';
-
-    return status
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, '')
-        .replace('awaiting', 'await')
-        .replace('feedback', 'feedback');
-}
-
-/**
- * Checks if a normalized status string matches a target status category
- * @param {string} normalizedStatus - The normalized status string
- * @param {string} targetStatus - The target status category to check against
- * @returns {boolean} True if the status matches the target category
- */
-function matchesStatus(normalizedStatus, targetStatus) {
-    return STATUS_MAPPINGS[targetStatus].some((pattern) => normalizedStatus.includes(pattern));
-}
-
-/**
- * Counts occurrences of each status type in the tasks array
- * @param {Array<Object>} tasks - Array of task objects
- * @returns {Object} Object containing counts for each status type
- */
-function countStatusOccurrences(tasks) {
-    const counts = Object.keys(STATUS_MAPPINGS).reduce((acc, status) => ({ ...acc, [status]: 0 }), {});
-
-    tasks.forEach((task) => {
-        const normalizedStatus = normalizeTaskStatus(task.status);
-
-        for (const statusType in STATUS_MAPPINGS) {
-            if (matchesStatus(normalizedStatus, statusType)) {
-                counts[statusType]++;
-                break;
-            }
-        }
-    });
-
-    return counts;
 }
 
 /**
@@ -216,28 +200,13 @@ function isUrgent(task) {
  * @returns {Object} Information about urgent tasks
  */
 function findUrgentTasks(tasks) {
-
     const urgentTasks = tasks.filter(isUrgent);
     
     if (urgentTasks.length === 0) {
-        return {
-            urgentCount: 0,
-            nextUrgent: null
-        };
+        return createEmptyUrgentTasksResult();
     }
     
-    let closestDeadline = null;
-    
-    for (const task of urgentTasks) {
-        if (!task.dueDate) continue;
-        
-        const taskDate = parseDate(task.dueDate);
-        if (!taskDate) continue;
-        
-        if (!closestDeadline || taskDate < parseDate(closestDeadline.dueDate)) {
-            closestDeadline = task;
-        }
-    }
+    const closestDeadline = findTaskWithClosestDeadline(urgentTasks);
     
     return {
         urgentCount: urgentTasks.length,
@@ -246,21 +215,66 @@ function findUrgentTasks(tasks) {
 }
 
 /**
+ * Creates an empty result object for when no urgent tasks exist
+ * @returns {Object} Empty urgent tasks result
+ */
+function createEmptyUrgentTasksResult() {
+    return {
+        urgentCount: 0,
+        nextUrgent: null
+    };
+}
+
+/**
+ * Finds the task with the closest deadline from a list of tasks
+ * @param {Array} tasks - List of task objects
+ * @returns {Object|null} Task with closest deadline or null if none found
+ */
+function findTaskWithClosestDeadline(tasks) {
+    let closestDeadline = null;
+    
+    for (const task of tasks) {
+        if (hasValidDeadline(task, closestDeadline)) {
+            closestDeadline = task;
+        }
+    }
+    
+    return closestDeadline;
+}
+
+/**
+ * Checks if a task has a valid deadline and if it's closer than current closest
+ * @param {Object} task - Task to check
+ * @param {Object|null} currentClosest - Current closest deadline task
+ * @returns {boolean} True if task has a valid and closer deadline
+ */
+function hasValidDeadline(task, currentClosest) {
+    if (!task.dueDate) return false;
+    
+    const taskDate = parseDate(task.dueDate);
+    if (!taskDate) return false;
+    
+    if (!currentClosest) return true;
+    
+    return taskDate < parseDate(currentClosest.dueDate);
+}
+
+/**
  * calculates statistics from an array of task objects
  * @param {Array<Object>} tasks - Array of task objects
  * @param {string} tasks[].status - Status of the Task
- * @param {string} tasks[].priority - Priority of the Task (korrigiert von "Prioryty")
+ * @param {string} tasks[].priority - Priority of the Task
  * @param {string} tasks[].dueDate - Due date of the Task
  * @returns {Object} calculated statistics
- * @property {number} todo - count of tasks to do (korrigiert von "caount")
+ * @property {number} todo - count of tasks to do
  * @property {number} done - count of tasks done
  * @property {number} inProgress - count of tasks in progress
  * @property {number} urgent - count of urgent tasks
  * @property {string|null} upcomingDeadline - deadline of the next urgent task
  */
 function calculateTaskStats(tasks) {
-    const statusCounts = countStatusOccurrences(tasks);
-    const { urgentCount, nextUrgent } = analyzeUrgentTasks(tasks);
+    const statusCounts = countTasksByStatus(tasks);
+    const { urgentCount, nextUrgent } = findUrgentTasks(tasks);
 
     const stats = {
         ...statusCounts,
@@ -546,15 +560,8 @@ function showMobileGreeting() {
 function hasStatus(task, statusType) {
     if (!task.status) return false;
     
-    const simpleStatus = task.status.toLowerCase().replace(/\s+/g, '');
-    
-    for (const pattern of STATUS_MAPPINGS[statusType]) {
-        if (simpleStatus.includes(pattern)) {
-            return true;
-        }
-    }
-    
-    return false;
+    // Da der Status in Firebase konsistent ist, können wir einfach vergleichen
+    return task.status.toLowerCase() === statusType.toLowerCase();
 }
 
 /**
@@ -571,16 +578,17 @@ function countTasksByStatus(tasks) {
     };
     
     for (const task of tasks) {
-        if (hasStatus(task, 'todo')) {
+        const status = task.status?.toLowerCase();
+        if (status === 'todo') {
             counts.todo++;
         }
-        else if (hasStatus(task, 'done')) {
+        else if (status === 'done') {
             counts.done++;
         }
-        else if (hasStatus(task, 'inProgress')) {
+        else if (status === 'inprogress') {
             counts.inProgress++;
         }
-        else if (hasStatus(task, 'awaitingFeedback')) {
+        else if (status === 'awaitingfeedback') {
             counts.awaitingFeedback++;
         }
     }
@@ -616,12 +624,4 @@ window.addEventListener('resize', () => {
     }
 });
 
-/**
- * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
- */
-const STATUS_MAPPINGS = {
-    todo: ['todo'],
-    done: ['done'],
-    inProgress: ['inprogress', 'in progress'],
-    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
-};
+window.init = init;
