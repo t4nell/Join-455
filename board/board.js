@@ -17,7 +17,7 @@ async function init() {
     renderSidebar();
     renderContent();
     updateUserProfile();
-    checkOrientation()
+    checkOrientation();
     await loadContactData();
     await loadAddTask();
     renderColumns();
@@ -40,12 +40,12 @@ async function loadAddTask(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');
         let data = await response.json();
-        
+
         if (!data || !data.addTask) {
             handleMissingTaskData(data);
             return;
         }
-        
+
         const taskData = data.addTask;
         convertTasksToArray(taskData);
     } catch (error) {
@@ -78,9 +78,9 @@ function handleTaskLoadError(error) {
 function convertTasksToArray(taskData) {
     allTasks = Object.entries(taskData).map(([id, task]) => ({
         ...task,
-        id
+        id,
     }));
-    
+
     console.log('Tasks loaded:', allTasks);
 }
 
@@ -117,7 +117,7 @@ function renderAllTaskCards(allTasks, status, container) {
  * Returns only the tasks that match the given status.
  */
 function filterTasksByStatus(tasks, status) {
-    return tasks.filter(task => task.status === status);
+    return tasks.filter((task) => task.status === status);
 }
 
 /**
@@ -131,12 +131,11 @@ function clearContainer(container) {
  * Adds each task card to the container.
  */
 function renderTasks(tasks, container) {
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
         container.innerHTML += getTaskCard(task);
-        toggleSectionButton()
+        toggleSectionButton();
     });
 }
-
 
 /**
  * Creates an empty placeholder for columns with no tasks
@@ -154,9 +153,9 @@ function renderPlaceholder() {
 function startDragging(event, taskId) {
     const draggedElement = event.target.closest('.task_card');
     event.dataTransfer.setData('text/plain', taskId);
-    
+
     draggedElement.classList.add('dragging');
-    
+
     saveDraggedCardSize(draggedElement, event);
 }
 
@@ -168,15 +167,15 @@ function startDragging(event, taskId) {
 function saveDraggedCardSize(element, event) {
     const dimensions = {
         width: element.offsetWidth,
-        height: element.offsetHeight
+        height: element.offsetHeight,
     };
-    
+
     try {
         event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
     } catch (e) {
         console.log('Browser does not support complex data in dataTransfer');
     }
-    
+
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
 }
 
@@ -187,10 +186,10 @@ function saveDraggedCardSize(element, event) {
 function allowDrop(event) {
     event.preventDefault();
     const dropzone = event.currentTarget;
-    
+
     const dimensions = getDraggedDimensions(event);
     removePlaceholders();
-    
+
     if (dimensions.width && dimensions.height) {
         const placeholder = createPlaceholder(dimensions);
         dropzone.appendChild(placeholder);
@@ -204,11 +203,11 @@ function allowDrop(event) {
  */
 function getDraggedDimensions(event) {
     let dimensionsStr = event.dataTransfer.getData('dimensions');
-    
+
     if (!dimensionsStr) {
         dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
     }
-    
+
     return dimensionsStr ? JSON.parse(dimensionsStr) : {};
 }
 
@@ -229,7 +228,7 @@ function createPlaceholder(dimensions) {
  * Removes all placeholder elements from the page
  */
 function removePlaceholders() {
-    document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
+    document.querySelectorAll('.drag_area_placeholder').forEach((placeholder) => {
         placeholder.remove();
     });
 }
@@ -242,11 +241,11 @@ function handleDrop(event) {
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;
-    
+
     cleanupDragEffects();
-    
+
     const targetStatus = getTargetStatus(dropzone);
-    
+
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
     }
@@ -256,12 +255,12 @@ function handleDrop(event) {
  * Cleans up visual effects and stored data after drag operations
  */
 function cleanupDragEffects() {
-    document.querySelectorAll('.task_card.dragging').forEach(element => {
+    document.querySelectorAll('.task_card.dragging').forEach((element) => {
         element.classList.remove('dragging');
     });
-    
+
     removePlaceholders();
-    
+
     sessionStorage.removeItem('draggedElementDimensions');
 }
 
@@ -291,12 +290,12 @@ function handleDragEnd(event) {
  */
 function setupDragAreas() {
     const dragAreas = [dragAreaTodo, dragAreaInProgress, dragAreaAwaitFeedback, dragAreaDone];
-    
-    dragAreas.forEach(area => {
+
+    dragAreas.forEach((area) => {
         area.ondragover = allowDrop;
         area.ondrop = handleDrop;
     });
-    
+
     document.addEventListener('dragend', handleDragEnd);
 }
 
@@ -306,13 +305,13 @@ function setupDragAreas() {
  * @param {string} targetStatus - The new status for the task
  */
 async function moveTo(taskId, targetStatus) {
-    const taskIndex = allTasks.findIndex(task => task.id === taskId);
+    const taskIndex = allTasks.findIndex((task) => task.id === taskId);
     if (taskIndex === -1) return;
-    
+
     allTasks[taskIndex].status = targetStatus;
-    
+
     await updateTaskStatus(taskId, targetStatus);
-    
+
     renderColumns();
 }
 
@@ -327,8 +326,8 @@ async function updateTaskStatus(taskId, status) {
             method: 'PUT',
             body: JSON.stringify({ status: status }),
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
         });
     } catch (error) {
         console.error('Error updating task status:', error);
@@ -369,3 +368,4 @@ function updateSidebar(main, side, mobile) {
     mobile.innerHTML = isMobile ? getSidebarTemplateMobile() : '';
     side.style.display = isMobile ? 'none' : 'block';
 }
+
