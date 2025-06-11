@@ -318,6 +318,7 @@ header span{
 .user_dropdown_menu a:hover {
     background-color: var(--hover-color-sidebar1);
     color: white;
+    border-radius: 8px;
 }
 
 /* user_Profil color */
