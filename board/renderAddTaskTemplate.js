@@ -24,7 +24,7 @@ function closeOverlay() {
     overlay.classList.add('d-none');
 }
 
-function bubbleling(event) {
+function bubbling(event) {
     event.stopPropagation();
 }
 
