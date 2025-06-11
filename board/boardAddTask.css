@@ -72,3 +72,10 @@
     box-sizing: border-box;
 }
 
+.required_footer_text {
+    margin-left: 0px;
+}
+
+.btn_position {
+    margin-right: 24px;
+}
