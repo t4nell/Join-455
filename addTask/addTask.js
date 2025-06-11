@@ -143,12 +143,12 @@ function validateCategoryField() {
 function showAddedNotification(notificationText) {
     const savedContactNotification = document.getElementById('contact_added_task_notification');
     savedContactNotification.innerHTML = showAddedNotificationTemplate(notificationText);
-    savedContactNotification.classList.remove('closed');
+    savedContactNotification.classList.remove('closed_contact_save_message_addTask');
     savedContactNotification.classList.add('show');
 
     setTimeout(() => {
         savedContactNotification.classList.remove('show');
-        savedContactNotification.classList.add('closed');
+        savedContactNotification.classList.add('closed_contact_save_message_addTask');
         window.location.href = '../board/board.html';
     }, 1500);
 }
