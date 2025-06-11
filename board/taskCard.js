@@ -28,9 +28,31 @@ function toggleSectionButton() {
     });
 };
 
-// function renderSwapStatusTemplate() {
-    
-// }
+function renderSwapStatusTemplate(event) {
+    event.stopPropagation();
+    const existingTemplate = document.querySelector('.swap_status_template');
+    if (existingTemplate) {
+        existingTemplate.remove();
+    };
+    const taskCard = event.target.closest('.task_card');
+    if (!taskCard) return;
+    const swapStatusDiv = document.createElement('div');
+    swapStatusDiv.innerHTML = getSwapStatusTemplate();
+    const templateElement = swapStatusDiv.firstElementChild;
+    taskCard.insertBefore(templateElement, taskCard.firstChild);
+    addCloseSwapStatusListener(templateElement);
+};
+
+
+function addCloseSwapStatusListener(templateElement) {
+    document.addEventListener('click', function closeSwapStatus(e) {
+        if (!templateElement.contains(e.target) && !e.target.closest('#section_button')) {
+            templateElement.remove();
+            document.removeEventListener('click', closeSwapStatus);
+        };
+    });
+};
+
 
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';

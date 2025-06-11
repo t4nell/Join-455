@@ -194,11 +194,16 @@
 
 .swap_status_template {
     background-color: var(--background-color-sidebar);
+    position: absolute;
+    top: 36px;
+    left: 85px;
     color: #fff;
     display: flex;
     flex-direction: column;
     padding: 8px;
-    border-radius: 0 16px 16px 16px;
+    border-radius: 16px;
+    border-top-right-radius: 0;
+    z-index: 999;
 }
 
 .swap_status_template h3{
