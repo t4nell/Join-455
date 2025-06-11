@@ -191,3 +191,36 @@
     display: flex;
     justify-content: center;
 }
+
+.swap_status_template {
+    background-color: var(--background-color-sidebar);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 0 16px 16px 16px;
+}
+
+.swap_status_template h3{
+    margin: 0 0 14px 0;
+    padding: 8px;
+    padding-bottom: 0;
+}
+
+.swap_status_button {
+    display: flex;
+    gap: 8px;
+    margin: 2px 0;
+    padding: 4px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.swap_status_button p {
+    color: #fff;
+    margin: 0;
+}
+
+.swap_status_button:hover {
+    background-color: #091931;
+}

@@ -108,6 +108,24 @@ function renderMoreAvatarsButton(totalContacts, maxVisible) {
     `;
 };
 
+function getSwapStatusTemplate() {
+  return `
+    <div class="swap_status_template">
+      <h3>Move To</h3>
+      <button class="swap_status_button">
+          <img src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
+          <p>To-Do</p>
+      </button>
+      <button class="swap_status_button">
+          <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+          <p>In Progress</p>
+      </button>
+    </div>
+  `
+}
+
+
+
 
 function getDetailTaskCard(task) {
   const categoryColor = getCategoryColor(task.category);
