@@ -14,7 +14,7 @@ function getTaskCard(task) {
         <div class="task_category">
           <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
         </div>
-        <div id="section_button_container" style="display: none">
+        <div id="section_button_container" style="display: none" >
           <button onclick="renderSwapStatusTemplate(event)" id="section_button" class="dark_btn_task_cart"><img src="../assets/imgs/boardIcons/swapButton.svg" alt="Swap Button Icon"/></button>
         </div>
       </div>

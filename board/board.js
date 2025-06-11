@@ -359,7 +359,7 @@ function renderSidebar() {
     const side = document.getElementById('sidebar_container');
     const mobile = document.getElementById('navbar_mobile_container');
 
-    window.addEventListener('resize', updateSidebar);
+    window.addEventListener('resize', updateSidebar(main, side, mobile));
     updateSidebar(main, side, mobile); // Show correct sidebar at first load
 }
 
