@@ -1,45 +1,8 @@
-/**
- * @constant {HTMLElement} mainContainer - Container for the navigation bar
- */
 const mainContainer = document.getElementById('navbar_container');
 
-/**
- * @constant {HTMLElement} headerContainer - Container for the page header
- */
 const headerContainer = document.getElementById('header_container');
 
 const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-
-/**
- * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
- */
-const STATUS_MAPPINGS = {
-    todo: ['todo'],
-    done: ['done'],
-    inProgress: ['inprogress', 'in progress'],
-    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
-};
-
-/**
- * Initializes the page by checking authentication, setting up UI,
- * loading task data, and enabling interactive elements
- * @async
- */
-async function init() {
-    if (typeof checkOrientation === 'function') {
-        checkOrientation();
-    }
-    
-    try {
-        const currentUser = checkAuth();
-        initializeUI(currentUser);
-        await loadAndUpdateTaskData();
-        makeContainersClickable();
-        showMobileGreeting();
-    } catch (error) {
-        showNotification(error.message || 'Fehler beim Laden der Daten');
-    }
-}
 
 /**
  * checks if a user is authenticated
@@ -74,54 +37,69 @@ function initializeUI(currentUser) {
 }
 
 /**
- * Renders the header using template
- * @returns {void}
- */
-function renderHeader() {
-    const headerContainer = document.getElementById('header_container');
-    headerContainer.innerHTML = getHeaderTemplate();
-}
-
-/**
- * Renders the sidebar using template
- * @returns {void}
- */
-function renderSidebar() {
-    const mainContainer = document.getElementById('navbar_container');
-    mainContainer.innerHTML = getSidebarTemplate();
-}
-
-/**
  * loads task data from Firebase and updates the UI with calculated statistics
  * @async
  * @returns {Promise<Object>} calculated statistics object
  */
 async function loadAndUpdateTaskData() {
     try {
-        const rawData = await fetchTaskData();
-        const tasks = transformTaskData(rawData);
-        const activeTasks = filterActiveTasks(tasks);
-
-        if (!Array.isArray(activeTasks) || activeTasks.length === 0) {
-            const emptyStats = {
-                todo: 0,
-                done: 0,
-                inProgress: 0,
-                urgent: 0,
-                totalTasks: 0,
-                awaitingFeedback: 0,
-            };
-            updateSummaryUI(emptyStats);
-            return emptyStats;
-        }
-
-        const stats = calculateTaskStats(activeTasks);
+        const stats = await fetchAndProcessTaskData();
         updateSummaryUI(stats);
         return stats;
     } catch (error) {
-        showNotification('Fehler beim Laden der Aufgaben');
+        handleTaskDataError(error);
         throw error;
     }
+}
+
+/**
+ * Fetches and processes task data to calculate statistics
+ * @async
+ * @returns {Promise<Object>} calculated statistics object
+ */
+async function fetchAndProcessTaskData() {
+    const rawData = await fetchTaskData();
+    const tasks = transformTaskData(rawData);
+    const activeTasks = filterActiveTasks(tasks);
+    
+    if (!isValidTasksArray(activeTasks)) {
+        return createEmptyStatsObject();
+    }
+    
+    return calculateTaskStats(activeTasks);
+}
+
+/**
+ * Checks if the tasks array is valid and not empty
+ * @param {Array<Object>} tasks - Array of task objects
+ * @returns {boolean} True if array is valid and not empty
+ */
+function isValidTasksArray(tasks) {
+    return Array.isArray(tasks) && tasks.length > 0;
+}
+
+/**
+ * Creates an empty statistics object with zero values
+ * @returns {Object} Empty statistics object
+ */
+function createEmptyStatsObject() {
+    return {
+        todo: 0,
+        done: 0,
+        inProgress: 0,
+        urgent: 0,
+        totalTasks: 0,
+        awaitingFeedback: 0,
+    };
+}
+
+/**
+ * Handles error during task data loading
+ * @param {Error} error - The error object
+ */
+function handleTaskDataError(error) {
+    showNotification('Fehler beim Laden der Aufgaben');
+    console.error('Task data loading error:', error);
 }
 
 /**
@@ -225,51 +203,45 @@ function countStatusOccurrences(tasks) {
 
 /**
  * Checks if a task has urgent priority
- * @param {Object} task - Task object to check
- * @returns {boolean} True if the task has urgent priority
+ * @param {Object} task - Task to check
+ * @returns {boolean} True if task is urgent
  */
-function isUrgentTask(task) {
-    return task.priority && normalizeTaskStatus(task.priority) === 'urgent';
+function isUrgent(task) {
+    return task.priority && task.priority.toLowerCase() === 'urgent';
 }
 
 /**
- * Safely parses a date string into a Date object
- * @param {string} dateString - Date string in format "DD/MM/YYYY"
- * @returns {Date|null} Parsed Date object or null if parsing fails
+ * Find the urgent task with the closest deadline
+ * @param {Array} tasks - List of task objects
+ * @returns {Object} Information about urgent tasks
  */
-function safeParseDate(dateString) {
-    try {
-        return dateString ? parseDate(dateString) : null;
-    } catch {
-        return null;
+function findUrgentTasks(tasks) {
+
+    const urgentTasks = tasks.filter(isUrgent);
+    
+    if (urgentTasks.length === 0) {
+        return {
+            urgentCount: 0,
+            nextUrgent: null
+        };
     }
-}
-
-/**
- * Finds the next urgent task based on due date
- * @param {Array<Object>} urgentTasks - Array of urgent task objects
- * @returns {Object|null} The next urgent task or null if none found
- */
-function findNextUrgentTask(urgentTasks) {
-    return urgentTasks.reduce((closest, task) => {
-        const taskDate = safeParseDate(task.dueDate);
-        const closestDate = closest ? safeParseDate(closest.dueDate) : null;
-
-        return taskDate && (!closestDate || taskDate < closestDate) ? task : closest;
-    }, null);
-}
-
-/**
- * Analyzes urgent tasks and finds the next upcoming deadline
- * @param {Array<Object>} tasks - Array of task objects
- * @returns {Object} Object containing urgent task count and the next urgent task
- */
-function analyzeUrgentTasks(tasks) {
-    const urgentTasks = tasks.filter(isUrgentTask);
-
+    
+    let closestDeadline = null;
+    
+    for (const task of urgentTasks) {
+        if (!task.dueDate) continue;
+        
+        const taskDate = parseDate(task.dueDate);
+        if (!taskDate) continue;
+        
+        if (!closestDeadline || taskDate < parseDate(closestDeadline.dueDate)) {
+            closestDeadline = task;
+        }
+    }
+    
     return {
         urgentCount: urgentTasks.length,
-        nextUrgent: findNextUrgentTask(urgentTasks),
+        nextUrgent: closestDeadline
     };
 }
 
@@ -277,9 +249,14 @@ function analyzeUrgentTasks(tasks) {
  * calculates statistics from an array of task objects
  * @param {Array<Object>} tasks - Array of task objects
  * @param {string} tasks[].status - Status of the Task
- * @param {string} tasks[].priority - Priority of the Task
+ * @param {string} tasks[].priority - Priority of the Task (korrigiert von "Prioryty")
  * @param {string} tasks[].dueDate - Due date of the Task
  * @returns {Object} calculated statistics
+ * @property {number} todo - count of tasks to do (korrigiert von "caount")
+ * @property {number} done - count of tasks done
+ * @property {number} inProgress - count of tasks in progress
+ * @property {number} urgent - count of urgent tasks
+ * @property {string|null} upcomingDeadline - deadline of the next urgent task
  */
 function calculateTaskStats(tasks) {
     const statusCounts = countStatusOccurrences(tasks);
@@ -316,23 +293,20 @@ function parseDate(dateString) {
 function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
-
-    const numberElement = container.querySelector('.summary_number');
-    const textElement = container.querySelector('.summary_text');
-
-    if (numberElement) numberElement.textContent = value;
-    if (textElement) textElement.textContent = label;
+    
+    container.innerHTML = `
+        <span class="summary_number">${value}</span>
+        <span class="summary_text">${label}</span>
+    `;
 }
 
 /**
- * Updates the urgent tasks card with count and icon
+ * Gets HTML template for urgent tasks card
  * @param {number} urgentCount - Number of urgent tasks
+ * @returns {string} HTML template for urgent tasks card
  */
-function updateUrgentCard(urgentCount) {
-    const container = document.getElementById('summary_importance_container');
-    if (!container) return;
-
-    container.innerHTML = `
+function getUrgentCardTemplate(urgentCount) {
+    return `
         <div class="priority-icon-container">
             <img src="../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg" 
                  alt="priority icon" class="priority-icon">
@@ -345,6 +319,33 @@ function updateUrgentCard(urgentCount) {
 }
 
 /**
+ * Updates the urgent tasks card with count and icon
+ * @param {number} urgentCount - Number of urgent tasks
+ */
+function updateUrgentCard(urgentCount) {
+    const container = document.getElementById('summary_importance_container');
+    if (!container) return;
+
+    container.innerHTML = getUrgentCardTemplate(urgentCount);
+}
+
+/**
+ * Gets HTML template for deadline card
+ * @param {Object|null} nextUrgentTask - The next urgent task object or null
+ * @returns {string} HTML template for deadline card
+ */
+function getDeadlineCardTemplate(nextUrgentTask) {
+    const deadlineText = nextUrgentTask?.dueDate
+        ? formatDate(parseDate(nextUrgentTask.dueDate))
+        : 'No urgent deadlines';
+
+    return `
+        <span class="summary_date">${deadlineText}</span>
+        <span class="summary_text">Upcoming Deadline</span>
+    `;
+}
+
+/**
  * Updates the deadline card with the next urgent task deadline
  * @param {Object|null} nextUrgentTask - The next urgent task object or null
  */
@@ -352,14 +353,7 @@ function updateDeadlineCard(nextUrgentTask) {
     const container = document.getElementById('summary_deadline_container');
     if (!container) return;
 
-    const deadlineText = nextUrgentTask?.dueDate
-        ? formatDate(parseDate(nextUrgentTask.dueDate))
-        : 'No urgent deadlines';
-
-    container.innerHTML = `
-        <span class="summary_date">${deadlineText}</span>
-        <span class="summary_text">Upcoming Deadline</span>
-    `;
+    container.innerHTML = getDeadlineCardTemplate(nextUrgentTask);
 }
 
 /**
@@ -402,6 +396,32 @@ function showNotification(message) {
 
     setTimeout(() => {
         notification.remove();
+    }, 3000);
+}
+
+/**
+ * Gets the HTML template for a notification message
+ * @param {string} message - The message to display
+ * @returns {string} HTML template for the notification
+ */
+function getNotificationTemplate(message) {
+    return `<div class="notification">${message}</div>`;
+}
+
+/**
+ * Shows a message to the user that disappears after a few seconds
+ * @param {string} message - The message to show
+ */
+function showMessage(message) {
+    const container = document.createElement('div');
+    container.id = 'notification-container-' + Date.now(); // Unique ID
+    
+    container.innerHTML = getNotificationTemplate(message);
+    
+    document.body.appendChild(container);
+    
+    setTimeout(function() {
+        container.remove();
     }, 3000);
 }
 
@@ -449,55 +469,159 @@ function makeContainersClickable() {
 }
 
 /**
- * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
- * Only shown on first visit per session
+ * Renders the sidebar using template
  */
-function showMobileGreeting() {
-  const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');
-  
-  const viewportWidth = window.innerWidth;
-  if (viewportWidth >= 1050 || hasSeenGreeting === 'true') {
-    return;
-  }
-  
-  sessionStorage.setItem('hasSeenGreeting', 'true');
-  
-  const now = new Date();
-  const greeting = getGreeting(now.getHours());
-  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  const userName = currentUser?.name || 'Gast';
-  
-  const fullscreenGreeting = document.createElement('div');
-  fullscreenGreeting.className = 'fullscreen-greeting';
-  fullscreenGreeting.innerHTML = `
-    <h1>${greeting},</h1>
-    <h2>${userName}</h2>
-  `;
-  
-  const summaryContainer = document.querySelector('.summary_container');
-  summaryContainer.classList.add('summary-content-hidden');
-  
-  document.body.appendChild(fullscreenGreeting);
-  
-  setTimeout(() => {
-    fullscreenGreeting.classList.add('hidden');
-    
-    setTimeout(() => {
-      summaryContainer.classList.remove('summary-content-hidden');
-      summaryContainer.classList.add('summary-content-visible');
-      
-      setTimeout(() => {
-        fullscreenGreeting.remove();
-      }, 1000);
-    }, 1000);
-  }, 3000);
+function renderSidebar() {
+    mainContainer.innerHTML = getSidebarTemplate();
 }
 
-// Add event listener for window resize
-window.addEventListener('resize', () => {
+/**
+ * Renders the header using template
+ */
+function renderHeader() {
+    headerContainer.innerHTML = getHeaderTemplate();
+}
+
+/**
+ * Gets the mobile greeting HTML template
+ * @param {string} greeting - Greeting message based on time of day
+ * @param {string} userName - Name of the current user
+ * @returns {string} HTML template for mobile greeting
+ */
+function getMobileGreetingTemplate(greeting, userName) {
+    return `
+        <h1>${greeting},</h1>
+        <h2>${userName}</h2>
+    `;
+}
+
+/**
+ * Shows a fullscreen greeting that fades out after a few seconds on mobile devices
+ */
+function showMobileGreeting() {
+
+    const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');
+    
+    const viewportWidth = window.innerWidth;
+    if (viewportWidth >= 1050 || hasSeenGreeting === 'true') {
+        return;
+    }
+    
+    sessionStorage.setItem('hasSeenGreeting', 'true');
+    
+    const now = new Date();
+    const greeting = getGreeting(now.getHours());
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const userName = currentUser?.name || 'Gast';
+    
+    const fullscreenGreeting = document.createElement('div');
+    fullscreenGreeting.className = 'fullscreen-greeting';
+    fullscreenGreeting.innerHTML = getMobileGreetingTemplate(greeting, userName);
+    
+    const summaryContainer = document.querySelector('.summary_container');
+    summaryContainer.classList.add('summary-content-hidden');
+    
+    document.body.appendChild(fullscreenGreeting);
+    
+    setTimeout(() => {
+        fullscreenGreeting.classList.add('hidden');
+        
+        setTimeout(() => {
+            summaryContainer.classList.remove('summary-content-hidden');
+            summaryContainer.classList.add('summary-content-visible');
+            
+            setTimeout(() => {
+                fullscreenGreeting.remove();
+            }, 1000);
+        }, 1000);
+    }, 3000);
+}
+
+/**
+ * Checks if a task has a specific status
+ * @param {Object} task - The task object to check
+ * @param {string} statusType - The status type to check for
+ * @returns {boolean} True if the task has the specified status
+ */
+function hasStatus(task, statusType) {
+    if (!task.status) return false;
+    
+    const simpleStatus = task.status.toLowerCase().replace(/\s+/g, '');
+    
+    for (const pattern of STATUS_MAPPINGS[statusType]) {
+        if (simpleStatus.includes(pattern)) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+/**
+ * Count how many tasks have each status
+ * @param {Array} tasks - List of task objects
+ * @returns {Object} Counts for each status type
+ */
+function countTasksByStatus(tasks) {
+    const counts = {
+        todo: 0,
+        done: 0,
+        inProgress: 0,
+        awaitingFeedback: 0
+    };
+    
+    for (const task of tasks) {
+        if (hasStatus(task, 'todo')) {
+            counts.todo++;
+        }
+        else if (hasStatus(task, 'done')) {
+            counts.done++;
+        }
+        else if (hasStatus(task, 'inProgress')) {
+            counts.inProgress++;
+        }
+        else if (hasStatus(task, 'awaitingFeedback')) {
+            counts.awaitingFeedback++;
+        }
+    }
+    
+    return counts;
+}
+
+/**
+ * Initializes the page by checking authentication, setting up UI,
+ * loading task data, and enabling interactive elements
+ * @async
+ */
+async function init() {
     if (typeof checkOrientation === 'function') {
         checkOrientation();
     }
+    
+    try {
+        const currentUser = checkAuth();
+        initializeUI(currentUser);
+        const taskData = await loadAndUpdateTaskData();
+        makeContainersClickable();
+        showMobileGreeting();
+    } catch (error) {
+        showNotification(error.message || 'Fehler beim Laden der Daten');
+    }
+}
+
+window.addEventListener('resize', () => {
+    if (!document.querySelector('.fullscreen-greeting')) {
+        if (window.innerWidth < 1050) {
+        }
+    }
 });
 
-init();
+/**
+ * @constant {Object} STATUS_MAPPINGS - Mapping of task status categories to normalized strings
+ */
+const STATUS_MAPPINGS = {
+    todo: ['todo'],
+    done: ['done'],
+    inProgress: ['inprogress', 'in progress'],
+    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
+};
