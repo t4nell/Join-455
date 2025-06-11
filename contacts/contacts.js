@@ -1,31 +1,18 @@
-const mainContainer = document.getElementById('navbar_container');
 const newContactPopup = document.getElementById('contact_popup');
 const editContactPopup = document.getElementById('contact_edit_overlay');
 const overlay = document.getElementById('contact_overlay');
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const currentUserInitials = currentUser.name
-    .split(' ')
-    .map((part) => part.charAt(0).toUpperCase())
-    .join('');
+const currentUserInitials = currentUser.name.split(' ').map((part) => part.charAt(0).toUpperCase()).join('');
 
 async function contactInit() {
+    proofSize();
     checkOrientation();
     renderHeader();
-    renderSidebar();
     updateUserProfile();
     loadCurrentUser();
     await loadContactData();
-    // groupContacts();
 }
 
-//kontakte fetchen
-//kontakte nach name sortieren
-//kontakte in array speichern
-//kontakte in html rendern
-
-// function renderSidebar() {
-//   mainContainer.innerHTML += getSidebarTemplate();
-// }
 
 function toggleOverlayNewContact() {
     popup.classList.toggle('closed');
@@ -57,7 +44,6 @@ function editContactOverlay(contactIndex) {
     overlay.classList.remove('fade_out');
     editContactPopup.classList.remove('closed');
 
-    // const clickedContact = event.currentTarget
     const contact = contactsArray[contactIndex];
     editContactPopup.innerHTML = getEditContactOverlay(contact, contactIndex);
     console.log(contact);
@@ -90,65 +76,30 @@ function closeContactMenuOnClickOutside(event) {
     }
 }
 
-console.log('----------------Mobile SideBar Template----------------------');
 
-function getSidebarTemplateMobile() {
-    const currentPage = window.location.pathname;
-    return ` 
-    <div class="sidebar_container">  
-   <nav class="sidebar_nav">
-  <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon">
-    <span>Summary</span>
-  </a>
-   <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon">
-    <span>Board</span>
-  </a>
-  <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
-    <span>Add Task</span>
-  </a>
- 
-  <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
-    <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
-    <span>Contacts</span>
-  </a>
-</nav>
-</div>
-
-  `;
-}
-
-console.log('----------------Mobile SideBar----------------------');
-
-function renderSidebar() {
+function proofSize() {
     const mainContainer = document.getElementById('navbar_container');
     const navContainer = document.getElementById('sidebar_container');
     const navbarMobileContainer = document.getElementById('navbar_mobile_container');
-
-    function renderSidebarDesktop() {
-        navbarMobileContainer.innerHTML = '';
-        mainContainer.innerHTML = getSidebarTemplate();
-        navContainer.style.display = 'block';
+    const width = window.innerWidth;
+    if (width < 1052) {
+        renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
+    } else {
+        renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
     }
-
-    function renderSidebarMobile() {
-        mainContainer.innerHTML = '';
-        navbarMobileContainer.innerHTML = getSidebarTemplateMobile();
-        navContainer.style.display = 'none';
-    }
-
-    function proofSize() {
-        const width = window.innerWidth;
-        if (width < 1052) {
-            renderSidebarMobile();
-        } else {
-            renderSidebarDesktop();
-        }
-    }
-
     window.addEventListener('resize', proofSize);
-    proofSize();
 }
 
+
+function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    navbarMobileContainer.innerHTML = '';
+    mainContainer.innerHTML = getSidebarTemplate();
+    navContainer.style.display = 'block';
+}
+
+function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
+    mainContainer.innerHTML = '';
+    navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
+    navContainer.style.display = 'none';
+}

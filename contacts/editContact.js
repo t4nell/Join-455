@@ -7,14 +7,8 @@ function saveEditContact(event) {
   const form = document.getElementById('edit_contact_form');
   const contactIndex = form.getAttribute('data-index');
   const currentContact = contactsArray[contactIndex]
-
-  console.log(currentContact);
-  
-  
   const contactData = collectEditContactData(currentContact);
-
     
-  console.log(contactData);
   if (contactData) {
     putContactData("contact/" + currentContact.id, contactData, currentContact.id);
    }else{
@@ -75,7 +69,6 @@ function checkEditEmailAlreadyExists(email, currentContact) {
 
 async function closeEditContactProcess(contactId) {
   toggleOverlay();
-
   clearGroupedContacts();
   await loadContactData();
   showEditedContact(contactId)

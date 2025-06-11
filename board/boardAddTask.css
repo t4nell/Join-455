@@ -17,7 +17,6 @@
     padding: 32px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
 }
 
 .d-none {
@@ -26,5 +25,19 @@
 
 .close_button {
     background-color: red;
+}
+
+.title_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 96px;
+    margin-top: 0px;
+    margin-bottom: 48px;
+}
+
+.create_task {
+    margin-top: 80px;
+    margin-bottom: 24px;
 }
 

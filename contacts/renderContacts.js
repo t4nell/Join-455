@@ -36,7 +36,6 @@ function groupContacts(contactsArray) {
     }
     groupedContacts[firstLetter].push(contact);
   });
-  console.log(groupedContacts);
   renderContactGroups(groupedContacts);
 }
 
