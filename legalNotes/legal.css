@@ -2,12 +2,12 @@ main {
     height: 100vh;
   }
 
-  .legal_container {
+ .legal_container {
     position: absolute;
     top: 100px;
     left: 232px;
-    height: calc(100% - 100px);
+    height: calc(100% - 142px);
     width: calc(100% - 424px);
     overflow-y: auto;
-    padding: 0 96px;
-  }
+    padding: 0 96px 42px 96px;
+}

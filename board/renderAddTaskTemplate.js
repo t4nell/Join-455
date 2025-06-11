@@ -239,6 +239,10 @@ function closeOverlay() {
     overlay.classList.add('d-none');
 }
 
+function bubbleling(event) {
+    event.stopPropagation();
+}
+
 function renderTask() {
     const taskContainer = document.getElementById('add_task_container_board');
     taskContainer.innerHTML = renderTaskTemplate();
