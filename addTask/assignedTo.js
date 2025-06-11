@@ -70,7 +70,7 @@ function closeDropdown(event) {
     }
 }
 
-function loadContactsToAssigned() {
+function loadAllContactsToAssigned() {
     const menu = document.getElementById('dropdown_menu');
 
     menu.innerHTML = '';
@@ -134,7 +134,7 @@ function removeActiveBgColor() {
     for (let i = 0; i < items.length; i++) {
         items[i].classList.remove('active');
     }
-    loadContactsToAssigned();
+    loadAllContactsToAssigned();
 }
 
 function clearSelectedUserIndices() {
