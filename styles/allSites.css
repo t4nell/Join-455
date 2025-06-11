@@ -361,6 +361,11 @@ header span{
     display: none !important;
 }
 
+.help_def{
+    display: flex;
+    align-items: center;
+}
+
 .no_scroll{
     overflow: hidden;
     
