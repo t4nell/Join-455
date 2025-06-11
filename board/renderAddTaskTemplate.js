@@ -1,6 +1,6 @@
 function openOverlay() {
     const overlay = document.getElementById('overlay');
-    overlay.classList.remove('d-none');
+    overlay.classList.remove('d_none');
     initAll();
 }
 
@@ -21,7 +21,7 @@ function loadContactsToAssigned() {
 
 function closeOverlay() {
     const overlay = document.getElementById('overlay');
-    overlay.classList.add('d-none');
+    overlay.classList.add('d_none');
 }
 
 function bubbling(event) {
