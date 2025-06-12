@@ -35,14 +35,35 @@ function renderSwapStatusTemplate(event) {
     const existingTemplate = document.querySelector('.swap_status_template');
     if (existingTemplate) {
         existingTemplate.remove();
-    };
+    }
     const taskCard = event.target.closest('.task_card');
     if (!taskCard) return;
-    const swapStatusDiv = document.createElement('div');
-    swapStatusDiv.innerHTML = getSwapStatusTemplate();
-    const templateElement = swapStatusDiv.firstElementChild;
-    taskCard.insertBefore(templateElement, taskCard.firstChild);
+    const dragArea = taskCard.closest('.drag_area');
+    const status = dragArea ? dragArea.getAttribute('status') : null;
+    taskCard.insertAdjacentHTML('afterbegin', getSwapStatusTemplate());
+    const templateElement = taskCard.querySelector('.swap_status_template');
+    setStatusButtonVisibility(status, templateElement);
     addCloseSwapStatusListener(templateElement);
+};
+
+
+function setStatusButtonVisibility(status, templateElement) {
+    if (status) {
+        switch (status) {
+            case 'todo':
+                templateElement.querySelector('#status_button_todo').style.display = 'none';
+                break;
+            case 'inProgress':
+                templateElement.querySelector('#status_button_in_Progress').style.display = 'none';
+                break;
+            case 'awaitFeedback':
+                templateElement.querySelector('#status_button_await_Feedback').style.display = 'none';
+                break;
+            case 'done':
+                templateElement.querySelector('#status_button_done').style.display = 'none';
+                break;
+        };
+    };
 };
 
 
