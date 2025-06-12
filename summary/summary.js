@@ -121,13 +121,14 @@ function renderSidebar() {
     const side = document.getElementById('sidebar_container');
     const mobile = document.getElementById('navbar_mobile_container');
 
-    window.addEventListener('resize', () => {updateSidebar(main, side, mobile), toggleSectionButton()});
+    window.addEventListener('resize', () => {updateSidebar(main, side, mobile)});
     updateSidebar(main, side, mobile);
 }
 
 function updateSidebar(main, side, mobile) {
+    const currentPage = window.location.pathname;
     const isMobile = window.innerWidth < 1050;
     main.innerHTML = isMobile ? '' : getSidebarTemplate();
-    mobile.innerHTML = isMobile ? getSidebarTemplateMobile() : '';
+    mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
     side.style.display = isMobile ? 'none' : 'block';
 }

@@ -5,6 +5,7 @@ function init() {
     checkOrientation()
     checkLoggedInUser();
     renderLogin();
+    disableSignupButton();
 };
 
 
@@ -55,6 +56,7 @@ function toggleLoginSignup() {
         if (loginCard.classList.contains('d_none')) {
             signupLoginDiv.style.display = 'none';
             mobileSignup.style.display = 'none';
+            disableSignupButton()
             setFlexEndForMobileSignup(mainSectionIndex);
         } else {
             toggleLoginSignupDisplay(signupLoginDiv, mobileSignup);

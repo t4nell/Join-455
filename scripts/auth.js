@@ -213,6 +213,10 @@ function disableSignupButton(){
     const password = document.getElementById('signupPassword');
     const confirmPassword = document.getElementById('signupConfirmPassword');
 
+        if (!signupButton || !name || !email || !password || !confirmPassword) {
+        return; // Beende die Funktion, wenn eines der Elemente nicht existiert
+    }
+
     if (name.length && email.length && password.length && confirmPassword.length !== 0) {
         signupButton.disabled = false;
     } else {

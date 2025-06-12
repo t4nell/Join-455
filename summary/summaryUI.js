@@ -40,6 +40,14 @@ function updateStatCard(containerId, value, label) {
     container.innerHTML = getStatCardTemplate(value, label);
 }
 
+
+function updateStatCardWithIcon(containerId, value, label) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.innerHTML += getStatCardTemplate(value, label);
+}
+
+
 /**
  * Updates the urgent tasks card
  * @param {number} urgentCount - Number of urgent tasks
@@ -87,8 +95,8 @@ function updateDeadlineCard(nextUrgentTask) {
  * @param {Object} stats - Object containing all task statistics
  */
 function updateSummaryUI(stats) {
-    updateStatCard('summary_todo_container', stats.todo, 'To-do');
-    updateStatCard('summary_done_container', stats.done, 'Done');
+    updateStatCardWithIcon('summary_todo', stats.todo, 'To-do');
+    updateStatCardWithIcon('summary_done', stats.done, 'Done');
     updateStatCard('summary_tasks_board_container', stats.totalTasks, 'Tasks in Board');
     updateStatCard('summary_tasks_progress_container', stats.inProgress, 'Tasks In Progress');
     updateStatCard('summary_await_feedback_container', stats.awaitingFeedback, 'Awaiting Feedback');
@@ -365,13 +373,7 @@ function showSummaryContent(summaryContainer, fullscreenGreeting) {
 /**
  * Updates user profile display (add if missing)
  */
-function updateUserProfile() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const container = document.getElementById('user_profile_container');
-    if (container && currentUser) {
-        container.innerHTML = getUserProfileTemplate(currentUser.name, currentUser.isGuest);
-    }
-}
+
 
 window.showMobileGreeting = showMobileGreeting;
 window.updateSummaryUI = updateSummaryUI;

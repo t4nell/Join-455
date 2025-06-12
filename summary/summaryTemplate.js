@@ -125,68 +125,13 @@ function getStatCardTemplate(value, label) {
  * Creates a basic sidebar template
  * @returns {string} HTML template for sidebar
  */
-function getSidebarTemplate() {
-    return `
-        <nav class="sidebar-nav">
-            <a href="../summary/summary.html" class="nav-item active">
-                <img src="../assets/imgs/summaryIcon.svg" alt="Summary">
-                <span>Summary</span>
-            </a>
-            <a href="../board/board.html" class="nav-item">
-                <img src="../assets/imgs/boardIcon.svg" alt="Board">
-                <span>Board</span>
-            </a>
-            <a href="../addTask/addTask.html" class="nav-item">
-                <img src="../assets/imgs/addTaskIcon.svg" alt="Add Task">
-                <span>Add Task</span>
-            </a>
-            <a href="../contacts/contacts.html" class="nav-item">
-                <img src="../assets/imgs/contactsIcon.svg" alt="Contacts">
-                <span>Contacts</span>
-            </a>
-        </nav>
-        <div class="privacy-links">
-            <a href="../privacy/privacy.html">Privacy Policy</a>
-            <a href="../legal/legal.html">Legal notice</a>
-        </div>
-    `;
-}
 
-/**
- * Creates the mobile sidebar template
- * @returns {string} HTML template for mobile sidebar
- */
-function getSidebarTemplateMobile() {
-    return `
-        <div class="mobile-nav">
-            <a href="../summary/summary.html" class="nav-item active">
-                <img src="../assets/imgs/summaryIcon.svg" alt="Summary">
-            </a>
-            <a href="../board/board.html" class="nav-item">
-                <img src="../assets/imgs/boardIcon.svg" alt="Board">
-            </a>
-            <a href="../addTask/addTask.html" class="nav-item">
-                <img src="../assets/imgs/addTaskIcon.svg" alt="Add Task">
-            </a>
-            <a href="../contacts/contacts.html" class="nav-item">
-                <img src="../assets/imgs/contactsIcon.svg" alt="Contacts">
-            </a>
-        </div>
-    `;
-}
 
 /**
  * Creates a basic header template
  * @returns {string} HTML template for header
  */
-function getHeaderTemplate() {
-    return `
-        <div class="header">
-            <div class="page-title">Summary</div>
-            <div id="user_profile_container" class="user-profile"></div>
-        </div>
-    `;
-}
+
 
 /**
  * Creates the HTML for the urgent tasks card

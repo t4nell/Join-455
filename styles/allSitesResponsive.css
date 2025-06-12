@@ -45,6 +45,7 @@
         height: 80px;
         padding: 0;
         flex-direction: row;
+        left: 0;
     }
 
     .sidebar_nav a {

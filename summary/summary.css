@@ -33,6 +33,7 @@ main {
   justify-content: flex-start;
   flex-direction: column;
   gap: 28px;
+  max-width: 560px;
 }
 
 .summary_section1_container{
@@ -45,7 +46,7 @@ main {
 
 #summary_todo_container{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   font-size: 64px;
   font-weight: 600;
@@ -54,6 +55,8 @@ main {
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
   cursor: pointer;
+  padding: 38px 19px;
+  gap: 18px;
 }
 
 #summary_todo_container:hover {
@@ -64,7 +67,7 @@ main {
 
 #summary_done_container{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   font-size: 64px;
   font-weight: 600;
@@ -73,6 +76,8 @@ main {
   border: 1px solid var(--input-border-color);
   border-radius: 30px;
   cursor: pointer;
+  padding: 38px 19px;
+  gap: 18px;
 }
 
 #summary_done_container:hover {
@@ -350,4 +355,14 @@ padding: 20px;
 .summary-content-visible {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+
+#summary_todo{
+  display: flex;
+  flex-direction: column;
+}
+
+#summary_done{
+    display: flex;
+  flex-direction: column;
 }
