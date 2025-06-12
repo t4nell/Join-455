@@ -114,12 +114,16 @@ function getSwapStatusTemplate() {
     <div class="swap_status_template">
       <h3>Move To</h3>
       <button class="swap_status_button">
-          <img src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
-          <p>To-Do</p>
+        <img src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
+        <p>Await feedback</p>
       </button>
       <button class="swap_status_button">
-          <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
-          <p>In Progress</p>
+        <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+        <p>In progress</p>
+      </button>      
+      <button class="swap_status_button">
+        <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+        <p>Done</p>
       </button>
     </div>
   `
