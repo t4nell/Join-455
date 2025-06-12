@@ -76,10 +76,6 @@
     .board_controls_container {
         width: 100%;
     }
-
-    .task_detail_card {
-        height: 70%;
-    }
 }
 
 @media screen and (max-width: 843px) {

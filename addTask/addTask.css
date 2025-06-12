@@ -174,12 +174,11 @@ main {
     gap: 8px;
     background-color: white;
     color: #2a3647;
-    border: 2px solid transparent;
+    border: 1px solid #2A3647;
     border-radius: 8px;
     padding: 12px 24px;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
 }
 
@@ -208,7 +207,6 @@ main {
     padding: 12px 24px;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
     transition: all 0.3s ease;
 }
 

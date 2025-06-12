@@ -196,10 +196,11 @@ function handleGuestLogin() {
  * @returns {void}
  */
 function showNotification(message, isError = false) {
+    const mainContainer = document.getElementById('main_container')
     const notification = document.createElement('div');
     notification.className = `notification ${isError ? 'error' : 'success'}`;
     notification.textContent = message;
-    document.body.appendChild(notification);
+    mainContainer.appendChild(notification);
     
     setTimeout(() => {
         notification.remove();
