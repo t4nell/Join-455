@@ -205,6 +205,7 @@ header span{
     gap: 15px;
     width: 100%;
     padding:8px 0 8px 57px;
+    font-size: 16px;
 }
 
 .sidebar_nav a:hover {
@@ -361,6 +362,9 @@ header span{
     display: none !important;
 }
 
+.help_def:hover{
+    scale: 1.2;
+}
 .help_def{
     display: flex;
     align-items: center;
@@ -368,5 +372,5 @@ header span{
 
 .no_scroll{
     overflow: hidden;
-    
 }
+

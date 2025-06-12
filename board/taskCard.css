@@ -46,10 +46,6 @@
     transform-origin: center;
 }
 
-.task_card:active {
-    transform-origin: bottom left;
-    transform: rotate(5deg);
-}
 
 .task_card_header {
     display: flex;
