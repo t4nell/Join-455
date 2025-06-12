@@ -17,23 +17,20 @@ function checkAuth() {
  * Main initialization function - called by onload
  */
 function init() {
-    checkOrientation();
+    
     initializeGlobalStats();
     setupAllHandlers();
-    checkUser()
+    
+    const currentUser = checkAuth();
     renderSidebar();
     renderHeader();
     updateUserProfile();
     updateGreeting();
-    loadAndRenderTasks();
-}
 
-
-function checkUser(){
-    const currentUser = checkAuth();
-        if (currentUser.isGuest) {
+    if (currentUser.isGuest) {
         showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
     }
+    loadAndRenderTasks();
 }
 
 /**
