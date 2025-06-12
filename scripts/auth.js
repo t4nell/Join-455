@@ -212,8 +212,7 @@ function disableSignupButton(){
     const email = document.getElementById('signupEmail');
     const password = document.getElementById('signupPassword');
     const confirmPassword = document.getElementById('signupConfirmPassword');
-
-    if (name.length && email.length && password.length && confirmPassword.length !== 0) {
+    if (name.value.length > 0 && email.value.length > 0 && password.value.length > 0 && confirmPassword.value.length > 0) {
         signupButton.disabled = false;
     } else {
         signupButton.disabled = true;

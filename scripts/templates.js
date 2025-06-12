@@ -27,10 +27,10 @@ function getLoginSignupTemplate() {
       </div>
       <form id="signupForm" class="signupForm" onsubmit="handleSignup(event)">
         <div class="input_login_container">
-          <input id="signupName" class="name_input_icon" type="text" placeholder="Name">
-          <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail">
-          <input id="signupPassword" class="lock_input_icon" type="password" placeholder="Password">
-          <input id="signupConfirmPassword" class="lock_input_icon" type="password" placeholder="Confirm Password">
+          <input id="signupName" class="name_input_icon" type="text" placeholder="Name" oninput="disableSignupButton()">
+          <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail" oninput="disableSignupButton()">
+          <input id="signupPassword" class="lock_input_icon" type="password" placeholder="Password" oninput="disableSignupButton()">
+          <input id="signupConfirmPassword" class="lock_input_icon" type="password" placeholder="Confirm Password" oninput="disableSignupButton()">
           <div class="checkbox_container">  
           <input type="checkbox" id="accept_policy" name="a" value="accept_policy">
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>
@@ -38,7 +38,7 @@ function getLoginSignupTemplate() {
         </div>
       
         <div class="button_signup_container">
-          <button class="dark_btn signup_btn">Sign up</button>
+          <button id="signup_btn" class="dark_btn signup_btn" disabled>Sign up</button>
         </div>
       </form>
     </div>

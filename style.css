@@ -199,6 +199,15 @@ footer a:hover {
     height: 55px;
   }
 
+  .signup_btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .dark_btn:hover:disabled {
+    background-color: var(--dark-button);
+  }
+
   .checkbox_container label{
     color: var(--data-protection-text-color);
   }
