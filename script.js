@@ -5,7 +5,6 @@ function init() {
     checkOrientation()
     checkLoggedInUser();
     renderLogin();
-    disableSignupButton();
 };
 
 
