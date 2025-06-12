@@ -40,7 +40,9 @@ function renderSwapStatusTemplate(event) {
     if (!taskCard) return;
     const dragArea = taskCard.closest('.drag_area');
     const status = dragArea ? dragArea.getAttribute('status') : null;
-    taskCard.insertAdjacentHTML('afterbegin', getSwapStatusTemplate());
+    const taskId = taskCard.getAttribute('data-id');
+    const task = allTasks.find(t => t.id === taskId);
+    taskCard.insertAdjacentHTML('afterbegin', getSwapStatusTemplate(task));
     const templateElement = taskCard.querySelector('.swap_status_template');
     setStatusButtonVisibility(status, templateElement);
     addCloseSwapStatusListener(templateElement);
@@ -64,6 +66,18 @@ function setStatusButtonVisibility(status, templateElement) {
                 break;
         };
     };
+};
+
+
+function changeTaskStatus(event, taskId, newStatus) {
+    event.stopPropagation();
+    const task = allTasks.find(t => t.id === taskId);
+    if (task) {
+        task.status = newStatus;
+    };
+    updateTaskStatus(taskId, newStatus).then(() => {
+        renderColumns();
+    });
 };
 
 
