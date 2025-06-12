@@ -1,12 +1,20 @@
 function renderCategories() {
     const categoryMenu = document.getElementById('category_dropdown_menu');
-    categoryMenu.innerHTML = categories.map((category) => categoriesTemplate(category)).join('');
+    categoryMenu.innerHTML = categories.map((category, index) => categoriesTemplate(category, index)).join('');
 }
 
 function toggleDropdownCategory(event) {
     const categoryDropdown = document.getElementById('category_dropdown');
+    const hideRequiredMessage = document.getElementById('required_message_category');
     event.stopPropagation();
+
     categoryDropdown.classList.toggle('open');
+
+    if (categoryDropdown.classList.contains('open')) {
+        hideRequiredMessage.classList.add('d_none');
+    } else {
+        hideRequiredMessage.classList.remove('d_none');
+    }
 }
 
 function selectCategory(category) {
@@ -18,10 +26,9 @@ function selectCategory(category) {
 }
 
 function closeCategoryDropdown(event) {
-    const categoryDropdown = document.getElementById('category_dropdown');
-    const categoryInput = document.getElementById('category_dropdown_input');
-
-    if (!categoryDropdown || !categoryInput) return;
+    const dropdown = document.getElementById('category_dropdown');
+    const toggle = document.getElementById('category_dropdown_input');
+    const hideRequiredMessage = document.getElementById('required_message_category');
 
     let currentElement = event.target;
     let clickedInside = false;
@@ -35,7 +42,8 @@ function closeCategoryDropdown(event) {
     }
 
     if (!clickedInside) {
-        categoryDropdown.classList.remove('open');
+        dropdown.classList.remove('open');
+        hideRequiredMessage.classList.remove('d_none');
     }
 }
 
