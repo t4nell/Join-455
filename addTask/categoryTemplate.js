@@ -1,8 +1,11 @@
-function categoriesTemplate(category) {
+function categoriesTemplate(category, index) {
     return `
-        <li class="category_dropdown_item" onclick="selectCategory('${category}')">
+        <li
+            id="category_item_${index}"
+            class="category_dropdown_item"
+            onclick="selectCategory('${category}')"
+        >
             ${category}
         </li>
     `;
 }
-

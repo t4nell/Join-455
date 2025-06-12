@@ -46,10 +46,6 @@
     transform-origin: center;
 }
 
-.task_card:active {
-    transform-origin: bottom left;
-    transform: rotate(5deg);
-}
 
 .task_card_header {
     display: flex;
@@ -195,8 +191,8 @@
 .swap_status_template {
     background-color: var(--background-color-sidebar);
     position: absolute;
-    top: 36px;
-    left: 85px;
+    top: 35px;
+    left: 60px;
     color: #fff;
     display: flex;
     flex-direction: column;

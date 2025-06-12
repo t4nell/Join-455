@@ -205,3 +205,17 @@ function showNotification(message, isError = false) {
         notification.remove();
     }, 3000);
 }
+
+function disableSignupButton(){
+    const signupButton = document.getElementById('signup_btn');
+    const name = document.getElementById('signupName');
+    const email = document.getElementById('signupEmail');
+    const password = document.getElementById('signupPassword');
+    const confirmPassword = document.getElementById('signupConfirmPassword');
+
+    if (name.length && email.length && password.length && confirmPassword.length !== 0) {
+        signupButton.disabled = false;
+    } else {
+        signupButton.disabled = true;
+    }
+}

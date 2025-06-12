@@ -38,6 +38,7 @@ function collectEditContactData(currentContact) {
   }
 }
 
+
 async function putContactData(path = "", data = {}, contactId) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -54,6 +55,7 @@ async function putContactData(path = "", data = {}, contactId) {
   }
   }
 
+
 function checkEditEmailAlreadyExists(email, currentContact) {
   const emailExists = contactsArray.some((contact) => contact.email === email);
   if (currentContact.email === email) {
@@ -67,6 +69,7 @@ function checkEditEmailAlreadyExists(email, currentContact) {
     return true;
 }};
 
+
 async function closeEditContactProcess(contactId) {
   toggleOverlay();
   clearGroupedContacts();
@@ -74,6 +77,7 @@ async function closeEditContactProcess(contactId) {
   showEditedContact(contactId)
   showNotification("Contact edited successfully")
 }
+
 
 function showEditedContact(contactId){
   const contact = contactsArray.find((contact) => contact.id === contactId)

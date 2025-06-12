@@ -190,8 +190,9 @@ main {
 
 .task_card.dragging {
     opacity: 0.6;
-    transform: scale(0.95);
+    transform: rotate(5deg);
     cursor: grabbing;
+    transform-origin: bottom left;
 }
 
 .drag_area_placeholder {
