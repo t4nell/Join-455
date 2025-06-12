@@ -212,6 +212,7 @@ function disableSignupButton(){
     const email = document.getElementById('signupEmail');
     const password = document.getElementById('signupPassword');
     const confirmPassword = document.getElementById('signupConfirmPassword');
+    if (name.value.length > 0 && email.value.length > 0 && password.value.length > 0 && confirmPassword.value.length > 0) {
 
         if (!signupButton || !name || !email || !password || !confirmPassword) {
         return; // Beende die Funktion, wenn eines der Elemente nicht existiert
