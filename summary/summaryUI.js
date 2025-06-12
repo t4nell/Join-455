@@ -1,12 +1,6 @@
 const greetingContainer = document.getElementById('summary_greating_container');
 const headerContainer = document.getElementById('header_container');
 const mainContainer = document.getElementById('navbar_container');
-const STATUS_MAPPINGS = {
-    todo: ['todo'],
-    done: ['done'],
-    inProgress: ['inprogress', 'in progress'],
-    awaitingFeedback: ['awaitfeedback', 'awaitingfeedback', 'await feedback']
-};
 
 /**
  * Returns appropriate greeting based on time of day
@@ -24,19 +18,6 @@ function getGreeting(hours) {
 }
 
 /**
- * Creates the HTML for the greeting
- * @param {string} greeting - The greeting based on time of day (e.g. "Good Morning")
- * @param {string} userName - User's name
- * @returns {string} HTML template for the greeting
- */
-function getGreetingTemplate(greeting, userName) {
-    return `
-        <h1>${greeting},</h1>
-        <h2>${userName}</h2>
-    `;
-}
-
-/**
  * Updates the greeting with the current user's name
  */
 function updateGreeting() {
@@ -45,19 +26,6 @@ function updateGreeting() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const userName = currentUser?.name || 'Gast';
     greetingContainer.innerHTML = getGreetingTemplate(greeting, userName);
-}
-
-/**
- * Creates the HTML for a statistic card
- * @param {number} value - The numerical value to display
- * @param {string} label - The text to display
- * @returns {string} HTML template for the statistic card
- */
-function getStatCardTemplate(value, label) {
-    return `
-        <span class="summary_number">${value}</span>
-        <span class="summary_text">${label}</span>
-    `;
 }
 
 /**
@@ -70,24 +38,6 @@ function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = getStatCardTemplate(value, label);
-}
-
-/**
- * Creates the HTML for the urgent tasks card
- * @param {number} urgentCount - Number of urgent tasks
- * @returns {string} HTML template for the urgent tasks card
- */
-function getUrgentCardTemplate(urgentCount) {
-    return `
-        <div class="priority-icon-container">
-            <img src="../assets/imgs/addTaskIcons/priorityUrgentIconWhite.svg" 
-                 alt="priority icon" class="priority-icon">
-        </div>
-        <div class="summary_column">
-            <span class="summary_number">${urgentCount}</span>
-            <span class="summary_text">Urgent</span>
-        </div>
-    `;
 }
 
 /**
@@ -170,7 +120,7 @@ const NotificationTemplate = {
      * @returns {string} HTML for the notification
      */
     getHTML: function(message) {
-        return `<div class="notification">${message}</div>`;
+        return getNotificationTemplate(message);
     },
     
     /**
@@ -185,7 +135,10 @@ const NotificationTemplate = {
         document.body.appendChild(container);
         
         setTimeout(function() {
-            container.remove();
+            container.classList.add('fade-out');
+            setTimeout(() => {
+                container.remove();
+            }, 500);
         }, duration);
     }
 };
@@ -236,16 +189,33 @@ function navigateToBoard() {
  */
 function makeContainersClickable() {
     const containerIds = getClickableContainerIds();
-    
+    processClickableContainers(containerIds);
+}
+
+/**
+ * Processes each container to make it clickable
+ * @param {Array<string>} containerIds - Array of container IDs
+ */
+function processClickableContainers(containerIds) {
     for (let containerId of containerIds) {
-        let container = document.getElementById(containerId);
-        if (!container) {
-            container = document.querySelector('.' + containerId);
-        }
+        let container = findContainer(containerId);
         if (container) {
             makeContainerClickable(container);
         }
     }
+}
+
+/**
+ * Finds container element by ID or class
+ * @param {string} containerId - Container ID to find
+ * @returns {HTMLElement|null} Found container or null
+ */
+function findContainer(containerId) {
+    let container = document.getElementById(containerId);
+    if (!container) {
+        container = document.querySelector('.' + containerId);
+    }
+    return container;
 }
 
 /**
@@ -262,19 +232,6 @@ function renderHeader() {
  */
 function renderSidebar() {
     mainContainer.innerHTML = getSidebarTemplate();
-}
-
-/**
- * Creates the HTML for the mobile greeting
- * @param {string} greeting - The greeting based on time of day
- * @param {string} userName - User's name
- * @returns {string} HTML template for the mobile greeting
- */
-function getMobileGreetingTemplate(greeting, userName) {
-    return `
-        <h1>${greeting},</h1>
-        <h2>${userName}</h2>
-    `;
 }
 
 /**
@@ -354,10 +311,16 @@ function showMobileGreeting() {
     if (!elements) return;
     
     const { fullscreenGreeting, summaryContainer } = elements;
-    
+    displayGreeting(fullscreenGreeting, summaryContainer);
+}
+
+/**
+ * Displays the greeting and starts animation
+ * @param {HTMLElement} fullscreenGreeting - Greeting element
+ * @param {HTMLElement} summaryContainer - Summary container
+ */
+function displayGreeting(fullscreenGreeting, summaryContainer) {
     document.body.appendChild(fullscreenGreeting);
-    
-    // Start animation sequence after greeting is shown
     startGreetingAnimation(fullscreenGreeting, summaryContainer);
 }
 
@@ -368,26 +331,49 @@ function showMobileGreeting() {
  */
 function startGreetingAnimation(fullscreenGreeting, summaryContainer) {
     setTimeout(() => {
-        fullscreenGreeting.classList.add('hidden');
-        
-        setTimeout(() => {
-            summaryContainer.classList.remove('summary-content-hidden');
-            summaryContainer.classList.add('summary-content-visible');
-            
-            setTimeout(() => {
-                fullscreenGreeting.remove();
-            }, 1000);
-        }, 1000);
+        hideGreeting(fullscreenGreeting, summaryContainer);
     }, 3000);
 }
 
 /**
- * Parses a date string into a Date object
- * @param {string} dateString - Date string in format "DD/MM/YYYY"
- * @returns {Date|null} Parsed Date object or null if input is invalid
+ * Hides greeting and shows summary content
+ * @param {HTMLElement} fullscreenGreeting - Greeting element
+ * @param {HTMLElement} summaryContainer - Summary container
  */
-function parseDate(dateString) {
-    if (!dateString) return null;
-    const [day, month, year] = dateString.split('/').map(Number);
-    return new Date(year, month - 1, day);
+function hideGreeting(fullscreenGreeting, summaryContainer) {
+    fullscreenGreeting.classList.add('hidden');
+    
+    setTimeout(() => {
+        showSummaryContent(summaryContainer, fullscreenGreeting);
+    }, 1000);
 }
+
+/**
+ * Shows summary content and removes greeting
+ * @param {HTMLElement} summaryContainer - Summary container
+ * @param {HTMLElement} fullscreenGreeting - Greeting element
+ */
+function showSummaryContent(summaryContainer, fullscreenGreeting) {
+    summaryContainer.classList.remove('summary-content-hidden');
+    summaryContainer.classList.add('summary-content-visible');
+    
+    setTimeout(() => {
+        fullscreenGreeting.remove();
+    }, 1000);
+}
+
+/**
+ * Updates user profile display (add if missing)
+ */
+function updateUserProfile() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const container = document.getElementById('user_profile_container');
+    if (container && currentUser) {
+        container.innerHTML = getUserProfileTemplate(currentUser.name, currentUser.isGuest);
+    }
+}
+
+window.showMobileGreeting = showMobileGreeting;
+window.updateSummaryUI = updateSummaryUI;
+window.NotificationTemplate = NotificationTemplate;
+window.updateUserProfile = updateUserProfile;
