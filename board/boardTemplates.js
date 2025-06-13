@@ -40,6 +40,7 @@ function getTaskCard(task) {
   `
 };
 
+
 /**
  * Creates the mobile sidebar HTML
  * @returns {string} HTML string for the mobile sidebar
@@ -69,7 +70,8 @@ function getSidebarTemplateMobile() {
         </nav>
     </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for a task card
@@ -89,7 +91,8 @@ function generateTaskCardHTML(task) {
             </div>
         </div>
     `;
-}
+};
+
 
 function getAvatarTemplate(contact) {
     return `
