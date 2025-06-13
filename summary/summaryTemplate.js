@@ -1,5 +1,6 @@
 /**
  * Creates the HTML template for urgent count display
+ * 
  * @param {number} urgentCount - Number of urgent tasks
  * @returns {string} HTML template for urgent count
  */
@@ -14,19 +15,23 @@ function getUrgentCountTemplate(urgentCount) {
             <span class="summary_text">Urgent</span>
         </div>
     `;
-}
+};
+
 
 /**
  * Gets the HTML template for a notification message
+ * 
  * @param {string} message - The message to display
  * @returns {string} HTML template for the notification
  */
 function getNotificationTemplate(message) {
     return `<div class="notification">${message}</div>`;
-}
+};
+
 
 /**
  * Gets the mobile greeting HTML template
+ * 
  * @param {string} greeting - Greeting message based on time of day
  * @param {string} userName - Name of the current user
  * @returns {string} HTML template for mobile greeting
@@ -36,10 +41,12 @@ function getMobileGreetingTemplate(greeting, userName) {
         <h1>${greeting},</h1>
         <h2>${userName}</h2>
     `;
-}
+};
+
 
 /**
  * Creates the HTML for the greeting
+ * 
  * @param {string} greeting - The greeting based on time of day (e.g. "Good Morning")
  * @param {string} userName - User's name
  * @returns {string} HTML template for the greeting
@@ -49,7 +56,8 @@ function getGreetingTemplate(greeting, userName) {
         <h1>${greeting},</h1>
         <h2>${userName}</h2>
     `;
-}
+};
+
 
 /**
  * Creates the HTML template for a task group header
@@ -65,7 +73,8 @@ function getTaskGroupHeaderTemplate(status) {
             </button>
         </div>
     `;
-}
+};
+
 
 /**
  * Creates the HTML template for a task card
@@ -91,10 +100,12 @@ function getTaskCardTemplate(task) {
             </button>
         </div>
     `;
-}
+};
+
 
 /**
  * Creates the HTML template for the user profile
+ * 
  * @param {string} userName - The name of the user
  * @param {boolean} isGuest - Whether the user is a guest
  * @returns {string} HTML for the user profile
@@ -106,10 +117,12 @@ function getUserProfileTemplate(userName, isGuest) {
             <span class="user_role">${isGuest ? 'Guest' : 'Member'}</span>
         </div>
     `;
-}
+};
+
 
 /**
  * Creates the HTML for a statistic card
+ * 
  * @param {number} value - The numerical value to display
  * @param {string} label - The text to display
  * @returns {string} HTML template for the statistic card
@@ -119,22 +132,12 @@ function getStatCardTemplate(value, label) {
         <span class="summary_number">${value}</span>
         <span class="summary_text">${label}</span>
     `;
-}
-
-/**
- * Creates a basic sidebar template
- * @returns {string} HTML template for sidebar
- */
-
-
-/**
- * Creates a basic header template
- * @returns {string} HTML template for header
- */
+};
 
 
 /**
  * Creates the HTML for the urgent tasks card
+ * 
  * @param {number} urgentCount - Number of urgent tasks
  * @returns {string} HTML template for the urgent tasks card
  */
@@ -149,4 +152,4 @@ function getUrgentCardTemplate(urgentCount) {
             <span class="summary_text">Urgent</span>
         </div>
     `;
-}
+};

@@ -114,7 +114,7 @@ function loadContactsToAssignedTemplate(contact) {
     const checkedAttr = isSelected ? 'checked' : '';
     const activeClass = isSelected ? 'active' : '';
     return createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr);
-}
+};
 
 
 function renderAssignedContactsEdit(assignedTo) {
