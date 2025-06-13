@@ -17,20 +17,18 @@ function getDraggedElement(event) {
  */
 function allowDrop(event) {
     event.preventDefault();
-    
     const dropzone = event.currentTarget;
-    
     const dimensions = getCardDimensions();
-    
     removePlaceholders();
-    
     if (dimensions.width && dimensions.height) {
         createAndInsertPlaceholder(dropzone, dimensions, event);
     }
 };
 
+
 /**
  * Gets the dimensions of the card currently being dragged
+ * 
  * @returns {Object} Object with width and height properties
  */
 function getCardDimensions() {
@@ -38,43 +36,42 @@ function getCardDimensions() {
     return JSON.parse(dimensionsString);
 };
 
+
 /**
  * Creates a placeholder and inserts it at the right position based on mouse location
+ * 
  * @param {HTMLElement} dropzone - The container element
  * @param {Object} dimensions - The width and height of the placeholder
  * @param {Event} event - The dragover event
  */
 function createAndInsertPlaceholder(dropzone, dimensions, event) {
     const placeholder = createPlaceholder(dimensions);
-    
     setupPlaceholderEvents(placeholder);
-    
     const mouseY = event.clientY;
     const rect = dropzone.getBoundingClientRect();
     const mousePosition = mouseY - rect.top;
-    
     insertPlaceholderAtPosition(dropzone, placeholder, mousePosition);
 };
 
+
 /**
  * Starts the dragging process for a task
+ * 
  * @param {Event} event - The dragstart event
  * @param {string} taskId - ID of the task being dragged
  */
 function startDragging(event, taskId) {
     console.log("Starting to drag task:", taskId);
-    
     const draggedElement = getDraggedElement(event);
-    
     event.dataTransfer.setData('text/plain', taskId);
-    
     draggedElement.classList.add('dragging');
-    
     saveCardDimensions(draggedElement);
 };
 
+
 /**
  * Saves the dimensions of a card to session storage
+ * 
  * @param {HTMLElement} element - The element to measure
  */
 function saveCardDimensions(element) {
@@ -82,24 +79,21 @@ function saveCardDimensions(element) {
         width: element.offsetWidth,
         height: element.offsetHeight
     };
-    
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
 };
 
+
 /**
  * Handles when a task is dropped into a column
+ * 
  * @param {Event} event - The drop event
  */
 function handleDrop(event) {
     console.log("Task dropped");
     event.preventDefault();
-    
     const taskId = event.dataTransfer.getData('text/plain');
-    
     const dropzone = event.currentTarget;
-    
     cleanupAfterDrop();
-    
     const targetStatus = getColumnStatus(dropzone);
     
     if (taskId && targetStatus) {
@@ -107,21 +101,23 @@ function handleDrop(event) {
     }
 };
 
+
 /**
  * Removes visual effects and stored data after drop
+ * 
  */
 function cleanupAfterDrop() {
     document.querySelectorAll('.task_card.dragging').forEach(element => {
         element.classList.remove('dragging');
     });
-    
     removePlaceholders();
-    
     sessionStorage.removeItem('draggedElementDimensions');
 }
 
+
 /**
  * Gets the status based on which column an element was dropped in
+ * 
  * @param {HTMLElement} dropzone - The column element
  * @returns {string} The status (todo, inProgress, etc.)
  */
@@ -132,24 +128,23 @@ function getColumnStatus(dropzone) {
         'drag_area_await_feedback': 'awaitFeedback',
         'drag_area_done': 'done'
     };
-    
     return statusMap[dropzone.id];
 };
 
+
 /**
  * Updates a task's status in the database
+ * 
  * @param {string} taskId - ID of the task to update
  * @param {string} status - The new status value
  */
 async function updateTaskStatus(taskId, status) {
     try {
         const existingTask = await getTaskFromDatabase(taskId);
-        
         if (!existingTask) {
             console.error('Task not found:', taskId);
             return;
         }
-        
         await saveTaskWithNewStatus(taskId, existingTask, status);
         console.log('Task updated successfully:', taskId, status);
     } catch (error) {
@@ -157,8 +152,10 @@ async function updateTaskStatus(taskId, status) {
     }
 };
 
+
 /**
  * Gets a task from the database by ID
+ * 
  * @param {string} taskId - ID of the task to get
  * @returns {Promise<Object>} The task object from the database
  */
@@ -167,8 +164,10 @@ async function getTaskFromDatabase(taskId) {
     return await response.json();
 };
 
+
 /**
  * Saves a task with its new status to the database
+ * 
  * @param {string} taskId - ID of the task
  * @param {Object} existingTask - The current task data
  * @param {string} newStatus - The new status value
@@ -186,31 +185,30 @@ async function saveTaskWithNewStatus(taskId, existingTask, newStatus) {
     });
 };
 
+
 /**
  * Moves a task to a new column by updating its status
+ * 
  * @param {string} taskId - ID of the task to move
  * @param {string} targetStatus - The new status value
  */
 async function moveTo(taskId, targetStatus) {
     console.log('Moving task:', taskId, 'to status:', targetStatus);
-    
     const taskIndex = findTaskIndex(taskId);
-    
     if (taskIndex === -1) {
         console.error('Task not found:', taskId);
         console.log('Available task IDs:', allTasks.map(t => t.id));
         return;
     }
-    
     allTasks[taskIndex].status = targetStatus;
-    
     await updateTaskStatus(taskId, targetStatus);
-    
     renderColumns();
 };
 
+
 /**
  * Finds the index of a task in the allTasks array
+ * 
  * @param {string} taskId - ID of the task to find
  * @returns {number} The index, or -1 if not found
  */
@@ -230,19 +228,18 @@ function setupDragAreas() {
         document.getElementById('drag_area_await_feedback'),
         document.getElementById('drag_area_done')
     ].filter(Boolean);
-    
     dragAreas.forEach(area => {
         if (area) {
             area.ondragover = allowDrop;
             area.ondrop = handleDrop;
         }
     });
-    
     document.addEventListener('dragend', handleDragEnd);
 };
 
 /**
  * Sets up the drag and drop system
+ * 
  * @returns {Promise} Promise that resolves when setup is complete
  */
 function initDragAndDrop() {
@@ -252,6 +249,7 @@ function initDragAndDrop() {
 
 /**
  * Template: Shows correct sidebar depending on screen size.
+ * 
  * @param {number} breakpoint - The screen width to switch between mobile and desktop.
  * @param {string} desktopContainerId - ID of the desktop navbar container.
  * @param {string} sidebarId - ID of the sidebar container.
@@ -263,14 +261,12 @@ function setupResponsiveSidebar(breakpoint, desktopContainerId, sidebarId, mobil
     const main = document.getElementById(desktopContainerId);
     const side = document.getElementById(sidebarId);
     const mobile = document.getElementById(mobileContainerId);
-
     function updateSidebar() {
         const isMobile = window.innerWidth < breakpoint;
         main.innerHTML = isMobile ? '' : desktopTemplateFn();
         mobile.innerHTML = isMobile ? mobileTemplateFn() : '';
         side.style.display = isMobile ? 'none' : 'block';
     }
-
     window.addEventListener('resize', updateSidebar);
     updateSidebar();
 };
@@ -278,6 +274,7 @@ function setupResponsiveSidebar(breakpoint, desktopContainerId, sidebarId, mobil
 
 /**
  * Sets up event handlers for the placeholder element
+ * 
  * @param {HTMLElement} placeholder - The placeholder element
  */
 function setupPlaceholderEvents(placeholder) {
@@ -285,24 +282,20 @@ function setupPlaceholderEvents(placeholder) {
         e.preventDefault();
         e.stopPropagation();
     };
-    
     placeholder.ondrop = handlePlaceholderDrop;
 };
 
 /**
  * Handles drops directly onto a placeholder
+ * 
  * @param {Event} e - The drop event
  */
 function handlePlaceholderDrop(e) {
     e.preventDefault();
-    
     const dropzone = e.currentTarget.parentElement;
     if (!dropzone) return;
-    
     const taskId = e.dataTransfer.getData('text/plain');
-    
     const targetStatus = getColumnStatus(dropzone);
-    
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
     }
@@ -312,25 +305,24 @@ function handlePlaceholderDrop(e) {
 
 /**
  * Places a placeholder at the right position based on mouse position
+ * 
  * @param {HTMLElement} dropzone - The container element
  * @param {HTMLElement} placeholder - The placeholder element
  * @param {number} mouseY - Vertical mouse position
  */
 function insertPlaceholderAtPosition(dropzone, placeholder, mouseY) {
     const items = getNonPlaceholderItems(dropzone);
-    
     if (items.length === 0) {
         dropzone.appendChild(placeholder);
         return;
     }
-    
     const insertPosition = findInsertPosition(items, mouseY, dropzone);
-    
     insertPlaceholder(dropzone, placeholder, items, insertPosition);
 };
 
 /**
  * Gets all items in a container except placeholders
+ * 
  * @param {HTMLElement} container - The container element
  * @returns {Array} Array of non-placeholder elements
  */
@@ -342,6 +334,7 @@ function getNonPlaceholderItems(container) {
 
 /**
  * Finds where to insert the placeholder based on mouse position
+ * 
  * @param {Array} items - Array of items in the container
  * @param {number} mouseY - Vertical mouse position
  * @param {HTMLElement} dropzone - The container element
@@ -349,27 +342,24 @@ function getNonPlaceholderItems(container) {
  */
 function findInsertPosition(items, mouseY, dropzone) {
     let insertPosition = items.length;
-    
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         const itemRect = item.getBoundingClientRect();
         const dropzoneRect = dropzone.getBoundingClientRect();
-        
         const itemTop = itemRect.top - dropzoneRect.top;
-        
         const itemMiddle = itemTop + itemRect.height / 2;
-        
         if (mouseY < itemMiddle) {
             insertPosition = i;
             break;
         }
     }
-    
     return insertPosition;
 };
 
+
 /**
  * Inserts a placeholder at a specific position
+ * 
  * @param {HTMLElement} dropzone - The container element
  * @param {HTMLElement} placeholder - The placeholder element
  * @param {Array} items - Array of items in the container
@@ -383,6 +373,7 @@ function insertPlaceholder(dropzone, placeholder, items, position) {
     }
 };
 
+
 /**
  * Removes all placeholder elements from the page
  */
@@ -394,6 +385,7 @@ function removePlaceholders() {
 
 /**
  * Handles the end of a drag operation
+ * 
  * @param {Event} event - The dragend event
  */
 function handleDragEnd(event) {
