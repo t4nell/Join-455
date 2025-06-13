@@ -1,7 +1,9 @@
-// edit als parameter übergeben für validation?
-// angeklickter contact informationen erhalen ? in saveEdit : collectEditContactData
-
-
+/**
+ * @description Saves the edited contact data by collecting the form data and sending it to the server.
+ *
+ * @param {*} event preventDefault - Prevents the default form submission behavior.
+ * @return {*} - Returns the response from the server after saving the edited contact data.
+ */
 function saveEditContact(event) {
   event.preventDefault();
   const form = document.getElementById('edit_contact_form');
@@ -17,6 +19,12 @@ function saveEditContact(event) {
 }
 
 
+/**
+ * @description Collects the data from the edit contact form and returns it as an object.
+ *
+ * @param {*} currentContact - The current contact object being edited.
+ * @return {*} - Returns an object containing the edited contact data if valid, otherwise returns undefined.
+ */
 function collectEditContactData(currentContact) {
   const form = document.getElementById("edit_contact_form");
   const fd = new FormData(form);
@@ -39,6 +47,14 @@ function collectEditContactData(currentContact) {
 }
 
 
+/**
+ * @description Sends a PUT request to update the contact data on the server.
+ *
+ * @param {string} [path=""] - The path to the contact data to be updated.
+ * @param {*} [data={}] - The data to be sent in the request body.
+ * @param {*} contactId - The ID of the contact being edited.
+ * @return {*} - Returns the response from the server after updating the contact data.
+ */
 async function putContactData(path = "", data = {}, contactId) {
   let response = await fetch(BASE_URL + path + ".json", {
     method: "PUT",
@@ -56,6 +72,14 @@ async function putContactData(path = "", data = {}, contactId) {
   }
 
 
+
+/**
+ * @description Checks if the edited email already exists in the contacts array.
+ *
+ * @param {*} email - The email address to check for duplicates.
+ * @param {*} currentContact - The current contact object being edited.
+ * @return {*} - Returns true if the email is valid and does not already exist, otherwise returns false.
+ */
 function checkEditEmailAlreadyExists(email, currentContact) {
   const emailExists = contactsArray.some((contact) => contact.email === email);
   if (currentContact.email === email) {
@@ -70,6 +94,11 @@ function checkEditEmailAlreadyExists(email, currentContact) {
 }};
 
 
+/**
+ * @description Closes the edit contact process by toggling the overlay, clearing grouped contacts, loading contact data, and showing the edited contact.
+ *
+ * @param {*} contactId
+ */
 async function closeEditContactProcess(contactId) {
   toggleOverlay();
   clearGroupedContacts();
@@ -79,6 +108,12 @@ async function closeEditContactProcess(contactId) {
 }
 
 
+/**
+ * @description Displays the edited contact details in the contact detail container.
+ *
+ * @param {*} contactId - The ID of the contact to be displayed.
+ * @return {*} - Returns the contact details template for the specified contact.
+ */
 function showEditedContact(contactId){
   const contact = contactsArray.find((contact) => contact.id === contactId)
   if (contact) {

@@ -14,11 +14,7 @@
     <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
     <link rel="stylesheet" href="../styles/landscape.css" />
     <link rel="stylesheet" href="../styles/scrollbar.css">
-    <link
-      rel="shortcut icon"
-      href="../assets/imgs/joinLogoDark.svg"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon"/>
     <script src="../script.js" defer></script>
     <script src="../scripts/fetch.js" defer></script>
     <script src="./renderContacts.js" defer></script>
@@ -89,25 +85,6 @@
         <div class="contact_main closed" id="contact_detail_container"></div>
       </div>
 
-      <div
-        onclick="toggleOverlay()"
-        id="contact_overlay"
-        class="overlay_background_container fade_out"
-      >
-        <!--Overlay for new contact-->
-        <div
-          onclick="eventBubbling(event)"
-          id="contact_popup"
-          class="contact_popup closed"
-        ></div>
-
-        <!--Overlay for editing contact-->
-        <div
-          onclick="eventBubbling(event)"
-          id="contact_edit_overlay"
-          class="contact_popup closed"
-        ></div>
-      </div>
 
       <div
         onclick="toggleOverlay()"
