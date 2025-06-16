@@ -216,7 +216,7 @@ function renderTaskTemplate() {
 
             <div class="required_footer_text_mobile_container">
                 <p class="required_footer_text_mobile show_mobile_required_text_footer">
-                    * These fields are required
+                    These fields are required
                 </p>
             </div>
 
