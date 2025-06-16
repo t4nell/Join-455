@@ -126,19 +126,19 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#priority_urgent:checked + label.btn--red {
+#priority_urgent_edit_task:checked + label.btn--red {
     background-color: var(--urgent-priority-btn-color-active);
     border-color: var(--urgent-priority-btn-color-active);
     color: #fff;
 }
 
-#priority_medium:checked + label.btn--orange {
+#priority_medium_edit_task:checked + label.btn--orange {
     background-color: var(--medium-priority-btn-color-active);
     border-color: var(--medium-priority-btn-color-active);
     color: #fff;
 }
 
-#priority_low:checked + label.btn--green {
+#priority_low_edit_task:checked + label.btn--green {
     background-color: var(--low-priority-btn-color-active);
     border-color: var(--low-priority-btn-color-active);
     color: #fff;

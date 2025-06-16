@@ -15,13 +15,24 @@
         <link rel="stylesheet" href="../addTask/subtask.css" />
         <link rel="stylesheet" href="./editTaskTemplate.css" />
         <link rel="stylesheet" href="./boardResponsive.css" />
-        <link rel="stylesheet" href="../styles/scrollbar.css">
+
+
+        <link rel="stylesheet" href="../addTask/assignedTo.css" />
+        <link rel="stylesheet" href="../addTask/category.css" />
+        <link rel="stylesheet" href="../addTask/priority.css" />
+        <link rel="stylesheet" href="../addTask/errorMassages.css" />
+        <link rel="stylesheet" href="../addTask/addTask.css" />
+
+        <link rel="stylesheet" href="../addTask/boardAddTask.css" />
+
         <link rel="stylesheet" href="../styles/landscape.css" />
 
         <link rel="shortcut icon" href="../assets/imgs/joinLogoDark.svg" type="image/x-icon" />
 
         <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css" />
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <script src="../addTask/fetch.js" defer></script>
 
         <script src="./board.js" defer></script>
         <script src="./search.js" defer></script>
@@ -35,6 +46,19 @@
         <script src="../addTask/subtaskTemplate.js" defer></script>
         <script src="./editTaskTemplate.js" defer></script>
         <script src="../scripts/landscape.js" defer></script>
+
+
+        <script src="../addTask/renderAddTaskTemplate.js" defer></script>
+        <script src="./subtaskEditTask.js" defer></script>
+        <script src="./subtaskTemplateEditTask.js" defer></script>
+        <script src="../addTask/assignedTo.js" defer></script>
+        <script src="../addTask/assignedToTemplate.js" defer></script>
+        <script src="../addTask/category.js" defer></script>
+        <script src="../addTask/categoryDb.js" defer></script>
+        <script src="../addTask/categoryTemplate.js" defer></script>
+        <script src="../addTask/priority.js" defer></script>
+        <script src="../addTask/post.js" defer></script>
+
 
         <title>Join</title>
     </head>
@@ -52,7 +76,7 @@
             </div>
 
             <div id="overlay_background_container" class="overlay_background fade_out" onclick="closeDetailTemplate()">
-                <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)">
+                <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event); handleClickOutsideEditTask(event)">
                     <!-- Leeres div Template das später gefüllt wird -->
                 </div>
             </div>
@@ -167,7 +191,7 @@
                 </div>
             </div>
             <div id="overlay" class="overlay d_none" onclick="closeOverlay()">
-                <div class="overlay_content" id="add_task_container_board" onclick="bubbling(event)"></div>
+                <div class="overlay_content" id="add_task_container_board" onclick="bubbling(event); closeDropdown(event); closeCategoryDropdown(event)"></div>
             </div>
         </main>
     </body>

@@ -3,15 +3,15 @@ let contactsArray = [];
 
 
 function initEditTaskVariables() {
-    dropdown = document.getElementById('dropdown');
-    selectedUser = document.getElementById('selected_user_group');
-    menu = document.getElementById('dropdown_menu');
-    toggle = document.getElementById('dropdown_toggle_btn');
+    dropdown = document.getElementById('dropdown_edit_task');
+    selectedUser = document.getElementById('selected_user_group_edit_task');
+    menu = document.getElementById('dropdown_menu_edit_task');
+    toggle = document.getElementById('dropdown_toggle_btn_edit_task');
 };
 
 
 function initializeCalendar() {
-    const calendarInput = document.getElementById('due_date');
+    const calendarInput = document.getElementById('due_date_edit_task');
     if (calendarInput && !calendarInput._flatpickr) {
         flatpickr(calendarInput, {
             dateFormat: 'd/m/Y',
@@ -25,7 +25,7 @@ function initializeCalendar() {
 
 
 function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
+    const calenderInput = document.getElementById('due_date_edit_task');
     if (calenderInput && calenderInput._flatpickr) {
         calenderInput._flatpickr.open();
     } else {
@@ -48,42 +48,42 @@ async function loadContactData(path = '') {
     } catch (error) {
         console.error('Error loading contact data:', error);
     }
-    loadContactsToAssigned();
+    loadContactsToAssignedEditTask();
 };
 
 
-function switchBtnPriority(btnPriority) {
-    document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
-    document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMedium.svg';
-    document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLow.svg';
+function switchBtnPriorityEditTask(btnPriority) {
+    document.getElementById('icon_urgent_edit_task').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
+    document.getElementById('icon_medium_edit_task').src = '../assets/imgs/boardIcons/priorityMedium.svg';
+    document.getElementById('icon_low_edit_task').src = '../assets/imgs/boardIcons/priorityLow.svg';
     switch (btnPriority) {
         case 'Urgent':
-            document.getElementById('icon_urgent').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
+            document.getElementById('icon_urgent_edit_task').src = '../assets/imgs/boardIcons/priorityUrgentIconWhite.svg';
             break;
         case 'Medium':
-            document.getElementById('icon_medium').src = '../assets/imgs/boardIcons/priorityMediumIconWhite.svg';
+            document.getElementById('icon_medium_edit_task').src = '../assets/imgs/boardIcons/priorityMediumIconWhite.svg';
             break;
         case 'Low':
-            document.getElementById('icon_low').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
+            document.getElementById('icon_low_edit_task').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
             break;
     };
 };
 
 
-function toggleDropdownAssigned(event) {
+function toggleDropdownAssignedEditTask(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
 };
 
 
-function toggleBackground(index) {
+function toggleBackgroundEditTask(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 };
 
 
-function handleClickOutside(event) {
+function handleClickOutsideEditTask(event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
@@ -91,16 +91,16 @@ function handleClickOutside(event) {
 };
 
 
-function loadContactsToAssigned() {
+function loadContactsToAssignedEditTask() {
     if (!menu) return;
     menu.innerHTML = '';
     contactsArray.forEach((contact) => {
-        menu.innerHTML += loadContactsToAssignedTemplate(contact);
+        menu.innerHTML += loadContactsToAssignedTemplateEditTask(contact);
     });
 };
 
 
-function loadContactsToAssignedTemplate(contact) {
+function loadContactsToAssignedTemplateEditTask(contact) {
     const bgColor = contact.color;
     const nameInitials = contact.name
         .split(' ')
@@ -117,7 +117,7 @@ function loadContactsToAssignedTemplate(contact) {
 };
 
 
-function renderAssignedContactsEdit(assignedTo) {
+function renderAssignedContactsEditTask(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
         .map(([contactId, isAssigned]) => {
@@ -139,10 +139,10 @@ function renderAssignedContactsEdit(assignedTo) {
 };
 
 
-function selectUser(id, event) {
+function selectUserEditTask(id, event) {
     initEditTaskVariables();
     event.stopPropagation();
-    const checkbox = document.getElementById(`users_checkbox_${id}`);
+    const checkbox = document.getElementById(`users_checkbox_${id}_edit_task`);
     const clickedItem = document.getElementById(`dropdown_item_${id}`);
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
@@ -150,16 +150,16 @@ function selectUser(id, event) {
     const contact = contactsArray.find(c => c.id === id);
     if (!contact) return;
     if (checkbox.checked) {
-        addSelectedUserIcon(contact);
+        addSelectedUserIconEditTask(contact);
         clickedItem.classList.add('active');
     } else {
-        removeSelectedUser(id);
+        removeSelectedUserEditTask(id);
         clickedItem.classList.remove('active');
     };
 };
 
 
-function removeSelectedUser(id) {
+function removeSelectedUserEditTask(id) {
     const userIconContainer = document.getElementById(`selected_user_${id}`);
     if (userIconContainer) {
         userIconContainer.remove();
@@ -167,7 +167,7 @@ function removeSelectedUser(id) {
 };
 
 
-function addSelectedUserIcon(contact) {
+function addSelectedUserIconEditTask(contact) {
     const nameInitials = contact.name
         .split(' ')
         .map((part) => part.charAt(0).toUpperCase())
@@ -239,7 +239,7 @@ function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
 
 
 function newSubtask(subtaskIndex, subtasks) {
-    const newSubtaskInput = document.getElementById('tag_input_field');
+    const newSubtaskInput = document.getElementById('tag_input_field_edit_task');
     if (newSubtaskInput && newSubtaskInput.value.trim()) {
         const newSubtaskKey = `subtask_${subtaskIndex}`;
         subtasks[newSubtaskKey] = {

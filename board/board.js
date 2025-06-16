@@ -22,7 +22,7 @@ async function init() {
     await loadContactData();
     await loadAddTask();
     renderColumns();
-    loadContactsToAssigned();
+    loadContactsToAssignedEditTask();
     await initDragAndDrop();
 };
 
