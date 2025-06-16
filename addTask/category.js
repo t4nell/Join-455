@@ -18,7 +18,7 @@ function toggleDropdownCategory(event) {
 }
 
 function selectCategory(category) {
-    const categoryInput = document.getElementById('category_dropdown_input');
+    const categoryInput = document.getElementById('category_dropdown_input')
     const categoryDropdown = document.getElementById('category_dropdown');
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
