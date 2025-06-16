@@ -94,3 +94,21 @@
     max-height: 170px;
     overflow-y: auto;
 }
+
+.contact_save_message_addTask {
+    background-color: var(--active-contact-color);
+    color: var(--text-color-white);
+    height: 64px;
+    width: 300px;
+    position: fixed;
+    border-radius: 20px;
+    left: calc(50% + 0px);
+    bottom: -100px;
+    transform: translateX(-50%);
+    transition: all 125ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    z-index: 1000;
+}

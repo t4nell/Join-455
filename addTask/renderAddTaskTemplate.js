@@ -120,11 +120,11 @@ function showAddedNotification(notificationText) {
     savedContactNotification.classList.remove('closed');
     savedContactNotification.classList.add('show');
 
-    setTimeout(() => {
-        savedContactNotification.classList.remove('show');
-        savedContactNotification.classList.add('closed');
-        window.location.href = '../board/board.html';
-    }, 1500);
+    // setTimeout(() => {
+    //     savedContactNotification.classList.remove('show');
+    //     savedContactNotification.classList.add('closed');
+    //     window.location.href = '../board/board.html';
+    // }, 1500);
 }
 
 function renderTaskTemplate() {
