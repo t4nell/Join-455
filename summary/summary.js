@@ -135,6 +135,18 @@ function renderSidebar() {
 };
 
 
+/**
+ * Updates the sidebar display based on current screen size
+ * 
+ * @param {HTMLElement} main - Main container element for desktop sidebar
+ * @param {HTMLElement} side - Side element that holds the sidebar
+ * @param {HTMLElement} mobile - Container element for mobile sidebar
+ * 
+ * This function checks the current viewport width and updates the sidebar
+ * display accordingly. For desktop views (>= 1050px), it shows the regular
+ * sidebar. For mobile views (< 1050px), it displays the mobile sidebar
+ * with the current page highlighted and hides the desktop sidebar.
+ */
 function updateSidebar(main, side, mobile) {
     const currentPage = window.location.pathname;
     const isMobile = window.innerWidth < 1050;

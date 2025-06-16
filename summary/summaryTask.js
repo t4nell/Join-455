@@ -120,6 +120,7 @@ function processAllTasks(tasksFromDatabase, stats) {
     return urgentTasks;
 };
 
+
 /**
  * Processes a single task and updates statistics accordingly
  * 
@@ -190,6 +191,7 @@ function findUrgentTasks(tasks) {
         nextUrgent: closestDeadline
     };
 };
+
 
 /**
  * Creates an empty result for when no urgent tasks exist

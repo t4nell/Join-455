@@ -61,6 +61,7 @@ function getGreetingTemplate(greeting, userName) {
 
 /**
  * Creates the HTML template for a task group header
+ * 
  * @param {string} status - The status of the task group
  * @returns {string} HTML template for the task group header
  */
@@ -78,6 +79,7 @@ function getTaskGroupHeaderTemplate(status) {
 
 /**
  * Creates the HTML template for a task card
+ * 
  * @param {Object} task - The task data
  * @returns {string} HTML template for the task card
  */

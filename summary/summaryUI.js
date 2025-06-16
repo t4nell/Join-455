@@ -2,8 +2,10 @@ const greetingContainer = document.getElementById('summary_greating_container');
 const headerContainer = document.getElementById('header_container');
 const mainContainer = document.getElementById('navbar_container');
 
+
 /**
  * Returns appropriate greeting based on time of day
+ * 
  * @param {number} hours - Current hour (0-23)
  * @returns {string} Appropriate greeting message
  */
@@ -288,6 +290,7 @@ function markGreetingAsSeen() {
     sessionStorage.setItem('hasSeenGreeting', 'true');
 };
 
+
 /**
  * Gets current user's name from local storage
  * 
@@ -297,6 +300,7 @@ function getCurrentUserName() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return currentUser?.name || 'Gast';
 };
+
 
 /**
  * Creates fullscreen greeting element
@@ -313,6 +317,7 @@ function createGreetingElement() {
     return fullscreenGreeting;
 };
 
+
 /**
  * Hides the summary container
  * 
@@ -323,6 +328,7 @@ function hideSummaryContainer() {
     summaryContainer.classList.add('summary-content-hidden');
     return summaryContainer;
 };
+
 
 /**
  * Checks if mobile greeting should be shown and prepares greeting element
@@ -339,6 +345,7 @@ function prepareMobileGreeting() {
     return { fullscreenGreeting, summaryContainer };
 },
 
+
 /**
  * Shows a mobile greeting that disappears after a few seconds
  */
@@ -348,6 +355,7 @@ function showMobileGreeting() {
     const { fullscreenGreeting, summaryContainer } = elements;
     displayGreeting(fullscreenGreeting, summaryContainer);
 };
+
 
 /**
  * Displays the greeting and starts animation
@@ -360,6 +368,7 @@ function displayGreeting(fullscreenGreeting, summaryContainer) {
     startGreetingAnimation(fullscreenGreeting, summaryContainer);
 };
 
+
 /**
  * Handles the animation sequence for the greeting
  * 
@@ -371,6 +380,7 @@ function startGreetingAnimation(fullscreenGreeting, summaryContainer) {
         hideGreeting(fullscreenGreeting, summaryContainer);
     }, 3000);
 };
+
 
 /**
  * Hides greeting and shows summary content
@@ -385,6 +395,7 @@ function hideGreeting(fullscreenGreeting, summaryContainer) {
     }, 1000);
 };
 
+
 /**
  * Shows summary content and removes greeting
  * 
@@ -398,6 +409,7 @@ function showSummaryContent(summaryContainer, fullscreenGreeting) {
         fullscreenGreeting.remove();
     }, 1000);
 };
+
 
 /**
  * Updates user profile display (add if missing)
