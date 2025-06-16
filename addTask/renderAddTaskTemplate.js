@@ -8,7 +8,6 @@ function openOverlay() {
 
 function initAll() {
     renderTaskBoard();
-    datePicker('#due_date');
     renderCategories();
 }
 
@@ -24,6 +23,8 @@ function bubbling(event) {
 function renderTaskBoard() {
     const taskContainer = document.getElementById('add_task_container_board');
     taskContainer.innerHTML = renderTaskTemplate();
+
+    datePicker('#due_date');
 }
 
 function datePicker(selectedDate) {
