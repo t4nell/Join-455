@@ -1,18 +1,18 @@
-const BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+const BASE_URL_ADDTASK = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
 
-let contactsArray = [];
+let allContactsArray = [];
 
-async function loadContactData(path = '') {
+async function loadAllContactData(path = '') {
     try {
-        const response = await fetch(BASE_URL + path + '.json');
+        const response = await fetch(BASE_URL_ADDTASK + path + '.json');
         const data = await response.json();
         const contactsRef = data.contact || {};
 
-        contactsArray = Object.entries(contactsRef)
+        allContactsArray = Object.entries(contactsRef)
             .map(([id, contact]) => ({ id, ...contact }))
             .sort((a, b) => a.name.localeCompare(b.name));
 
-        console.log(contactsArray);
+        console.log(allContactsArray);
     } catch (error) {
         console.error('Error loading contact data:', error);
     }

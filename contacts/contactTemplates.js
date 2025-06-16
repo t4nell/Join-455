@@ -1,3 +1,8 @@
+/**
+ * Returns a single contact template for a contact list item.
+ *
+ * @return {*} - A string containing the HTML structure for a single contact item.
+ */
 function getContactListTemplate() {
   return `<div class="contact_small_img">
             <img src="../assets/imgs/contactIcons/profile_badge.svg" alt="" />
@@ -12,6 +17,13 @@ function getContactListTemplate() {
           </div>`;
 }
 
+/**
+ * Returns a template for a contact list grouped by letters.
+ *
+ * @param {*} letter - The first letter to group contacts by.
+ * @param {*} groupedContacts - An object containing contacts grouped by their first letter.
+ * @return {*} - A string containing the HTML structure for the contact list grouped by letters.
+ */
 function getContactListTemplate(letter, groupedContacts) {
   return `
       <div class="letter_group" id="letter_group_${letter}">
@@ -55,6 +67,14 @@ function getContactListTemplate(letter, groupedContacts) {
       </div>`;
 }
 
+
+/**
+ * Returns a template for the current user in the contact list.
+ *
+ * @param {*} currentUser - The current user object containing user details.
+ * @param {*} currentUserInitials - The initials of the current user, used for display.
+ * @return {*} - A string containing the HTML structure for the current user in the contact list.
+ */
 function getCurrentUserTemplate(currentUser, currentUserInitials) {
   return `<div class="letter_index"">
                               User
@@ -81,6 +101,14 @@ function getCurrentUserTemplate(currentUser, currentUserInitials) {
                           `;
 }
 
+
+/**
+ * Returns a template for the current user details in the contact view.
+ *
+ * @param {*} currentUser - The current user object containing user details.
+ * @param {*} currentUserInitials - The initials of the current user, used for display.
+ * @return {*} - A string containing the HTML structure for the current user details in the contact view.
+ */
 function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
   return `
 <div class="contact_header">
@@ -125,6 +153,13 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
           </div>`;
 }
 
+
+/**
+ * Returns a template for the contact details view.
+ *
+ * @param {*} contact - The contact object containing contact details.
+ * @return {*} - A string containing the HTML structure for the contact details view.
+ */
 function getContactDetailsTemplate(contact) {
   return `
                 <div class="contact_header">
@@ -175,6 +210,12 @@ function getContactDetailsTemplate(contact) {
         </div>`;
 }
 
+
+/**
+ * Returns a template for the new contact overlay.
+ *
+ * @return {*} - A string containing the HTML structure for the new contact overlay.
+ */
 function getNewContactOverlay() {
   return  `
   <div class="overlay_side_img">
@@ -259,6 +300,14 @@ function getNewContactOverlay() {
 `
 }
 
+
+/**
+ * Returns a template for the edit contact overlay.
+ *
+ * @param {*} contact - The contact object containing contact details to be edited.
+ * @param {*} index - The index of the contact in the contacts array, used for identifying which contact to edit.
+ * @return {*} - A string containing the HTML structure for the edit contact overlay.
+ */
 function getEditContactOverlay(contact, index) {
   return  `
     <div class="overlay_side_img">
@@ -330,6 +379,14 @@ function getEditContactOverlay(contact, index) {
 }
 
 
+
+/**
+ * Returns a template for the current user edit overlay.
+ *
+ * @param {*} currentUserInitials - The initials of the current user, used for display.
+ * @param {*} currentUser - The current user object containing user details. 
+ * @return {*} - A string containing the HTML structure for the current user edit overlay.
+ */
 function getCurrentUserEditOverlay(currentUserInitials) {
   return `
     <div class="overlay_side_img">

@@ -2,7 +2,7 @@ async function init() {
     renderTask();
     checkOrientation();
     initSidebar();
-    loadContactData();
+    loadAllContactData();
     renderCategories();
     renderHeader();
     updateUserProfile();

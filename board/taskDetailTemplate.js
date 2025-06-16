@@ -100,20 +100,20 @@ async function openEditTask(taskId) {
         taskDetailCard.innerHTML = getEditTaskTemplate(task);
         initEditTaskVariables();
         await loadContactData();
-        loadContactsToAssigned();
+        loadContactsToAssignedEditTask();
         if (task.assignedTo) {
             contactsArray.forEach((contact, index) => {
                 const fullName = `${contact.name} ${contact.surname}`;
                 if (task.assignedTo[fullName] === true) {
-                    const checkbox = document.getElementById(`users_checkbox_${index}`);
+                    const checkbox = document.getElementById(`users_checkbox_${index}_edit_task`);
                     if (checkbox) {
                         checkbox.checked = true;
-                        toggleBackground(index);
+                        toggleBackgroundEditTask(index);
                     };
                 };
             });
         };
-        switchBtnPriority(task.priority);
+        switchBtnPriorityEditTask(task.priority);
     };
     initializeCalendar();
 };

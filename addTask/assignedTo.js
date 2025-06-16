@@ -6,7 +6,7 @@ function filterContacts() {
 
     const filter = toggle.value.toLowerCase();
     menu.innerHTML = '';
-    contactsArray.forEach((contact, index) => {
+    allContactsArray.forEach((contact, index) => {
         const fullName = `${contact.name} ${contact.surname}`.toLowerCase();
         if (fullName.includes(filter)) {
             menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
@@ -44,6 +44,7 @@ function toggleBackground(index) {
 }
 
 function closeDropdown(event) {
+    event.stopPropagation();
     const dropdown = document.getElementById('dropdown');
     const toggle = document.getElementById('dropdown_toggle_btn');
     const selectedUser = document.getElementById('selected_users_group');
@@ -74,7 +75,7 @@ function loadAllContactsToAssigned() {
     const menu = document.getElementById('dropdown_menu');
 
     menu.innerHTML = '';
-    contactsArray.forEach((contact, index) => {
+    allContactsArray.forEach((contact, index) => {
         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
     });
 }
@@ -104,7 +105,7 @@ function renderSelectedIcons() {
 
     selectedUser.innerHTML = '';
     selectedUserIndices.forEach((index) => {
-        const contact = contactsArray[index];
+        const contact = allContactsArray[index];
         const bgColor = contact.color;
         const initials =
             contact.name
@@ -120,7 +121,7 @@ function renderSelectedIcons() {
 }
 
 function clearSelection() {
-    contactsArray.forEach((box, index) => {
+    allContactsArray.forEach((box, index) => {
         const checkbox = document.getElementById(`users_checkbox_${index}`);
         if (checkbox) {
             checkbox.checked = false;

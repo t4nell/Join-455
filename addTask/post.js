@@ -1,4 +1,4 @@
-BASE_URL;
+BASE_URL_ADDTASK;
 
 function collectTaskData(form) {
     const fd = new FormData(form);
@@ -42,7 +42,7 @@ function postTask(taskData) {
 }
 
 async function postData(path = '', data = {}) {
-    let response = await fetch(BASE_URL + path + '.json', {
+    let response = await fetch(BASE_URL_ADDTASK + path + '.json', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

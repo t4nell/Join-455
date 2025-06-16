@@ -1,3 +1,7 @@
+/**
+ * @description Opens the edit overlay for the current user, allowing them to edit their own details.
+ *
+ */
 function editCurrentUserOverlay(){
   let currentUser = JSON.parse(localStorage.getItem('currentUser'));
   overlay.classList.remove("fade_out");
@@ -12,6 +16,15 @@ function editCurrentUserOverlay(){
   }
 }
 
+/**
+ *@description Validates the name, email, and phone number fields for the current user.
+ *
+ * @param {*} newNameParts - An array containing the first and last name of the user.
+ * @param {*} newEmail - The new email address of the user.
+ * @param {*} newPhone - The new phone number of the user.
+ * @param {*} isEdit - A flag indicating whether the validation is for editing the current user.
+ * @return {*} - Returns true if all fields are valid, otherwise returns undefined.
+ */
 function checkValidation(newNameParts, newEmail, newPhone, isEdit){
   const isNameValid = validateName(newNameParts, isEdit);
   const isEmailValid = validateEmail(newEmail, isEdit);
@@ -25,6 +38,12 @@ function checkValidation(newNameParts, newEmail, newPhone, isEdit){
   }
 }
 
+
+/**
+ * @description Saves the current user's information after validation.
+ *
+ * @param {*} event - preventDefault event to stop the form from reloading the page.
+ */
 function saveCurrentUserInfo(event){
   event.preventDefault();
   const newName =  document.getElementById('edit_name').value 
@@ -50,6 +69,11 @@ function saveCurrentUserInfo(event){
 }};
 
 
+
+/**
+ * @description Renders the current user's details and initials in the main container and user container after edit.
+ *
+ */
 function renderCurrentUserViews() {
   const mainContainer = document.querySelector('#contact_detail_container');
   const userContainer = document.querySelector('.current_user_container');
@@ -60,6 +84,11 @@ function renderCurrentUserViews() {
   userContainer.innerHTML = getCurrentUserTemplate(currentUser, currentUserInitials);
 }
 
+
+/**
+ * @description Closes the current user edit process by clearing the main container, rendering the current user views, toggling the overlay, and showing a notification.
+ *
+ */
 function closeCurrentUserEditProcess() {
   const mainContainer = document.querySelector("#contact_detail_container");
   mainContainer.innerHTML = "";

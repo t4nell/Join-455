@@ -228,19 +228,19 @@ function getEditTaskTemplate(task) {
     
     <form id="edit_task_form" class="edit_task_form">  
       <div class="input_titel_group">
-          <label for="title" class="required_for_label" onclick="event.preventDefault()">Title</label>
-          <input name="title" id="title" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
+          <label for="title_edit_task" class="required_for_label" onclick="event.preventDefault()">Title</label>
+          <input name="title" id="title_edit_task" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
       </div>
       
       <div class="textarea_group">
-          <label id="description_label" for="description" class="required_for_label" onclick="event.preventDefault()">Description</label>
-          <textarea name="description" class="textarea" id="description" placeholder="Enter a Description">${task.description}</textarea>
+          <label id="description_label_edit_task" for="description_edit_task" class="required_for_label" onclick="event.preventDefault()">Description</label>
+          <textarea name="description" class="textarea" id="description_edit_task" placeholder="Enter a Description">${task.description}</textarea>
       </div>
 
       <div class="input_date_group">
-        <label for="due_date" class="required_for_label" onclick="event.preventDefault()">Due date</label>
+        <label for="due_date_edit_task" class="required_for_label" onclick="event.preventDefault()">Due date</label>
         <div class="input_date_container">
-          <input onclick="openCalendar()" name="due_date" type="text" id="due_date" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
+          <input onclick="openCalendar()" name="due_date" type="text" id="due_date_edit_task" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
           <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
         </div>
       </div>
@@ -248,51 +248,51 @@ function getEditTaskTemplate(task) {
       <div class="radio_btn_container">
         <span class="required_for_label">Priority</span>
         <div class="priority_btn_group">
-          <input type="radio" id="priority_urgent" name="priority" value="Urgent" ${task.priority === 'Urgent' ? 'checked' : ''} onclick="switchBtnPriority('Urgent')" />  
-          <label for="priority_urgent" class="btn btn--red">
+          <input type="radio" id="priority_urgent_edit_task" name="priority" value="Urgent" ${task.priority === 'Urgent' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Urgent')" />  
+          <label for="priority_urgent_edit_task" class="btn btn--red">
             Urgent
-            <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent"/>
+            <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent_edit_task"/>
           </label>
 
-          <input type="radio" id="priority_medium" name="priority" value="Medium" ${task.priority === 'Medium' ? 'checked' : ''} onclick="switchBtnPriority('Medium')"/>
-          <label for="priority_medium" class="btn btn--orange">
+          <input type="radio" id="priority_medium_edit_task" name="priority" value="Medium" ${task.priority === 'Medium' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Medium')"/>
+          <label for="priority_medium_edit_task" class="btn btn--orange">
             Medium
-            <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium"/>
+            <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium_edit_task"/>
           </label>
 
-          <input type="radio" id="priority_low" name="priority" value="Low" ${task.priority === 'Low' ? 'checked' : ''} onclick="switchBtnPriority('Low')"/>
-          <label for="priority_low" class="btn btn--green">
+          <input type="radio" id="priority_low_edit_task" name="priority" value="Low" ${task.priority === 'Low' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Low')"/>
+          <label for="priority_low_edit_task" class="btn btn--green">
             Low
-            <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
+            <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low_edit_task"/>
           </label>
         </div>
       </div>
 
       <div class="assign_to_group">
-        <label for="dropdown_toggle_btn" class="required_for_label" onclick="event.preventDefault()">Assigned to</label>
-        <div class="dropdown" id="dropdown">
+        <label for="dropdown_toggle_btn_edit_task" class="required_for_label" onclick="event.preventDefault()">Assigned to</label>
+        <div class="dropdown" id="dropdown_edit_task">
             <div class="dropdown_input_wrapper">
-                <input onclick="toggleDropdownAssigned(event)" type="text" id="dropdown_toggle_btn" class="dropdown_toggle" placeholder="Select contacts to assign"/>
+                <input onclick="toggleDropdownAssignedEditTask(event)" type="text" id="dropdown_toggle_btn_edit_task" class="dropdown_toggle" placeholder="Select contacts to assign"/>
                 <div class="arrow_bg_hover_color">
                     <span class="arrow"></span>
                 </div>
             </div>
-            <ul class="dropdown_menu" id="dropdown_menu"></ul>
+            <ul class="dropdown_menu" id="dropdown_menu_edit_task"></ul>
         </div>
-        <div id="selected_user_group" class="selected_user_group">${renderAssignedContactsEdit(task.assignedTo)}</div>
+        <div id="selected_user_group_edit_task" class="selected_user_group">${renderAssignedContactsEditTask(task.assignedTo)}</div>
       </div>
 
       <div class="tag_input_container">
-        <label for="tag_input_field" class="required_for_label" onclick="event.preventDefault()">Subtasks</label>
+        <label for="tag_input_field_edit_task" class="required_for_label" onclick="event.preventDefault()">Subtasks</label>
         <div class="tag_input">
-          <input type="text" placeholder="Add new subtask" id="tag_input_field" onclick="replaceButtons()" onkeydown="onKeyDownEnter(event)"/>
-          <div class="subtask_btn_container" id="subtask_btn_container">
-            <button class="plus_btn" onclick="replaceButtons()">
+          <input type="text" placeholder="Add new subtask" id="tag_input_field_edit_task" onclick="replaceButtonsEditTask()" onkeydown="onKeyDownEnterEditTask(event)"/>
+          <div class="subtask_btn_container" id="subtask_btn_container_edit_task">
+            <button class="plus_btn" onclick="replaceButtonsEditTask()">
               <img class="subtasks_icon arrow_bg_hover_color_subtask" src="../assets/imgs/boardIcons/subtasksPlusIcon.svg" alt="New Button Icon"/>
             </button>
           </div>
         </div>
-        <div class="new_tag_container" id="new_tag_container">${renderEditableSubtasks(task)}</div>
+        <div class="new_tag_container" id="new_tag_container_edit_task">${renderEditableSubtasks(task)}</div>
       </div>
 
       <div class="task_detail_buttons">
@@ -308,7 +308,7 @@ function getEditTaskTemplate(task) {
 
 function createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr) {
     return `
-    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUser('${contact.id}', event)">
+    <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUserEditTask('${contact.id}', event)">
         <div class="symbole_name_group">
             <div class="avatar" style="background-color: ${bgColor}">
                 <span>${nameInitials}${surnameInitials}</span>
@@ -317,13 +317,13 @@ function createContactListItem(activeClass, contact, bgColor, nameInitials, surn
                 <span class="contact_name">${contact.name} ${contact.surname}</span>
             </div>
         </div>
-        <input id="users_checkbox_${contact.id}"
+        <input id="users_checkbox_${contact.id}_edit_task"
         class="assign_dropdown_input"
         type="checkbox"
         name="assigned_to"
         value="${contact.name} ${contact.surname}" 
         ${checkedAttr}
-        onclick="selectUser('${contact.id}', event)"/>
+        onclick="selectUserEditTask('${contact.id}', event)"/>
     </li>`;
 };
 
@@ -358,17 +358,17 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
             class="new_tag_input" 
             id='${tagInputId}' 
             type="text"  
-            ondblclick="enableEditing('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
-            onblur="disableEditing('${tagInputId}')" 
-            oninput="autoResizeTextarea(this)"
+            ondblclick="enableEditingEditTask('${tagInputId}', '${tagBtnConId}', '${tagId}')" 
+            onblur="disableEditingEditTask('${tagInputId}')" 
+            oninput="autoResizeTextareaEditTask(this)"
             readonly>${subtask.title}</textarea>
         <div id='${tagBtnConId}' class="new_tag_btn_container">
             <div class="btns_position">
-                <button class="edit_text_btn" onclick="editTextBtn(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
+                <button class="edit_text_btn" onclick="editTextBtnEditTask(event, '${tagInputId}', '${tagBtnConId}', '${tagId}')">
                     <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksEditIcon.svg" alt="Icon"/>
                 </button>
                 <hr class="separator_vertically_subtasks" />
-                <button class="trash_btn" onclick="trashBtn('${tagId}')">
+                <button class="trash_btn" onclick="trashBtnEditTask('${tagId}')">
                     <img class="subtasks_icon" src="../assets/imgs/addTaskIcons/subtasksTrashIcon.svg" alt="Icon"/>
                 </button>
             </div>
