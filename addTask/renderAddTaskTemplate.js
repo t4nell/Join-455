@@ -127,6 +127,36 @@ function showAddedNotification(notificationText) {
     }, 1500);
 }
 
+function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    navbarMobileContainer.innerHTML = '';
+    mainContainer.innerHTML = getSidebarTemplate();
+    navContainer.style.display = 'block';
+}
+
+function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
+    mainContainer.innerHTML = '';
+    navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
+    navContainer.style.display = 'none';
+}
+
+function initSidebar() {
+    window.addEventListener('resize', proofSize);
+    proofSize();
+}
+
+function proofSize() {
+    const mainContainer = document.getElementById('navbar_container');
+    const navContainer = document.getElementById('sidebar_container');
+    const navbarMobileContainer = document.getElementById('navbar_mobile_container');
+    const width = window.innerWidth;
+    if (width < 1051) {
+        renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
+    } else {
+        renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
+    }
+}
+
 function renderTaskTemplate() {
     return `
         <div class="title_head">
