@@ -1,9 +1,9 @@
 let BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
-
 allTasks = window.allTasks || [];
 
 /**
  * Finds the task card element being dragged
+ * 
  * @param {Event} event - The drag event
  * @returns {HTMLElement} The dragged task card element
  */
@@ -11,8 +11,10 @@ function getDraggedElement(event) {
     return event.target.closest('.task_card');
 };
 
+
 /**
  * Allows dropping by preventing the default behavior and adding a placeholder
+ * 
  * @param {Event} event - The dragover event
  */
 function allowDrop(event) {
@@ -218,6 +220,7 @@ function findTaskIndex(taskId) {
     );
 };
 
+
 /**
  * Sets up all drag areas with event handlers
  */
@@ -237,6 +240,7 @@ function setupDragAreas() {
     document.addEventListener('dragend', handleDragEnd);
 };
 
+
 /**
  * Sets up the drag and drop system
  * 
@@ -246,6 +250,7 @@ function initDragAndDrop() {
     setupDragAreas();
     return Promise.resolve();
 };
+
 
 /**
  * Template: Shows correct sidebar depending on screen size.
@@ -303,6 +308,7 @@ function handlePlaceholderDrop(e) {
     cleanupAfterDrop();
 }
 
+
 /**
  * Places a placeholder at the right position based on mouse position
  * 
@@ -320,6 +326,7 @@ function insertPlaceholderAtPosition(dropzone, placeholder, mouseY) {
     insertPlaceholder(dropzone, placeholder, items, insertPosition);
 };
 
+
 /**
  * Gets all items in a container except placeholders
  * 
@@ -331,6 +338,7 @@ function getNonPlaceholderItems(container) {
         !child.classList.contains('drag_area_placeholder')
     );
 };
+
 
 /**
  * Finds where to insert the placeholder based on mouse position
@@ -382,6 +390,7 @@ function removePlaceholders() {
         placeholder.remove();
     });
 };
+
 
 /**
  * Handles the end of a drag operation

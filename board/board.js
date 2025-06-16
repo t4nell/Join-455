@@ -9,6 +9,7 @@ const dragAreaAwaitFeedback = document.getElementById('drag_area_await_feedback'
 const dragAreaDone = document.getElementById('drag_area_done');
 let allTasks = [];
 
+
 /**
  * Initializes the application by loading all necessary data and setting up components
  * 
@@ -174,6 +175,7 @@ function startDragging(event, taskId) {
     saveDraggedCardSize(draggedElement, event);
 };
 
+
 /**
  * Saves the size of the card being dragged for later use
  * 
@@ -209,6 +211,7 @@ function allowDrop(event) {
         dropzone.appendChild(placeholder);
     }
 };
+
 
 /**
  * Gets the dimensions of the dragged element
@@ -268,6 +271,7 @@ function handleDrop(event) {
     }
 };
 
+
 /**
  * Cleans up visual effects and stored data after drag operations
  */
@@ -278,6 +282,7 @@ function cleanupDragEffects() {
     removePlaceholders();
     sessionStorage.removeItem('draggedElementDimensions');
 };
+
 
 /**
  * Determines which status a task should get based on the drop zone
@@ -293,6 +298,7 @@ function getTargetStatus(dropzone) {
     return null;
 };
 
+
 /**
  * Handles the end of a drag operation (when the user releases)
  * 
@@ -301,6 +307,7 @@ function getTargetStatus(dropzone) {
 function handleDragEnd(event) {
     cleanupDragEffects();
 };
+
 
 /**
  * Sets up all drag areas with the necessary event handlers
@@ -313,6 +320,7 @@ function setupDragAreas() {
     });
     document.addEventListener('dragend', handleDragEnd);
 };
+
 
 /**
  * Moves a task to a different status and updates the database
@@ -327,6 +335,7 @@ async function moveTo(taskId, targetStatus) {
     await updateTaskStatus(taskId, targetStatus);
     renderColumns();
 };
+
 
 /**
  * Updates the task status in the database
@@ -348,6 +357,7 @@ async function updateTaskStatus(taskId, status) {
     }
 };
 
+
 /**
  * Checks the task object and returns its card HTML
  * 
@@ -361,6 +371,7 @@ function getTaskCard(task) {
     }
     return generateTaskCardHTML(task);
 };
+
 
 /**
  * Shows the correct sidebar depending on screen size.
@@ -376,9 +387,23 @@ function renderSidebar() {
     updateSidebar(main, side, mobile); // Show correct sidebar at first load
 };
 
+
+/**
+ * Updates the sidebar display based on current screen size
+ * 
+ * @param {HTMLElement} main - Main container element for desktop sidebar
+ * @param {HTMLElement} side - Side element that holds the sidebar
+ * @param {HTMLElement} mobile - Container element for mobile sidebar
+ * 
+ * This function checks the current viewport width and updates the sidebar
+ * display accordingly. For desktop views (>= 1050px), it shows the regular
+ * sidebar. For mobile views (< 1050px), it displays the mobile sidebar
+ * with the current page highlighted and hides the desktop sidebar.
+ */
 function updateSidebar(main, side, mobile) {
+    const currentPage = window.location.pathname;
     const isMobile = window.innerWidth < 1050;
     main.innerHTML = isMobile ? '' : getSidebarTemplate();
-    mobile.innerHTML = isMobile ? getSidebarTemplateMobile() : '';
+    mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
     side.style.display = isMobile ? 'none' : 'block';
-};
+}
