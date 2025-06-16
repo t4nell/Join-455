@@ -42,7 +42,7 @@
     }
 
     .create_task {
-        margin-top: 0;
+        margin-top: 16px;
         margin-bottom: 0;
     }
 
@@ -92,10 +92,21 @@
     }
 }
 
+@media (max-width: 450px) {
+    .create_task {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+    }
+
+    .create_task_btn {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 426px) {
     .overlay_content {
-        width: 100%;
-        max-width: 1000px;
         margin-left: 8px;
         margin-right: 8px;
         padding-left: 8px;
