@@ -7,7 +7,7 @@ function collectTaskData(form) {
 
     const assignedTo = {};
     selectedUserIndices.forEach((index) => {
-        const contact = contactsArray[index];
+        const contact = allContactsArray[index];
         const { id, name, surname } = contact;
         const fullName = `${name} ${surname}`;
 
