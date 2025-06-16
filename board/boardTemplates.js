@@ -140,6 +140,7 @@ function getSwapStatusTemplate(task) {
 function getDetailTaskCard(task) {
   const categoryColor = getCategoryColor(task.category);
     return `
+      <div class="task_detail_card_template">
         <div class="task_detail_card_header">
           <span class="category_lable_detail" style="background-color: ${categoryColor}">${task.category}</span>
           <button onclick="closeDetailTemplate()" class="closed_btn">
@@ -191,7 +192,8 @@ function getDetailTaskCard(task) {
             <img src="../assets/imgs/boardIcons/edit.svg" alt="edit">
             Edit
           </button>
-        </div>
+          </div>
+      </div>    
     `;
 };
 
