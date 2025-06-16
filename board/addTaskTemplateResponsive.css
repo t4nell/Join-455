@@ -1,4 +1,12 @@
 @media screen and (max-width: 1050px) {
+    * {
+        font-size: 16px;
+    }
+
+    .title_head h2 {
+        font-size: 47px;
+    }
+
     .overlay_content {
         max-width: 605px;
         max-height: 800px;
@@ -79,6 +87,9 @@
         content: ' *';
         color: red;
     }
+    .priority_btn_group {
+        gap: 8px;
+    }
 }
 
 @media (max-width: 426px) {
@@ -96,6 +107,10 @@
         justify-content: center;
         align-items: center;
         margin-top: 16px;
+    }
+
+    .create_task_btn {
+        font-size: 16px;
     }
 }
 
