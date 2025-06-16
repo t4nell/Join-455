@@ -80,3 +80,17 @@
     margin-right: 24px;
 }
 
+.dropdown_menu {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    max-height: 230px;
+}
+
+.category_dropdown_menu {
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    max-height: 170px;
+    overflow-y: auto;
+}
