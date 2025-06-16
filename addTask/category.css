@@ -78,7 +78,6 @@
     padding: 0;
     max-height: 200px;
     overflow-y: auto;
-    scrollbar-width: thin;
     padding-bottom: 8px;
 }
 

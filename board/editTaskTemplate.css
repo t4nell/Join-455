@@ -3,13 +3,12 @@
     --medium-priority-btn-color-active: #ffa800;
     --low-priority-btn-color-active: #7ae229;
     --hover-color-assigned-dropdown: #091931;
-    --checkbox-hover-background_color:#eeeeee;
-    --checkbox-active-hover-background_color:#2A3647;
-    --lable-text-color: #2A3647;
+    --checkbox-hover-background_color: #eeeeee;
+    --checkbox-active-hover-background_color: #2a3647;
+    --lable-text-color: #2a3647;
     --subtasks-underline-color: #29abe2;
     --subtasks-icon-divider-color: #a8a8a8;
     --subtasks-background-color: #f0f0f0;
-
 }
 
 .edit_task_form {
@@ -268,7 +267,7 @@
     border-radius: 10px;
 }
 
-.dropdown_item.active:hover{
+.dropdown_item.active:hover {
     background-color: var(--hover-color-assigned-dropdown);
 }
 
@@ -359,8 +358,9 @@
 }
 
 .new_tag_container {
-    max-height: 100%;
-    overflow: visible;
+    width: 100%;
+    max-height: 130px;
+    overflow-y: auto;
 }
 
 .new_tag_input {
