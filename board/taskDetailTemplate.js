@@ -101,6 +101,7 @@ async function openEditTask(taskId) {
         initEditTaskVariables();
         await loadContactData();
         loadContactsToAssignedEditTask();
+        initializeTextareas()
         if (task.assignedTo) {
             contactsArray.forEach((contact, index) => {
                 const fullName = `${contact.name} ${contact.surname}`;
@@ -116,6 +117,14 @@ async function openEditTask(taskId) {
         switchBtnPriorityEditTask(task.priority);
     };
     initializeCalendar();
+};
+
+
+function initializeTextareas() {
+    const textareas = document.querySelectorAll('textarea.new_tag_input');
+    textareas.forEach(textarea => {
+        autoResizeTextareaEditTask(textarea);
+    });
 };
 
 
