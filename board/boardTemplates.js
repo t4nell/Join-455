@@ -1,15 +1,16 @@
 function renderPlaceholder() {
-  return `
+    return `
   <span class="drag_area_placeholder">No Tasks</span>
-  ` 
-};
-
+  `;
+}
 
 function getTaskCard(task) {
-  const progress = calculateSubtaskProgress(task);
-  const categoryColor = getCategoryColor(task.category);
-  return `
-    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${task.id}" class="task_card" data-id="${task.id}" onclick="renderDetailTemplate('${task.id}')">
+    const progress = calculateSubtaskProgress(task);
+    const categoryColor = getCategoryColor(task.category);
+    return `
+    <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${
+        task.id
+    }" class="task_card" data-id="${task.id}" onclick="renderDetailTemplate('${task.id}')">
       <div class="task_card_header">
         <div class="task_category">
           <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
@@ -24,7 +25,9 @@ function getTaskCard(task) {
       </div>
       <div class="progress_section" style="${progress.total === 0 ? 'display:none' : ''}">
         <div class="progress_bar">
-          <div class="progress_fill" style="width: ${progress.progressPercentage}%; background-color: ${progress.completed === progress.total ? 'var(--progress-fill-full-color)' : 'var(--progress-fill-color)'}"></div>
+          <div class="progress_fill" style="width: ${progress.progressPercentage}%; background-color: ${
+        progress.completed === progress.total ? 'var(--progress-fill-full-color)' : 'var(--progress-fill-color)'
+    }"></div>
         </div>
         <span class="subtask_counter">${progress.completed}/${progress.total} Subtasks</span>
       </div>
@@ -37,9 +40,8 @@ function getTaskCard(task) {
         </div>
       </div>
     </div>
-  `
-};
-
+  `;
+}
 
 /**
  * Creates the mobile sidebar HTML
@@ -47,7 +49,7 @@ function getTaskCard(task) {
  */
 function getSidebarTemplateMobile() {
     const currentPage = window.location.pathname;
-    
+
     return ` 
     <div class="sidebar_container">  
         <nav class="sidebar_nav">
@@ -70,8 +72,7 @@ function getSidebarTemplateMobile() {
         </nav>
     </div>
     `;
-};
-
+}
 
 /**
  * Generates the HTML template for a task card
@@ -91,8 +92,7 @@ function generateTaskCardHTML(task) {
             </div>
         </div>
     `;
-};
-
+}
 
 function getAvatarTemplate(contact) {
     return `
@@ -100,8 +100,7 @@ function getAvatarTemplate(contact) {
                 ${contact.initials}
             </div>
         `;
-};
-
+}
 
 function renderMoreAvatarsButton(totalContacts, maxVisible) {
     return `
@@ -109,11 +108,10 @@ function renderMoreAvatarsButton(totalContacts, maxVisible) {
             +${totalContacts - maxVisible}
         </div>
     `;
-};
-
+}
 
 function getSwapStatusTemplate(task) {
-  return `
+    return `
     <div class="swap_status_template">
       <h3>Move To</h3>
       <button id="status_button_todo" data-status="todo" class="swap_status_button" onclick="changeTaskStatus(event, '${task.id}', 'todo')">
@@ -133,12 +131,11 @@ function getSwapStatusTemplate(task) {
         <p>Done</p>
       </button>
     </div>
-  `
-};
-
+  `;
+}
 
 function getDetailTaskCard(task) {
-  const categoryColor = getCategoryColor(task.category);
+    const categoryColor = getCategoryColor(task.category);
     return `
       <div class="task_detail_card_template">
         <div class="task_detail_card_header">
@@ -195,8 +192,7 @@ function getDetailTaskCard(task) {
           </div>
       </div>    
     `;
-};
-
+}
 
 function getAssignedContactsTemplate(contactId, contact, initials) {
     return `
@@ -207,8 +203,7 @@ function getAssignedContactsTemplate(contactId, contact, initials) {
           <span>${contact.name} ${contact.surname}</span>
         </div>
       `;
-};
-
+}
 
 function getSubtaskTemplate(key, subtask, taskId) {
     return `
@@ -222,27 +217,32 @@ function getSubtaskTemplate(key, subtask, taskId) {
             </div>
         </div>
     `;
-};
-
+}
 
 function getEditTaskTemplate(task) {
-  return `
+    return `
     
-    <form id="edit_task_form" class="edit_task_form">  
+    <form id="edit_task_form" class="edit_task_form" onclick="handleClickOutsideEditTask(event)">  
       <div class="input_titel_group">
           <label for="title_edit_task" class="required_for_label" onclick="event.preventDefault()">Title</label>
-          <input name="title" id="title_edit_task" class="input_titel" type="text" placeholder="Enter a title" value="${task.title}"/>
+          <input name="title" id="title_edit_task" class="input_titel" type="text" placeholder="Enter a title" value="${
+              task.title
+          }"/>
       </div>
       
       <div class="textarea_group">
           <label id="description_label_edit_task" for="description_edit_task" class="required_for_label" onclick="event.preventDefault()">Description</label>
-          <textarea name="description" class="textarea" id="description_edit_task" placeholder="Enter a Description">${task.description}</textarea>
+          <textarea name="description" class="textarea" id="description_edit_task" placeholder="Enter a Description">${
+              task.description
+          }</textarea>
       </div>
 
       <div class="input_date_group">
         <label for="due_date_edit_task" class="required_for_label" onclick="event.preventDefault()">Due date</label>
         <div class="input_date_container">
-          <input onclick="openCalendar()" name="due_date" type="text" id="due_date_edit_task" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${task.dueDate}"/>
+          <input onclick="openCalendar()" name="due_date" type="text" id="due_date_edit_task" placeholder="dd/mm/yyyy" class="flatpickr_input input_date" value="${
+              task.dueDate
+          }"/>
           <img class="calendar_icon" src="../assets/imgs/boardIcons/CalenderIcon.svg" alt="Calendar Icon" onclick="openCalendar()"/>
         </div>
       </div>
@@ -250,19 +250,25 @@ function getEditTaskTemplate(task) {
       <div class="radio_btn_container">
         <span class="required_for_label">Priority</span>
         <div class="priority_btn_group">
-          <input type="radio" id="priority_urgent_edit_task" name="priority" value="Urgent" ${task.priority === 'Urgent' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Urgent')" />  
+          <input type="radio" id="priority_urgent_edit_task" name="priority" value="Urgent" ${
+              task.priority === 'Urgent' ? 'checked' : ''
+          } onclick="switchBtnPriorityEditTask('Urgent')" />  
           <label for="priority_urgent_edit_task" class="btn btn--red">
             Urgent
             <img src="../assets/imgs/boardIcons/priorityUrgent.svg" alt="Urgent Icon" class="priority_icon" id="icon_urgent_edit_task"/>
           </label>
 
-          <input type="radio" id="priority_medium_edit_task" name="priority" value="Medium" ${task.priority === 'Medium' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Medium')"/>
+          <input type="radio" id="priority_medium_edit_task" name="priority" value="Medium" ${
+              task.priority === 'Medium' ? 'checked' : ''
+          } onclick="switchBtnPriorityEditTask('Medium')"/>
           <label for="priority_medium_edit_task" class="btn btn--orange">
             Medium
             <img src="../assets/imgs/boardIcons/priorityMedium.svg" alt="Medium Icon" class="priority_icon" id="icon_medium_edit_task"/>
           </label>
 
-          <input type="radio" id="priority_low_edit_task" name="priority" value="Low" ${task.priority === 'Low' ? 'checked' : ''} onclick="switchBtnPriorityEditTask('Low')"/>
+          <input type="radio" id="priority_low_edit_task" name="priority" value="Low" ${
+              task.priority === 'Low' ? 'checked' : ''
+          } onclick="switchBtnPriorityEditTask('Low')"/>
           <label for="priority_low_edit_task" class="btn btn--green">
             Low
             <img src="../assets/imgs/boardIcons/priorityLow.svg" alt="Low Icon" class="priority_icon" id="icon_low_edit_task"/>
@@ -281,7 +287,9 @@ function getEditTaskTemplate(task) {
             </div>
             <ul class="dropdown_menu" id="dropdown_menu_edit_task"></ul>
         </div>
-        <div id="selected_user_group_edit_task" class="selected_user_group">${renderAssignedContactsEditTask(task.assignedTo)}</div>
+        <div id="selected_user_group_edit_task" class="selected_user_group">${renderAssignedContactsEditTask(
+            task.assignedTo
+        )}</div>
       </div>
 
       <div class="tag_input_container">
@@ -305,8 +313,7 @@ function getEditTaskTemplate(task) {
       
     </form>
   `;
-};
-
+}
 
 function createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr) {
     return `
@@ -327,8 +334,7 @@ function createContactListItem(activeClass, contact, bgColor, nameInitials, surn
         ${checkedAttr}
         onclick="selectUserEditTask('${contact.id}', event)"/>
     </li>`;
-};
-
+}
 
 function generateContactBadge(contactId, contact, initials) {
     return `
@@ -338,8 +344,7 @@ function generateContactBadge(contactId, contact, initials) {
                     </div>
                 </div>
             `;
-};
-
+}
 
 function addSelectedUserIconTemplate(id, bgColor, initials) {
     return `
@@ -348,8 +353,7 @@ function addSelectedUserIconTemplate(id, bgColor, initials) {
                 <div>${initials}</div>
             </div>
         </div>`;
-};
-
+}
 
 function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
     return `
@@ -376,4 +380,4 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
             </div>
         </div>
     </div>`;
-};
+}
