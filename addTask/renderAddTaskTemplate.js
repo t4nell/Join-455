@@ -12,15 +12,6 @@ function initAll() {
     renderCategories();
 }
 
-// function loadContactsToAssigned() {
-//     const menu = document.getElementById('dropdown_menu');
-
-//     menu.innerHTML = '';
-//     contactsArray.forEach((contact, index) => {
-//         menu.innerHTML += loadContactsToAssignedTemplate(contact, index);
-//     });
-// }
-
 function closeOverlay() {
     const overlay = document.getElementById('overlay');
     overlay.classList.add('d_none');
@@ -30,7 +21,7 @@ function bubbling(event) {
     event.stopPropagation();
 }
 
-function renderTaskBoard(){
+function renderTaskBoard() {
     const taskContainer = document.getElementById('add_task_container_board');
     taskContainer.innerHTML = renderTaskTemplate();
 }
@@ -134,8 +125,6 @@ function showAddedNotification(notificationText) {
         window.location.href = '../board/board.html';
     }, 1500);
 }
-
-
 
 function renderTaskTemplate() {
     return `
@@ -356,6 +345,13 @@ function getTaskButtonsTemplate() {
             Create Task
             <img class="create_task_icon" id="create_task" src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg" alt="Icon" />
         </button>
+    `;
+}
+
+function showAddedNotificationTemplate(notificationText) {
+    return `
+        <p>${notificationText}</p>
+        <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
     `;
 }
 
