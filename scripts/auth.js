@@ -1,5 +1,6 @@
 /**
  * Hashes a password using PBKDF2 algorithm
+ * 
  * @async
  * @param {string} password - The password to hash
  * @returns {Promise<string>} The hashed password with salt as hex string
@@ -27,10 +28,12 @@ async function hashPassword(password) {
     const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
     const hashHex = Array.from(new Uint8Array(key)).map(b => b.toString(16).padStart(2, '0')).join('');
     return saltHex + hashHex;
-}
+};
+
 
 /**
  * Verifies a password against a stored hash
+ * 
  * @async
  * @param {string} password - The password to verify
  * @param {string} storedHash - The stored hash to check against
@@ -42,7 +45,6 @@ async function verifyPassword(password, storedHash) {
         storedHash.slice(0, 32).match(/.{2}/g).map(b => parseInt(b, 16))
     );
     const originalHash = storedHash.slice(32);
-    
     const keyMaterial = await window.crypto.subtle.importKey(
         'raw',
         encoder.encode(password),
@@ -62,44 +64,39 @@ async function verifyPassword(password, storedHash) {
     );
     const newHash = Array.from(new Uint8Array(key)).map(b => b.toString(16).padStart(2, '0')).join('');
     return newHash === originalHash;
-}
+};
+
 
 /**
  * Handles the signup process
+ * 
  * @async
  * @param {Event} event - The form submission event
  * @returns {void}
  */
 async function handleSignup(event) {
     event.preventDefault();
-    
     const name = document.getElementById('signupName').value;
     const email = document.getElementById('signupEmail').value;
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
     const acceptPolicy = document.getElementById('accept_policy').checked;
-
-    // Validierung
     if (!acceptPolicy) {
         showNotification('Bitte akzeptieren Sie die Datenschutzrichtlinie', true);
         return;
     }
-    
     if (password !== confirmPassword) {
         showNotification('Passwörter stimmen nicht überein', true);
         return;
     }
-    
     if (password.length < 8) {
         showNotification('Passwort muss mindestens 8 Zeichen haben', true);
         return;
     }
-    
     if (findUser(email)) {
         showNotification('Ein Benutzer mit dieser E-Mail existiert bereits', true);
         return;
     }
-
     try {
         const hashedPassword = await hashPassword(password);
         const user = {
@@ -115,10 +112,12 @@ async function handleSignup(event) {
         console.error("Hashing fehlgeschlagen:", error);
         showNotification('Technischer Fehler - bitte versuchen Sie es später erneut', true);
     }
-}
+};
+
 
 /**
  * Handles the login process
+ * 
  * @async
  * @param {Event} event - The form submission event
  * @returns {void}
@@ -134,7 +133,6 @@ async function handleLogin(event) {
         showNotification('Falsche E-Mail oder Passwort', true);
         return;
     }
-
     try {
         const isMatch = await verifyPassword(password, user.password);
         if (isMatch) {
@@ -147,10 +145,12 @@ async function handleLogin(event) {
         console.error("Verifikation fehlgeschlagen:", error);
         showNotification('Technischer Fehler beim Login', true);
     }
-}
+};
+
 
 /**
  * Saves a user to local storage
+ * 
  * @param {Object} user - The user object to save
  * @param {string} user.name - User's name
  * @param {string} user.email - User's email
@@ -166,16 +166,19 @@ function saveUser(user) {
 
 /**
  * Finds a user by email in local storage
+ * 
  * @param {string} email - The email to search for
  * @returns {Object|undefined} The found user object or undefined
  */
 function findUser(email) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users.find(u => u.email === email);
-}
+};
+
 
 /**
  * Handles guest login process
+ * 
  * @returns {void}
  */
 function handleGuestLogin() {
@@ -187,10 +190,12 @@ function handleGuestLogin() {
 
     localStorage.setItem('currentUser', JSON.stringify(guestUser));
     window.location.href = './summary/summary.html';
-}
+};
+
 
 /**
  * Shows a notification message
+ * 
  * @param {string} message - The message to display
  * @param {boolean} [isError=false] - Whether this is an error message
  * @returns {void}
@@ -205,8 +210,18 @@ function showNotification(message, isError = false) {
     setTimeout(() => {
         notification.remove();
     }, 3000);
-}
+};
 
+
+/**
+ * Enables or disables the signup button based on form input values
+ * 
+ * Checks if all required fields in the signup form have values.
+ * Enables the signup button only when all fields contain input.
+ * 
+ * @function
+ * @returns {void}
+ */
 function disableSignupButton(){
     const signupButton = document.getElementById('signup_btn');
     const name = document.getElementById('signupName');
@@ -218,4 +233,4 @@ function disableSignupButton(){
     } else {
         signupButton.disabled = true;
     }
-}
+};
