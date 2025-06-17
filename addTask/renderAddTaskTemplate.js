@@ -1,3 +1,5 @@
+let dueDatePicker = null;
+
 function openOverlay() {
     const overlay = document.getElementById('overlay');
     overlay.classList.remove('d_none');
@@ -14,6 +16,7 @@ function initAll() {
 function closeOverlay() {
     const overlay = document.getElementById('overlay');
     overlay.classList.add('d_none');
+    removeDatePicker('#due_date');
 }
 
 function bubbling(event) {
@@ -28,6 +31,17 @@ function renderTaskBoard() {
     datePicker('#due_date');
 }
 
+/**
+ * Destroys a Flatpickr instance associated with the given selector
+ * @param {string} selector - CSS selector of the input element with Flatpickr attached
+ */
+function removeDatePicker(selector) {
+    const element = document.querySelector(selector);
+    if (element && element._flatpickr) {
+        element._flatpickr.destroy();
+    }
+}
+
 function datePicker(selectedDate) {
     flatpickr(selectedDate, {
         minDate: 'today',
@@ -36,6 +50,11 @@ function datePicker(selectedDate) {
         firstDayOfWeek: 1,
         disableMobile: 'true',
     });
+}
+
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    calenderInput.focus();
 }
 
 // Add Task
