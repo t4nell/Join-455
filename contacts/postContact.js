@@ -63,7 +63,6 @@ async function postContactData(path = '', data = {}, email) {
         const { name: key } = await response.json();
 
         closeNewContactProcess(email);
-        console.log(key);
 
         return key;
     } else {

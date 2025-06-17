@@ -34,7 +34,6 @@ function renderContactGroups(groupedContacts) {
  */
 function showContactDetails(contactIndex) {
   const contact = contactsArray[contactIndex];
-  console.log(contact);
   if (contact) {
     const contactDetailsContainer = document.getElementById(
       "contact_detail_container"

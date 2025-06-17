@@ -11,7 +11,7 @@
     justify-content: center;
     z-index: 9999;
     opacity: 1;
-    transition: all 225ms ease-in-out;
+    transition: opacity 225ms ease-in-out;
 }
 
 .overlay_content {
