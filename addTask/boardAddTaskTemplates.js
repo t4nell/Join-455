@@ -1,3 +1,8 @@
+/**
+ * Generates the HTML template for the task creation form in the board overlay.
+ * 
+ * @returns {string} HTML markup for the complete task creation form.
+ */
 function renderTaskBoardTemplate() {
     return `
         <div class="title_head">
@@ -118,6 +123,11 @@ function renderTaskBoardTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for priority selection buttons.
+ * 
+ * @returns {string} HTML markup for the priority buttons.
+ */
 function getPriorityButtonsTemplate() {
     return `
         <input type="radio" id="prio_urgent" name="priority" value="Urgent" onclick="switchBtnPriority('urgent')" />
@@ -140,6 +150,11 @@ function getPriorityButtonsTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for contact assignment.
+ * 
+ * @returns {string} HTML markup for the contact selection dropdown.
+ */
 function getAssignedToTemplate() {
     return `
         <label for="dropdown_toggle_btn" onclick="event.preventDefault()">Assigned to</label>
@@ -162,6 +177,11 @@ function getAssignedToTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for category selection.
+ * 
+ * @returns {string} HTML markup for the category dropdown.
+ */
 function getCategoryTemplate() {
     return `
         <label class="required_for_label" for="category_dropdown_input" onclick="event.preventDefault()">Category</label>
@@ -186,6 +206,11 @@ function getCategoryTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for subtask input.
+ * 
+ * @returns {string} HTML markup for the subtask section.
+ */
 function getSubtasksTemplate() {
     return `
         <label for="tag_input_field" onclick="event.preventDefault()">Subtasks</label>
@@ -210,6 +235,11 @@ function getSubtasksTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for form buttons.
+ * 
+ * @returns {string} HTML markup for Clear and Create Task buttons.
+ */
 function getTaskButtonsTemplate() {
     return `
         <button class="clear_btn" type="reset" form="add_task_form" id="clear_btn" onclick="clearTasks()">
@@ -223,6 +253,12 @@ function getTaskButtonsTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for success notification.
+ * 
+ * @param {string} notificationText - The notification text to display.
+ * @returns {string} HTML markup for the notification.
+ */
 function showAddedNotificationTemplate(notificationText) {
     return `
         <p>${notificationText}</p>

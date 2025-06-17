@@ -1,3 +1,8 @@
+/**
+ * Generates the HTML template for the standard plus button in subtasks.
+ *
+ * @returns {string} HTML string for the plus button in the subtasks area.
+ */
 function resetButtonsTemplate() {
     return `
     <button class="plus_btn" onclick="replaceButtons()">
@@ -9,6 +14,11 @@ function resetButtonsTemplate() {
     `;
 }
 
+/**
+ * Generates the HTML template for the confirmation and cancel buttons in subtask input.
+ *
+ * @returns {string} HTML string with confirmation and cancel buttons.
+ */
 function getBtnsTemplate() {
     return `
     <button class="delete_text_btn" onclick="deleteTextBtn()">
@@ -29,6 +39,14 @@ function getBtnsTemplate() {
         `;
 }
 
+/**
+ * Generates the HTML template for delete and confirmation buttons when editing a subtask.
+ *
+ * @param {string} tagBtnConId - ID of the button container.
+ * @param {string} tagInputId - ID of the input field.
+ * @param {string} tagId - ID of the subtask element.
+ * @returns {string} HTML string with delete and confirmation buttons.
+ */
 function newTagTrashDoneBtnTemplate(tagBtnConId, tagInputId, tagId) {
     return ` 
     <div class="btns_position_done_trash">
@@ -43,6 +61,14 @@ function newTagTrashDoneBtnTemplate(tagBtnConId, tagInputId, tagId) {
     `;
 }
 
+/**
+ * Generates the HTML template for the default buttons (edit and delete) for a subtask.
+ *
+ * @param {string} tagBtnConId - ID of the button container.
+ * @param {string} tagInputId - ID of the input field.
+ * @param {string} tagId - ID of the subtask element.
+ * @returns {string} HTML string with edit and delete buttons.
+ */
 function newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId) {
     return `
     <div class="btns_position">
@@ -57,6 +83,15 @@ function newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId) {
     `;
 }
 
+/**
+ * Generates the HTML template for a new subtask.
+ *
+ * @param {string} value - The text of the subtask.
+ * @param {string} tagId - ID for the entire subtask element.
+ * @param {string} tagInputId - ID for the input field.
+ * @param {string} tagBtnConId - ID for the button container.
+ * @returns {string} HTML string of the complete subtask element with text and buttons.
+ */
 function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
     return `
     <div class="tag_field" id="${tagId}">

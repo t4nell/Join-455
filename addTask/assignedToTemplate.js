@@ -1,3 +1,10 @@
+/**
+ * Generates HTML for a contact item in the assignment dropdown.
+ * 
+ * @param {Object} contact - The contact data object to render.
+ * @param {number} index - Index of the contact in the contact array.
+ * @returns {string} HTML markup for the contact list item.
+ */
 function loadContactsToAssignedTemplate(contact, index) {
     const isSelected = selectedUserIndices.includes(index);
     const activeClass = isSelected ? ' active' : '';
@@ -35,12 +42,25 @@ function loadContactsToAssignedTemplate(contact, index) {
 `;
 }
 
+/**
+ * Creates the HTML template for when no contacts are found.
+ * 
+ * @returns {string} HTML markup for no contacts found message.
+ */
 function noContactsFoundToAssignedTemplate() {
     return `
     <li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>
 `;
 }
 
+/**
+ * Creates the HTML template for a selected user's icon.
+ * 
+ * @param {number} index - Index of the selected user.
+ * @param {string} initials - User's initials to display in the icon.
+ * @param {string} bgColor - Background color code for the icon.
+ * @returns {string} HTML markup for the selected user's icon.
+ */
 function renderSelectedIconsTemplate(index, initials, bgColor) {
     return `
         <div id="selected_user_${index}">

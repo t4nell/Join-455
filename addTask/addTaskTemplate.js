@@ -1,3 +1,8 @@
+/**
+ * Renders the main form for creating a new task.
+ * 
+ * @returns {string} HTML template for the task form.
+ */
 function renderTaskTemplate() {
     return `
         <div class="title_head">
@@ -115,6 +120,11 @@ function renderTaskTemplate() {
     `;
 }
 
+/**
+ * Generates the template for priority selection buttons.
+ * 
+ * @returns {string} HTML template for the priority buttons.
+ */
 function getPriorityButtonsTemplate() {
     return `
         <input type="radio" id="prio_urgent" name="priority" value="Urgent" onclick="switchBtnPriority('urgent')" />
@@ -137,6 +147,11 @@ function getPriorityButtonsTemplate() {
     `;
 }
 
+/**
+ * Creates the template for user assignment.
+ * 
+ * @returns {string} HTML template for the user assignment section.
+ */
 function getAssignedToTemplate() {
     return `
         <label for="dropdown_toggle_btn" onclick="event.preventDefault()">Assigned to</label>
@@ -159,6 +174,11 @@ function getAssignedToTemplate() {
     `;
 }
 
+/**
+ * Creates the template for category selection.
+ * 
+ * @returns {string} HTML template for the category dropdown.
+ */
 function getCategoryTemplate() {
     return `
         <label class="required_for_label" for="category_dropdown_input" onclick="event.preventDefault()">Category</label>
@@ -183,6 +203,11 @@ function getCategoryTemplate() {
     `;
 }
 
+/**
+ * Creates the template for subtask input.
+ * 
+ * @returns {string} HTML template for the subtask section.
+ */
 function getSubtasksTemplate() {
     return `
         <label for="tag_input_field" onclick="event.preventDefault()">Subtasks</label>
@@ -207,6 +232,11 @@ function getSubtasksTemplate() {
     `;
 }
 
+/**
+ * Creates the template for form buttons.
+ * 
+ * @returns {string} HTML template with Clear and Create Task buttons.
+ */
 function getTaskButtonsTemplate() {
     return `
         <button class="clear_btn" type="reset" form="add_task_form" id="clear_btn" onclick="clearTasks()">
@@ -220,6 +250,12 @@ function getTaskButtonsTemplate() {
     `;
 }
 
+/**
+ * Creates the template for the mobile navigation bar.
+ * 
+ * @param {string} currentPage - Path of the current page for highlighting the active menu item.
+ * @returns {string} HTML template for the mobile navigation.
+ */
 function getSidebarTemplateMobile(currentPage) {
     return ` 
     <div class="sidebar_container">
@@ -248,6 +284,12 @@ function getSidebarTemplateMobile(currentPage) {
 `;
 }
 
+/**
+ * Creates the template for the success notification.
+ * 
+ * @param {string} notificationText - Text to display in the notification.
+ * @returns {string} HTML template for the success notification.
+ */
 function showAddedNotificationTemplate(notificationText) {
     return `
         <p>${notificationText}</p>
