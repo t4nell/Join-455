@@ -146,7 +146,6 @@ async function updateTaskStatus(taskId, status) {
             return;
         }
         await saveTaskWithNewStatus(taskId, existingTask, status);
-        console.log('Task updated successfully:', taskId, status);
     } catch (error) {
         console.error('Error updating task status:', error);
     }
@@ -193,11 +192,9 @@ async function saveTaskWithNewStatus(taskId, existingTask, newStatus) {
  * @param {string} targetStatus - The new status value
  */
 async function moveTo(taskId, targetStatus) {
-    console.log('Moving task:', taskId, 'to status:', targetStatus);
     const taskIndex = findTaskIndex(taskId);
     if (taskIndex === -1) {
         console.error('Task not found:', taskId);
-        console.log('Available task IDs:', allTasks.map(t => t.id));
         return;
     }
     allTasks[taskIndex].status = targetStatus;
