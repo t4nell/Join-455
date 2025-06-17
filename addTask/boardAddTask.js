@@ -1,15 +1,17 @@
 let dueDatePicker = null;
 
 /**
- * Opens the task creation overlay or redirects to the add task page on mobile.
+ * Opens the task creation overlay or redirects to the Add Task page on mobile devices.
  *
  * @returns {void} Opens overlay or redirects based on screen size.
  */
 function openOverlay() {
+    const overlayContent = document.getElementById('add_task_container_board');
+    const overlay = document.getElementById('overlay');
     const width = window.innerWidth;
     if (width > 1050) {
-        const overlay = document.getElementById('overlay');
-        overlay.classList.remove('d_none');
+        overlay.classList.remove('fade_out');
+        overlayContent.classList.remove('closed');
         initAll();
     } else {
         window.location.href = '../addTask/addTask.html';
@@ -28,21 +30,23 @@ function initAll() {
 }
 
 /**
- * Closes the task creation overlay and cleans up date picker.
+ * Closes the task creation overlay and cleans up the datepicker.
  *
- * @returns {void} Hides the overlay and removes date picker.
+ * @returns {void} Hides the overlay and removes the datepicker.
  */
 function closeOverlay() {
+    const overlayContent = document.getElementById('add_task_container_board');
     const overlay = document.getElementById('overlay');
-    overlay.classList.add('d_none');
+    overlay.classList.add('fade_out');
+    overlayContent.classList.add('closed');
     removeDatePicker('#due_date');
 }
 
 /**
  * Prevents event propagation for click events.
  *
- * @param {Event} event - The event to stop propagation for.
- * @returns {void} Stops the event from bubbling up.
+ * @param {Event} event - The event whose propagation should be stopped.
+ * @returns {void} Stops event propagation.
  */
 function bubbling(event) {
     event.stopPropagation();
@@ -58,14 +62,17 @@ function renderTaskBoard() {
     taskContainer.innerHTML = '';
     taskContainer.innerHTML = renderTaskBoardTemplate();
 
+    // overlay.classList.remove('fade_out');
+    // taskContainer.classList.remove('closed');
+
     datePicker('#due_date');
 }
 
 /**
- * Destroys a Flatpickr instance associated with the given selector.
+ * Destroys a Flatpickr instance associated with the specified selector.
  *
- * @param {string} selector - CSS selector of the input element with Flatpickr attached.
- * @returns {void} Removes the date picker from the element.
+ * @param {string} selector - CSS selector of the input element with attached Flatpickr.
+ * @returns {void} Removes the datepicker from the element.
  */
 function removeDatePicker(selector) {
     const element = document.querySelector(selector);
@@ -75,10 +82,10 @@ function removeDatePicker(selector) {
 }
 
 /**
- * Initializes a date picker on the specified element.
+ * Initializes a datepicker on the specified element.
  *
  * @param {string} selectedDate - CSS selector for the date input element.
- * @returns {void} Sets up the flatpickr date picker.
+ * @returns {void} Sets up the Flatpickr datepicker.
  */
 function datePicker(selectedDate) {
     flatpickr(selectedDate, {
@@ -105,7 +112,7 @@ function createTask() {
 }
 
 /**
- * Clears all task form input fields and selections.
+ * Clears all task form fields and selection options.
  *
  * @returns {void} Resets the form to its default state.
  */
@@ -122,7 +129,7 @@ function clearTasks() {
 /**
  * Validates all required fields in the task form.
  *
- * @returns {void} Creates the task if validation passes.
+ * @returns {void} Creates the task if validation is successful.
  */
 function validateRequiredFields() {
     const titleValid = validateTitleField();
@@ -176,7 +183,7 @@ function validateDueDateField() {
 }
 
 /**
- * Validates the category dropdown selection.
+ * Validates the category selection in the dropdown.
  *
  * @returns {boolean} True if a category is selected, otherwise false.
  */
@@ -198,8 +205,8 @@ function validateCategoryField() {
 /**
  * Shows a notification that a task was successfully added.
  *
- * @param {string} notificationText - Text to display in the notification.
- * @returns {void} Shows notification and redirects to board after delay.
+ * @param {string} notificationText - Text to be displayed in the notification.
+ * @returns {void} Shows notification and redirects to the board after a delay.
  */
 function showAddedNotification(notificationText) {
     const savedContactNotification = document.getElementById('contact_added_task_notification');
