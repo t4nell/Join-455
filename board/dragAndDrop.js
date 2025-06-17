@@ -63,7 +63,6 @@ function createAndInsertPlaceholder(dropzone, dimensions, event) {
  * @param {string} taskId - ID of the task being dragged
  */
 function startDragging(event, taskId) {
-    console.log("Starting to drag task:", taskId);
     const draggedElement = getDraggedElement(event);
     event.dataTransfer.setData('text/plain', taskId);
     draggedElement.classList.add('dragging');
@@ -91,13 +90,11 @@ function saveCardDimensions(element) {
  * @param {Event} event - The drop event
  */
 function handleDrop(event) {
-    console.log("Task dropped");
     event.preventDefault();
     const taskId = event.dataTransfer.getData('text/plain');
     const dropzone = event.currentTarget;
     cleanupAfterDrop();
     const targetStatus = getColumnStatus(dropzone);
-    
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
     }
@@ -107,6 +104,7 @@ function handleDrop(event) {
 /**
  * Removes visual effects and stored data after drop
  * 
+ * @returns {void} Removes drag data and visual effects after drop
  */
 function cleanupAfterDrop() {
     document.querySelectorAll('.task_card.dragging').forEach(element => {
@@ -114,7 +112,7 @@ function cleanupAfterDrop() {
     });
     removePlaceholders();
     sessionStorage.removeItem('draggedElementDimensions');
-}
+};
 
 
 /**
@@ -290,6 +288,7 @@ function setupPlaceholderEvents(placeholder) {
     placeholder.ondrop = handlePlaceholderDrop;
 };
 
+
 /**
  * Handles drops directly onto a placeholder
  * 
@@ -303,10 +302,9 @@ function handlePlaceholderDrop(e) {
     const targetStatus = getColumnStatus(dropzone);
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
-    }
-    
+    };
     cleanupAfterDrop();
-}
+};
 
 
 /**
@@ -359,8 +357,8 @@ function findInsertPosition(items, mouseY, dropzone) {
         if (mouseY < itemMiddle) {
             insertPosition = i;
             break;
-        }
-    }
+        };
+    };
     return insertPosition;
 };
 
@@ -383,7 +381,9 @@ function insertPlaceholder(dropzone, placeholder, items, position) {
 
 
 /**
- * Removes all placeholder elements from the page
+ * Removes all placeholder elements from task columns
+ * 
+ * @returns {void} Removes all elements with class 'drag_area_placeholder'
  */
 function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach(placeholder => {
@@ -393,9 +393,10 @@ function removePlaceholders() {
 
 
 /**
- * Handles the end of a drag operation
+ * Handles cleanup and UI updates when drag operation ends
  * 
- * @param {Event} event - The dragend event
+ * @param {DragEvent} event - The drag end event object
+ * @returns {void} Removes drag effects and updates task positions
  */
 function handleDragEnd(event) {
     cleanupAfterDrop();

@@ -1,9 +1,28 @@
+/**
+ * Renders a placeholder element for empty task columns
+ * 
+ * @returns {string} HTML string containing the placeholder markup with "No Tasks" text
+ */
 function renderPlaceholder() {
     return `
   <span class="drag_area_placeholder">No Tasks</span>
   `;
-}
+};
 
+
+/**
+ * Generates HTML markup for a task card with all its components
+ * 
+ * @param {Object} task - The task object containing all task information
+ * @param {string} task.id - Unique identifier of the task
+ * @param {string} task.category - Category of the task
+ * @param {string} task.title - Title of the task
+ * @param {string} task.description - Description of the task
+ * @param {Object} task.subtasks - Subtasks of the task
+ * @param {Object} task.assignedTo - Users assigned to the task
+ * @param {string} task.priority - Priority level of the task
+ * @returns {string} HTML string representing the complete task card
+ */
 function getTaskCard(task) {
     const progress = calculateSubtaskProgress(task);
     const categoryColor = getCategoryColor(task.category);
@@ -45,6 +64,7 @@ function getTaskCard(task) {
 
 /**
  * Creates the mobile sidebar HTML
+ * 
  * @returns {string} HTML string for the mobile sidebar
  */
 function getSidebarTemplateMobile() {
@@ -76,6 +96,7 @@ function getSidebarTemplateMobile() {
 
 /**
  * Generates the HTML template for a task card
+ * 
  * @param {Object} task - The task object with all properties
  * @returns {string} HTML string for the task card
  */
@@ -92,24 +113,49 @@ function generateTaskCardHTML(task) {
             </div>
         </div>
     `;
-}
+};
 
+
+/**
+ * Generates HTML markup for a contact's avatar display
+ * 
+ * @param {Object} contact - The contact object containing user information
+ * @param {string} contact.color - Background color for the avatar
+ * @param {string} contact.initials - User's initials to display in the avatar
+ * @returns {string} HTML string containing the avatar markup with background color and initials
+ */
 function getAvatarTemplate(contact) {
     return `
-            <div class="avatar" style="background-color: ${contact.color}">
-                ${contact.initials}
-            </div>
+          <div class="avatar" style="background-color: ${contact.color}">
+              ${contact.initials}
+          </div>
         `;
-}
+};
 
+
+/**
+ * Renders a batch showing the number of additional contacts not displayed
+ * 
+ * @param {number} totalContacts - Total number of contacts assigned to the task
+ * @param {number} maxVisible - Maximum number of contacts to display before showing the batch
+ * @returns {string} HTML string containing the "more" button with count of additional contacts
+ */
 function renderMoreAvatarsButton(totalContacts, maxVisible) {
     return `
         <div class="avatar more-avatar">
             +${totalContacts - maxVisible}
         </div>
     `;
-}
+};
 
+
+/**
+ * Generates HTML markup for task status selection dropdown
+ * 
+ * @param {Object} task - The task object containing status information
+ * @param {string} task.status - Current status of the task ('toDo', 'inProgress', 'awaitingFeedback', 'done')
+ * @returns {string} HTML string containing the status selection dropdown markup
+ */
 function getSwapStatusTemplate(task) {
     return `
     <div class="swap_status_template">
@@ -132,8 +178,22 @@ function getSwapStatusTemplate(task) {
       </button>
     </div>
   `;
-}
+};
 
+
+/**
+ * Generates HTML markup for the detailed task card view
+ * 
+ * @param {Object} task - The task object containing all task details
+ * @param {string} task.category - Category of the task
+ * @param {string} task.title - Title of the task
+ * @param {string} task.description - Description of the task
+ * @param {string} task.date - Due date of the task
+ * @param {string} task.priority - Priority level of the task
+ * @param {Array} task.assignedTo - Array of assigned contacts
+ * @param {Array} task.subtasks - Array of subtask objects
+ * @returns {string} HTML string containing the detailed task card markup
+ */
 function getDetailTaskCard(task) {
     const categoryColor = getCategoryColor(task.category);
     return `
@@ -192,33 +252,69 @@ function getDetailTaskCard(task) {
           </div>
       </div>    
     `;
-}
+};
 
+
+/**
+ * Generates HTML markup for displaying assigned contacts in task detail view
+ * 
+ * @param {string} contactId - Unique identifier of the contact
+ * @param {Object} contact - Contact object containing user information
+ * @param {string} contact.name - Full name of the contact
+ * @param {string} contact.color - Background color for contact avatar
+ * @param {string} initials - Contact's initials for avatar display
+ * @returns {string} HTML string containing the assigned contact markup
+ */
 function getAssignedContactsTemplate(contactId, contact, initials) {
-    return `
-        <div class="contact_badge" data-contact-id="${contactId}">
-          <div class="avatar" style="background-color: ${contact.color}">
-            ${initials}
-          </div>
-          <span>${contact.name} ${contact.surname}</span>
+  return `
+      <div class="contact_badge" data-contact-id="${contactId}">
+        <div class="avatar" style="background-color: ${contact.color}">
+          ${initials}
         </div>
-      `;
-}
+        <span>${contact.name} ${contact.surname}</span>
+      </div>
+    `;
+};
 
+
+/**
+ * Generates HTML markup for a subtask item in task detail view
+ * 
+ * @param {number} key - Index or unique identifier of the subtask
+ * @param {Object} subtask - Subtask object containing subtask information
+ * @param {string} subtask.title - Title of the subtask
+ * @param {boolean} subtask.done - Completion status of the subtask
+ * @param {string} taskId - ID of the parent task
+ * @returns {string} HTML string containing the subtask item markup with checkbox
+ */
 function getSubtaskTemplate(key, subtask, taskId) {
     return `
-        <div class="subtask_item">
-            <div class="subtask_background">
-                <input type="checkbox" class= "subtask_chbox"
-                       id="subtask_${key}" 
-                       ${subtask.done ? 'checked' : ''} 
-                       onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">
-                <label for="subtask_${key}">${subtask.title}</label>
-            </div>
-        </div>
+      <div class="subtask_item">
+          <div class="subtask_background">
+              <input type="checkbox" class= "subtask_chbox"
+                      id="subtask_${key}" 
+                      ${subtask.done ? 'checked' : ''} 
+                      onchange="toggleSubtaskStatus('${taskId}', '${key}', this)">
+              <label for="subtask_${key}">${subtask.title}</label>
+          </div>
+      </div>
     `;
-}
+};
 
+
+/**
+ * Generates HTML markup for the task edit form
+ * 
+ * @param {Object} task - The task object containing current task data
+ * @param {string} task.title - Current title of the task
+ * @param {string} task.description - Current description of the task
+ * @param {string} task.date - Due date of the task
+ * @param {string} task.category - Current category of the task
+ * @param {string} task.priority - Current priority level
+ * @param {Array} task.assignedTo - Array of currently assigned contacts
+ * @param {Array} task.subtasks - Array of current subtask objects
+ * @returns {string} HTML string containing the complete edit form markup
+ */
 function getEditTaskTemplate(task) {
     return `
     
@@ -313,8 +409,20 @@ function getEditTaskTemplate(task) {
       
     </form>
   `;
-}
+};
 
+
+/**
+ * Creates HTML markup for a contact list item in the assign contacts dropdown
+ * 
+ * @param {string} activeClass - CSS class to indicate if contact is selected
+ * @param {Object} contact - Contact object containing user information
+ * @param {string} bgColor - Background color for contact avatar
+ * @param {string} nameInitials - First letter of contact's first name
+ * @param {string} surnameInitials - First letter of contact's last name
+ * @param {string} checkedAttr - HTML checked attribute for the checkbox ('checked' or '')
+ * @returns {string} HTML string containing the contact list item markup
+ */
 function createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr) {
     return `
     <li class="dropdown_item ${activeClass}" id="dropdown_item_${contact.id}" onclick="selectUserEditTask('${contact.id}', event)">
@@ -334,18 +442,39 @@ function createContactListItem(activeClass, contact, bgColor, nameInitials, surn
         ${checkedAttr}
         onclick="selectUserEditTask('${contact.id}', event)"/>
     </li>`;
-}
+};
 
+
+/**
+ * Creates HTML markup for a contact list item in the assign contacts dropdown
+ * 
+ * @param {string} activeClass - CSS class to indicate if contact is selected
+ * @param {Object} contact - Contact object containing user information
+ * @param {string} bgColor - Background color for contact avatar
+ * @param {string} nameInitials - First letter of contact's first name
+ * @param {string} surnameInitials - First letter of contact's last name
+ * @param {string} checkedAttr - HTML checked attribute for the checkbox ('checked' or '')
+ * @returns {string} HTML string containing the contact list item markup
+ */
 function generateContactBadge(contactId, contact, initials) {
     return `
-                <div id="selected_user_${contactId}" class="contact_badge">
-                    <div class="avatar" style="background-color: ${contact.color}">
-                        ${initials}
-                    </div>
-                </div>
-            `;
-}
+        <div id="selected_user_${contactId}" class="contact_badge">
+            <div class="avatar" style="background-color: ${contact.color}">
+                ${initials}
+            </div>
+        </div>
+    `;
+};
 
+
+/**
+ * Generates HTML markup for selected user icon in the assign contacts section
+ * 
+ * @param {string} id - Unique identifier of the contact
+ * @param {string} bgColor - Background color for contact avatar
+ * @param {string} initials - Contact's initials for avatar display
+ * @returns {string} HTML string containing the selected user icon markup
+ */
 function addSelectedUserIconTemplate(id, bgColor, initials) {
     return `
         <div id="selected_user_${id}">
@@ -353,8 +482,20 @@ function addSelectedUserIconTemplate(id, bgColor, initials) {
                 <div>${initials}</div>
             </div>
         </div>`;
-}
+};
 
+
+/**
+ * Generates HTML markup for a subtask input element with controls
+ * 
+ * @param {string} tagId - ID for the subtask container element
+ * @param {string} tagInputId - ID for the subtask input field
+ * @param {string} tagBtnConId - ID for the button container
+ * @param {Object} subtask - Subtask object containing title and status
+ * @param {string} subtask.title - Title of the subtask
+ * @param {boolean} subtask.done - Completion status of the subtask
+ * @returns {string} HTML string containing the subtask input element markup
+ */
 function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
     return `
     <div class="tag_field" id='${tagId}'>
@@ -380,4 +521,4 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
             </div>
         </div>
     </div>`;
-}
+};

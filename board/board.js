@@ -11,9 +11,9 @@ let allTasks = [];
 
 
 /**
- * Initializes the application by loading all necessary data and setting up components
+ * Initializes the board view and loads all required data
  * 
- * This runs when the page first loads
+ * @returns {Promise<void>} Promise that resolves when initialization is complete
  */
 async function init() {
     renderSidebar();
@@ -29,7 +29,9 @@ async function init() {
 
 
 /**
- * Adds the header template to the page header container
+ * Renders all task cards in their respective status columns on the board
+ * 
+ * @returns {void} Updates the DOM with current task cards
  */
 function renderContent() {
     headerContainer.innerHTML += getHeaderTemplate();
@@ -57,26 +59,26 @@ async function loadAddTask(path = '') {
 };
 
 
-/**
- * Handles the case when no tasks are found in the database
- * 
- * @param {Object} data - The data received from the server
- */
-function handleMissingTaskData(data) {
-    console.error('No tasks found or invalid format:', data);
-    allTasks = [];
-};
+// /**
+//  * Handles the case when no tasks are found in the database
+//  * 
+//  * @param {Object} data - The data received from the server
+//  */
+// function handleMissingTaskData(data) {
+//     console.error('No tasks found or invalid format:', data);
+//     allTasks = [];
+// };
 
 
-/**
- * Handles errors that occur while loading tasks
- * 
- * @param {Error} error - The error that was thrown
- */
-function handleTaskLoadError(error) {
-    console.error('Error loading tasks:', error);
-    allTasks = [];
-};
+// /**
+//  * Handles errors that occur while loading tasks
+//  * 
+//  * @param {Error} error - The error that was thrown
+//  */
+// function handleTaskLoadError(error) {
+//     console.error('Error loading tasks:', error);
+//     allTasks = [];
+// };
 
 
 /**
@@ -89,8 +91,6 @@ function convertTasksToArray(taskData) {
         ...task,
         id,
     }));
-
-    console.log('Tasks loaded:', allTasks);
 };
 
 
@@ -126,7 +126,11 @@ function renderAllTaskCards(allTasks, status, container) {
 
 
 /**
- * Returns only the tasks that match the given status.
+ * Filters tasks array by specified status
+ * 
+ * @param {Array} tasks - Array of task objects to filter
+ * @param {string} status - Status to filter by ('toDo', 'inProgress', 'awaitingFeedback', 'done')
+ * @returns {Array} Filtered array containing only tasks matching the specified status
  */
 function filterTasksByStatus(tasks, status) {
     return tasks.filter((task) => task.status === status);
@@ -134,7 +138,10 @@ function filterTasksByStatus(tasks, status) {
 
 
 /**
- * Clears the inner content of the given container.
+ * Removes all child elements from specified container element
+ * 
+ * @param {HTMLElement} container - DOM element to be cleared
+ * @returns {void} Clears the specified container's content
  */
 function clearContainer(container) {
     container.innerHTML = '';
@@ -142,23 +149,17 @@ function clearContainer(container) {
 
 
 /**
- * Adds each task card to the container.
+ * Renders multiple task cards into specified container
+ * 
+ * @param {Array} tasks - Array of task objects to be rendered
+ * @param {HTMLElement} container - DOM element where tasks should be rendered
+ * @returns {void} Renders task cards into the container
  */
 function renderTasks(tasks, container) {
     tasks.forEach((task) => {
         container.innerHTML += getTaskCard(task);
         toggleSectionButton();
     });
-};
-
-
-/**
- * Creates an empty placeholder for columns with no tasks
- * 
- * @returns {string} HTML for the empty placeholder
- */
-function renderPlaceholder() {
-    return `<div class="empty-column-placeholder">No tasks</div>`;
 };
 
 
@@ -221,11 +222,9 @@ function allowDrop(event) {
  */
 function getDraggedDimensions(event) {
     let dimensionsStr = event.dataTransfer.getData('dimensions');
-
     if (!dimensionsStr) {
         dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
     }
-
     return dimensionsStr ? JSON.parse(dimensionsStr) : {};
 };
 
@@ -246,7 +245,9 @@ function createPlaceholder(dimensions) {
 
 
 /**
- * Removes all placeholder elements from the page
+ * Removes all placeholder elements from task columns
+ * 
+ * @returns {void} Removes all elements with class 'drag_area_placeholder'
  */
 function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach((placeholder) => {
@@ -273,7 +274,9 @@ function handleDrop(event) {
 
 
 /**
- * Cleans up visual effects and stored data after drag operations
+ * Removes all visual drag and drop effects from the board
+ * 
+ * @returns {void} Removes highlighting and drag-related classes from elements
  */
 function cleanupDragEffects() {
     document.querySelectorAll('.task_card.dragging').forEach((element) => {
@@ -374,26 +377,26 @@ function getTaskCard(task) {
 
 
 /**
- * Shows the correct sidebar depending on screen size.
+ * Renders the responsive sidebar menu for mobile view
  * 
- * Desktop: shows full sidebar.
- * Mobile: shows mobile sidebar.
+ * @returns {void} Updates the DOM with sidebar menu elements and event listeners
  */
 function renderSidebar() {
     const main = document.getElementById('navbar_container');
     const side = document.getElementById('sidebar_container');
     const mobile = document.getElementById('navbar_mobile_container');
     window.addEventListener('resize', () => {updateSidebar(main, side, mobile), toggleSectionButton()});
-    updateSidebar(main, side, mobile); // Show correct sidebar at first load
+    updateSidebar(main, side, mobile);
 };
 
 
 /**
  * Updates the sidebar display based on current screen size
  * 
- * @param {HTMLElement} main - Main container element for desktop sidebar
- * @param {HTMLElement} side - Side element that holds the sidebar
- * @param {HTMLElement} mobile - Container element for mobile sidebar
+ * @param {HTMLElement} main - Main content container element
+ * @param {HTMLElement} side - Sidebar container element
+ * @param {HTMLElement} mobile - Mobile menu container element
+ * @returns {void} Updates visibility and layout of sidebar elements
  * 
  * This function checks the current viewport width and updates the sidebar
  * display accordingly. For desktop views (>= 1050px), it shows the regular
