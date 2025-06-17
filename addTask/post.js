@@ -1,5 +1,11 @@
 BASE_URL_ADDTASK;
 
+/**
+ * Extracts task data from a form into a structured object.
+ * 
+ * @param {HTMLFormElement} form - The form containing task input fields.
+ * @returns {Object} Task data object with all field values organized for submission.
+ */
 function collectTaskData(form) {
     const fd = new FormData(form);
     const subtasksArray = fd.getAll('subtasks');
@@ -36,10 +42,23 @@ function collectTaskData(form) {
     };
 }
 
+/**
+ * Sends task data to the server for saving.
+ * 
+ * @param {Object} taskData - The task object to be posted.
+ * @returns {void} Posts the task data to the database.
+ */
 function postTask(taskData) {
     postData('addTask', taskData);
 }
 
+/**
+ * Sends data to the server via a POST request.
+ * 
+ * @param {string} path - API endpoint path, defaults to empty string.
+ * @param {Object} data - Data object to send to the server, defaults to empty object.
+ * @returns {Promise<Object>} Response data from the server as JSON.
+ */
 async function postData(path = '', data = {}) {
     let response = await fetch(BASE_URL_ADDTASK + path + '.json', {
         method: 'POST',
