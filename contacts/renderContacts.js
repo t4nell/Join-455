@@ -1,6 +1,7 @@
 /**
- * @description Loads the current user's information and initials into the user container.
+ * Loads the current user's information and initials into the user container.
  *
+ * @returns {void}
  */
 function loadCurrentUser() {
   const currentUserDiv = document.querySelector('.current_user_container');
@@ -9,9 +10,10 @@ function loadCurrentUser() {
 
 
 /**
- * @description Renders the contact groups in the contact list container.
+ * Renders the contact groups in the contact list container.
  *
  * @param {*} groupedContacts - An object containing contacts grouped by their first letter.
+ * @returns {void}
  */
 function renderContactGroups(groupedContacts) {
   const contactListDiv = document.getElementById("all_contacts_container");
@@ -25,9 +27,10 @@ function renderContactGroups(groupedContacts) {
 
 
 /**
- * @description Displays the details of a specific contact in the contact detail container.
+ * Displays the details of a specific contact in the contact detail container.
  *
  * @param {*} contactIndex - The index of the contact in the contactsArray to be displayed.
+ * @returns {void}
  */
 function showContactDetails(contactIndex) {
   const contact = contactsArray[contactIndex];
@@ -45,9 +48,10 @@ function showContactDetails(contactIndex) {
 
 
 /**
- * @description Groups contacts by the first letter of their names and renders them in the contact main container.
+ * Groups contacts by the first letter of their names and renders them in the contact main container.
  *
  * @param {*} contactsArray - An array of contact objects to be grouped.
+ * @returns {void}
  */
 function groupContacts(contactsArray) {  
   contactsArray.forEach((contact) => {
@@ -62,9 +66,9 @@ function groupContacts(contactsArray) {
 
 
 /**
- * @description Displays current User details in the contact main container.
+ * Displays current User details in the contact main container.
  *
- * @return {*} 
+ * @return {*} if no contact is active the function render is running with no delay otherwise render is running with a 300ms delay.
  */
 function showCurrentUserDetails() {
   const currentUserDiv = document.getElementById("current_user");
@@ -92,7 +96,7 @@ function showCurrentUserDetails() {
 }
 
 /**
- * @description - renders more information about the specific clicked contact
+ * Renders more information about the specific clicked contact
  *
  * @param {*} event - event of the current clicked contact
  * @param {*} contactIndex - Index of the contact from the contactsArray

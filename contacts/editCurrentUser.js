@@ -1,6 +1,7 @@
 /**
- * @description Opens the edit overlay for the current user, allowing them to edit their own details.
+ * Opens the edit overlay for the current user, allowing them to edit their own details.
  *
+ * @returns {void}
  */
 function editCurrentUserOverlay(){
   let currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -17,7 +18,7 @@ function editCurrentUserOverlay(){
 }
 
 /**
- *@description Validates the name, email, and phone number fields for the current user.
+ * Validates the name, email, and phone number fields for the current user.
  *
  * @param {*} newNameParts - An array containing the first and last name of the user.
  * @param {*} newEmail - The new email address of the user.
@@ -40,9 +41,10 @@ function checkValidation(newNameParts, newEmail, newPhone, isEdit){
 
 
 /**
- * @description Saves the current user's information after validation.
+ * Saves the current user's information after validation.
  *
  * @param {*} event - preventDefault event to stop the form from reloading the page.
+ * @returns {void}
  */
 function saveCurrentUserInfo(event){
   event.preventDefault();
@@ -71,8 +73,9 @@ function saveCurrentUserInfo(event){
 
 
 /**
- * @description Renders the current user's details and initials in the main container and user container after edit.
+ * Renders the current user's details and initials in the main container and user container after edit.
  *
+ * @returns {void}
  */
 function renderCurrentUserViews() {
   const mainContainer = document.querySelector('#contact_detail_container');
@@ -86,8 +89,9 @@ function renderCurrentUserViews() {
 
 
 /**
- * @description Closes the current user edit process by clearing the main container, rendering the current user views, toggling the overlay, and showing a notification.
+ * Closes the current user edit process by clearing the main container, rendering the current user views, toggling the overlay, and showing a notification.
  *
+ * @returns {void}
  */
 function closeCurrentUserEditProcess() {
   const mainContainer = document.querySelector("#contact_detail_container");

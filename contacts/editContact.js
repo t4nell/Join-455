@@ -1,5 +1,5 @@
 /**
- * @description Saves the edited contact data by collecting the form data and sending it to the server.
+ * Saves the edited contact data by collecting the form data and sending it to the server.
  *
  * @param {*} event preventDefault - Prevents the default form submission behavior.
  * @return {*} - Returns the response from the server after saving the edited contact data.
@@ -20,7 +20,7 @@ function saveEditContact(event) {
 
 
 /**
- * @description Collects the data from the edit contact form and returns it as an object.
+ * Collects the data from the edit contact form and returns it as an object.
  *
  * @param {*} currentContact - The current contact object being edited.
  * @return {*} - Returns an object containing the edited contact data if valid, otherwise returns undefined.
@@ -48,7 +48,7 @@ function collectEditContactData(currentContact) {
 
 
 /**
- * @description Sends a PUT request to update the contact data on the server.
+ * Sends a PUT request to update the contact data on the server.
  *
  * @param {string} [path=""] - The path to the contact data to be updated.
  * @param {*} [data={}] - The data to be sent in the request body.
@@ -74,7 +74,7 @@ async function putContactData(path = "", data = {}, contactId) {
 
 
 /**
- * @description Checks if the edited email already exists in the contacts array.
+ * Checks if the edited email already exists in the contacts array.
  *
  * @param {*} email - The email address to check for duplicates.
  * @param {*} currentContact - The current contact object being edited.
@@ -95,7 +95,7 @@ function checkEditEmailAlreadyExists(email, currentContact) {
 
 
 /**
- * @description Closes the edit contact process by toggling the overlay, clearing grouped contacts, loading contact data, and showing the edited contact.
+ * Closes the edit contact process by toggling the overlay, clearing grouped contacts, loading contact data, and showing the edited contact.
  *
  * @param {*} contactId
  */
@@ -109,7 +109,7 @@ async function closeEditContactProcess(contactId) {
 
 
 /**
- * @description Displays the edited contact details in the contact detail container.
+ * Displays the edited contact details in the contact detail container.
  *
  * @param {*} contactId - The ID of the contact to be displayed.
  * @return {*} - Returns the contact details template for the specified contact.

@@ -6,8 +6,9 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 const currentUserInitials = currentUser.name.split(' ').map((part) => part.charAt(0).toUpperCase()).join('');
 
 /**
- * @description Initializes the contact page by checking screen size, rendering the header, and loading contact data. 
+ * Initializes the contact page by checking screen size, rendering the header, and loading contact data. 
  *
+ * @returns {void}
  */
 async function contactInit() {
     proofSize();
@@ -20,8 +21,9 @@ async function contactInit() {
 
 
 /**
- *@description
+ * displays or closes Popup and Overlay for new contact or edit popup.
  *
+ * @returns {void}
  */
 function toggleOverlayNewContact() {
     popup.classList.toggle('closed');
@@ -30,8 +32,9 @@ function toggleOverlayNewContact() {
 
 
 /**
- * @description Renders the header 
+ * Renders the header 
  *
+ * @returns {void}
  */
 function renderHeader() {
     const headerContainer = document.getElementById('header_container');
@@ -39,8 +42,9 @@ function renderHeader() {
 }
 
 /**
- * @description closes the overlay and popups
+ * closes the overlay and popups
  *
+ *@returns {void}
  */
 function toggleOverlay() {
     overlay.classList.add('fade_out');
@@ -49,8 +53,9 @@ function toggleOverlay() {
 }
 
 /**
- * @description Stops event bubbling to prevent unwanted propagation of events
+ * Stops event bubbling to prevent unwanted propagation of events
  *
+ * @returns {void}
  * @param {*} event - The event object that triggered the bubbling.
  */
 function eventBubbling(event) {
@@ -59,8 +64,9 @@ function eventBubbling(event) {
 
 
 /**
- * @description Opens the new contact overlay for creating new contact.
+ * Opens the new contact overlay for creating new contact.
  *
+ * @returns {void}
  */
 function newContactOverlay() {
     overlay.classList.remove('fade_out');
@@ -70,9 +76,10 @@ function newContactOverlay() {
 
 
 /**
- * @description Opens the edit contact overlay for editing an existing contact.
+ * Opens the edit contact overlay for editing an existing contact.
  *
  * @param {*} contactIndex - The index of the contact to be edited in the contactsArray.
+ * @returns {void}
  */
 function editContactOverlay(contactIndex) {
     overlay.classList.remove('fade_out');
@@ -88,8 +95,9 @@ function editContactOverlay(contactIndex) {
 
 
 /**
- * @description Closes the contact main view and resets the contact list for mobile view.
+ * Closes the contact main view and resets the contact list for mobile view.
  *
+ * @returns {void}
  */
 function closeContactMain() {
     const allContacts = document.querySelectorAll('.contact_side');
@@ -101,9 +109,10 @@ function closeContactMain() {
 
 
 /**
- * @description Toggles the contact options dropdown menu for deleting or edit contact.
+ * Toggles the contact options dropdown menu for deleting or edit contact.
  *
  * @param {*} event - The event object that triggered the toggle.
+ * @returns {void}
  */
 function toggleContactOptions(event) {
     event.stopPropagation();
@@ -115,9 +124,10 @@ function toggleContactOptions(event) {
 
 
 /**
- * @description Closes the contact options dropdown menu when clicking outside of it.
+ * Closes the contact options dropdown menu when clicking outside of it.
  *
  * @param {*} event - The event object that triggered the click outside.
+ * @returns {void}
  */
 function closeContactMenuOnClickOutside(event) {
     const contactMenu = document.getElementById('contact_options_dropdown');
@@ -129,8 +139,9 @@ function closeContactMenuOnClickOutside(event) {
 
 
 /**
- * @description Adjusts the sidebar layout based on the screen size.
+ * Adjusts the sidebar layout based on the screen size.
  *
+ * @returns {void}
  */
 function proofSize() {
     const mainContainer = document.getElementById('navbar_container');
@@ -147,11 +158,12 @@ function proofSize() {
 
 
 /**
- * @description Checks the orientation of the device and adjusts the sidebar position accordingly.
+ * Checks the orientation of the device and adjusts the sidebar position accordingly.
  *
  * @param {*} mainContainer - The main container where the sidebar will be rendered.
  * @param {*} navContainer - The navigation container for the sidebar.
  * @param {*} navbarMobileContainer - The mobile navigation container for the sidebar.
+ * @returns {void}
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
     navbarMobileContainer.innerHTML = '';
@@ -161,11 +173,12 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
 
 
 /**
- * @description Renders the sidebar for mobile view.
+ * Renders the sidebar for mobile view.
  *
  * @param {*} mainContainer - The main container where the sidebar will be rendered.
  * @param {*} navContainer - The navigation container for the sidebar.
  * @param {*} navbarMobileContainer 
+ * @returns {void}
  */
 function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer) {
     const currentPage = window.location.pathname;

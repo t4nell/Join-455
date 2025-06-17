@@ -55,6 +55,7 @@ async function deleteContactAndUpdateTasks(contactId) {
  * @description This function iterates through all tasks and removes the contact from the assignedTo field if it exists.
  * @param {*} nameToDelete - The name of the contact to be deleted from tasks.
  * @param {*} updateTasks - An array to hold promises for updating tasks in the backend.
+ * @returns {void}
  */
 function deleteContactInTasks(taskEntries, nameToDelete, updateTasks) {
   for (let i = 0; i < taskEntries.length; i++) {
@@ -75,8 +76,9 @@ function deleteContactInTasks(taskEntries, nameToDelete, updateTasks) {
 }
 
 /**
- *@description Reloads the contact data after a contact has been deleted.
+ * Reloads the contact data after a contact has been deleted.
  *
+ * @returns {void}
  */
 async function reloadDataAfterDelete() {
     const contactDetailsContainer = document.getElementById('contact_detail_container');

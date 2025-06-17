@@ -4,11 +4,12 @@ let tasksArray = [];
 
 
 /**
- * @description Fetches contact data from the server.
+ * Fetches contact data from the server.
  *
  * @param {string} [path=""] - The path to the contact data to be fetched.
  * @return {*} - Returns the response from the server after fetching contact data.
  * @throws Will log an error if the fetch operation fails.
+ * @returns {void}
  */
 async function fetchContactData(path = "") {
   try {
@@ -21,8 +22,9 @@ async function fetchContactData(path = "") {
 
 
 /**
- * @description Groups contacts by their first letter and stores them in the groupedContacts object.
+ * Groups contacts by their first letter and stores them in the groupedContacts object.
  *
+ * @returns {void}
  */
 async function loadContactData() {
   await fetchContactData("contact");
@@ -35,8 +37,9 @@ groupContacts(contactsArray);
 
 
 /**
- * @description Groups contacts by the first letter of their names.
+ * Groups contacts by the first letter of their names.
  *
+ * @returns {void}
  */
 async function loadTaskData(){
   await fetchContactData("addTask");
@@ -48,7 +51,7 @@ async function loadTaskData(){
 
 
 /**
- * @description Creates random user colors by generating a random number between 1 and 20, which corresponds to predefined CSS variables for colors.
+ * Creates random user colors by generating a random number between 1 and 20, which corresponds to predefined CSS variables for colors.
  *
  * @return {*} - Returns a string representing a random user color in the format of a CSS variable.
  */
@@ -60,8 +63,9 @@ function getRandomUserColor() {
 
 
 /**
- * @description Resets the input fields in the new contact form by clearing their values.
+ * Resets the input fields in the new contact form by clearing their values.
  *
+ * @returns {void}
  */
 function resetInputFields(){
   document.getElementById('new_contact_name').value = ""
@@ -71,8 +75,9 @@ function resetInputFields(){
 
 
 /**
- * @description Clears the contacts array and resets the groupedContacts object.
+ * Clears the contacts array and resets the groupedContacts object.
  *
+ * @returns {void}
  */
 function clearGroupedContacts(){
   contactsArray = [];

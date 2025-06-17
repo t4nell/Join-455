@@ -1,8 +1,8 @@
 /**
- * @description Creates a new contact by collecting data from the form and sending it to the backend.
+ * Creates a new contact by collecting data from the form and sending it to the backend.
  *
  * @param {*} event
- * @return {*} 
+ * @return {*} - returns console error if contactsData wasn't found
  */
 function createNewContact(event) {
     event.preventDefault();
@@ -10,13 +10,14 @@ function createNewContact(event) {
 
     if (contactData) {
         postContactData('contact', contactData, contactData.email);
-        return;
+    }else{
+        console.error('failed to create new contact')
     }
 }
 
 
 /**
- * @description Collects the data from the new contact form and returns it as an object.
+ * Collects the data from the new contact form and returns it as an object.
  *
  * @return {*} - Returns an object containing the new contact data if valid, otherwise returns undefined.
  */
@@ -43,7 +44,7 @@ function collectContactData() {
 
 
 /**
- * @description Sends a POST request to create a new contact in the backend.
+ * Sends a POST request to create a new contact in the backend.
  *
  * @param {string} [path=''] - The path to the contact data to be created.
  * @param {*} [data={}] - The data to be sent in the request body.
@@ -72,9 +73,10 @@ async function postContactData(path = '', data = {}, email) {
 
 
 /**
- * @description Closes the new contact process by toggling the overlay, showing a notification, resetting input fields, clearing grouped contacts, and loading contact data.
+ * Closes the new contact process by toggling the overlay, showing a notification, resetting input fields, clearing grouped contacts, and loading contact data.
  *
  * @param {*} mail - The email of the newly created contact, used to show the new contact in the contact details view.
+ * @returns {void}
  */
 async function closeNewContactProcess(mail) {
     toggleOverlay();
@@ -87,9 +89,10 @@ async function closeNewContactProcess(mail) {
 
 
 /**
- * @description Displays the newly created contact in the contact details view.
+ * Displays the newly created contact in the contact details view.
  *
  * @param {*} email - The email of the newly created contact, used to find and display the contact details.
+ * @returns {void}
  */
 function showNewContact(email) {
     const allContacts = document.querySelectorAll('.contact_side');
@@ -109,9 +112,10 @@ function showNewContact(email) {
 
 
 /**
- * @description Displays a notification message for a specified duration.
+ * Displays a notification message for a specified duration.
  *
  * @param {*} notficationText - The text to be displayed in the notification.
+ * @returns {void}
  */
 function showNotification(notficationText) {
     const savedContactNotification = document.getElementById('contact_notification');
