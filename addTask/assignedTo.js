@@ -1,5 +1,10 @@
 let selectedUserIndices = [];
 
+/**
+ * Filters contacts based on the input value and displays matching contacts.
+ * 
+ * @returns {void} Updates the dropdown menu with filtered contacts.
+ */
 function filterContacts() {
     const toggle = document.getElementById('dropdown_toggle_btn');
     const menu = document.getElementById('dropdown_menu');
@@ -18,6 +23,12 @@ function filterContacts() {
     }
 }
 
+/**
+ * Toggles the visibility of the assigned contacts dropdown.
+ * 
+ * @param {Event} event - The event that triggered the function.
+ * @returns {void} Shows or hides the dropdown and selected users.
+ */
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
 
@@ -36,6 +47,12 @@ function toggleDropdownAssigned(event) {
     filterContacts();
 }
 
+/**
+ * Toggles the background color of a selected contact item.
+ * 
+ * @param {number} index - The index of the contact to toggle.
+ * @returns {void} Updates the visual state of the contact item.
+ */
 function toggleBackground(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     if (clickedItem) {
@@ -43,6 +60,12 @@ function toggleBackground(index) {
     }
 }
 
+/**
+ * Closes the dropdown if clicked outside of it.
+ * 
+ * @param {Event} event - The click event to check.
+ * @returns {void} Closes the dropdown if appropriate.
+ */
 function closeDropdown(event) {
     event.stopPropagation();
     const dropdown = document.getElementById('dropdown');
@@ -71,6 +94,11 @@ function closeDropdown(event) {
     }
 }
 
+/**
+ * Loads all contacts into the assignment dropdown.
+ * 
+ * @returns {void} Populates the dropdown menu with all contacts.
+ */
 function loadAllContactsToAssigned() {
     const menu = document.getElementById('dropdown_menu');
 
@@ -80,6 +108,13 @@ function loadAllContactsToAssigned() {
     });
 }
 
+/**
+ * Selects or deselects a user for assignment to a task.
+ * 
+ * @param {number} index - The index of the contact to select.
+ * @param {Event} event - The click event.
+ * @returns {void} Updates selection state and refreshes display.
+ */
 function selectUser(index, event) {
     event.stopPropagation();
     const checkbox = document.getElementById(`users_checkbox_${index}`);
@@ -100,6 +135,11 @@ function selectUser(index, event) {
     renderSelectedIcons();
 }
 
+/**
+ * Renders the icons of selected users in the display area.
+ * 
+ * @returns {void} Updates the selected users display with icons.
+ */
 function renderSelectedIcons() {
     const selectedUser = document.getElementById('selected_users_group');
 
@@ -120,6 +160,11 @@ function renderSelectedIcons() {
     });
 }
 
+/**
+ * Clears all selected users from the assignment list.
+ * 
+ * @returns {void} Unchecks all checkboxes and removes active states.
+ */
 function clearSelection() {
     allContactsArray.forEach((box, index) => {
         const checkbox = document.getElementById(`users_checkbox_${index}`);
@@ -130,6 +175,11 @@ function clearSelection() {
     removeActiveBgColor();
 }
 
+/**
+ * Removes active background color from all contact items.
+ * 
+ * @returns {void} Resets the visual state of all contact items.
+ */
 function removeActiveBgColor() {
     const items = document.getElementsByClassName('dropdown_item');
     for (let i = 0; i < items.length; i++) {
@@ -138,6 +188,11 @@ function removeActiveBgColor() {
     loadAllContactsToAssigned();
 }
 
+/**
+ * Resets the list of selected user indices.
+ * 
+ * @returns {void} Clears selection array and refreshes display.
+ */
 function clearSelectedUserIndices() {
     selectedUserIndices = [];
     filterContacts();

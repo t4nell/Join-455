@@ -2,6 +2,12 @@ const BASE_URL_ADDTASK = 'https://join-455-default-rtdb.europe-west1.firebasedat
 
 let allContactsArray = [];
 
+/**
+ * Loads all contact data from the server and prepares it for display.
+ * 
+ * @param {string} path - The API path to fetch contacts from, defaults to empty string.
+ * @returns {Promise<void>} Updates the global allContactsArray and loads contacts into the UI.
+ */
 async function loadAllContactData(path = '') {
     try {
         const response = await fetch(BASE_URL_ADDTASK + path + '.json');
