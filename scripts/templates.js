@@ -1,3 +1,12 @@
+/**
+ * Returns the HTML template for the login and signup cards.
+ * 
+ * This template includes the login form with email and password inputs,
+ * buttons for regular and guest login, and a signup form with input fields
+ * for name, email, password, and password confirmation.
+ * 
+ * @returns {string} HTML string representing the login/signup interface
+ */
 function getLoginSignupTemplate() {
     return `
       <div class="login_card" id="loginCard">
@@ -16,12 +25,10 @@ function getLoginSignupTemplate() {
           </div>
         </form>
       </div>
-
     <div class="signup_card d_none" id="signup_container">
       <button onclick="toggleLoginSignup()" class="left_arrow_icon"><img src="./assets/imgs/signupIcons/arrowLeftLine.svg" alt="arrow_left_icon"></button>
       <div>
         <a onclick="#"></a>
-        
         <h2>Sign up</h2>
         <hr class="separator_horizontally">
       </div>
@@ -36,7 +43,6 @@ function getLoginSignupTemplate() {
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>
           </div>
         </div>
-      
         <div class="button_signup_container">
           <button id="signup_btn" class="dark_btn signup_btn" disabled>Sign up</button>
         </div>
@@ -44,8 +50,17 @@ function getLoginSignupTemplate() {
     </div>
   </div>
 `;
-}
+};
 
+
+/**
+ * Returns the HTML template for the sidebar navigation.
+ * 
+ * Highlights the current page by checking the URL path and
+ * adding the 'active' class to the corresponding navigation item.
+ * 
+ * @returns {string} HTML string representing the sidebar navigation
+ */
 function getSidebarTemplate() {
     const currentPage = window.location.pathname;
     return ` 
@@ -62,7 +77,6 @@ function getSidebarTemplate() {
                     <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon" />
                     <span>Add Task</span>
                 </a>
-
                 <a
                     href="../contacts/contacts.html"
                     class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
@@ -75,8 +89,16 @@ function getSidebarTemplate() {
       <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
-}
+};
 
+
+/**
+ * Returns the HTML template for the header section.
+ * 
+ * Contains the Join logo, app title, help icon and user menu with dropdown.
+ * 
+ * @returns {string} HTML string representing the header section
+ */
 function getHeaderTemplate() {
     return `
     <header>
@@ -94,8 +116,17 @@ function getHeaderTemplate() {
       </div>
     </header>
   `;
-}
+};
 
+
+/**
+ * Returns the HTML template for the mobile version of the sidebar navigation.
+ * 
+ * Highlights the current page by adding the 'active' class to the corresponding navigation item.
+ * 
+ * @param {string} currentPage - The current page path to determine which navigation item to highlight
+ * @returns {string} HTML string representing the mobile sidebar navigation
+ */
 function getSidebarTemplateMobile(currentPage) {
   return ` 
     <div class="sidebar_container">  
@@ -112,14 +143,11 @@ function getSidebarTemplateMobile(currentPage) {
     <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon">
     <span>Add Task</span>
   </a>
- 
   <a href="../contacts/contacts.html" class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
     <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon">
     <span>Contacts</span>
   </a>
 </nav>
 </div>
-
-  
   `
-}
+};
