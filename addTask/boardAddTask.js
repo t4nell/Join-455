@@ -3,12 +3,11 @@ let dueDatePicker = null;
 function openOverlay() {
     const overlay = document.getElementById('overlay');
     overlay.classList.remove('d_none');
-
     initAll();
-    loadAllContactData();
 }
 
 function initAll() {
+    loadAllContactData();
     renderTaskBoard();
     renderCategories();
 }
@@ -56,8 +55,6 @@ function openCalendar() {
     const calenderInput = document.getElementById('due_date');
     calenderInput.focus();
 }
-
-// Add Task
 
 function createTask() {
     const form = document.getElementById('add_task_form');
