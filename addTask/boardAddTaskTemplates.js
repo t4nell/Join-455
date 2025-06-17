@@ -1,7 +1,10 @@
-function renderTaskTemplate() {
+function renderTaskBoardTemplate() {
     return `
         <div class="title_head">
-            <h2>Add Task</h2>
+            <div class="head_position">
+                <div> <h2>Add Task</h2></div>
+                <div class="close_button_container"><button class="close-button" onclick="closeOverlay()"><img src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg"/></button></div>
+            </div>
         </div>
         
         <form id="add_task_form" class="main_section">
@@ -77,7 +80,7 @@ function renderTaskTemplate() {
 
             <div class="required_footer_text_mobile_container">
                 <p class="required_footer_text_mobile show_mobile_required_text_footer">
-                    * These fields are required
+                    These fields are required
                 </p>
             </div>
 
@@ -217,6 +220,13 @@ function getTaskButtonsTemplate() {
             Create Task
             <img class="create_task_icon" id="create_task" src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg" alt="Icon" />
         </button>
+    `;
+}
+
+function showAddedNotificationTemplate(notificationText) {
+    return `
+        <p>${notificationText}</p>
+        <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
     `;
 }
 
