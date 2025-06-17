@@ -87,7 +87,6 @@ function editContactOverlay(contactIndex) {
     const contact = contactsArray[contactIndex];
 
     editContactPopup.innerHTML = getEditContactOverlay(contact, contactIndex);
-    console.log(contact);
     document.getElementById('edit_name').value = contact.name + ' ' + contact.surname;
     document.getElementById('edit_mail').value = contact.email;
     document.getElementById('edit_phone').value = contact.phone;
