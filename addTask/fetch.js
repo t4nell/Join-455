@@ -11,8 +11,6 @@ async function loadAllContactData(path = '') {
         allContactsArray = Object.entries(contactsRef)
             .map(([id, contact]) => ({ id, ...contact }))
             .sort((a, b) => a.name.localeCompare(b.name));
-
-        console.log(allContactsArray);
     } catch (error) {
         console.error('Error loading contact data:', error);
     }
