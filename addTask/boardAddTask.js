@@ -1,10 +1,16 @@
 let dueDatePicker = null;
 
 function openOverlay() {
-    const overlay = document.getElementById('overlay');
-    overlay.classList.remove('d_none');
-    initAll();
-}
+    const width = window.innerWidth;
+    if (width > 1050) {
+        const overlay = document.getElementById('overlay');
+        overlay.classList.remove('d_none');
+        initAll();
+    } else {
+        window.location.href = '../addTask/addTask.html';
+    };
+};
+
 
 function initAll() {
     loadAllContactData();
