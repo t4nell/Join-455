@@ -150,7 +150,10 @@ function showAddedNotification(notificationText) {
 function renderTaskTemplate() {
     return `
         <div class="title_head">
-            <h2>Add Task</h2>
+            <div class="head_position">
+                <div> <h2>Add Task</h2></div>
+                <div class="close_button_container"><button class="close-button" onclick="closeOverlay()"><img src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg"/></button></div>
+            </div>
         </div>
         
         <form id="add_task_form" class="main_section">
