@@ -22,6 +22,7 @@ function bubbling(event) {
 
 function renderTaskBoard() {
     const taskContainer = document.getElementById('add_task_container_board');
+    taskContainer.innerHTML = '';
     taskContainer.innerHTML = renderTaskTemplate();
 
     datePicker('#due_date');
