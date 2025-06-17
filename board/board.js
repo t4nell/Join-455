@@ -59,28 +59,6 @@ async function loadAddTask(path = '') {
 };
 
 
-// /**
-//  * Handles the case when no tasks are found in the database
-//  * 
-//  * @param {Object} data - The data received from the server
-//  */
-// function handleMissingTaskData(data) {
-//     console.error('No tasks found or invalid format:', data);
-//     allTasks = [];
-// };
-
-
-// /**
-//  * Handles errors that occur while loading tasks
-//  * 
-//  * @param {Error} error - The error that was thrown
-//  */
-// function handleTaskLoadError(error) {
-//     console.error('Error loading tasks:', error);
-//     allTasks = [];
-// };
-
-
 /**
  * Converts task data from object to array format with IDs included
  * 
@@ -191,7 +169,6 @@ function saveDraggedCardSize(element, event) {
     try {
         event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
     } catch (e) {
-        console.log('Browser does not support complex data in dataTransfer');
     }
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
 };
