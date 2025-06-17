@@ -6,8 +6,9 @@ let isSearchActive = false;
 
 
 /**
- * Search tasks by title or description when search button is clicked and reset search when click again
+ * Handles search functionality for tasks based on user input
  * 
+ * @returns {void} Updates task display based on search criteria
  */
 function searchOnInput() {
     const searchValue = searchInput.value.toLowerCase();
@@ -26,6 +27,13 @@ function searchOnInput() {
 };
 
 
+/**
+ * Filters tasks based on search value
+ * 
+ * @param {string} searchValue - Lowercase search term to filter by
+ * @param {HTMLElement} noTaskMessage - Element to show when no tasks match
+ * @returns {Array} Filtered array of tasks matching search criteria
+ */
 function getFilteredTasks(searchValue, noTaskMessage) {
     const filteredTasks = allTasks.filter(task => task.title.toLowerCase().includes(searchValue) ||
         task.description.toLowerCase().includes(searchValue)
@@ -39,6 +47,11 @@ function getFilteredTasks(searchValue, noTaskMessage) {
 };
 
 
+/**
+ * Resets search filter and restores original task display
+ * 
+ * @returns {void} Clears search and resets task display
+ */
 function resetFilter() {
     if (isSearchActive) {
         isSearchActive = false;
@@ -52,9 +65,10 @@ function resetFilter() {
 
 
 /**
- * Render columns with filtered tasks
+ * Renders task columns with filtered results
  * 
- * @param {Array} filteredTasks 
+ * @param {Array} filteredTasks - Array of tasks that match search criteria
+ * @returns {void} Updates columns with filtered task cards
  */
 function renderFilteredColumns(filteredTasks) {
     dragAreaTodo.innerHTML = '';

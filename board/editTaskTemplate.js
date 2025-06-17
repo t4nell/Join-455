@@ -2,6 +2,11 @@ let menu, selectedUser, dropdown, toggle;
 let contactsArray = [];
 
 
+/**
+ * Initializes variables and elements needed for task editing
+ * 
+ * @returns {void} Sets up global variables and references to DOM elements
+ */
 function initEditTaskVariables() {
     dropdown = document.getElementById('dropdown_edit_task');
     selectedUser = document.getElementById('selected_user_group_edit_task');
@@ -10,6 +15,11 @@ function initEditTaskVariables() {
 };
 
 
+/**
+ * Initializes datepicker calendar for task due dates
+ * 
+ * @returns {void} Sets up calendar with default configuration and event listeners
+ */
 function initializeCalendar() {
     const calendarInput = document.getElementById('due_date_edit_task');
     if (calendarInput && !calendarInput._flatpickr) {
@@ -24,16 +34,27 @@ function initializeCalendar() {
 };
 
 
+/**
+ * Opens the calendar widget for date selection
+ * 
+ * @returns {void} Triggers the flatpickr calendar to open
+ */
 function openCalendar() {
     const calenderInput = document.getElementById('due_date_edit_task');
     if (calenderInput && calenderInput._flatpickr) {
         calenderInput._flatpickr.open();
     } else {
         console.error('Flatpickr not initialized');
-    }
+    };
 };
 
 
+/**
+ * Loads and processes contact data from the server
+ * 
+ * @param {string} path - Optional path parameter for the API endpoint
+ * @returns {Promise<void>} Loads contacts and updates contactsArray
+ */
 async function loadContactData(path = '') {
     try {
         let response = await fetch(BASE_URL + path + '.json');
@@ -52,6 +73,12 @@ async function loadContactData(path = '') {
 };
 
 
+/**
+ * Updates priority button icons based on selected priority
+ * 
+ * @param {string} btnPriority - Selected priority ('Urgent', 'Medium', 'Low')
+ * @returns {void} Updates priority icon sources
+ */
 function switchBtnPriorityEditTask(btnPriority) {
     document.getElementById('icon_urgent_edit_task').src = '../assets/imgs/boardIcons/priorityUrgent.svg';
     document.getElementById('icon_medium_edit_task').src = '../assets/imgs/boardIcons/priorityMedium.svg';
@@ -70,6 +97,12 @@ function switchBtnPriorityEditTask(btnPriority) {
 };
 
 
+/**
+ * Toggles the assigned contacts dropdown visibility
+ * 
+ * @param {Event} event - Click event object
+ * @returns {void} Toggles dropdown classes
+ */
 function toggleDropdownAssignedEditTask(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
@@ -77,12 +110,24 @@ function toggleDropdownAssignedEditTask(event) {
 };
 
 
+/**
+ * Toggles the background of a selected contact in dropdown
+ * 
+ * @param {number} index - Index of the clicked contact item
+ * @returns {void} Toggles active class on contact item
+ */
 function toggleBackgroundEditTask(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
 };
 
 
+/**
+ * Handles clicks outside the dropdown to close it
+ * 
+ * @param {Event} event - Click event object
+ * @returns {void} Closes dropdown if click is outside
+ */
 function handleClickOutsideEditTask(event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
@@ -91,6 +136,11 @@ function handleClickOutsideEditTask(event) {
 };
 
 
+/**
+ * Loads contacts into the assigned contacts dropdown
+ * 
+ * @returns {void} Populates dropdown menu with contacts
+ */
 function loadContactsToAssignedEditTask() {
     if (!menu) return;
     menu.innerHTML = '';
@@ -100,6 +150,12 @@ function loadContactsToAssignedEditTask() {
 };
 
 
+/**
+ * Generates HTML template for a contact in the dropdown
+ * 
+ * @param {Object} contact - Contact object containing user information
+ * @returns {string} HTML string for contact list item
+ */
 function loadContactsToAssignedTemplateEditTask(contact) {
     const bgColor = contact.color;
     const nameInitials = contact.name
@@ -117,6 +173,12 @@ function loadContactsToAssignedTemplateEditTask(contact) {
 };
 
 
+/**
+ * Renders assigned contacts in the edit task view
+ * 
+ * @param {Object} assignedTo - Object containing assigned contact information
+ * @returns {string} HTML string of assigned contact badges
+ */
 function renderAssignedContactsEditTask(assignedTo) {
     if (!assignedTo) return '';
     return Object.entries(assignedTo)
@@ -139,6 +201,13 @@ function renderAssignedContactsEditTask(assignedTo) {
 };
 
 
+/**
+ * Handles user selection in the contacts dropdown
+ * 
+ * @param {string} id - Contact ID
+ * @param {Event} event - Click event object
+ * @returns {void} Updates selected contacts display
+ */
 function selectUserEditTask(id, event) {
     initEditTaskVariables();
     event.stopPropagation();
@@ -159,6 +228,12 @@ function selectUserEditTask(id, event) {
 };
 
 
+/**
+ * Removes a selected user from the assigned contacts
+ * 
+ * @param {string} id - Contact ID to remove
+ * @returns {void} Removes contact from selection
+ */
 function removeSelectedUserEditTask(id) {
     const userIconContainer = document.getElementById(`selected_user_${id}`);
     if (userIconContainer) {
@@ -167,6 +242,12 @@ function removeSelectedUserEditTask(id) {
 };
 
 
+/**
+ * Adds a selected user icon to the assigned contacts display
+ * 
+ * @param {Object} contact - Contact object to add
+ * @returns {void} Adds contact icon to selection
+ */
 function addSelectedUserIconEditTask(contact) {
     const nameInitials = contact.name
         .split(' ')
@@ -181,6 +262,12 @@ function addSelectedUserIconEditTask(contact) {
 };
 
 
+/**
+ * Renders editable subtask elements
+ * 
+ * @param {Object} task - Task object containing subtasks
+ * @returns {string} HTML string of editable subtask elements
+ */
 function renderEditableSubtasks(task) {
     if (!task.subtasks) return '';
     return Object.entries(task.subtasks).map(([subtaskId, subtask]) => {
@@ -193,6 +280,12 @@ function renderEditableSubtasks(task) {
 };
 
 
+/**
+ * Saves changes made to a task
+ * 
+ * @param {string} taskId - ID of the task being edited
+ * @returns {Promise<void>} Updates task in database and UI
+ */
 async function saveEditTask(taskId) {
     try {
         const { currentTask, formData, assignedTo } = contactsCollects(taskId);  // Collect contacts
@@ -213,6 +306,13 @@ async function saveEditTask(taskId) {
 };
 
 
+/**
+ * Updates task data in Firebase
+ * 
+ * @param {string} taskId - ID of the task to update
+ * @param {Object} updatedTask - New task data
+ * @returns {Promise<Response>} Firebase update response
+ */
 async function firebaseUpdate(taskId, updatedTask) {
     return await fetch(`${BASE_URL}addTask/${taskId}.json`, {
         method: 'PUT',
@@ -224,6 +324,15 @@ async function firebaseUpdate(taskId, updatedTask) {
 };
 
 
+/**
+ * Creates updated task object with form data
+ * 
+ * @param {FormData} formData - Form data from edit form
+ * @param {Object} currentTask - Current task data
+ * @param {Object} assignedTo - Updated assigned contacts
+ * @param {Object} subtasks - Updated subtasks
+ * @returns {Object} Updated task object
+ */
 function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
     return {
         title: formData.get('title'),
@@ -238,6 +347,13 @@ function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
 };
 
 
+/**
+ * Adds new subtask to subtasks object
+ * 
+ * @param {number} subtaskIndex - Index for new subtask
+ * @param {Object} subtasks - Current subtasks object
+ * @returns {void} Updates subtasks object with new subtask
+ */
 function newSubtask(subtaskIndex, subtasks) {
     const newSubtaskInput = document.getElementById('tag_input_field_edit_task');
     if (newSubtaskInput && newSubtaskInput.value.trim()) {
@@ -250,6 +366,12 @@ function newSubtask(subtaskIndex, subtasks) {
 };
 
 
+/**
+ * Collects and processes subtask data
+ * 
+ * @param {Object} currentTask - Current task data
+ * @returns {Object} Object containing subtask index and updated subtasks
+ */
 function subtasksCollect(currentTask) {
     const subtaskInputs = document.querySelectorAll('textarea[name="subtasks"]');
     const subtasks = {};
@@ -270,6 +392,12 @@ function subtasksCollect(currentTask) {
 };
 
 
+/**
+ * Collects and processes contact assignments
+ * 
+ * @param {string} taskId - ID of the task being edited
+ * @returns {Object} Object containing task data, form data, and assigned contacts
+ */
 function contactsCollects(taskId) {
     const form = document.getElementById('edit_task_form');
     const formData = new FormData(form);

@@ -13,11 +13,22 @@ const CATEGORY_COLORS = {
 };
 
 
+/**
+ * Gets the color code for a given task category
+ * 
+ * @param {string} category - Category name of the task
+ * @returns {string} Hex color code for the category
+ */
 function getCategoryColor(category) {
     return CATEGORY_COLORS[category] || '#0052ff';
 };
 
 
+/**
+ * Toggles visibility of section buttons based on window width
+ * 
+ * @returns {void} Updates display style of section buttons
+ */
 function toggleSectionButton() {
     const sectionButtons = document.querySelectorAll('#section_button_container')
     sectionButtons.forEach(button => {
@@ -30,6 +41,12 @@ function toggleSectionButton() {
 };
 
 
+/**
+ * Renders status change dropdown for task cards
+ * 
+ * @param {Event} event - Click event object
+ * @returns {void} Renders status dropdown template
+ */
 function renderSwapStatusTemplate(event) {
     event.stopPropagation();
     const existingTemplate = document.querySelector('.swap_status_template');
@@ -49,6 +66,13 @@ function renderSwapStatusTemplate(event) {
 };
 
 
+/**
+ * Sets visibility of status buttons based on current task status
+ * 
+ * @param {string} status - Current status of the task
+ * @param {HTMLElement} templateElement - Status dropdown template element
+ * @returns {void} Updates button visibility
+ */
 function setStatusButtonVisibility(status, templateElement) {
     if (status) {
         switch (status) {
@@ -69,6 +93,14 @@ function setStatusButtonVisibility(status, templateElement) {
 };
 
 
+/**
+ * Updates task status and rerenders board
+ * 
+ * @param {Event} event - Click event object
+ * @param {string} taskId - ID of the task to update
+ * @param {string} newStatus - New status to set
+ * @returns {void} Updates task status and refreshes display
+ */
 function changeTaskStatus(event, taskId, newStatus) {
     event.stopPropagation();
     const task = allTasks.find(t => t.id === taskId);
@@ -81,6 +113,12 @@ function changeTaskStatus(event, taskId, newStatus) {
 };
 
 
+/**
+ * Adds click listener to close status dropdown
+ * 
+ * @param {HTMLElement} templateElement - Status dropdown template element
+ * @returns {void} Adds event listener for closing dropdown
+ */
 function addCloseSwapStatusListener(templateElement) {
     document.addEventListener('click', function closeSwapStatus(e) {
         if (!templateElement.contains(e.target) && !e.target.closest('#section_button')) {
@@ -91,6 +129,12 @@ function addCloseSwapStatusListener(templateElement) {
 };
 
 
+/**
+ * Renders avatar icons for assigned contacts
+ * 
+ * @param {Object} assignedTo - Object containing assigned contact IDs
+ * @returns {string} HTML string of avatar elements
+ */
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
     const maxVisibleAvatars = 5;
@@ -105,6 +149,12 @@ function renderAssignedAvatars(assignedTo) {
 };
 
 
+/**
+ * Gets array of contact objects for assigned contacts
+ * 
+ * @param {Object} assignedTo - Object containing assigned contact IDs
+ * @returns {Array} Array of contact objects with avatar data
+ */
 function getAssignedContacts(assignedTo) {
     return Object.entries(assignedTo)
         .map(([contactId, isAssigned]) => {
@@ -116,7 +166,14 @@ function getAssignedContacts(assignedTo) {
         .filter(contact => contact !== null);
 };
 
-    
+
+/**
+ * Creates contact object with avatar data
+ * 
+ * @param {Object} contact - Contact data object
+ * @param {string} contactId - ID of the contact
+ * @returns {Object} Contact object with initials and color
+ */
 function createBatch(contact, contactId) {
     const nameInitials = contact.name
         .split(' ')
@@ -135,6 +192,12 @@ function createBatch(contact, contactId) {
 };
 
 
+/**
+ * Calculates subtask completion progress
+ * 
+ * @param {Object} task - Task object containing subtasks
+ * @returns {Object} Progress data with total, completed and percentage
+ */
 function calculateSubtaskProgress(task) {
     const subtasks = task.subtasks || {};
     const totalSubtasks = Object.keys(subtasks).length;
