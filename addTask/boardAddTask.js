@@ -2,7 +2,7 @@ let dueDatePicker = null;
 
 /**
  * Opens the task creation overlay or redirects to the add task page on mobile.
- * 
+ *
  * @returns {void} Opens overlay or redirects based on screen size.
  */
 function openOverlay() {
@@ -13,13 +13,12 @@ function openOverlay() {
         initAll();
     } else {
         window.location.href = '../addTask/addTask.html';
-    };
-};
-
+    }
+}
 
 /**
  * Initializes all required data and components for the task creation overlay.
- * 
+ *
  * @returns {void} Loads contacts, renders task board and categories.
  */
 function initAll() {
@@ -30,7 +29,7 @@ function initAll() {
 
 /**
  * Closes the task creation overlay and cleans up date picker.
- * 
+ *
  * @returns {void} Hides the overlay and removes date picker.
  */
 function closeOverlay() {
@@ -41,7 +40,7 @@ function closeOverlay() {
 
 /**
  * Prevents event propagation for click events.
- * 
+ *
  * @param {Event} event - The event to stop propagation for.
  * @returns {void} Stops the event from bubbling up.
  */
@@ -51,7 +50,7 @@ function bubbling(event) {
 
 /**
  * Renders the task creation form in the board overlay.
- * 
+ *
  * @returns {void} Updates the task container with the board template.
  */
 function renderTaskBoard() {
@@ -64,7 +63,7 @@ function renderTaskBoard() {
 
 /**
  * Destroys a Flatpickr instance associated with the given selector.
- * 
+ *
  * @param {string} selector - CSS selector of the input element with Flatpickr attached.
  * @returns {void} Removes the date picker from the element.
  */
@@ -77,7 +76,7 @@ function removeDatePicker(selector) {
 
 /**
  * Initializes a date picker on the specified element.
- * 
+ *
  * @param {string} selectedDate - CSS selector for the date input element.
  * @returns {void} Sets up the flatpickr date picker.
  */
@@ -92,18 +91,8 @@ function datePicker(selectedDate) {
 }
 
 /**
- * Opens the calendar date picker by focusing on the date input field.
- * 
- * @returns {void} Focuses on the date input element.
- */
-function openCalendar() {
-    const calenderInput = document.getElementById('due_date');
-    calenderInput.focus();
-}
-
-/**
  * Creates a new task from form data and submits it to the server.
- * 
+ *
  * @returns {void} Creates and posts the task, then clears the form.
  */
 function createTask() {
@@ -117,7 +106,7 @@ function createTask() {
 
 /**
  * Clears all task form input fields and selections.
- * 
+ *
  * @returns {void} Resets the form to its default state.
  */
 function clearTasks() {
@@ -132,7 +121,7 @@ function clearTasks() {
 
 /**
  * Validates all required fields in the task form.
- * 
+ *
  * @returns {void} Creates the task if validation passes.
  */
 function validateRequiredFields() {
@@ -148,7 +137,7 @@ function validateRequiredFields() {
 
 /**
  * Validates the title input field.
- * 
+ *
  * @returns {boolean} True if the title is valid, otherwise false.
  */
 function validateTitleField() {
@@ -168,7 +157,7 @@ function validateTitleField() {
 
 /**
  * Validates the due date input field.
- * 
+ *
  * @returns {boolean} True if the due date is valid, otherwise false.
  */
 function validateDueDateField() {
@@ -188,7 +177,7 @@ function validateDueDateField() {
 
 /**
  * Validates the category dropdown selection.
- * 
+ *
  * @returns {boolean} True if a category is selected, otherwise false.
  */
 function validateCategoryField() {
@@ -208,7 +197,7 @@ function validateCategoryField() {
 
 /**
  * Shows a notification that a task was successfully added.
- * 
+ *
  * @param {string} notificationText - Text to display in the notification.
  * @returns {void} Shows notification and redirects to board after delay.
  */
