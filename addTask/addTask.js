@@ -1,6 +1,6 @@
 /**
  * Initializes the add task page by setting up all required components.
- * 
+ *
  * @returns {Promise<void>} Completes initialization of the page.
  */
 async function init() {
@@ -15,7 +15,7 @@ async function init() {
 
 /**
  * Renders the task creation form in the designated container.
- * 
+ *
  * @returns {void} Updates the task container with form template.
  */
 function renderTask() {
@@ -27,7 +27,7 @@ function renderTask() {
 
 /**
  * Renders the desktop version of the sidebar.
- * 
+ *
  * @param {HTMLElement} mainContainer - Main container for the sidebar.
  * @param {HTMLElement} navContainer - Navigation container element.
  * @param {HTMLElement} navbarMobileContainer - Mobile navigation container element.
@@ -41,7 +41,7 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
 
 /**
  * Renders the mobile version of the sidebar.
- * 
+ *
  * @param {HTMLElement} mainContainer - Main container for the sidebar.
  * @param {HTMLElement} navContainer - Navigation container element.
  * @param {HTMLElement} navbarMobileContainer - Mobile navigation container element.
@@ -56,17 +56,21 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
 
 /**
  * Initializes the sidebar with event listeners and correct display.
- * 
+ *
  * @returns {void} Sets up the sidebar responsiveness.
  */
 function initSidebar() {
-    window.addEventListener('resize', proofSize);
+    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const handleBreakpoint = (placeholder) => {
+        proofSize();
+    };
+    mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
 }
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
- * 
+ *
  * @returns {void} Updates the sidebar based on screen width.
  */
 function proofSize() {
@@ -83,7 +87,7 @@ function proofSize() {
 
 /**
  * Initializes a date picker on the specified element.
- * 
+ *
  * @param {string} selectedDate - CSS selector for the date input element.
  * @returns {void} Sets up the flatpickr date picker.
  */
@@ -99,7 +103,7 @@ function datePicker(selectedDate) {
 
 /**
  * Opens the calendar date picker by focusing on the date input field.
- * 
+ *
  * @returns {void} Focuses on the date input element.
  */
 function openCalendar() {
@@ -109,7 +113,7 @@ function openCalendar() {
 
 /**
  * Renders the header component in the designated container.
- * 
+ *
  * @returns {void} Updates the header container with template.
  */
 function renderHeader() {
@@ -119,7 +123,7 @@ function renderHeader() {
 
 /**
  * Creates a new task from form data and submits it to the server.
- * 
+ *
  * @returns {void} Creates and posts the task, then clears the form.
  */
 function createTask() {
@@ -133,7 +137,7 @@ function createTask() {
 
 /**
  * Clears all task form input fields and selections.
- * 
+ *
  * @returns {void} Resets the form to its default state.
  */
 function clearTasks() {
@@ -148,7 +152,7 @@ function clearTasks() {
 
 /**
  * Validates all required fields in the task form.
- * 
+ *
  * @returns {void} Creates the task if validation passes.
  */
 function validateRequiredFields() {
@@ -164,7 +168,7 @@ function validateRequiredFields() {
 
 /**
  * Validates the title input field.
- * 
+ *
  * @returns {boolean} True if the title is valid, otherwise false.
  */
 function validateTitleField() {
@@ -184,7 +188,7 @@ function validateTitleField() {
 
 /**
  * Validates the due date input field.
- * 
+ *
  * @returns {boolean} True if the due date is valid, otherwise false.
  */
 function validateDueDateField() {
@@ -204,7 +208,7 @@ function validateDueDateField() {
 
 /**
  * Validates the category dropdown selection.
- * 
+ *
  * @returns {boolean} True if a category is selected, otherwise false.
  */
 function validateCategoryField() {
@@ -224,7 +228,7 @@ function validateCategoryField() {
 
 /**
  * Shows a notification that a task was successfully added.
- * 
+ *
  * @param {string} notificationText - Text to display in the notification.
  * @returns {void} Shows notification and redirects to board after delay.
  */
