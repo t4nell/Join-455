@@ -16,6 +16,7 @@
     z-index: 1000;
     opacity: 1;
     transition: opacity 225ms ease-in-out;
+    cursor: pointer;
 }
 
 .overlay_background.fade_out {
@@ -24,6 +25,7 @@
 }
 
 .task_detail_card {
+    cursor: default;
     font-size: 20px;
     background-color: white;
     border-radius: 30px;
