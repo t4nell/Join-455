@@ -234,7 +234,7 @@ html{
         display: flex;
         position: fixed;
         right: 16px;
-        bottom: 112px;
+        bottom: 100px;
     }
 
     .return_arrow{

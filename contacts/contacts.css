@@ -123,6 +123,7 @@ main {
 
 #contact_list div button img {
   height: 32px;
+  width: 32px;
 }
 
 .contact_side{
@@ -254,7 +255,19 @@ main {
 
   .sec_add_contact_btn{
     display: none;
+    cursor: pointer;
+    background-color: var(--dark-button);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
   }
+
+   .sec_add_contact_btn img{
+    width: 32px;
+    height: 32px;
+   }
 
 
 .return_arrow{
@@ -264,6 +277,7 @@ main {
   right: 16px;
   top: 48px;
   display: none;
+  cursor: pointer;
 }
 
 .contact_options_btn{
@@ -273,6 +287,11 @@ main {
   bottom: 32px;
   right: 16px;
   display: none;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dark-button);
+  border-radius: 50%;
 }
 
 #contact_options_dropdown{

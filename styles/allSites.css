@@ -79,7 +79,6 @@ body {
 main {
     background-color: var(--background-color-main);
     width: 100%;
-    max-width: 1440px;
     position: relative;
     overflow-x: hidden;
 }

@@ -128,8 +128,10 @@ function getCurrentUserDetailsTemplate(currentUser, currentUserInitials) {
               <span class="contact_category">Phone</span>
               <span>${currentUser.phone ? currentUser.phone : "+49"}</span>
             </div>
-            <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event);"/>
-              <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
+          <div class="contact_options_btn" onclick="toggleContactOptions(event);">
+            <img src="../assets/imgs/contactIcons/contactMenuButton.svg" alt="contact_options_btn" />
+            </div>
+            <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
                 <button onclick="editCurrentUserOverlay()" id="edit_btn"><img src="../assets/imgs/contactIcons/edit.svg" alt="" />Edit</button>
               </div>
           </div>`;
@@ -184,8 +186,11 @@ function getContactDetailsTemplate(contact) {
               <span>${contact.phone}</span>
             </div>
           </div>
-          <img src="../assets/imgs/contactIcons/contactOptions.svg" alt="contact_options_btn" class="contact_options_btn" onclick="toggleContactOptions(event)"/>
-              <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
+          <div class="contact_options_btn" onclick="toggleContactOptions(event)">
+          <img src="../assets/imgs/contactIcons/contactMenuButton.svg" alt="contact_options_btn" />
+          </div>
+          
+          <div id="contact_options_dropdown" onclick="eventBubbling(event)" class="closed">
                 <button onclick="editContactOverlay(${contactsArray.indexOf(contact)})" id="edit_btn"><img src="../assets/imgs/contactIcons/edit.svg" alt="" />Edit</button>
                 <button onclick="deleteContactAndUpdateTasks('${contact.id}')" id="delete_btn"><img src="../assets/imgs/contactIcons/delete.svg" alt="" />Delete</button>
               </div>
