@@ -148,7 +148,7 @@ function countTaskStatus(stats, task) {
     if (status === 'todo') stats.todo++;
     else if (status === 'done') stats.done++;
     else if (status === 'inprogress') stats.inProgress++;
-    else if (status === 'awaitingfeedback') stats.awaitingFeedback++;
+    else if (status === 'awaitfeedback') stats.awaitingFeedback++;
 };
 
 
