@@ -281,7 +281,7 @@ header span {
 }
 
 .closed {
-    transform: translateX(150%);
+    transform: translateX(200%);
 }
 
 .closed_notification {
