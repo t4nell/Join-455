@@ -69,13 +69,13 @@ function getSidebarTemplate() {
                     <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
                     <span>Summary</span>
                 </a>
-                <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
-                    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon" />
-                    <span>Board</span>
-                </a>
                 <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
                     <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon" />
                     <span>Add Task</span>
+                </a>
+                <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon" />
+                    <span>Board</span>
                 </a>
                 <a
                     href="../contacts/contacts.html"

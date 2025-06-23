@@ -176,7 +176,7 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
  *
  * @param {*} mainContainer - The main container where the sidebar will be rendered.
  * @param {*} navContainer - The navigation container for the sidebar.
- * @param {*} navbarMobileContainer 
+ * @param {*} navbarMobileContainer - The mobile navigation container for the sidebar.
  * @returns {void}
  */
 function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer) {

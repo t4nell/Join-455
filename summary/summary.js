@@ -22,7 +22,7 @@ function init() {
     initializeGlobalStats();
     setupAllHandlers();
     const currentUser = checkAuth();
-    renderSidebar();
+    initSidebar()
     renderHeader();
     updateUserProfile();
     updateGreeting();
@@ -122,35 +122,61 @@ function setupModalHandlers() {
 
 
 /**
- * Shows the correct sidebar depending on screen size.
- * Desktop: shows full sidebar.
- * Mobile: shows mobile sidebar.
+ * Renders the desktop version of the sidebar.
+ *
+ * @param {HTMLElement} mainContainer - Main container for the sidebar.
+ * @param {HTMLElement} navContainer - Navigation container element.
+ * @param {HTMLElement} navbarMobileContainer - Mobile navigation container element.
+ * @returns {void} Updates the sidebar for desktop view.
  */
-function renderSidebar() {
-    const main = document.getElementById('navbar_container');
-    const side = document.getElementById('sidebar_container');
-    const mobile = document.getElementById('navbar_mobile_container');
-    window.addEventListener('resize', () => {updateSidebar(main, side, mobile)});
-    updateSidebar(main, side, mobile);
-};
-
+function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    navbarMobileContainer.innerHTML = '';
+    mainContainer.innerHTML = getSidebarTemplate();
+    navContainer.style.display = 'block';
+}
 
 /**
- * Updates the sidebar display based on current screen size
- * 
- * @param {HTMLElement} main - Main container element for desktop sidebar
- * @param {HTMLElement} side - Side element that holds the sidebar
- * @param {HTMLElement} mobile - Container element for mobile sidebar
- * 
- * This function checks the current viewport width and updates the sidebar
- * display accordingly. For desktop views (>= 1050px), it shows the regular
- * sidebar. For mobile views (< 1050px), it displays the mobile sidebar
- * with the current page highlighted and hides the desktop sidebar.
+ * Renders the mobile version of the sidebar.
+ *
+ * @param {HTMLElement} mainContainer - Main container for the sidebar.
+ * @param {HTMLElement} navContainer - Navigation container element.
+ * @param {HTMLElement} navbarMobileContainer - Mobile navigation container element.
+ * @returns {void} Updates the sidebar for mobile view.
  */
-function updateSidebar(main, side, mobile) {
+function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer) {
     const currentPage = window.location.pathname;
-    const isMobile = window.innerWidth < 1050;
-    main.innerHTML = isMobile ? '' : getSidebarTemplate();
-    mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
-    side.style.display = isMobile ? 'none' : 'block';
+    mainContainer.innerHTML = '';
+    navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
+    navContainer.style.display = 'none';
+}
+
+/**
+ * Initializes the sidebar with event listeners and correct display.
+ *
+ * @returns {void} Sets up the sidebar responsiveness.
+ */
+function initSidebar() {
+    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const handleBreakpoint = (placeholder) => {
+        proofSize();
+    };
+    mediaQuery.addEventListener('change', handleBreakpoint);
+    proofSize();
+}
+
+/**
+ * Checks the window size and renders the appropriate sidebar version.
+ *
+ * @returns {void} Updates the sidebar based on screen width.
+ */
+function proofSize() {
+    const mainContainer = document.getElementById('navbar_container');
+    const navContainer = document.getElementById('sidebar_container');
+    const navbarMobileContainer = document.getElementById('navbar_mobile_container');
+    const width = window.innerWidth;
+    if (width < 1051) {
+        renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
+    } else {
+        renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
+    }
 }
