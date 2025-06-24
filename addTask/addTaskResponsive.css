@@ -31,6 +31,12 @@
     }
 }
 
+@media (max-width: 1247px) {
+    .create_task {
+        margin-right: 123px;
+    }
+}
+
 @media (max-width: 1050px) {
     header {
         background-color: var(--background-color-header);
@@ -242,6 +248,10 @@
     }
     .priority_btn_group {
         gap: 8px;
+    }
+
+    .create_task {
+        justify-content: center;
     }
 }
 
