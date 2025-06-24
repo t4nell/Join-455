@@ -1,14 +1,22 @@
 let dueDatePicker = null;
 
+// Global variable to store which board status was used to open the overlay
+let currentBoardStatus = 'todo';
+
 /**
  * Opens the task creation overlay or redirects to the Add Task page on mobile devices.
  *
+ * @param {string} boardStatus - The status of the board section where the plus button was clicked
  * @returns {void} Opens overlay or redirects based on screen size.
  */
-function openOverlay() {
+function openOverlay(boardStatus = 'todo') {
     const overlayContent = document.getElementById('add_task_container_board');
     const overlay = document.getElementById('overlay');
     const width = window.innerWidth;
+    
+    // Store the current board status globally
+    currentBoardStatus = boardStatus;
+    
     if (width > 1050) {
         overlay.classList.remove('fade_out');
         overlayContent.classList.remove('closed');
@@ -125,16 +133,16 @@ function datePicker(selectedDate) {
 
 /**
  * Creates a new task from form data and submits it to the server.
- *
+ * 
+ * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates and posts the task, then clears the form.
  */
-function createTask() {
+function createTask(boardStatus = 'todo') {
     const form = document.getElementById('add_task_form');
-    const taskData = collectTaskData(form);
+    const taskData = collectTaskData(form, boardStatus);
 
     postTask(taskData);
     clearTasks();
-    document.getElementById('clear_btn').click();
 }
 
 /**
@@ -155,15 +163,16 @@ function clearTasks() {
 /**
  * Validates all required fields in the task form.
  *
+ * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates the task if validation is successful.
  */
-function validateRequiredFields() {
+function validateRequiredFields(boardStatus = 'todo') {
     const titleValid = validateTitleField();
     const dateValid = validateDueDateField();
     const categoryValid = validateCategoryField();
 
     if (titleValid && dateValid && categoryValid) {
-        createTask();
+        createTask(boardStatus);
         showAddedNotification('Task added to Board');
     }
 }

@@ -4,12 +4,27 @@ BASE_URL_ADDTASK;
  * Extracts task data from a form into a structured object.
  * 
  * @param {HTMLFormElement} form - The form containing task input fields.
+ * @param {string} boardStatus - The status based on which board section was clicked (todo, inProgress, awaitFeedback).
  * @returns {Object} Task data object with all field values organized for submission.
  */
-function collectTaskData(form) {
+function collectTaskData(form, boardStatus = 'todo') {
     const fd = new FormData(form);
     const subtasksArray = fd.getAll('subtasks');
-    const todo = 'todo';
+    
+    // Determine the status based on which board section was clicked
+    let status;
+    switch(boardStatus) {
+        case 'inProgress':
+            status = 'inProgress';
+            break;
+        case 'awaitFeedback':
+            status = 'awaitFeedback';
+            break;
+        case 'todo':
+        default:
+            status = 'todo';
+            break;
+    }
 
     const assignedTo = {};
     selectedUserIndices.forEach((index) => {
@@ -38,7 +53,7 @@ function collectTaskData(form) {
         assignedTo,
         category: fd.get('category'),
         subtasks,
-        status: todo,
+        status: status,
     };
 }
 

@@ -246,7 +246,7 @@ function getTaskButtonsTemplate() {
             Clear
             <img class="clear_icon" id="icon-X" src="../assets/imgs/addTaskIcons/subtasksCancelIconAndClearTask.svg" alt="Icon" />
         </button>
-        <button class="create_task_btn" id="create_task_btn" type="button" form="add_task_form" onclick="validateRequiredFields()">
+        <button class="create_task_btn" id="create_task_btn" type="button" form="add_task_form" onclick="validateRequiredFields(currentBoardStatus)">
             Create Task
             <img class="create_task_icon" id="create_task" src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg" alt="Icon" />
         </button>
