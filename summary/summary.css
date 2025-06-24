@@ -9,6 +9,7 @@ main {
   left: 232px;
   height: calc(100% - 100px);
   width: calc(100% - 232px);
+  max-width: 1440px;
 }
 
 .headline_container {

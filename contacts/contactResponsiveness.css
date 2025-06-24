@@ -134,6 +134,7 @@ html{
     z-index: 300;
     background-color: var(--background-color-main);
     flex-direction: column;
+    max-width: 100%;
     }
 
     .mobile_closed{
