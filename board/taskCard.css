@@ -88,12 +88,11 @@
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 8px;
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .task_description {
