@@ -1,6 +1,5 @@
 let dueDatePicker = null;
 
-// Global variable to store which board status was used to open the overlay
 let currentBoardStatus = 'todo';
 
 /**
@@ -9,14 +8,13 @@ let currentBoardStatus = 'todo';
  * @param {string} boardStatus - The status of the board section where the plus button was clicked
  * @returns {void} Opens overlay or redirects based on screen size.
  */
-function openOverlay(boardStatus = 'todo') {
+function openOverlay(boardStatus) {
     const overlayContent = document.getElementById('add_task_container_board');
     const overlay = document.getElementById('overlay');
     const width = window.innerWidth;
-    
-    // Store the current board status globally
+
     currentBoardStatus = boardStatus;
-    
+
     if (width > 1050) {
         overlay.classList.remove('fade_out');
         overlayContent.classList.remove('closed');
@@ -133,7 +131,7 @@ function datePicker(selectedDate) {
 
 /**
  * Creates a new task from form data and submits it to the server.
- * 
+ *
  * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates and posts the task, then clears the form.
  */
@@ -166,7 +164,7 @@ function clearTasks() {
  * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates the task if validation is successful.
  */
-function validateRequiredFields(boardStatus = 'todo') {
+function validateRequiredFields(boardStatus) {
     const titleValid = validateTitleField();
     const dateValid = validateDueDateField();
     const categoryValid = validateCategoryField();

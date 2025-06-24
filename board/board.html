@@ -76,9 +76,7 @@
             </div>
 
             <div id="overlay_background_container" class="overlay_background fade_out" onclick="closeDetailTemplate()">
-                <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)">
-                   
-                </div>
+                <div id="task_detail_card" class="task_detail_card closed" onclick="eventBubbling(event)"></div>
             </div>
 
             <div class="board_container">
@@ -110,7 +108,7 @@
                             <span id="no_find_task_mesage" style="display: none; color: brown">"No task found"</span>
                         </div>
 
-                        <button class="dark_btn" onclick="openOverlay()">
+                        <button class="dark_btn" onclick="openOverlay('todo')">
                             <p class="button_text">Add Task</p>
                             <img src="../assets/imgs/boardIcons/plus.svg" alt="puls" />
                         </button>
