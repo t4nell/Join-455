@@ -240,7 +240,7 @@ function validateCategoryField() {
  *
  * @returns {void} Adds event listener to the overlay content.
  */
-function addClickListener() {
+function addClickListenerForDropdown() {
     const overlayContent = document.getElementById('add_task_container_board');
 
     if (overlayContent) {
