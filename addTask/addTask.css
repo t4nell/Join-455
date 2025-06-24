@@ -18,6 +18,7 @@ main {
     margin-right: auto;
     margin-left: auto;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .title_head {
