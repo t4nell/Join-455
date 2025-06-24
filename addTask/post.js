@@ -2,7 +2,7 @@ BASE_URL_ADDTASK;
 
 /**
  * Extracts task data from a form into a structured object.
- * 
+ *
  * @param {HTMLFormElement} form - The form containing task input fields.
  * @param {string} boardStatus - The status based on which board section was clicked (todo, inProgress, awaitFeedback).
  * @returns {Object} Task data object with all field values organized for submission.
@@ -10,10 +10,9 @@ BASE_URL_ADDTASK;
 function collectTaskData(form, boardStatus = 'todo') {
     const fd = new FormData(form);
     const subtasksArray = fd.getAll('subtasks');
-    
-    // Determine the status based on which board section was clicked
+
     let status;
-    switch(boardStatus) {
+    switch (boardStatus) {
         case 'inProgress':
             status = 'inProgress';
             break;
@@ -59,7 +58,7 @@ function collectTaskData(form, boardStatus = 'todo') {
 
 /**
  * Sends task data to the server for saving.
- * 
+ *
  * @param {Object} taskData - The task object to be posted.
  * @returns {void} Posts the task data to the database.
  */
@@ -69,7 +68,7 @@ function postTask(taskData) {
 
 /**
  * Sends data to the server via a POST request.
- * 
+ *
  * @param {string} path - API endpoint path, defaults to empty string.
  * @param {Object} data - Data object to send to the server, defaults to empty object.
  * @returns {Promise<Object>} Response data from the server as JSON.
