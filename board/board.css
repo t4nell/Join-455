@@ -164,6 +164,7 @@ main {
     gap: 26px;
     width: calc(100% - 60px);
     height: calc(100% - 232px);
+    padding-right: 20px
 }
 
 .drag_and_drop_container {
