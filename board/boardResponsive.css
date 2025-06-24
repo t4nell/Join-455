@@ -42,16 +42,8 @@
     }
     .board_controls_container {
         margin-left: 20px;
-    }
-}
-
-@media (max-width: 1050px) {
-    .button_text {
-        display: none;
-    }
-
-    .input_container_style {
-        width: 85%;
+        gap: 0;
+        justify-content: space-between;
     }
 }
 
@@ -62,6 +54,16 @@
 
     .search_container {
         max-width: 330px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .button_text {
+        display: none;
+    }
+
+    .input_container_style {
+        width: 85%;
     }
 }
 
@@ -79,6 +81,10 @@
 }
 
 @media screen and (max-width: 843px) {
+    .board_controls_container {
+        justify-content: space-between;
+    }
+
     .search_and_addTask_container {
         justify-content: center;
         align-items: center;

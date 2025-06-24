@@ -85,6 +85,11 @@
 
 .task_detail_title h2 {
     font-size: 61px;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .detail_label {

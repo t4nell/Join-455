@@ -40,7 +40,7 @@ main {
 
 .board_controls_container {
     display: flex;
-    justify-content: space-between;
+    gap: 32px;
     align-items: center;
     flex-wrap: wrap;
     width: 85%;
@@ -158,7 +158,7 @@ main {
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: 26px;
     width: calc(100% - 60px);
     height: calc(100% - 232px);
