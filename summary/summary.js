@@ -27,7 +27,7 @@ function init() {
     updateUserProfile();
     updateGreeting();
     if (currentUser.isGuest) {
-        showNotification('Sie nutzen die App im Gast-Modus mit eingeschränkten Funktionen');
+        showNotification('You are using the app in guest mode with limited functions');
     }
     loadAndRenderTasks();
 };
