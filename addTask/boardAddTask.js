@@ -27,9 +27,6 @@ function initAll() {
     loadAllContactData();
     renderTaskBoard();
     renderCategories();
-
-    // Add event listener to close dropdown when clicking outside in the board overlay context
-    setTimeout(setupAssignedDropdownClickListener, 300);
 }
 
 /**
@@ -72,6 +69,7 @@ function closeOverlay() {
     overlay.classList.add('fade_out');
     overlayContent.classList.add('closed');
     removeDatePicker('#due_date');
+    clearTasks();
 }
 
 /**
@@ -93,10 +91,6 @@ function renderTaskBoard() {
     const taskContainer = document.getElementById('add_task_container_board');
     taskContainer.innerHTML = '';
     taskContainer.innerHTML = renderTaskBoardTemplate();
-
-    // overlay.classList.remove('fade_out');
-    // taskContainer.classList.remove('closed');
-
     datePicker('#due_date');
 }
 
