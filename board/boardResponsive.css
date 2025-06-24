@@ -42,7 +42,6 @@
     }
     .board_controls_container {
         margin-left: 20px;
-        gap: 0;
         justify-content: space-between;
     }
 }
