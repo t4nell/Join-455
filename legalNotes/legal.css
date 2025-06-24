@@ -16,3 +16,13 @@ main {
 .position_unset {
     position: unset;
 }
+
+.arrow_style:hover{
+    cursor: pointer;
+}
+
+.arrow_style{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+}

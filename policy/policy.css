@@ -20,6 +20,12 @@ html {
     max-width: 1440px;
 }
 
+.default_container {
+    position: unset;
+    width: auto;
+}
+
+
 @media screen and (max-width: 1050px) {
     h2 {
         font-size: 40px;
@@ -36,4 +42,14 @@ html {
     h1 {
         font-size: 28px;
     }
+}
+
+.arrow_style{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+}
+
+.arrow_style:hover{
+    cursor: pointer;
 }

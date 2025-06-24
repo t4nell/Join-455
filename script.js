@@ -136,3 +136,16 @@ function setFlexEndForMobileSignup(mainSectionIndex) {
         mainSectionIndex.style.justifyContent = 'center';
     };
 };
+
+
+/**
+ * Handles redirection to previous page in history
+ * 
+ * @returns {void} Redirects to previous page in history
+ */
+
+function goBack() {
+    window.history.back();
+    console.log('Back button clicked');
+    
+}
