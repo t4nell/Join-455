@@ -14,6 +14,10 @@ main {
     left: 232px;
     height: calc(100% - 100px);
     width: calc(100% - 232px);
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
 }
 
 .title_head {
@@ -165,6 +169,8 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 79px;
+    max-width: 1075px;
+    margin-right: 136px;
 }
 
 .clear_btn {
@@ -174,7 +180,7 @@ main {
     gap: 8px;
     background-color: white;
     color: #2a3647;
-    border: 1px solid #2A3647;
+    border: 1px solid #2a3647;
     border-radius: 8px;
     padding: 12px 24px;
     font-size: 20px;
@@ -231,7 +237,6 @@ main {
 
 .btn_position {
     display: flex;
-    margin-right: 136px;
     gap: 16px;
 }
 
