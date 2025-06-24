@@ -73,6 +73,7 @@
 .create_task {
     margin-top: 80px;
     margin-bottom: 24px;
+    margin-right: 0px;
 }
 
 .main_section_left {
@@ -91,6 +92,7 @@
     flex-direction: column;
     flex: 1;
     box-sizing: border-box;
+    height: 450px;
 }
 
 .required_footer_text {

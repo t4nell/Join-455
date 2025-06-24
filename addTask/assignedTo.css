@@ -183,6 +183,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    font-size: 16px;
 }
 
 .selected_user_group {
@@ -192,10 +193,6 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
-}
-
-.profile_icon:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 20.467);
 }
 
 .dropdown_toggle::placeholder {

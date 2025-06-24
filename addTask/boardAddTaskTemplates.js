@@ -1,6 +1,6 @@
 /**
  * Generates the HTML template for the task creation form in the board overlay.
- * 
+ *
  * @returns {string} HTML markup for the complete task creation form.
  */
 function renderTaskBoardTemplate() {
@@ -125,7 +125,7 @@ function renderTaskBoardTemplate() {
 
 /**
  * Generates the HTML template for priority selection buttons.
- * 
+ *
  * @returns {string} HTML markup for the priority buttons.
  */
 function getPriorityButtonsTemplate() {
@@ -152,7 +152,7 @@ function getPriorityButtonsTemplate() {
 
 /**
  * Generates the HTML template for contact assignment.
- * 
+ *
  * @returns {string} HTML markup for the contact selection dropdown.
  */
 function getAssignedToTemplate() {
@@ -179,7 +179,7 @@ function getAssignedToTemplate() {
 
 /**
  * Generates the HTML template for category selection.
- * 
+ *
  * @returns {string} HTML markup for the category dropdown.
  */
 function getCategoryTemplate() {
@@ -208,7 +208,7 @@ function getCategoryTemplate() {
 
 /**
  * Generates the HTML template for subtask input.
- * 
+ *
  * @returns {string} HTML markup for the subtask section.
  */
 function getSubtasksTemplate() {
@@ -237,7 +237,7 @@ function getSubtasksTemplate() {
 
 /**
  * Generates the HTML template for form buttons.
- * 
+ *
  * @returns {string} HTML markup for Clear and Create Task buttons.
  */
 function getTaskButtonsTemplate() {
@@ -255,7 +255,7 @@ function getTaskButtonsTemplate() {
 
 /**
  * Generates the HTML template for success notification.
- * 
+ *
  * @param {string} notificationText - The notification text to display.
  * @returns {string} HTML markup for the notification.
  */
