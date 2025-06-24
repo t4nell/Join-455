@@ -1,8 +1,8 @@
 main {
     height: 100vh;
-  }
+}
 
- .legal_container {
+.legal_container {
     position: absolute;
     top: 100px;
     left: 232px;
@@ -10,4 +10,5 @@ main {
     width: calc(100% - 424px);
     overflow-y: auto;
     padding: 0 96px 42px 96px;
+    max-width: 1440px;
 }

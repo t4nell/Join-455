@@ -38,6 +38,7 @@ li::marker {
     padding: 0 48px;
     overflow-y: auto;
     flex: 1;
+    max-width: 1440px;
 }
 
 .arrow_button_container {
