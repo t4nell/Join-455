@@ -183,7 +183,7 @@ function findUser(email) {
  */
 function handleGuestLogin() {
     const guestUser = {
-        name: 'Gast Benutzer',
+        name: 'Guest User',
         email: 'guest@join.com',
         isGuest: true
     };
