@@ -318,6 +318,9 @@ function getSubtaskTemplate(key, subtask, taskId) {
 function getEditTaskTemplate(task) {
     return `
     
+    <button onclick="closeDetailTemplate()" class="closed_btn edit_close_btn">
+            <img src="../assets/imgs/boardIcons/close.svg" alt="close button">
+          </button>
     <form id="edit_task_form" class="edit_task_form" onclick="handleClickOutsideEditTask(event)">  
       <div class="input_titel_group">
           <label for="title_edit_task" class="required_for_label" onclick="event.preventDefault()">Title</label>

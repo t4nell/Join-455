@@ -83,6 +83,11 @@
     background-color: #eeeeee;
 }
 
+.edit_close_btn{
+    position: absolute;
+    right: 40px;
+}
+
 .task_detail_title h2 {
     font-size: 61px;
     -webkit-hyphens: auto;

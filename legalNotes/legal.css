@@ -12,3 +12,7 @@ main {
     padding: 0 96px 42px 96px;
     max-width: 1440px;
 }
+
+.position_unset {
+    position: unset;
+}
