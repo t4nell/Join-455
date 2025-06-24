@@ -13,7 +13,7 @@ main {
     left: 232px;
     height: calc(100% - 100px);
     width: calc(100% - 232px);
-    max-width: calc(1440px - 232px);
+    max-width: 1440px;
 }
 
 .board_content_top {
