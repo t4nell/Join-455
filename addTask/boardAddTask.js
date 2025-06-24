@@ -27,6 +27,38 @@ function initAll() {
     loadAllContactData();
     renderTaskBoard();
     renderCategories();
+
+    // Add event listener to close dropdown when clicking outside in the board overlay context
+    setTimeout(setupAssignedDropdownClickListener, 300);
+}
+
+/**
+ * Sets up a click listener specifically for the assigned dropdown in the board overlay.
+ * This ensures the dropdown can be closed when clicking outside of it.
+ *
+ * @returns {void} Adds event listener to the overlay content.
+ */
+function setupAssignedDropdownClickListener() {
+    const overlayContent = document.getElementById('add_task_container_board');
+
+    if (overlayContent) {
+        overlayContent.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown');
+            const toggleBtn = document.getElementById('dropdown_toggle_btn');
+            const selectedUser = document.getElementById('selected_users_group');
+
+            if (
+                dropdown &&
+                toggleBtn &&
+                selectedUser &&
+                !dropdown.contains(event.target) &&
+                !toggleBtn.contains(event.target) &&
+                !selectedUser.contains(event.target)
+            ) {
+                closeAssignedDropdown();
+            }
+        });
+    }
 }
 
 /**
@@ -199,6 +231,35 @@ function validateCategoryField() {
         categoryInput.classList.remove('category_dropdown_toggle_required');
         categoryMessage.style.display = 'none';
         return true;
+    }
+}
+
+/**
+ * Sets up a click listener specifically for the assigned dropdown in the board overlay.
+ * This ensures the dropdown can be closed when clicking outside of it.
+ *
+ * @returns {void} Adds event listener to the overlay content.
+ */
+function addClickListener() {
+    const overlayContent = document.getElementById('add_task_container_board');
+
+    if (overlayContent) {
+        overlayContent.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('dropdown');
+            const toggleBtn = document.getElementById('dropdown_toggle_btn');
+            const selectedUser = document.getElementById('selected_users_group');
+
+            if (
+                dropdown &&
+                toggleBtn &&
+                selectedUser &&
+                !dropdown.contains(event.target) &&
+                !toggleBtn.contains(event.target) &&
+                !selectedUser.contains(event.target)
+            ) {
+                closeAssignedDropdown();
+            }
+        });
     }
 }
 

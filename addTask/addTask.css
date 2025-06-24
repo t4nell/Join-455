@@ -280,7 +280,7 @@ main {
     width: 350px;
     position: fixed;
     border-radius: 20px;
-    left: calc(50% + 116px);
+    left: 45%;
     bottom: -100px;
     transform: translateX(-50%);
     transition: all 125ms ease-in-out;
@@ -292,7 +292,7 @@ main {
 }
 
 .contact_save_message_addTask.show {
-    bottom: 50%;
+    bottom: 65%;
 }
 
 .closed_contact_save_message_addTask {

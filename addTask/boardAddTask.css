@@ -9,9 +9,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 500;
     opacity: 1;
     transition: opacity 225ms ease-in-out;
+    cursor: pointer;
 }
 
 .overlay_content {
@@ -26,6 +27,8 @@
     opacity: 1;
     transition: all 225ms ease-in-out;
     transform: translateX(0);
+    z-index: 700;
+    cursor: default;
 }
 
 .fade_out {
@@ -120,7 +123,7 @@
     width: 300px;
     position: fixed;
     border-radius: 20px;
-    left: calc(50% + 0px);
+    left: 50%;
     bottom: -100px;
     transform: translateX(-50%);
     transition: all 125ms ease-in-out;
@@ -129,5 +132,13 @@
     align-items: center;
     gap: 16px;
     z-index: 1000;
+}
+
+.contact_save_message_addTask.show {
+    bottom: 50%;
+}
+
+.closed_contact_save_message_addTask {
+    bottom: -100px;
 }
 
