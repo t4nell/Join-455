@@ -278,9 +278,9 @@ main {
     color: var(--text-color-white);
     height: 64px;
     width: 350px;
-    position: fixed;
+    position: absolute;
     border-radius: 20px;
-    left: 30%;
+    left: 40%;
     bottom: -100px;
     transform: translateX(-50%);
     transition: all 125ms ease-in-out;
@@ -293,6 +293,7 @@ main {
 
 .contact_save_message_addTask.show {
     bottom: 65%;
+    transform: translate(-50%, -50%);
 }
 
 .closed_contact_save_message_addTask {
