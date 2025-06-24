@@ -25,7 +25,7 @@ function updateGreeting() {
     const now = new Date();
     const greeting = getGreeting(now.getHours());
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const userName = currentUser?.name || 'Gast';
+    const userName = currentUser?.name || 'Guest User';
     greetingContainer.innerHTML = getGreetingTemplate(greeting, userName);
 };
 

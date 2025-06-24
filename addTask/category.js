@@ -1,6 +1,6 @@
 /**
  * Renders all categories in the category dropdown menu.
- * 
+ *
  * @returns {void} Updates the category dropdown menu with category items.
  */
 function renderCategories() {
@@ -8,16 +8,29 @@ function renderCategories() {
     categoryMenu.innerHTML = categories.map((category, index) => categoriesTemplate(category, index)).join('');
 }
 
+document.addEventListener('click', function (event) {
+    const categoryDropdown = document.getElementById('category_dropdown');
+    const categoryInput = document.getElementById('category_dropdown_input');
+
+    if (categoryDropdown && !categoryDropdown.contains(event.target) && !categoryInput.contains(event.target)) {
+        closeCategoryDropdown();
+    }
+});
+
 /**
  * Toggles the visibility of the category dropdown menu.
- * 
+ *
  * @param {Event} event - The click event that triggered the function.
  * @returns {void} Shows or hides the category dropdown.
  */
 function toggleDropdownCategory(event) {
+    event.stopPropagation();
+    if (typeof closeAssignedDropdown === 'function') {
+        closeAssignedDropdown();
+    }
+
     const categoryDropdown = document.getElementById('category_dropdown');
     const hideRequiredMessage = document.getElementById('required_message_category');
-    event.stopPropagation();
 
     categoryDropdown.classList.toggle('open');
 
@@ -30,12 +43,12 @@ function toggleDropdownCategory(event) {
 
 /**
  * Selects a category and updates the input field value.
- * 
+ *
  * @param {string} category - The category text to select.
  * @returns {void} Updates the category input field and validates it.
  */
 function selectCategory(category) {
-    const categoryInput = document.getElementById('category_dropdown_input')
+    const categoryInput = document.getElementById('category_dropdown_input');
     const categoryDropdown = document.getElementById('category_dropdown');
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
@@ -43,29 +56,19 @@ function selectCategory(category) {
 }
 
 /**
- * Closes the category dropdown when clicking outside of it.
- * 
- * @param {Event} event - The click event to check for outside clicks.
- * @returns {void} Closes the dropdown if clicked outside.
+ * Closes the category dropdown.
+ *
+ * @returns {void} Closes the dropdown and updates UI elements.
  */
-function closeCategoryDropdown(event) {
+function closeCategoryDropdown() {
     const dropdown = document.getElementById('category_dropdown');
-    const toggle = document.getElementById('category_dropdown_input');
     const hideRequiredMessage = document.getElementById('required_message_category');
 
-    let currentElement = event.target;
-    let clickedInside = false;
-
-    while (currentElement) {
-        if (currentElement.id === 'category_dropdown' || currentElement.id === 'category_dropdown_input') {
-            clickedInside = true;
-            break;
-        }
-        currentElement = currentElement.parentElement;
+    if (dropdown) {
+        dropdown.classList.remove('open');
     }
 
-    if (!clickedInside) {
-        dropdown.classList.remove('open');
+    if (hideRequiredMessage) {
         hideRequiredMessage.classList.remove('d_none');
     }
 }

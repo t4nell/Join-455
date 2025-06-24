@@ -1,8 +1,23 @@
 let selectedUserIndices = [];
 
+document.addEventListener('click', function (event) {
+    const dropdown = document.getElementById('dropdown');
+    const toggleBtn = document.getElementById('dropdown_toggle_btn');
+    const selectedUser = document.getElementById('selected_users_group');
+
+    if (
+        dropdown &&
+        !dropdown.contains(event.target) &&
+        !toggleBtn.contains(event.target) &&
+        !selectedUser.contains(event.target)
+    ) {
+        closeAssignedDropdown();
+    }
+});
+
 /**
  * Filters contacts based on the input value and displays matching contacts.
- * 
+ *
  * @returns {void} Updates the dropdown menu with filtered contacts.
  */
 function filterContacts() {
@@ -25,12 +40,15 @@ function filterContacts() {
 
 /**
  * Toggles the visibility of the assigned contacts dropdown.
- * 
+ *
  * @param {Event} event - The event that triggered the function.
  * @returns {void} Shows or hides the dropdown and selected users.
  */
 function toggleDropdownAssigned(event) {
     event.stopPropagation();
+    if (typeof closeCategoryDropdown === 'function') {
+        closeCategoryDropdown();
+    }
 
     const dropdown = document.getElementById('dropdown');
     const selectedUser = document.getElementById('selected_users_group');
@@ -49,7 +67,7 @@ function toggleDropdownAssigned(event) {
 
 /**
  * Toggles the background color of a selected contact item.
- * 
+ *
  * @param {number} index - The index of the contact to toggle.
  * @returns {void} Updates the visual state of the contact item.
  */
@@ -61,42 +79,31 @@ function toggleBackground(index) {
 }
 
 /**
- * Closes the dropdown if clicked outside of it.
- * 
- * @param {Event} event - The click event to check.
- * @returns {void} Closes the dropdown if appropriate.
+ * Closes the assigned users dropdown.
+ *
+ * @returns {void} Closes the dropdown and updates UI elements.
  */
-function closeDropdown(event) {
-    event.stopPropagation();
+function closeAssignedDropdown() {
     const dropdown = document.getElementById('dropdown');
     const toggle = document.getElementById('dropdown_toggle_btn');
     const selectedUser = document.getElementById('selected_users_group');
 
-    let currentElement = event.target;
-    let clickedInside = false;
-
-    while (currentElement) {
-        if (
-            currentElement.id === 'dropdown' ||
-            currentElement.id === 'dropdown_toggle_btn' ||
-            currentElement.id === 'selected_users_group'
-        ) {
-            clickedInside = true;
-            break;
-        }
-        currentElement = currentElement.parentElement;
+    if (dropdown) {
+        dropdown.classList.remove('open');
     }
 
-    if (!clickedInside) {
-        dropdown.classList.remove('open');
+    if (selectedUser) {
         selectedUser.classList.remove('d_none');
+    }
+
+    if (toggle) {
         toggle.value = '';
     }
 }
 
 /**
  * Loads all contacts into the assignment dropdown.
- * 
+ *
  * @returns {void} Populates the dropdown menu with all contacts.
  */
 function loadAllContactsToAssigned() {
@@ -110,7 +117,7 @@ function loadAllContactsToAssigned() {
 
 /**
  * Selects or deselects a user for assignment to a task.
- * 
+ *
  * @param {number} index - The index of the contact to select.
  * @param {Event} event - The click event.
  * @returns {void} Updates selection state and refreshes display.
@@ -137,7 +144,7 @@ function selectUser(index, event) {
 
 /**
  * Renders the icons of selected users in the display area.
- * 
+ *
  * @returns {void} Updates the selected users display with icons.
  */
 function renderSelectedIcons() {
@@ -162,7 +169,7 @@ function renderSelectedIcons() {
 
 /**
  * Clears all selected users from the assignment list.
- * 
+ *
  * @returns {void} Unchecks all checkboxes and removes active states.
  */
 function clearSelection() {
@@ -177,7 +184,7 @@ function clearSelection() {
 
 /**
  * Removes active background color from all contact items.
- * 
+ *
  * @returns {void} Resets the visual state of all contact items.
  */
 function removeActiveBgColor() {
@@ -190,7 +197,7 @@ function removeActiveBgColor() {
 
 /**
  * Resets the list of selected user indices.
- * 
+ *
  * @returns {void} Clears selection array and refreshes display.
  */
 function clearSelectedUserIndices() {
