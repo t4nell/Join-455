@@ -137,7 +137,7 @@ function addCloseSwapStatusListener(templateElement) {
  */
 function renderAssignedAvatars(assignedTo) {
     if (!assignedTo) return '';
-    const maxVisibleAvatars = 5;
+    const maxVisibleAvatars = 4;
     const assignedContacts = getAssignedContacts(assignedTo);
     let avatarHtml = assignedContacts
         .slice(0, maxVisibleAvatars)
