@@ -72,32 +72,6 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
         </div>`;
 }
 
-function filterMaxVisibility(SelectedContact) {
-    if (!SelectedContact) return '';
-    const maxVisibilitySelectedIcons = 4;
-    const assignedContacts = SelectedContact;
-    let SelectedIconsHtml = assignedContacts
-        .slice(0, maxVisibilitySelectedIcons)
-        .map((contact, index) => {
-            const bgColor = contact.color;
-            const initials =
-                contact.name
-                    .split(' ')
-                    .map((p) => p[0].toUpperCase())
-                    .join('') +
-                contact.surname
-                    .split(' ')
-                    .map((p) => p[0].toUpperCase())
-                    .join('');
-            return renderSelectedIconsTemplate(index, initials, bgColor);
-        })
-        .join('');
-    if (assignedContacts.length > maxVisibilitySelectedIcons) {
-        SelectedIconsHtml += renderMoreUserIcons(assignedContacts.length, maxVisibilitySelectedIcons);
-    }
-    return SelectedIconsHtml;
-}
-
 function renderMoreUserIcons(totalContacts, maxVisible) {
     return `
         <div class="user_icons more_user_icons">
