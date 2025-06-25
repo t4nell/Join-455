@@ -49,7 +49,7 @@ function openCalendarEditTask() {
 
 
 /**
- * Loads and processes contact data from the server
+ * Loads and processes contact data from the server, updates contactsArray and populates the assigned contacts dropdown
  *
  * @param {string} path - Optional path parameter for the API endpoint
  * @returns {Promise<void>} Loads contacts and updates contactsArray
@@ -111,7 +111,11 @@ function toggleDropdownAssignedEditTask(event) {
     updateAssignedContacts();
 };
 
-
+/**
+ * Updates the assigned contacts display in the edit task view
+ *
+ * @returns {void} Updates the selectedUser element with the current assigned contacts
+ */
 function updateAssignedContacts() {
     const assignedTo = {};
     const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
