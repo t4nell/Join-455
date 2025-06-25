@@ -115,4 +115,9 @@
     .container_padding{
         padding: 30px 16px 20px 16px;
     }
+
+    .default_container{
+        padding: 0 50px;
+        width: unset;
+    }
 }
