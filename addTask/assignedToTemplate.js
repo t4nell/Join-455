@@ -1,6 +1,6 @@
 /**
  * Generates HTML for a contact item in the assignment dropdown.
- * 
+ *
  * @param {Object} contact - The contact data object to render.
  * @param {number} index - Index of the contact in the contact array.
  * @returns {string} HTML markup for the contact list item.
@@ -44,7 +44,7 @@ function loadContactsToAssignedTemplate(contact, index) {
 
 /**
  * Creates the HTML template for when no contacts are found.
- * 
+ *
  * @returns {string} HTML markup for no contacts found message.
  */
 function noContactsFoundToAssignedTemplate() {
@@ -55,7 +55,7 @@ function noContactsFoundToAssignedTemplate() {
 
 /**
  * Creates the HTML template for a selected user's icon.
- * 
+ *
  * @param {number} index - Index of the selected user.
  * @param {string} initials - User's initials to display in the icon.
  * @param {string} bgColor - Background color code for the icon.
@@ -71,4 +71,46 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
             </div>
         </div>`;
 }
+
+function filterMaxVisibility(SelectedContact) {
+    if (!SelectedContact) return '';
+    const maxVisibilitySelectedIcons = 4;
+    const assignedContacts = SelectedContact;
+    let SelectedIconsHtml = assignedContacts
+        .slice(0, maxVisibilitySelectedIcons)
+        .map((contact, index) => {
+            const bgColor = contact.color;
+            const initials =
+                contact.name
+                    .split(' ')
+                    .map((p) => p[0].toUpperCase())
+                    .join('') +
+                contact.surname
+                    .split(' ')
+                    .map((p) => p[0].toUpperCase())
+                    .join('');
+            return renderSelectedIconsTemplate(index, initials, bgColor);
+        })
+        .join('');
+    if (assignedContacts.length > maxVisibilitySelectedIcons) {
+        SelectedIconsHtml += renderMoreUserIcons(assignedContacts.length, maxVisibilitySelectedIcons);
+    }
+    return SelectedIconsHtml;
+}
+
+function renderMoreUserIcons(totalContacts, maxVisible) {
+    return `
+        <div class="user_icons more_user_icons">
+            +${totalContacts - maxVisible}
+        </div>
+    `;
+}
+
+// function getAvatarTemplate(contact) {
+//     return `
+//           <div class="avatar" style="background-color: ${contact.color}">
+//               ${contact.initials}
+//           </div>
+//         `;
+// }
 

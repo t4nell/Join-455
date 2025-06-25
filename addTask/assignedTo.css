@@ -202,3 +202,25 @@
     color: black;
 }
 
+.user_icons {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--avatar-border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--avatar-text-color);
+    font-size: 12px;
+    margin-right: -8px;
+}
+
+.more_user_icons {
+    font-size: 12px;
+    background-color: #2a3647;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

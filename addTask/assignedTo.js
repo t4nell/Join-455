@@ -143,20 +143,20 @@ function renderSelectedIcons() {
     const selectedUser = document.getElementById('selected_users_group');
 
     selectedUser.innerHTML = '';
-    selectedUserIndices.forEach((index) => {
-        const contact = allContactsArray[index];
-        const bgColor = contact.color;
-        const initials =
-            contact.name
-                .split(' ')
-                .map((p) => p[0].toUpperCase())
-                .join('') +
-            contact.surname
-                .split(' ')
-                .map((p) => p[0].toUpperCase())
-                .join('');
-        selectedUser.innerHTML += renderSelectedIconsTemplate(index, initials, bgColor);
-    });
+    const selectedContacts = selectedUserIndices.map((index) => allContactsArray[index]);
+    // selectedUserIndices.forEach((index) => {
+    //     const contact = allContactsArray[index];
+    //     const bgColor = contact.color;
+    //     const initials =
+    //         contact.name
+    //             .split(' ')
+    //             .map((p) => p[0].toUpperCase())
+    //             .join('') +
+    //         contact.surname
+    //             .split(' ')
+    //             .map((p) => p[0].toUpperCase())
+    //             .join('');
+    selectedUser.innerHTML += filterMaxVisibility(selectedContacts);
 }
 
 /**
