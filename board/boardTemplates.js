@@ -139,7 +139,7 @@ function getAvatarTemplate(contact) {
  */
 function renderMoreAvatarsButton(totalContacts, maxVisible) {
     return `
-        <div class="avatar more-avatar">
+        <div class="avatar more_avatar">
             +${totalContacts - maxVisible}
         </div>
     `;
