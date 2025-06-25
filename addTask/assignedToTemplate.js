@@ -106,11 +106,3 @@ function renderMoreUserIcons(totalContacts, maxVisible) {
     `;
 }
 
-// function getAvatarTemplate(contact) {
-//     return `
-//           <div class="avatar" style="background-color: ${contact.color}">
-//               ${contact.initials}
-//           </div>
-//         `;
-// }
-
