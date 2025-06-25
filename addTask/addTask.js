@@ -61,7 +61,7 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
  */
 function initSidebar() {
     const mediaQuery = window.matchMedia('(min-width: 1051px)');
-    const handleBreakpoint = (placeholder) => {
+    const handleBreakpoint = () => {
         proofSize();
     };
     mediaQuery.addEventListener('change', handleBreakpoint);

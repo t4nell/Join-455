@@ -70,12 +70,11 @@ main {
 
 .textarea {
     margin-top: 8px;
-    padding-top: 16px;
-    padding-left: 16px;
+    padding: 16px;
     max-width: 100%;
     min-height: 120px;
     max-height: 240px;
-    resize: vertical;
+    resize: none;
     border-radius: 10px;
 }
 
