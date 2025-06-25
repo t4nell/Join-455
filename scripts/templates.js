@@ -21,7 +21,7 @@ function getLoginSignupTemplate() {
           </div>
           <div class="button_login_container">
             <button class="dark_btn login_btn">Log in</button>
-            <button class="light_btn guest_login_btn">Guest Log in</button>
+            <button type="button" class="light_btn guest_login_btn">Guest Log in</button>
           </div>
         </form>
       </div>
