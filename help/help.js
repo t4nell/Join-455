@@ -1,6 +1,6 @@
 /**
  * Renders the header component in the header container.
- * 
+ *
  * @returns {void} Updates the header container with the header template.
  */
 function renderHeader() {
@@ -10,19 +10,33 @@ function renderHeader() {
 
 /**
  * Initializes the help page by checking orientation, rendering elements, and updating user profile.
- * 
+ *
  * @returns {void} Sets up the page layout and components.
  */
 function init() {
-    checkOrientation()
-    proofSize();
+    checkOrientation();
+    initSidebar();
     renderHeader();
     updateUserProfile();
 }
 
 /**
+ * Initializes the sidebar with event listeners and correct display.
+ *
+ * @returns {void} Sets up the sidebar responsiveness.
+ */
+function initSidebar() {
+    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const handleBreakpoint = () => {
+        proofSize();
+    };
+    mediaQuery.addEventListener('change', handleBreakpoint);
+    proofSize();
+}
+
+/**
  * Checks the window size and renders the appropriate sidebar version (mobile or desktop).
- * 
+ *
  * @returns {void} Updates the sidebar based on window width and adds a resize event listener.
  */
 function proofSize() {
@@ -35,13 +49,11 @@ function proofSize() {
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
     }
-    window.addEventListener('resize', proofSize);
 }
-
 
 /**
  * Renders the desktop version of the sidebar.
- * 
+ *
  * @param {HTMLElement} mainContainer - The main navbar container element.
  * @param {HTMLElement} navContainer - The sidebar container element.
  * @param {HTMLElement} navbarMobileContainer - The mobile navbar container element.
@@ -55,7 +67,7 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
 
 /**
  * Renders the mobile version of the sidebar.
- * 
+ *
  * @param {HTMLElement} mainContainer - The main navbar container element.
  * @param {HTMLElement} navContainer - The sidebar container element.
  * @param {HTMLElement} navbarMobileContainer - The mobile navbar container element.
@@ -70,7 +82,7 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
 
 /**
  * Navigates back to the previous page in browser history.
- * 
+ *
  * @returns {void} Triggers browser back navigation.
  */
 function goBack() {

@@ -1,24 +1,25 @@
-
 const newContactPopup = document.getElementById('contact_popup');
 const editContactPopup = document.getElementById('contact_edit_overlay');
 const overlay = document.getElementById('contact_overlay');
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-const currentUserInitials = currentUser.name.split(' ').map((part) => part.charAt(0).toUpperCase()).join('');
+const currentUserInitials = currentUser.name
+    .split(' ')
+    .map((part) => part.charAt(0).toUpperCase())
+    .join('');
 
 /**
- * Initializes the contact page by checking screen size, rendering the header, and loading contact data. 
+ * Initializes the contact page by checking screen size, rendering the header, and loading contact data.
  *
  * @returns {void}
  */
 async function contactInit() {
-    proofSize();
+    initSidebar();
     checkOrientation();
     renderHeader();
     updateUserProfile();
     loadCurrentUser();
     await loadContactData();
 }
-
 
 /**
  * displays or closes Popup and Overlay for new contact or edit popup.
@@ -30,9 +31,8 @@ function toggleOverlayNewContact() {
     overlay.classList.toggle('fade_out');
 }
 
-
 /**
- * Renders the header 
+ * Renders the header
  *
  * @returns {void}
  */
@@ -62,7 +62,6 @@ function eventBubbling(event) {
     event.stopPropagation();
 }
 
-
 /**
  * Opens the new contact overlay for creating new contact.
  *
@@ -73,7 +72,6 @@ function newContactOverlay() {
     newContactPopup.classList.remove('closed');
     newContactPopup.innerHTML = getNewContactOverlay();
 }
-
 
 /**
  * Opens the edit contact overlay for editing an existing contact.
@@ -92,7 +90,6 @@ function editContactOverlay(contactIndex) {
     document.getElementById('edit_phone').value = contact.phone;
 }
 
-
 /**
  * Closes the contact main view and resets the contact list for mobile view.
  *
@@ -105,7 +102,6 @@ function closeContactMain() {
     const contactMainContainer = document.getElementById('contact_detail_container');
     contactMainContainer.classList.add('closed');
 }
-
 
 /**
  * Toggles the contact options dropdown menu for deleting or edit contact.
@@ -121,7 +117,6 @@ function toggleContactOptions(event) {
     }, 0);
 }
 
-
 /**
  * Closes the contact options dropdown menu when clicking outside of it.
  *
@@ -136,6 +131,19 @@ function closeContactMenuOnClickOutside(event) {
     }
 }
 
+/**
+ * Initializes the sidebar with event listeners and correct display.
+ *
+ * @returns {void} Sets up the sidebar responsiveness.
+ */
+function initSidebar() {
+    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const handleBreakpoint = () => {
+        proofSize();
+    };
+    mediaQuery.addEventListener('change', handleBreakpoint);
+    proofSize();
+}
 
 /**
  * Adjusts the sidebar layout based on the screen size.
@@ -152,9 +160,7 @@ function proofSize() {
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
     }
-    window.addEventListener('resize', proofSize);
 }
-
 
 /**
  * Checks the orientation of the device and adjusts the sidebar position accordingly.
@@ -170,7 +176,6 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navContainer.style.display = 'block';
 }
 
-
 /**
  * Renders the sidebar for mobile view.
  *
@@ -185,3 +190,4 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
 }
+
