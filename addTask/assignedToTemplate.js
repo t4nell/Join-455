@@ -72,6 +72,13 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
         </div>`;
 }
 
+/**
+ * Creates the HTML template for displaying the count of additional contacts beyond the visible limit.
+ *
+ * @param {number} totalContacts - The total number of assigned contacts.
+ * @param {number} maxVisible - Maximum number of contacts to show individually.
+ * @returns {string} HTML markup for the +X indicator.
+ */
 function renderMoreUserIcons(totalContacts, maxVisible) {
     return `
         <div class="user_icons more_user_icons">

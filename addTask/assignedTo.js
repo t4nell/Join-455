@@ -147,6 +147,12 @@ function renderSelectedIcons() {
     selectedUser.innerHTML += filterMaxVisibility(selectedContacts);
 }
 
+/**
+ * Limits and renders the selected contacts' icons with a maximum visibility threshold.
+ *
+ * @param {Array} SelectedContact - Array of selected contact objects to be displayed.
+ * @returns {string} HTML markup for the visible contact icons, including a +X indicator if needed.
+ */
 function filterMaxVisibility(SelectedContact) {
     if (!SelectedContact) return '';
     const maxVisibilitySelectedIcons = 4;
