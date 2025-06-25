@@ -11,7 +11,7 @@ function initEditTaskVariables() {
     selectedUser = document.getElementById('selected_user_group_edit_task');
     menu = document.getElementById('dropdown_menu_edit_task');
     toggle = document.getElementById('dropdown_toggle_btn_edit_task');
-}
+};
 
 /**
  * Initializes datepicker calendar for task due dates
@@ -28,8 +28,8 @@ function initializeCalendar() {
                 firstDayOfWeek: 1,
             },
         });
-    }
-}
+    };
+};
 
 /**
  * Opens the calendar widget for date selection
@@ -42,8 +42,8 @@ function openCalendarEditTask() {
         calenderInput._flatpickr.open();
     } else {
         console.error('Flatpickr not initialized');
-    }
-}
+    };
+};
 
 /**
  * Loads and processes contact data from the server
@@ -64,9 +64,9 @@ async function loadContactData(path = '') {
         contactsArray = contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     } catch (error) {
         console.error('Error loading contact data:', error);
-    }
+    };
     loadContactsToAssignedEditTask();
-}
+};
 
 /**
  * Updates priority button icons based on selected priority
@@ -90,8 +90,8 @@ function switchBtnPriorityEditTask(btnPriority) {
         case 'Low':
             document.getElementById('icon_low_edit_task').src = '../assets/imgs/boardIcons/priorityLowIconWhite.svg';
             break;
-    }
-}
+    };
+};
 
 /**
  * Toggles the assigned contacts dropdown visibility
@@ -103,7 +103,14 @@ function toggleDropdownAssignedEditTask(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
-}
+    const assignedTo = {};
+    const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
+    checkboxes.forEach((checkbox) => {
+        const contactId = checkbox.closest('.dropdown_item').id.replace('dropdown_item_', '');
+        assignedTo[contactId] = true;
+    });
+    selectedUser.innerHTML = renderAssignedContactsEditTask(assignedTo);
+};
 
 /**
  * Toggles the background of a selected contact in dropdown
@@ -114,7 +121,7 @@ function toggleDropdownAssignedEditTask(event) {
 function toggleBackgroundEditTask(index) {
     const clickedItem = document.getElementById(`dropdown_item_${index}`);
     clickedItem.classList.toggle('active');
-}
+};
 
 /**
  * Handles clicks outside the dropdown to close it
@@ -127,7 +134,7 @@ function handleClickOutsideEditTask(event) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
     }
-}
+};
 
 /**
  * Loads contacts into the assigned contacts dropdown
@@ -140,7 +147,7 @@ function loadContactsToAssignedEditTask() {
     contactsArray.forEach((contact) => {
         menu.innerHTML += loadContactsToAssignedTemplateEditTask(contact);
     });
-}
+};
 
 /**
  * Generates HTML template for a contact in the dropdown
@@ -162,7 +169,7 @@ function loadContactsToAssignedTemplateEditTask(contact) {
     const checkedAttr = isSelected ? 'checked' : '';
     const activeClass = isSelected ? 'active' : '';
     return createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr);
-}
+};
 
 /**
  * Renders assigned contacts in the edit task view
@@ -172,9 +179,11 @@ function loadContactsToAssignedTemplateEditTask(contact) {
  */
 function renderAssignedContactsEditTask(assignedTo) {
     if (!assignedTo) return '';
-    return Object.entries(assignedTo)
-        .map(([contactId, isAssigned]) => {
-            if (!isAssigned) return '';
+    const assignedEntries = Object.entries(assignedTo).filter(([_, isAssigned]) => isAssigned);
+    const maxVisible = 7;
+    let html = assignedEntries
+        .slice(0, maxVisible)
+        .map(([contactId]) => {
             const contact = contactsArray.find((c) => c.id === contactId);
             if (!contact) return '';
             const nameInitials = contact.name
@@ -189,7 +198,26 @@ function renderAssignedContactsEditTask(assignedTo) {
             return generateContactBadge(contactId, contact, initials);
         })
         .join('');
-}
+    if (assignedEntries.length > maxVisible) {
+        html += renderMoreContactsBatch(assignedEntries.length, maxVisible);
+    }
+    return html;
+};
+
+/**
+ * Renders a batch showing the number of additional contacts not displayed
+ *
+ * @param {number} totalContacts - Total number of contacts assigned
+ * @param {number} maxVisible - Maximum number of contacts to display
+ * @returns {string} HTML string for the "more" batch
+ */
+function renderMoreContactsBatch(totalContacts, maxVisible) {
+    return `
+        <div class="avatar more_avatar">
+            +${totalContacts - maxVisible}
+        </div>
+    `;
+};
 
 /**
  * Handles user selection in the contacts dropdown
@@ -214,8 +242,8 @@ function selectUserEditTask(id, event) {
     } else {
         removeSelectedUserEditTask(id);
         clickedItem.classList.remove('active');
-    }
-}
+    };
+};
 
 /**
  * Removes a selected user from the assigned contacts
@@ -247,7 +275,7 @@ function addSelectedUserIconEditTask(contact) {
         .join('');
     const initials = nameInitials + surnameInitials;
     selectedUser.innerHTML += addSelectedUserIconTemplate(contact.id, contact.color, initials);
-}
+};
 
 /**
  * Renders editable subtask elements
@@ -266,7 +294,7 @@ function renderEditableSubtasks(task) {
             return renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask);
         })
         .join('');
-}
+};
 
 /**
  * Saves changes made to a task
@@ -290,8 +318,8 @@ async function saveEditTask(taskId) {
         renderColumns();
     } catch (error) {
         console.error('Error updating task:', error);
-    }
-}
+    };
+};
 
 /**
  * Updates task data in Firebase
@@ -308,7 +336,7 @@ async function firebaseUpdate(taskId, updatedTask) {
             'Content-Type': 'application/json',
         },
     });
-}
+};
 
 /**
  * Creates updated task object with form data
@@ -330,7 +358,7 @@ function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
         subtasks: subtasks,
         status: currentTask.status,
     };
-}
+};
 
 /**
  * Adds new subtask to subtasks object
@@ -347,8 +375,8 @@ function newSubtask(subtaskIndex, subtasks) {
             title: newSubtaskInput.value.trim(),
             done: false,
         };
-    }
-}
+    };
+};
 
 /**
  * Collects and processes subtask data
@@ -372,7 +400,7 @@ function subtasksCollect(currentTask) {
         }
     });
     return { subtaskIndex, subtasks };
-}
+};
 
 /**
  * Collects and processes contact assignments
@@ -397,4 +425,4 @@ function contactsCollects(taskId) {
         }
     });
     return { currentTask, formData, assignedTo };
-}
+};
