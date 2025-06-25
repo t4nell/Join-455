@@ -103,6 +103,11 @@ function toggleDropdownAssignedEditTask(event) {
     event.stopPropagation();
     dropdown.classList.toggle('open');
     selectedUser.classList.toggle('d_none');
+    updateAssignedContacts();
+};
+
+
+function updateAssignedContacts() {
     const assignedTo = {};
     const checkboxes = document.querySelectorAll('input[name="assigned_to"]:checked');
     checkboxes.forEach((checkbox) => {
@@ -111,6 +116,7 @@ function toggleDropdownAssignedEditTask(event) {
     });
     selectedUser.innerHTML = renderAssignedContactsEditTask(assignedTo);
 };
+
 
 /**
  * Toggles the background of a selected contact in dropdown
@@ -123,6 +129,7 @@ function toggleBackgroundEditTask(index) {
     clickedItem.classList.toggle('active');
 };
 
+
 /**
  * Handles clicks outside the dropdown to close it
  *
@@ -133,8 +140,10 @@ function handleClickOutsideEditTask(event) {
     if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('open');
         selectedUser.classList.remove('d_none');
+        updateAssignedContacts()  
     }
 };
+
 
 /**
  * Loads contacts into the assigned contacts dropdown
@@ -180,7 +189,7 @@ function loadContactsToAssignedTemplateEditTask(contact) {
 function renderAssignedContactsEditTask(assignedTo) {
     if (!assignedTo) return '';
     const assignedEntries = Object.entries(assignedTo).filter(([_, isAssigned]) => isAssigned);
-    const maxVisible = 7;
+    const maxVisible = 4;
     let html = assignedEntries
         .slice(0, maxVisible)
         .map(([contactId]) => {
@@ -255,8 +264,8 @@ function removeSelectedUserEditTask(id) {
     const userIconContainer = document.getElementById(`selected_user_${id}`);
     if (userIconContainer) {
         userIconContainer.remove();
-    }
-}
+    };
+};
 
 /**
  * Adds a selected user icon to the assigned contacts display

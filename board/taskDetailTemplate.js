@@ -141,15 +141,17 @@ async function openEditTask(taskId) {
         loadContactsToAssignedEditTask();
         initializeTextareas()
         if (task.assignedTo) {
-            contactsArray.forEach((contact, index) => {
-                const fullName = `${contact.name} ${contact.surname}`;
-                if (task.assignedTo[fullName] === true) {
-                    const checkbox = document.getElementById(`users_checkbox_${index}_edit_task`);
+            // Check if task has assigned contacts stored by ID
+            const assignedContactsIds = Object.keys(task.assignedTo);
+            assignedContactsIds.forEach(contactId => {
+                if (task.assignedTo[contactId] === true || (typeof task.assignedTo[contactId] === 'object' && Object.values(task.assignedTo[contactId])[0] === true)) {
+                    const checkbox = document.getElementById(`users_checkbox_${contactId}_edit_task`);
                     if (checkbox) {
                         checkbox.checked = true;
-                        toggleBackgroundEditTask(index);
-                    };
-                };
+                        const clickedItem = document.getElementById(`dropdown_item_${contactId}`);
+                        if (clickedItem) clickedItem.classList.add('active');
+                    }
+                }
             });
         };
         switchBtnPriorityEditTask(task.priority);
