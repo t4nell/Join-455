@@ -330,11 +330,11 @@ function renderEditableSubtasks(task) {
  */
 async function saveEditTask(taskId) {
     try {
-        const { currentTask, formData, assignedTo } = contactsCollects(taskId); // Collect contacts
-        let { subtaskIndex, subtasks } = subtasksCollect(currentTask); // Collect subtasks
-        newSubtask(subtaskIndex, subtasks); // add new Subtask
-        const updatedTask = createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks); // Create updated task object
-        const response = await firebaseUpdate(taskId, updatedTask); // Update in Firebase
+        const { currentTask, formData, assignedTo } = contactsCollects(taskId);
+        let { subtaskIndex, subtasks } = subtasksCollect(currentTask);
+        newSubtask(subtaskIndex, subtasks);
+        const updatedTask = createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks);
+        const response = await firebaseUpdate(taskId, updatedTask);
         if (!response.ok) {
             throw new Error('Failed to update task');
         }
