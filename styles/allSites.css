@@ -80,7 +80,14 @@ main {
     width: 100%;
     position: relative;
     overflow-x: hidden;
-    max-width: 2800px;
+}
+
+.header_style {
+    display: flex;
+    width: 100%;
+    max-width: 1440px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header {

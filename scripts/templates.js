@@ -102,18 +102,23 @@ function getSidebarTemplate() {
 function getHeaderTemplate() {
     return `
     <header>
-    <div class="join_logo_mobile"><a href="../index.html"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></a></div>
-      <span>Kanban Project Management Tool</span>
-      <div class="user_menu">
-        <a class="help_def" href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
-        <button onclick="toggleUserMenu()" class="user_profile"></button>
-        <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
-          <a class="help_mobile dropdown_header"  href="../help/help.html" class="help">Help</a>
-          <a class="dropdown_header" href="../policy/policy.html">Privacy Policy</a>
-          <a class="dropdown_header" href="../legalNotes/legal.html">Legal Notice</a>
-          <a class="dropdown_header" href="#" onclick="logout(); return false;">Log out</a>
+      <div class="header_style">
+        <div class="join_logo_mobile"><a href="../index.html"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></a></div>
+        <span>
+          Kanban Project Management Tool
+        </span>
+        <div class="user_menu">
+          <a class="help_def" href="../help/help.html" class="help"><img src="../assets/imgs/summaryIcons/help.svg" alt="help_icon"></a>
+          <button onclick="toggleUserMenu()" class="user_profile"></button>
+          <div id="user_dropdown_menu" class="user_dropdown_menu d_none">
+            <a class="help_mobile dropdown_header"  href="../help/help.html" class="help">Help</a>
+            <a class="dropdown_header" href="../policy/policy.html">Privacy Policy</a>
+            <a class="dropdown_header" href="../legalNotes/legal.html">Legal Notice</a>
+            <a class="dropdown_header" href="#" onclick="logout(); return false;">Log out</a>
+          </div>
         </div>
       </div>
+      
     </header>
   `;
 };
