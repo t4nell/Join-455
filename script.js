@@ -146,6 +146,4 @@ function setFlexEndForMobileSignup(mainSectionIndex) {
 
 function goBack() {
     window.history.back();
-    console.log('Back button clicked');
-    
 }
