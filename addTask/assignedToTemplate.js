@@ -72,32 +72,13 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
         </div>`;
 }
 
-function filterMaxVisibility(SelectedContact) {
-    if (!SelectedContact) return '';
-    const maxVisibilitySelectedIcons = 4;
-    const assignedContacts = SelectedContact;
-    let SelectedIconsHtml = assignedContacts
-        .slice(0, maxVisibilitySelectedIcons)
-        .map((contact, index) => {
-            const bgColor = contact.color;
-            const initials =
-                contact.name
-                    .split(' ')
-                    .map((p) => p[0].toUpperCase())
-                    .join('') +
-                contact.surname
-                    .split(' ')
-                    .map((p) => p[0].toUpperCase())
-                    .join('');
-            return renderSelectedIconsTemplate(index, initials, bgColor);
-        })
-        .join('');
-    if (assignedContacts.length > maxVisibilitySelectedIcons) {
-        SelectedIconsHtml += renderMoreUserIcons(assignedContacts.length, maxVisibilitySelectedIcons);
-    }
-    return SelectedIconsHtml;
-}
-
+/**
+ * Creates the HTML template for displaying the count of additional contacts beyond the visible limit.
+ *
+ * @param {number} totalContacts - The total number of assigned contacts.
+ * @param {number} maxVisible - Maximum number of contacts to show individually.
+ * @returns {string} HTML markup for the +X indicator.
+ */
 function renderMoreUserIcons(totalContacts, maxVisible) {
     return `
         <div class="user_icons more_user_icons">
@@ -105,12 +86,4 @@ function renderMoreUserIcons(totalContacts, maxVisible) {
         </div>
     `;
 }
-
-// function getAvatarTemplate(contact) {
-//     return `
-//           <div class="avatar" style="background-color: ${contact.color}">
-//               ${contact.initials}
-//           </div>
-//         `;
-// }
 

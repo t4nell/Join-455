@@ -144,19 +144,39 @@ function renderSelectedIcons() {
 
     selectedUser.innerHTML = '';
     const selectedContacts = selectedUserIndices.map((index) => allContactsArray[index]);
-    // selectedUserIndices.forEach((index) => {
-    //     const contact = allContactsArray[index];
-    //     const bgColor = contact.color;
-    //     const initials =
-    //         contact.name
-    //             .split(' ')
-    //             .map((p) => p[0].toUpperCase())
-    //             .join('') +
-    //         contact.surname
-    //             .split(' ')
-    //             .map((p) => p[0].toUpperCase())
-    //             .join('');
     selectedUser.innerHTML += filterMaxVisibility(selectedContacts);
+}
+
+/**
+ * Limits and renders the selected contacts' icons with a maximum visibility threshold.
+ *
+ * @param {Array} SelectedContact - Array of selected contact objects to be displayed.
+ * @returns {string} HTML markup for the visible contact icons, including a +X indicator if needed.
+ */
+function filterMaxVisibility(SelectedContact) {
+    if (!SelectedContact) return '';
+    const maxVisibilitySelectedIcons = 4;
+    const assignedContacts = SelectedContact;
+    let SelectedIconsHtml = assignedContacts
+        .slice(0, maxVisibilitySelectedIcons)
+        .map((contact, index) => {
+            const bgColor = contact.color;
+            const initials =
+                contact.name
+                    .split(' ')
+                    .map((p) => p[0].toUpperCase())
+                    .join('') +
+                contact.surname
+                    .split(' ')
+                    .map((p) => p[0].toUpperCase())
+                    .join('');
+            return renderSelectedIconsTemplate(index, initials, bgColor);
+        })
+        .join('');
+    if (assignedContacts.length > maxVisibilitySelectedIcons) {
+        SelectedIconsHtml += renderMoreUserIcons(assignedContacts.length, maxVisibilitySelectedIcons);
+    }
+    return SelectedIconsHtml;
 }
 
 /**
