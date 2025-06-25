@@ -51,11 +51,8 @@ function toggleDropdownAssigned(event) {
     }
 
     const dropdown = document.getElementById('dropdown');
-    const selectedUser = document.getElementById('selected_users_group');
     const toggle = document.getElementById('dropdown_toggle_btn');
-
     const isOpen = dropdown.classList.toggle('open');
-    selectedUser.classList.toggle('d_none');
 
     if (!isOpen) {
         toggle.value = '';
@@ -86,14 +83,9 @@ function toggleBackground(index) {
 function closeAssignedDropdown() {
     const dropdown = document.getElementById('dropdown');
     const toggle = document.getElementById('dropdown_toggle_btn');
-    const selectedUser = document.getElementById('selected_users_group');
 
     if (dropdown) {
         dropdown.classList.remove('open');
-    }
-
-    if (selectedUser) {
-        selectedUser.classList.remove('d_none');
     }
 
     if (toggle) {
