@@ -13,6 +13,7 @@ function initEditTaskVariables() {
     toggle = document.getElementById('dropdown_toggle_btn_edit_task');
 };
 
+
 /**
  * Initializes datepicker calendar for task due dates
  *
@@ -31,6 +32,7 @@ function initializeCalendar() {
     };
 };
 
+
 /**
  * Opens the calendar widget for date selection
  *
@@ -44,6 +46,7 @@ function openCalendarEditTask() {
         console.error('Flatpickr not initialized');
     };
 };
+
 
 /**
  * Loads and processes contact data from the server
@@ -67,6 +70,7 @@ async function loadContactData(path = '') {
     };
     loadContactsToAssignedEditTask();
 };
+
 
 /**
  * Updates priority button icons based on selected priority
@@ -92,6 +96,7 @@ function switchBtnPriorityEditTask(btnPriority) {
             break;
     };
 };
+
 
 /**
  * Toggles the assigned contacts dropdown visibility
@@ -158,6 +163,7 @@ function loadContactsToAssignedEditTask() {
     });
 };
 
+
 /**
  * Generates HTML template for a contact in the dropdown
  *
@@ -179,6 +185,7 @@ function loadContactsToAssignedTemplateEditTask(contact) {
     const activeClass = isSelected ? 'active' : '';
     return createContactListItem(activeClass, contact, bgColor, nameInitials, surnameInitials, checkedAttr);
 };
+
 
 /**
  * Renders assigned contacts in the edit task view
@@ -213,6 +220,7 @@ function renderAssignedContactsEditTask(assignedTo) {
     return html;
 };
 
+
 /**
  * Renders a batch showing the number of additional contacts not displayed
  *
@@ -227,6 +235,7 @@ function renderMoreContactsBatch(totalContacts, maxVisible) {
         </div>
     `;
 };
+
 
 /**
  * Handles user selection in the contacts dropdown
@@ -254,6 +263,7 @@ function selectUserEditTask(id, event) {
     };
 };
 
+
 /**
  * Removes a selected user from the assigned contacts
  *
@@ -266,6 +276,7 @@ function removeSelectedUserEditTask(id) {
         userIconContainer.remove();
     };
 };
+
 
 /**
  * Adds a selected user icon to the assigned contacts display
@@ -286,6 +297,7 @@ function addSelectedUserIconEditTask(contact) {
     selectedUser.innerHTML += addSelectedUserIconTemplate(contact.id, contact.color, initials);
 };
 
+
 /**
  * Renders editable subtask elements
  *
@@ -304,6 +316,7 @@ function renderEditableSubtasks(task) {
         })
         .join('');
 };
+
 
 /**
  * Saves changes made to a task
@@ -330,6 +343,7 @@ async function saveEditTask(taskId) {
     };
 };
 
+
 /**
  * Updates task data in Firebase
  *
@@ -346,6 +360,7 @@ async function firebaseUpdate(taskId, updatedTask) {
         },
     });
 };
+
 
 /**
  * Creates updated task object with form data
@@ -369,6 +384,7 @@ function createUpdatedTaskObject(formData, currentTask, assignedTo, subtasks) {
     };
 };
 
+
 /**
  * Adds new subtask to subtasks object
  *
@@ -386,6 +402,7 @@ function newSubtask(subtaskIndex, subtasks) {
         };
     };
 };
+
 
 /**
  * Collects and processes subtask data
@@ -410,6 +427,7 @@ function subtasksCollect(currentTask) {
     });
     return { subtaskIndex, subtasks };
 };
+
 
 /**
  * Collects and processes contact assignments
