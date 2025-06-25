@@ -266,7 +266,9 @@ padding: 20px;
 
 .notification {
   position: fixed;
-  bottom: 20px;
+  width: 100%;
+  max-width: 200px;
+  bottom: 160px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #2A3647;
