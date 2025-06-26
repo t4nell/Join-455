@@ -17,7 +17,7 @@ function rawInit() {
     checkOrientation();
     initSidebar();
     renderHeader();
-    rawSidebarRender();
+    rawSidebarDesktopRender();
 }
 
 
@@ -36,7 +36,7 @@ function renderSidebar() {
  * @returns {void} Updates headerContainer with header template
  */
 function renderHeader() {
-    headerContainer.innerHTML = getHeaderTemplate();
+    headerContainer.innerHTML = getRawHeaderTemplate();
 }
 
 /**
@@ -86,7 +86,7 @@ function proofSize() {
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
     navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = getSidebarTemplate();
+    mainContainer.innerHTML = rawSidebarDesktopRender();
     navContainer.style.display = 'block';
 }
 
@@ -105,13 +105,12 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     navContainer.style.display = 'none';
 }
 
-function rawSidebarRender(){
+function rawSidebarDesktopRender(){
     const currentPage = window.location.pathname;
-    document.querySelector('.user_menu').style.display = 'none';
-    document.getElementById('navbar_container').innerHTML = `            
+    return `            
             <nav class="sidebar_nav">
                 <a href="../index.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-                    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
+                    <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
                     <span>Login</span>
                 </a>
             </nav>
@@ -123,3 +122,42 @@ function rawSidebarRender(){
 `;
 }
 
+function getSidebarTemplateMobile(currentPage) {
+  return ` 
+    <div class="sidebar_container">  
+   <nav class="sidebar_nav">
+   <div>
+  <a href="../index.html" class=" nav_item ${currentPage.includes('index') ? 'active' : ''} login_btn">
+      <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
+    <span>Log In</span>
+  </a>
+</div>
+  
+<div class="page_links">
+  <a href="./privacyPolicy.html" class="nav_item ${currentPage.includes('privacyPolicy') ? 'active' : ''}">
+        <span>Privacy Policy</span>
+  </a>
+  <a href="./legalNotice.html" class="nav_item ${currentPage.includes('legalNotice') ? 'active' : ''}">
+    <span>Legal Notice</span>
+  </a>
+  </div>
+</nav>
+</div>
+  `
+};
+
+
+function getRawHeaderTemplate() {
+    return ` 
+    <header>
+      <div class="header_style">
+        <div class="join_logo_mobile"><a href="../index.html"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></a></div>
+        <span>
+          Kanban Project Management Tool
+        </span>
+
+      </div>
+      
+    </header>
+  `;
+};
