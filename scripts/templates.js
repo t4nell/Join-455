@@ -19,7 +19,7 @@ function getLoginSignupTemplate() {
             <input id="loginEmail" class="mail_input_icon" type="text" placeholder="E-Mail">
             <div class="lock_icon_group">
               <input oninput="passwordVisibility()" id="loginPassword" type="password" placeholder="Password" class="password_input">
-              <div class="lock_icon" id="lock_icon_container" onclick="showPassword()" >
+              <div class="lock_icon" id="lock_icon_container">
                 <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
               </div>
             </div>
@@ -165,8 +165,8 @@ function getSidebarTemplateMobile(currentPage) {
  */
 function passwordVisibilityOffTemplate() {
     return `
-        <div>
-            <img src="../assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
+        <div onclick="showPassword()">
+            <img src="./assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
         </div>
     `;
 }
@@ -189,8 +189,9 @@ function defaultLockIconTemplate() {
  */
 function passwordVisibilityOnTemplate() {
     return `
-        <div>
-            <img src="../assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
+        <div onclick="showPassword()">
+            <img src="./assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
         </div>
     `;
 }
+
