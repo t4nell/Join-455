@@ -116,7 +116,7 @@ function rawSidebarDesktopRender(){
             </nav>
 
             <div class="sidebar_footer">
-      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('privacyPolicy') ? 'active' : ''}">Privacy Policy</a>
       <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
