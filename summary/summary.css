@@ -20,7 +20,7 @@ main {
   position: absolute;
   top: 239px;
   left: 96px;
-  width: 100%;
+  width: calc(100% - 96px);
 }
 
 .summary_content{

@@ -172,9 +172,9 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: calc(100% - 16px);
+    height: calc(100% - 24px);
     width: 244px;
-    padding-bottom: 26px;
+    padding-bottom: 24px;
 }
 
 .drag_area {

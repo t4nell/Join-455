@@ -1,10 +1,10 @@
 /**
  * Returns the HTML template for the login and signup cards.
- * 
+ *
  * This template includes the login form with email and password inputs,
  * buttons for regular and guest login, and a signup form with input fields
  * for name, email, password, and password confirmation.
- * 
+ *
  * @returns {string} HTML string representing the login/signup interface
  */
 function getLoginSignupTemplate() {
@@ -17,7 +17,12 @@ function getLoginSignupTemplate() {
         <form id="loginForm" onsubmit="handleLogin(event)">
           <div class="input_login_container">
             <input id="loginEmail" class="mail_input_icon" type="text" placeholder="E-Mail">
-            <input id="loginPassword" class="lock_input_icon" type="password" placeholder="Password">
+            <div class="lock_icon_group">
+              <input oninput="passwordVisibility()" id="loginPassword" type="password" placeholder="Password" class="password_input">
+              <div class="lock_icon" id="lock_icon_container">
+                <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+              </div>
+            </div>
           </div>
           <div class="button_login_container">
             <button class="dark_btn login_btn">Log in</button>
@@ -50,15 +55,14 @@ function getLoginSignupTemplate() {
     </div>
   </div>
 `;
-};
-
+}
 
 /**
  * Returns the HTML template for the sidebar navigation.
- * 
+ *
  * Highlights the current page by checking the URL path and
  * adding the 'active' class to the corresponding navigation item.
- * 
+ *
  * @returns {string} HTML string representing the sidebar navigation
  */
 function getSidebarTemplate() {
@@ -89,14 +93,13 @@ function getSidebarTemplate() {
       <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
-};
-
+}
 
 /**
  * Returns the HTML template for the header section.
- * 
+ *
  * Contains the Join logo, app title, help icon and user menu with dropdown.
- * 
+ *
  * @returns {string} HTML string representing the header section
  */
 function getHeaderTemplate() {
@@ -121,19 +124,18 @@ function getHeaderTemplate() {
       
     </header>
   `;
-};
-
+}
 
 /**
  * Returns the HTML template for the mobile version of the sidebar navigation.
- * 
+ *
  * Highlights the current page by adding the 'active' class to the corresponding navigation item.
- * 
+ *
  * @param {string} currentPage - The current page path to determine which navigation item to highlight
  * @returns {string} HTML string representing the mobile sidebar navigation
  */
 function getSidebarTemplateMobile(currentPage) {
-  return ` 
+    return ` 
     <div class="sidebar_container">  
    <nav class="sidebar_nav">
   <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
@@ -154,5 +156,42 @@ function getSidebarTemplateMobile(currentPage) {
   </a>
 </nav>
 </div>
-  `
-};
+  `;
+}
+
+/**
+ * Generates HTML template for the password visibility off icon
+ * @returns {string} HTML string containing the visibility off icon
+ */
+function passwordVisibilityOffTemplate() {
+    return `
+        <div onclick="showPassword()">
+            <img src="./assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
+        </div>
+    `;
+}
+
+/**
+ * Generates HTML template for the default lock icon
+ * @returns {string} HTML string containing the default lock icon
+ */
+function defaultLockIconTemplate() {
+    return `
+        <div>
+            <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+        </div>
+    `;
+}
+
+/**
+ * Generates HTML template for the password visibility on icon
+ * @returns {string} HTML string containing the visibility on icon
+ */
+function passwordVisibilityOnTemplate() {
+    return `
+        <div onclick="showPassword()">
+            <img src="./assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
+        </div>
+    `;
+}
+

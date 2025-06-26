@@ -135,9 +135,10 @@ function datePicker(selectedDate) {
  * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates and posts the task, then clears the form.
  */
-function createTask(boardStatus = 'todo') {
+function createTask(boardStatus) {
     const form = document.getElementById('add_task_form');
-    const taskData = collectTaskData(form, boardStatus);
+    const status = boardStatusRequest(boardStatus);
+    const taskData = collectTaskData(form, status);
 
     postTask(taskData);
     clearTasks();
@@ -281,5 +282,15 @@ function showAddedNotification(notificationText) {
         savedContactNotification.classList.add('closed');
         window.location.href = '../board/board.html';
     }, 1500);
+}
+
+/**
+ * Opens the calendar date picker by focusing on the date input field.
+ *
+ * @returns {void} Focuses on the date input element.
+ */
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    calenderInput.focus();
 }
 
