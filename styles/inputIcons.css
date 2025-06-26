@@ -1,22 +1,38 @@
-.name_input_icon{
+.name_input_icon {
     background-image: url('../assets/imgs/inputIcons/person.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
 }
 
-.mail_input_icon{
+.mail_input_icon {
     background-image: url('../assets/imgs/inputIcons/mail.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
+    cursor: text;
+    width: 100%;
 }
 
-.lock_input_icon{
-    background-image: url('../assets/imgs/inputIcons/lock.png');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
+.password_input {
+    cursor: text;
+    width: 100%;
 }
 
-.phone_input_icon{
+.lock_icon_group {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.lock_icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.phone_input_icon {
     background-image: url('../assets/imgs/inputIcons/call.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -26,3 +42,4 @@
     background-image: url('../assets/imgs/boardIcons/search.svg');
     background-repeat: no-repeat;
 }
+
