@@ -75,6 +75,26 @@ async function verifyPassword(password, storedHash) {
 }
 
 /**
+ * Validates email format using regex
+ *
+ * @param {string} email - The email to validate
+ * @returns {boolean} True if email format is valid, false otherwise
+ */
+function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+    if (!email || email.length === 0) return false;
+    if (email.length > 254) return false;
+    if (!email.includes('@')) return false;
+    if (!email.includes('.')) return false;
+    const atIndex = email.lastIndexOf('@');
+    const dotIndex = email.lastIndexOf('.');
+    if (dotIndex <= atIndex) return false;
+    const domainPart = email.substring(dotIndex + 1);
+    if (domainPart.length < 2) return false;
+    return emailRegex.test(email);
+}
+
+/**
  * Handles the signup process
  *
  * @async
@@ -88,6 +108,12 @@ async function handleSignup(event) {
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
     const acceptPolicy = document.getElementById('accept_policy').checked;
+    
+    if (!validateEmail(email)) {
+        showNotification('Bitte geben Sie eine gültige E-Mail-Adresse ein', true);
+        return;
+    }
+    
     if (!acceptPolicy) {
         showNotification('Bitte akzeptieren Sie die Datenschutzrichtlinie', true);
         return;
@@ -133,6 +159,12 @@ async function handleLogin(event) {
 
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
+    
+    if (!validateEmail(email)) {
+        showNotification('Bitte geben Sie eine gültige E-Mail-Adresse ein', true);
+        return;
+    }
+    
     const user = findUser(email);
 
     if (!user) {
