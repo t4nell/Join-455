@@ -159,3 +159,38 @@ function getSidebarTemplateMobile(currentPage) {
   `;
 }
 
+/**
+ * Generates HTML template for the password visibility off icon
+ * @returns {string} HTML string containing the visibility off icon
+ */
+function passwordVisibilityOffTemplate() {
+    return `
+        <div>
+            <img src="../assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
+        </div>
+    `;
+}
+
+/**
+ * Generates HTML template for the default lock icon
+ * @returns {string} HTML string containing the default lock icon
+ */
+function defaultLockIconTemplate() {
+    return `
+        <div>
+            <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+        </div>
+    `;
+}
+
+/**
+ * Generates HTML template for the password visibility on icon
+ * @returns {string} HTML string containing the visibility on icon
+ */
+function passwordVisibilityOnTemplate() {
+    return `
+        <div>
+            <img src="../assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
+        </div>
+    `;
+}
