@@ -1,5 +1,11 @@
 let selectedUserIndices = [];
 
+/**
+ * Listens for clicks outside the assigned users dropdown and closes the dropdown if a click occurs outside.
+ *
+ * @param {MouseEvent} event - The click event triggered anywhere in the document.
+ * @returns {void} Closes the assigned users dropdown if the click is outside relevant elements.
+ */
 document.addEventListener('click', function (event) {
     const dropdown = document.getElementById('dropdown');
     const toggleBtn = document.getElementById('dropdown_toggle_btn');
@@ -49,7 +55,6 @@ function toggleDropdownAssigned(event) {
     if (typeof closeCategoryDropdown === 'function') {
         closeCategoryDropdown();
     }
-
     const dropdown = document.getElementById('dropdown');
     const toggle = document.getElementById('dropdown_toggle_btn');
     const isOpen = dropdown.classList.toggle('open');
@@ -58,7 +63,6 @@ function toggleDropdownAssigned(event) {
         toggle.value = '';
         toggle.blur();
     }
-
     filterContacts();
 }
 
@@ -87,7 +91,6 @@ function closeAssignedDropdown() {
     if (dropdown) {
         dropdown.classList.remove('open');
     }
-
     if (toggle) {
         toggle.value = '';
     }
@@ -117,11 +120,9 @@ function loadAllContactsToAssigned() {
 function selectUser(index, event) {
     event.stopPropagation();
     const checkbox = document.getElementById(`users_checkbox_${index}`);
-
     if (event.target.type !== 'checkbox') {
         checkbox.checked = !checkbox.checked;
     }
-
     if (checkbox.checked) {
         if (!selectedUserIndices.includes(index)) {
             selectedUserIndices.push(index);
@@ -129,7 +130,6 @@ function selectUser(index, event) {
     } else {
         selectedUserIndices = selectedUserIndices.filter((i) => i !== index);
     }
-
     filterContacts();
     renderSelectedIcons();
 }

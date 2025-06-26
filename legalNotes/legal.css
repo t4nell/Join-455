@@ -2,6 +2,14 @@ main {
     height: 100vh;
 }
 
+h1{
+    font-size: 47px;
+}
+
+h2{
+    font-size: 27px;
+}
+
 .legal_container {
     position: absolute;
     top: 100px;
@@ -13,16 +21,3 @@ main {
     max-width: 1440px;
 }
 
-.position_unset {
-    position: unset;
-}
-
-.arrow_style:hover{
-    cursor: pointer;
-}
-
-.arrow_style{
-    position: fixed;
-    left: 15px;
-    top: 15px;
-}

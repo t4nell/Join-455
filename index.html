@@ -24,17 +24,20 @@
   </head>
   <body onload="init()">
     <main id="main_container">
-      <section id="main_section_index" class="main_section">
+      <div class="header_container">
+
+        <div class="join_logo">
+          <a class="sidebar_join_logo" style="display: block !important;" href="./index.html"><img class="join_logo_img" src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
+        </div>
 
         <div id="signup_login_desktop" class="signup_login" style="display: none;">
           <span class="font_size_20px">Not a Join user?</span>
           <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
         </div>
 
-        <div class="join_logo">
-          <a class="sidebar_join_logo" style="display: block !important;" href="./index.html"><img class="join_logo_img" src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
-        </div>
-
+      </div>
+      <section id="main_section_index" class="main_section">
+        
         <div id="login_container" class="login_wrapper"></div>
         <div id="signup_container" class="signup_wrapper"></div>
 

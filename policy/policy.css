@@ -2,6 +2,14 @@ main {
     height: 100vh;
 }
 
+h1{
+    font-size: 47px ;
+}
+
+h2{
+    font-size: 27px;
+}
+
 html {
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -26,11 +34,7 @@ html {
 }
 
 
-@media screen and (max-width: 1050px) {
-    h2 {
-        font-size: 40px;
-    }
-}
+
 
 @media screen and (max-width: 500px) {
     h2 {
@@ -44,12 +48,3 @@ html {
     }
 }
 
-.arrow_style{
-    position: fixed;
-    left: 15px;
-    top: 15px;
-}
-
-.arrow_style:hover{
-    cursor: pointer;
-}
