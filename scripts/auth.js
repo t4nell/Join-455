@@ -140,10 +140,28 @@ async function handleSignup(event) {
         };
         saveUser(user);
         showNotification('Registrierung erfolgreich!');
+        clearSignupFields();
         toggleLoginSignup();
     } catch (error) {
         console.error('Hashing fehlgeschlagen:', error);
         showNotification('Technischer Fehler - bitte versuchen Sie es später erneut', true);
+    }
+}
+
+/**
+ * Clears all signup form fields
+ *
+ * @returns {void}
+ */
+function clearSignupFields() {
+    document.getElementById('signupName').value = '';
+    document.getElementById('signupEmail').value = '';
+    document.getElementById('signupPassword').value = '';
+    document.getElementById('signupConfirmPassword').value = '';
+    document.getElementById('accept_policy').checked = false;
+    const signupButton = document.getElementById('signup_btn');
+    if (signupButton) {
+        signupButton.disabled = true;
     }
 }
 
