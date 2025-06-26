@@ -110,7 +110,7 @@ header span {
 }
 
 .user_menu {
-    padding-right: 40px;
+    padding-right: 30px;
     display: flex;
     align-items: center;
     gap: 16px;
