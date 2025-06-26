@@ -135,9 +135,10 @@ function datePicker(selectedDate) {
  * @param {string} boardStatus - The status section where the add task was triggered (todo, inProgress, awaitFeedback)
  * @returns {void} Creates and posts the task, then clears the form.
  */
-function createTask(boardStatus = 'todo') {
+function createTask(boardStatus) {
     const form = document.getElementById('add_task_form');
-    const taskData = collectTaskData(form, boardStatus);
+    const status = boardStatusRequest(boardStatus);
+    const taskData = collectTaskData(form, status);
 
     postTask(taskData);
     clearTasks();
@@ -292,3 +293,4 @@ function openCalendar() {
     const calenderInput = document.getElementById('due_date');
     calenderInput.focus();
 }
+

@@ -3,7 +3,7 @@ let tagCounter = 0;
 
 /**
  * Replaces the subtask button with confirm and cancel buttons.
- * 
+ *
  * @returns {void} Updates the subtask button container and focuses on the input field.
  */
 function replaceButtons() {
@@ -15,7 +15,7 @@ function replaceButtons() {
 
 /**
  * Handles Enter key press in the subtask input field.
- * 
+ *
  * @param {Event} event - The keyboard event object.
  * @returns {void} Prevents default behavior and confirms the subtask.
  */
@@ -28,7 +28,7 @@ function onKeyDownEnter(event) {
 
 /**
  * Checks if the subtask input field has a value and acts accordingly.
- * 
+ *
  * @returns {void} Either confirms the subtask or resets the buttons.
  */
 function checkValue() {
@@ -43,7 +43,7 @@ function checkValue() {
 
 /**
  * Clears the text in the subtask input field.
- * 
+ *
  * @returns {void} Empties the input field and resets the buttons.
  */
 function deleteTextBtn() {
@@ -54,7 +54,7 @@ function deleteTextBtn() {
 
 /**
  * Resets the subtask button container to its default state.
- * 
+ *
  * @returns {void} Updates the subtask button container with default template.
  */
 function resetButtons() {
@@ -64,18 +64,18 @@ function resetButtons() {
 
 /**
  * Automatically resizes a textarea to fit its content.
- * 
+ *
  * @param {HTMLElement} el - The textarea element to resize.
  * @returns {void} Adjusts the height of the textarea.
  */
-function autoResizeTextarea(el) {
-    el.style.height = 'auto';
-    el.style.height = el.scrollHeight + 'px';
+function autoResizeTextarea(element) {
+    element.style.height = 'auto';
+    element.style.height = element.scrollHeight + 'px';
 }
 
 /**
  * Enables editing mode for a subtask.
- * 
+ *
  * @param {string} tagInputId - ID of the subtask input field.
  * @param {string} tagBtnConId - ID of the subtask button container.
  * @param {string} tagId - ID of the subtask element.
@@ -93,7 +93,7 @@ function enableEditing(tagInputId, tagBtnConId, tagId) {
 
 /**
  * Handles the edit button click for a subtask.
- * 
+ *
  * @param {Event} event - The click event object.
  * @param {string} tagInputId - ID of the subtask input field.
  * @param {string} tagBtnConId - ID of the subtask button container.
@@ -116,7 +116,7 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
 
 /**
  * Removes a subtask from the DOM.
- * 
+ *
  * @param {string} tagId - ID of the subtask element to remove.
  * @returns {void} Removes the subtask element from the document.
  */
@@ -127,7 +127,7 @@ function trashBtn(tagId) {
 
 /**
  * Adds a new subtask from the input field value.
- * 
+ *
  * @returns {void} Creates a new subtask element and resets the input field.
  */
 function confirmSubtaskBtn() {
@@ -147,7 +147,7 @@ function confirmSubtaskBtn() {
 
 /**
  * Validates the value of a subtask field when confirming edits.
- * 
+ *
  * @param {Event} event - The event object.
  * @param {string} tagBtnConId - ID of the button container.
  * @param {string} tagInputId - ID of the input field.
@@ -170,7 +170,7 @@ function newTagCheckValue(event, tagBtnConId, tagInputId, tagId) {
 
 /**
  * Disables editing mode for a subtask input field.
- * 
+ *
  * @param {string} tagInputId - ID of the input field.
  * @returns {void} Makes the input field read-only or shows an error.
  */
@@ -192,7 +192,7 @@ function disableEditing(tagInputId) {
 
 /**
  * Restores default buttons for a subtask.
- * 
+ *
  * @param {string} tagBtnConId - ID of the button container.
  * @param {string} tagInputId - ID of the input field.
  * @param {string} tagId - ID of the subtask element.
@@ -205,7 +205,7 @@ function newTagDefaultBtns(tagBtnConId, tagInputId, tagId) {
 
 /**
  * Updates a subtask's buttons to show trash and done buttons.
- * 
+ *
  * @param {string} tagInputId - ID of the input field.
  * @param {string} tagBtnConId - ID of the button container.
  * @param {string} tagId - ID of the subtask element.

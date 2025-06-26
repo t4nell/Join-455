@@ -8,6 +8,12 @@ function renderCategories() {
     categoryMenu.innerHTML = categories.map((category, index) => categoriesTemplate(category, index)).join('');
 }
 
+/**
+ * Listens for clicks outside the category dropdown and closes the dropdown if a click occurs outside.
+ *
+ * @param {MouseEvent} event - The click event triggered anywhere in the document.
+ * @returns {void} Closes the category dropdown if the click is outside relevant elements.
+ */
 document.addEventListener('click', function (event) {
     const categoryDropdown = document.getElementById('category_dropdown');
     const categoryInput = document.getElementById('category_dropdown_input');
