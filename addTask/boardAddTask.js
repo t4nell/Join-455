@@ -283,3 +283,12 @@ function showAddedNotification(notificationText) {
     }, 1500);
 }
 
+/**
+ * Opens the calendar date picker by focusing on the date input field.
+ *
+ * @returns {void} Focuses on the date input element.
+ */
+function openCalendar() {
+    const calenderInput = document.getElementById('due_date');
+    calenderInput.focus();
+}
