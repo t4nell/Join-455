@@ -42,35 +42,27 @@ function getLoginSignupTemplate() {
           <input id="signupName" class="name_input_icon" type="text" placeholder="Name" oninput="disableSignupButton()">
           <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail" oninput="disableSignupButton()">
           <div class="lock_icon_group">
-  <input 
-    id="signupPassword" 
-    type="password" 
-    placeholder="Password" 
-    class="lock_input_icon"
-    oninput="handlePasswordInput('signupPassword', 'sign_up_password_container'); disableSignupButton()"
-  >
-  <div 
-    class="lock_icon" 
-    id="sign_up_password_container"
-  >
-    <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
-  </div>
-</div>
+              <input
+                          id="signupPassword"
+                          type="password"
+                          placeholder="Password"
+                          class="password_input"
+                          oninput="handlePasswordInput('signupPassword', 'sign_up_password_container'); disableSignupButton()" />
+                <div class="lock_icon" id="sign_up_password_container">
+                    <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon" />
+                </div>
+          </div>
           <div class="lock_icon_group">
-  <input 
-    id="signupConfirmPassword" 
-    type="password" 
-    placeholder="Confirm Password" 
-    class="lock_input_icon"
-    oninput="handlePasswordInput('signupConfirmPassword', 'confirm_password_icon'); disableSignupButton()"
-  >
-  <div 
-    class="lock_icon" 
-    id="confirm_password_icon"
-  >
-    <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
-  </div>
-</div>
+            <input
+                id="signupConfirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                class="password_input"
+                oninput="handlePasswordInput('signupConfirmPassword', 'confirm_password_icon'); disableSignupButton()" />
+            <div class="lock_icon" id="confirm_password_icon">
+                <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon" />
+            </div>
+          </div>
           <div class="checkbox_container">  
           <input type="checkbox" id="accept_policy" name="a" value="accept_policy">
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>

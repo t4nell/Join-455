@@ -2,6 +2,8 @@
     background-image: url('../assets/imgs/inputIcons/person.png');
     background-repeat: no-repeat;
     background-position: right 10px center;
+    cursor: text;
+    padding-right: 45px;
 }
 
 .mail_input_icon {
@@ -10,11 +12,13 @@
     background-position: right 10px center;
     cursor: text;
     width: 100%;
+    padding-right: 45px;
 }
 
 .password_input {
     cursor: text;
     width: 100%;
+    padding-right: 45px;
 }
 
 .lock_icon_group {

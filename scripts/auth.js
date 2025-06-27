@@ -294,10 +294,10 @@ function disableSignupButton() {
 }
 
 /**
- * Handles the password input field and updates the icon accordingly.
+ * Handles the password input field and updates the icon based on the input value and visibility state.
  *
- * Displays the "password visibility off" icon if the input is not empty,
- * otherwise shows the default lock icon.
+ * Shows the "password visible" or "password hidden" icon if the field is not empty,
+ * otherwise displays the default lock icon. Should be called on every input event of the password field.
  *
  * @param {string} inputId - The ID of the password input field
  * @param {string} iconContainerId - The ID of the icon container element
@@ -309,7 +309,11 @@ function handlePasswordInput(inputId, iconContainerId) {
     const value = passwordInput.value.trim();
 
     if (value !== '') {
-        iconContainer.innerHTML = passwordVisibilityOffTemplate(iconContainerId, inputId);
+        if (passwordInput.type === 'text') {
+            iconContainer.innerHTML = passwordVisibilityOnTemplate(iconContainerId, inputId);
+        } else {
+            iconContainer.innerHTML = passwordVisibilityOffTemplate(iconContainerId, inputId);
+        }
     } else {
         iconContainer.innerHTML = defaultLockIconTemplate();
     }
@@ -336,3 +340,4 @@ function togglePasswordVisibility(iconContainerId, inputId) {
         iconContainer.innerHTML = passwordVisibilityOffTemplate(iconContainerId, inputId);
     }
 }
+
