@@ -12,6 +12,10 @@
         max-height: 800px;
     }
 
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
+
     .main_section {
         flex-direction: column;
         align-items: center;

@@ -56,6 +56,10 @@
         top: 0;
     }
 
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
+
     #add_task_container {
         left: 0;
         width: 100%;

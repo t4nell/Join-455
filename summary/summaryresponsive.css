@@ -1,138 +1,141 @@
 @media screen and (max-width: 1400px) {
-#summary_right {
-  display: none;
-  }
-.summary_container{
-  width: 100%;
-  }
+    #summary_right {
+        display: none;
+    }
+    .summary_container {
+        width: 100%;
+    }
 }
 @media screen and (max-width: 1050px) {
-  .summary_container {
-    overflow-y: auto;
-  }
-  .summary_content{
-    justify-content: center;
-    align-items: flex-start;
-  }
-  .headline_container {
-    padding-top: 16px;
-    padding-left: 16px;
-    margin: 0;
-  }
-  .summary_absolute {
-    top: 120px;
-    left: 0;
-    height: calc(100% - 120px);
-  }
-  .summary_content {
-    height: 100%;
-  }
-  #summary_left{
-    height: calc(100% - 20px);
-    width: 100%;
-    max-width: 600px;
-    max-height: 400px;
-    margin: 0 30px 20px 30px;
-  }
+    .summary_container {
+        overflow-y: auto;
+    }
+    .summary_content {
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .headline_container {
+        padding-top: 16px;
+        padding-left: 16px;
+        margin: 0;
+    }
+    .summary_absolute {
+        top: 120px;
+        left: 0;
+        height: calc(100% - 120px);
+    }
+    .summary_content {
+        height: 100%;
+    }
+    #summary_left {
+        height: calc(100% - 20px);
+        width: 100%;
+        max-width: 600px;
+        max-height: 400px;
+        margin: 0 30px 20px 30px;
+    }
     .summary_number {
-    font-size: 48px;
-  }
+        font-size: 48px;
+    }
+
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 650px) {
-.summary_wrap {
-    display: flex;
-    flex-wrap: nowrap;
-  }
+    .summary_wrap {
+        display: flex;
+        flex-wrap: nowrap;
+    }
 
-  body{
-    font-size: 1rem;
-  }
+    body {
+        font-size: 1rem;
+    }
 
-  #summary_left {
-    height: calc(100% - 50px);
-    gap: 15px;
-    margin: 30px 16px 20px 16px;
-  }
+    #summary_left {
+        height: calc(100% - 50px);
+        gap: 15px;
+        margin: 30px 16px 20px 16px;
+    }
 
-  .summary_column {
-    padding: 0;
-  }
+    .summary_column {
+        padding: 0;
+    }
 
-  .summary_section2_container{
-    padding: 20px 16px;
-  }
+    .summary_section2_container {
+        padding: 20px 16px;
+    }
 
-  .summary_number {
-    font-size: 32px;
-  }
+    .summary_number {
+        font-size: 32px;
+    }
 
-  .headline_container {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 10px;
-  }
+    .headline_container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
 
-  .clickable-container {
-    max-height: 100px;
-    padding: 8px;
-  }
+    .clickable-container {
+        max-height: 100px;
+        padding: 8px;
+    }
 
-  .separator_vertically{
-    height: 0px;
-    width: 90px;
-    Order: 2;
-  }
-  .headline_container {
-    padding-left: 24px;
-  }
+    .separator_vertically {
+        height: 0px;
+        width: 90px;
+        order: 2;
+    }
+    .headline_container {
+        padding-left: 24px;
+    }
 }
 
 @media screen and (max-width: 600px) {
-  .check_img {
-    height: 50%;
-    width: 50%;
-  }
+    .check_img {
+        height: 50%;
+        width: 50%;
+    }
 
-  .check_img_container {
-    height: 50px;
-    width: 50px;
-  }
+    .check_img_container {
+        height: 50px;
+        width: 50px;
+    }
 
-  .summary_section1_container {
-    gap: 8px;
-  }
+    .summary_section1_container {
+        gap: 8px;
+    }
 
-  .pen_img {
-    height: 50%;
-    width: 50%;
-  }
+    .pen_img {
+        height: 50%;
+        width: 50%;
+    }
 
-  .pen_img_container {
-    height: 50px;
-    width: 50px;
-  }
+    .pen_img_container {
+        height: 50px;
+        width: 50px;
+    }
 
-  .priority-icon-container {
-    height: 50px;
-    width: 50px;
-  }
+    .priority-icon-container {
+        height: 50px;
+        width: 50px;
+    }
 
-  #summary_importance_container {
-    gap: 0;
-  }
+    #summary_importance_container {
+        gap: 0;
+    }
 
-  .summary_section3_container {
-    gap: 8px;
-  }
+    .summary_section3_container {
+        gap: 8px;
+    }
 
-  #summary_done_container{
-    padding: 10px 9px;
-  }
+    #summary_done_container {
+        padding: 10px 9px;
+    }
 
-  #summary_todo_container{
-      padding: 10px 9px;
-  }
-
-};
+    #summary_todo_container {
+        padding: 10px 9px;
+    }
+}

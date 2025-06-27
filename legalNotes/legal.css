@@ -2,11 +2,11 @@ main {
     height: 100vh;
 }
 
-h1{
+h1 {
     font-size: 47px;
 }
 
-h2{
+h2 {
     font-size: 27px;
 }
 
@@ -19,5 +19,11 @@ h2{
     overflow-y: auto;
     padding: 0 96px 42px 96px;
     max-width: 1248px;
+}
+
+@media (max-width: 1050px) {
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
 }
 

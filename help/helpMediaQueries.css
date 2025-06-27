@@ -7,5 +7,9 @@
         position: absolute;
         right: 16px;
     }
+
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
 }
 

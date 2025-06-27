@@ -74,6 +74,11 @@
         width: 100%;
         padding-left: 0;
     }
+
+    .sidebar_join_logo_db_none {
+        display: none;
+    }
+
     .board_controls_container {
         width: 100%;
     }
@@ -191,6 +196,5 @@
         padding: 4px 6px;
         gap: 2px;
     }
-
 }
 

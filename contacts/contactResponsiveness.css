@@ -1,151 +1,151 @@
-html{
+html {
     font-size: 100%;
 }
 
 @media screen and (max-width: 1300px) {
+    html {
+        font-size: 93.75%;
+    }
 
-html{
-    font-size: 93.75%;
+    .headline_container {
+        gap: 16px;
+    }
+
+    .headline_container h2 {
+        font-size: 2.93rem;
+    }
+
+    .headline_container span {
+        font-size: 1.25rem;
+    }
+
+    .contact_name {
+        font-size: 36px;
+    }
+    .contact_header {
+        gap: 20px;
+    }
+
+    .contact_side_mail {
+        font-size: 16px;
+    }
 }
-
-.headline_container{
-    gap: 16px;
-}    
-
-.headline_container h2 {
-    font-size: 2.93rem;
-}
-
-.headline_container span{
-    font-size: 1.25rem;
-}
-
-.contact_name{
-    font-size: 36px;
-}
-.contact_header{
-    gap: 20px;
-}
-
-.contact_side_mail{
-    font-size: 16px;
-}
-
-}
-
 
 @media screen and (max-width: 1150px) {
-html{
-    font-size: 85%;
-}
+    html {
+        font-size: 85%;
+    }
 
-    #contact_list{
+    #contact_list {
         align-items: flex-end;
         max-width: 420px;
     }
 
-    .contact_container{
+    .contact_container {
         left: 640px;
         width: calc(100% - 640px);
     }
-    
+
     .profile_icon_large {
         width: 80px;
         height: 80px;
         min-width: 80px;
     }
-    
-    .profile_icon_large span{
+
+    .profile_icon_large span {
         font-size: 27px;
         font-weight: 400;
     }
-    
 }
 
-@media screen and (max-width: 1050px){
-.contact_save_message {
-    width: 19.13rem;
-    position: fixed; 
-    left: 50%;
-    bottom: 14%;
-    transform: translate(-50%, -50%); 
-    transition: all 225ms ease-in-out; 
-    pointer-events: none;    
-    font-size: 19px;
-}
+@media screen and (max-width: 1050px) {
+    .contact_save_message {
+        width: 19.13rem;
+        position: fixed;
+        left: 50%;
+        bottom: 14%;
+        transform: translate(-50%, -50%);
+        transition: all 225ms ease-in-out;
+        pointer-events: none;
+        font-size: 19px;
+    }
 
-    .contact_side_mail{
+    .contact_side_mail {
         font-size: 15px;
     }
 
-.closed_notification{
-    bottom: -20% !important;
-    transform: none;
-}
+    .closed_notification {
+        bottom: -20% !important;
+        transform: none;
+    }
 
-#contact_list_container{
-    padding-bottom: 80px;
-}
-
-    .new_contact_container{
+    .sidebar_join_logo_db_none {
         display: none;
     }
 
-    .new_contact_overlay_right{
+    #contact_list_container {
+        padding-bottom: 80px;
+    }
+
+    .new_contact_container {
+        display: none;
+    }
+
+    .new_contact_overlay_right {
         padding: 0;
     }
 
-    .contact_close_btn{
+    .contact_close_btn {
         filter: brightness(0) invert(1);
         top: 24px;
         right: 16px;
     }
 
-    .cancel_btn{
+    .cancel_btn {
         display: none;
     }
 
-    .create_contact_btn{
+    .create_contact_btn {
         height: 3.75rem;
         width: 14.9rem;
     }
 
-    .overlay_buttons{
+    .overlay_buttons {
         justify-content: center;
     }
 
-    .headline_container{
+    .headline_container {
         flex-direction: column;
         align-items: unset;
         margin-top: 48px;
     }
 
-    .contact_buttons{
+    .contact_buttons {
         display: none;
     }
 
     .contact_container {
-    display: flex;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    height: calc(100% - 140px);
-    width: 100%;
-    z-index: 300;
-    background-color: var(--background-color-main);
-    flex-direction: column;
-    max-width: 100%;
+        display: flex;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        height: calc(100% - 140px);
+        width: 100%;
+        z-index: 300;
+        background-color: var(--background-color-main);
+        flex-direction: column;
+        max-width: 100%;
     }
 
-    .mobile_closed{
-     transform: translateX(150%);
+    .mobile_closed {
+        transform: translateX(150%);
     }
 
-    .overlay_side_img img{
+    .overlay_side_img img {
         display: none;
     }
 
-    .contact_overlay_img img{
+    .contact_overlay_img img {
         position: absolute;
         transform: translate(-50%, -75%);
         top: 50%;
@@ -154,157 +154,151 @@ html{
         height: 8.75rem;
     }
 
-    .overlay_side_img{
+    .overlay_side_img {
         width: 100%;
         max-width: none;
         height: 46%;
         justify-content: center;
     }
-    
-    .overlay_text_container{
+
+    .overlay_text_container {
         padding: 1.5rem;
     }
 
-    .contact_content_row{
+    .contact_content_row {
         flex-direction: column;
         align-items: center;
         gap: 0;
     }
 
-    .contact_input_fields{
+    .contact_input_fields {
         max-width: 34rem;
     }
 
-    .overlay_input::placeholder{
-        font-size:  20px;
+    .overlay_input::placeholder {
+        font-size: 20px;
     }
 
-
-    .overlay_input{
-            padding: 0.90rem 1rem;
+    .overlay_input {
+        padding: 0.9rem 1rem;
     }
 
     .contact_input_fields,
-    .contact_form_fields{
+    .contact_form_fields {
         padding: 0 2rem 0 1rem;
         max-width: 37rem;
-
     }
-    
-    .contact_popup{
+
+    .contact_popup {
         flex-direction: column;
         height: 80%;
         max-height: 760px;
         max-width: 540px;
     }
 
-    .overlay_side_img{
+    .overlay_side_img {
         padding: 0;
     }
 
-    #contact_list{
+    #contact_list {
         max-width: none;
         top: 80px;
         width: 100%;
         align-items: unset;
         left: 0;
     }
-    .letter_separator_horizontal{
+    .letter_separator_horizontal {
         width: 98%;
     }
 
-    .contact_side{
+    .contact_side {
         width: 94%;
         margin: 0 16px;
         overflow-y: hidden;
         gap: 12px;
     }
 
-
-        .separator_horizontally_mobile{
+    .separator_horizontally_mobile {
         display: flex;
         align-self: flex-start;
         margin-inline-start: 1px;
     }
 
-        .separator_vertical{
-        display: none; 
+    .separator_vertical {
+        display: none;
     }
 
-    .sec_add_contact_btn{
+    .sec_add_contact_btn {
         display: flex;
         position: fixed;
         right: 16px;
         bottom: 100px;
     }
 
-    .return_arrow{
+    .return_arrow {
         display: flex;
     }
 
     #contact_options_dropdown,
-    .contact_options_btn{
+    .contact_options_btn {
         display: flex;
     }
 
     /* Edit Area */
 
-    .profile_icon_overlay{
+    .profile_icon_overlay {
         position: absolute;
         transform: translate(-50%, -110%);
         top: 50%;
         left: 50%;
     }
 
-    .overlay_edit_buttons{
+    .overlay_edit_buttons {
         width: 100%;
         justify-content: center;
     }
-
 }
 
-@media screen and (max-width: 700px){
-    .contact_side{
+@media screen and (max-width: 700px) {
+    .contact_side {
         width: 90%;
         margin: 0 10px;
         padding-left: 12px;
     }
 
-    .headline_container, 
-    .contact_main{
+    .headline_container,
+    .contact_main {
         padding-left: 16px;
     }
 }
 
-@media screen and (max-width: 400px){
-    .letter_index{
+@media screen and (max-width: 400px) {
+    .letter_index {
         width: 260px;
     }
-    
-    .contact_side_name{
+
+    .contact_side_name {
         font-size: 18px;
     }
-    
 
-
-    .contact_name{
+    .contact_name {
         font-size: 24px;
     }
-    
-    .overlay_phrase_left{
+
+    .overlay_phrase_left {
         font-size: 1.3rem;
     }
-    
-    .overlay_text_left{
+
+    .overlay_text_left {
         font-size: 3rem;
     }
 
-    .alert{
+    .alert {
         font-size: 11px;
     }
 }
 
-@media screen and (max-height: 900px){
+@media screen and (max-height: 900px) {
     .profile_icon_overlay span {
         font-size: 40px;
     }
@@ -315,7 +309,7 @@ html{
         height: 90px;
     }
 
-    .overlay_side_img{
+    .overlay_side_img {
         height: 40%;
     }
 
@@ -325,14 +319,12 @@ html{
         height: 90px;
     }
 
-    .contact_form_fields{
+    .contact_form_fields {
         gap: 0;
     }
 
-    .overlay_buttons{
+    .overlay_buttons {
         padding-bottom: 16px;
     }
-
 }
-
 
