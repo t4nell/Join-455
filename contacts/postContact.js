@@ -10,8 +10,6 @@ function createNewContact(event) {
 
     if (contactData) {
         postContactData('contact', contactData, contactData.email);
-    }else{
-        console.error('failed to create new contact')
     }
 }
 

@@ -233,3 +233,59 @@ function defaultLockIconTemplate() {
     `;
 }
 
+function rawSidebarDesktopRender(){
+    const currentPage = window.location.pathname;
+    return `            
+            <nav class="sidebar_nav">
+                <a href="../index.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                    <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
+                    <span>Login</span>
+                </a>
+            </nav>
+
+            <div class="sidebar_footer">
+      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('privacyPolicy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
+    </div>
+`;
+}
+
+function getRawSidebarTemplateMobile(currentPage) {
+  return ` 
+    <div class="sidebar_container">  
+   <nav class="sidebar_nav">
+   <div>
+  <a href="../index.html" class=" nav_item ${currentPage.includes('index') ? 'active' : ''} login_btn">
+      <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
+    <span>Log In</span>
+  </a>
+</div>
+  
+<div class="page_links">
+  <a href="./privacyPolicy.html" class="nav_item ${currentPage.includes('privacyPolicy') ? 'active' : ''}">
+        <span>Privacy Policy</span>
+  </a>
+  <a href="./legalNotice.html" class="nav_item ${currentPage.includes('legalNotice') ? 'active' : ''}">
+    <span>Legal Notice</span>
+  </a>
+  </div>
+</nav>
+</div>
+  `
+};
+
+
+function getRawHeaderTemplate() {
+    return ` 
+    <header>
+      <div class="header_style">
+        <div class="join_logo_mobile"><a href="../index.html"><img src="../assets/imgs/joinHeaderMobileIcon.svg" alt="join_mobile_logo"></a></div>
+        <span>
+          Kanban Project Management Tool
+        </span>
+
+      </div>
+      
+    </header>
+  `;
+};

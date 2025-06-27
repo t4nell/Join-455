@@ -32,7 +32,7 @@ function renderHeader() {
  */
 function initSidebar() {
     const mediaQuery = window.matchMedia('(min-width: 1051px)');
-    const handleBreakpoint = (placeholder) => {
+    const handleBreakpoint = () => {
         proofSize();
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
