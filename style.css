@@ -29,24 +29,25 @@ main {
 }
 
 .join_logo{
-  height: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative; /* Ändern von relative zu fixed */
+  top: 50vh; /* Zentriert vertikal im Viewport */
+  left: 50vw; /* Zentriert horizontal im Viewport */
   transform: translate(-50%, -50%) scale(1);
   animation: fadeIn 1000ms ease forwards, moveLogo 2s ease forwards;
   animation-delay: 0ms, 1000ms;
   z-index: 1000;
 }
 
+.join_logo_img {
+  height: 272px;
+  padding-top: 16px;
+}
+
 .signup_login{
   align-items: center;
-  /* position: absolute; */
   height: 49px;
-  /* top: 80px; */
-  /* right: 122px; */
   gap: 35px;
-  padding-right: 16px;
+  padding-right: 50px;
 }
 
 .signup_login_mobile{
@@ -140,12 +141,14 @@ footer a:hover {
 
   @keyframes moveLogo {
     0% {
+      top: 50vh;
+      left: 50vw;
       transform: translate(-50%, -50%) scale(1);
     }
     100% {
-        top: -65px;
-        left: -20px;
-        transform: translate(0, 0) scale(0.365);
+      top: 0;
+      left: 0;
+      transform: translate(0, 0) scale(0.365);
     }
   }
 
