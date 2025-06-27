@@ -81,7 +81,8 @@ async function verifyPassword(password, storedHash) {
  * @returns {boolean} True if email format is valid, false otherwise
  */
 function validateEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+    const emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
     if (!email || email.length === 0) return false;
     if (email.length > 254) return false;
     if (!email.includes('@')) return false;
@@ -108,12 +109,12 @@ async function handleSignup(event) {
     const password = document.getElementById('signupPassword').value;
     const confirmPassword = document.getElementById('signupConfirmPassword').value;
     const acceptPolicy = document.getElementById('accept_policy').checked;
-    
+
     if (!validateEmail(email)) {
         showNotification('Bitte geben Sie eine gültige E-Mail-Adresse ein', true);
         return;
     }
-    
+
     if (!acceptPolicy) {
         showNotification('Bitte akzeptieren Sie die Datenschutzrichtlinie', true);
         return;
@@ -177,12 +178,12 @@ async function handleLogin(event) {
 
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-    
+
     if (!validateEmail(email)) {
         showNotification('Bitte geben Sie eine gültige E-Mail-Adresse ein', true);
         return;
     }
-    
+
     const user = findUser(email);
 
     if (!user) {
@@ -293,37 +294,45 @@ function disableSignupButton() {
 }
 
 /**
- * Updates the password field icon based on whether the password field has content
- * Changes between visibility off icon and default lock icon depending on input value
+ * Handles the password input field and updates the icon accordingly.
+ *
+ * Displays the "password visibility off" icon if the input is not empty,
+ * otherwise shows the default lock icon.
+ *
+ * @param {string} inputId - The ID of the password input field
+ * @param {string} iconContainerId - The ID of the icon container element
  * @returns {void}
  */
-function passwordVisibility() {
-    const locIcon = document.getElementById('lock_icon_container');
-    const passwordInput = document.getElementById('loginPassword');
+function handlePasswordInput(inputId, iconContainerId) {
+    const passwordInput = document.getElementById(inputId);
+    const iconContainer = document.getElementById(iconContainerId);
     const value = passwordInput.value.trim();
 
     if (value !== '') {
-        locIcon.innerHTML = passwordVisibilityOffTemplate();
+        iconContainer.innerHTML = passwordVisibilityOffTemplate(iconContainerId, inputId);
     } else {
-        locIcon.innerHTML = defaultLockIconTemplate();
+        iconContainer.innerHTML = defaultLockIconTemplate();
     }
 }
 
 /**
- * Toggles the password visibility between hidden and visible
- * Changes the input type between 'password' and 'text'
- * Updates the icon to reflect current visibility state
+ * Toggles the visibility of the password input field.
+ *
+ * Switches the input type between "password" and "text" and updates the icon
+ * to reflect the current visibility state.
+ *
+ * @param {string} iconContainerId - The ID of the icon container element
+ * @param {string} inputId - The ID of the password input field
  * @returns {void}
  */
-function showPassword() {
-    const locIcon = document.getElementById('lock_icon_container');
-    const passwordInput = document.getElementById('loginPassword');
+function togglePasswordVisibility(iconContainerId, inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const iconContainer = document.getElementById(iconContainerId);
     passwordInput.setAttribute('type', passwordInput.getAttribute('type') === 'password' ? 'text' : 'password');
 
     if (passwordInput.type === 'text') {
-        locIcon.innerHTML = passwordVisibilityOnTemplate();
+        iconContainer.innerHTML = passwordVisibilityOnTemplate(iconContainerId, inputId);
     } else {
-        locIcon.innerHTML = passwordVisibilityOffTemplate();
+        iconContainer.innerHTML = passwordVisibilityOffTemplate(iconContainerId, inputId);
     }
 }
-

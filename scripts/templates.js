@@ -18,7 +18,7 @@ function getLoginSignupTemplate() {
           <div class="input_login_container">
             <input id="loginEmail" class="mail_input_icon" type="text" placeholder="E-Mail">
             <div class="lock_icon_group">
-              <input oninput="passwordVisibility()" id="loginPassword" type="password" placeholder="Password" class="password_input">
+              <input oninput="handlePasswordInput('loginPassword', 'lock_icon_container')" id="loginPassword" type="password" placeholder="Password" class="password_input">
               <div class="lock_icon" id="lock_icon_container">
                 <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
               </div>
@@ -41,8 +41,36 @@ function getLoginSignupTemplate() {
         <div class="input_login_container">
           <input id="signupName" class="name_input_icon" type="text" placeholder="Name" oninput="disableSignupButton()">
           <input id="signupEmail" class="mail_input_icon" type="email" placeholder="E-Mail" oninput="disableSignupButton()">
-          <input id="signupPassword" class="lock_input_icon" type="password" placeholder="Password" oninput="disableSignupButton()">
-          <input id="signupConfirmPassword" class="lock_input_icon" type="password" placeholder="Confirm Password" oninput="disableSignupButton()">
+          <div class="lock_icon_group">
+  <input 
+    id="signupPassword" 
+    type="password" 
+    placeholder="Password" 
+    class="lock_input_icon"
+    oninput="handlePasswordInput('signupPassword', 'sign_up_password_container'); disableSignupButton()"
+  >
+  <div 
+    class="lock_icon" 
+    id="sign_up_password_container"
+  >
+    <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+  </div>
+</div>
+          <div class="lock_icon_group">
+  <input 
+    id="signupConfirmPassword" 
+    type="password" 
+    placeholder="Confirm Password" 
+    class="lock_input_icon"
+    oninput="handlePasswordInput('signupConfirmPassword', 'confirm_password_icon'); disableSignupButton()"
+  >
+  <div 
+    class="lock_icon" 
+    id="confirm_password_icon"
+  >
+    <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+  </div>
+</div>
           <div class="checkbox_container">  
           <input type="checkbox" id="accept_policy" name="a" value="accept_policy">
           <label for="accept_policy">I accept the <a href="./policy/policy.html">Privacy policy</a></label>
@@ -160,37 +188,55 @@ function getSidebarTemplateMobile(currentPage) {
 }
 
 /**
- * Generates HTML template for the password visibility off icon
- * @returns {string} HTML string containing the visibility off icon
+ * Returns the HTML template for the "password visibility off" icon.
+ *
+ * This template creates a clickable icon that toggles the password visibility
+ * for a given input field. When clicked, it calls the togglePasswordVisibility
+ * function with the specified icon container and input field IDs.
+ *
+ * @param {string} iconContainerId - The ID of the icon container element
+ * @param {string} inputId - The ID of the password input field
+ * @returns {string} HTML string representing the "visibility off" icon
  */
-function passwordVisibilityOffTemplate() {
+function passwordVisibilityOffTemplate(iconContainerId, inputId) {
     return `
-        <div onclick="showPassword()">
+        <div onclick="togglePasswordVisibility('${iconContainerId}', '${inputId}')">
             <img src="./assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
         </div>
     `;
 }
 
 /**
- * Generates HTML template for the default lock icon
- * @returns {string} HTML string containing the default lock icon
+ * Returns the HTML template for the "password visibility on" icon.
+ *
+ * This template creates a clickable icon that toggles the password visibility
+ * for a given input field. When clicked, it calls the togglePasswordVisibility
+ * function with the specified icon container and input field IDs.
+ *
+ * @param {string} iconContainerId - The ID of the icon container element
+ * @param {string} inputId - The ID of the password input field
+ * @returns {string} HTML string representing the "visibility on" icon
  */
-function defaultLockIconTemplate() {
+function passwordVisibilityOnTemplate(iconContainerId, inputId) {
     return `
-        <div>
-            <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
+        <div onclick="togglePasswordVisibility('${iconContainerId}', '${inputId}')">
+            <img src="./assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
         </div>
     `;
 }
 
 /**
- * Generates HTML template for the password visibility on icon
- * @returns {string} HTML string containing the visibility on icon
+ * Returns the HTML template for the default lock icon.
+ *
+ * This template displays a static lock icon, typically used for password input fields
+ * when no visibility toggle is required.
+ *
+ * @returns {string} HTML string representing the default lock icon
  */
-function passwordVisibilityOnTemplate() {
+function defaultLockIconTemplate() {
     return `
-        <div onclick="showPassword()">
-            <img src="./assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
+        <div>
+            <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
         </div>
     `;
 }
