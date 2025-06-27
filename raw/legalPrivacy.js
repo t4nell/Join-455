@@ -5,15 +5,8 @@ const headerContainer = document.getElementById('header_container');
  * @returns {void} Sets up the page layout and updates user information.
  */
 
-function init() {
-    checkOrientation();
-    renderSidebar();
-    renderHeader();
-    updateUserProfile();
-    initSidebar();
-}
 
-function rawInit() {
+function init() {
     checkOrientation();
     initSidebar();
     renderHeader();
