@@ -24,36 +24,38 @@
   </head>
   <body onload="init()">
     <main id="main_container">
-      <div class="header_container">
+      <div class="animation_container">
 
         <div class="join_logo">
-          <a class="sidebar_join_logo" style="display: block !important;" href="./index.html"><img class="join_logo_img" src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
+          <a class="sidebar_join_logo" href="./index.html"><img class="join_logo_img" src="./assets/imgs/joinLogoDark.svg" alt="join_logo" /></a>
         </div>
 
-        <div id="signup_login_desktop" class="signup_login" style="display: none;">
-          <span class="font_size_20px">Not a Join user?</span>
-          <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
-        </div>
+        <div class="header_container">
+          
+          <div id="signup_login_desktop" class="signup_login" style="display: none;">
+            <span class="font_size_20px">Not a Join user?</span>
+            <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
+          </div>
 
+        </div>
+        <section id="main_section_index" class="main_section">
+          
+          <div id="login_container" class="login_wrapper"></div>
+          <div id="signup_container" class="signup_wrapper"></div>
+
+          <div id="signup_login_mobile" class="signup_login_mobile" style="display: none;">
+            <span class="font_size_20px">Not a Join user?</span>
+            <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
+          </div>
+
+        </section>
       </div>
-      <section id="main_section_index" class="main_section">
-        
-        <div id="login_container" class="login_wrapper"></div>
-        <div id="signup_container" class="signup_wrapper"></div>
-
-        <div id="signup_login_mobile" class="signup_login_mobile" style="display: none;">
-          <span class="font_size_20px">Not a Join user?</span>
-          <button class="dark_btn" onclick="toggleLoginSignup()">Sign up</button>
+      <footer> 
+        <div>
+          <a href="./raw/privacyPolicy.html">Privacy Policy</a>
+          <a href="./raw/legalNotice.html">Legal Notice</a>
         </div>
-
-      </section>
-
-    <footer> 
-      <div>
-        <a href="./raw/privacyPolicy.html">Privacy Policy</a>
-        <a href="./raw/legalNotice.html">Legal Notice</a>
-      </div>
-    </footer>  
+      </footer>  
             <div id="landscape_wrapper">
         <div id="landscape_modal" class="landscape_modal d_none">
           <div class="landscape_modal_content">

@@ -23,6 +23,10 @@
         display: none;
     }
 
+    .sidebar_join_logo {
+        display: block !important;
+    }
+
     /* sidebar resp */
 
     .sidebar_join_logo {
