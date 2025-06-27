@@ -49,7 +49,7 @@ function proofSize() {
     const navContainer = document.getElementById('sidebar_container');
     const navbarMobileContainer = document.getElementById('navbar_mobile_container');
     const width = window.innerWidth;
-    if (width <= 1050) {
+    if (width < 1050) {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
