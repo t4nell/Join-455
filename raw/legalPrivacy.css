@@ -37,10 +37,21 @@ h2{
     top: 100px;
     left: 232px;
     height: calc(100% - 142px);
-    width: calc(100% - 424px);
+    width: unset;
     overflow-y: auto;
     padding: 0 96px 42px 96px;
-    max-width: 1440px;
+    max-width: none;
+}
+
+.legal_container {
+    position: absolute;
+    top: 100px;
+    left: 232px;
+    height: calc(100% - 142px);
+    width: unset;
+    overflow-y: auto;
+    padding: 0 96px 42px 96px;
+    max-width: none;
 }
 
 @media screen and (max-width: 1050px) {
