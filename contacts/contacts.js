@@ -137,7 +137,7 @@ function closeContactMenuOnClickOutside(event) {
  * @returns {void} Sets up the sidebar responsiveness.
  */
 function initSidebar() {
-    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const mediaQuery = window.matchMedia('(min-width: 1050px)');
     const handleBreakpoint = () => {
         proofSize();
     };

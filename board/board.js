@@ -334,7 +334,7 @@ function getTaskCard(task) {
  * @returns {void} Updates the DOM with sidebar menu elements and event listeners
  */
 function renderSidebar() {
-    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const mediaQuery = window.matchMedia('(min-width: 1050px)');
     const handleBreakpoint = () => {
         updateSidebar();
     };
@@ -360,7 +360,7 @@ function updateSidebar() {
     const side = document.getElementById('sidebar_container');
     const mobile = document.getElementById('navbar_mobile_container');
     const currentPage = window.location.pathname;
-    const isMobile = window.innerWidth < 1050;
+    const isMobile = window.innerWidth <= 1050;
     main.innerHTML = isMobile ? '' : getSidebarTemplate();
     mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
     side.style.display = isMobile ? 'none' : 'block';

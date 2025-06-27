@@ -257,7 +257,7 @@ function renderSidebar() {
 function shouldShowMobileGreeting() {
     const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');
     const viewportWidth = window.innerWidth;
-    return viewportWidth < 1050 && hasSeenGreeting !== 'true';
+    return viewportWidth <= 1050 && hasSeenGreeting !== 'true';
 }
 
 /**

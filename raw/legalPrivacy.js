@@ -5,14 +5,12 @@ const headerContainer = document.getElementById('header_container');
  * @returns {void} Sets up the page layout and updates user information.
  */
 
-
 function init() {
     checkOrientation();
     initSidebar();
     renderHeader();
     rawSidebarDesktopRender();
 }
-
 
 /**
  * Renders the sidebar navigation menu
@@ -44,7 +42,7 @@ function renderHeader() {
  * @returns {void} Sets up the sidebar responsiveness.
  */
 function initSidebar() {
-    const mediaQuery = window.matchMedia('(min-width: 1051px)');
+    const mediaQuery = window.matchMedia('(min-width: 1050px)');
     const handleBreakpoint = () => {
         proofSize();
     };
@@ -62,7 +60,7 @@ function proofSize() {
     const navContainer = document.getElementById('sidebar_container');
     const navbarMobileContainer = document.getElementById('navbar_mobile_container');
     const width = window.innerWidth;
-    if (width < 1051) {
+    if (width <= 1050) {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
