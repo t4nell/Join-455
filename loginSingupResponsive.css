@@ -28,9 +28,7 @@
 
     #loginEmail,
     .lock_icon_group {
-        width: 80% !important;
         width: calc(100% - 64px);
-        max-width: 422px !important;
         box-sizing: border-box !important;
         display: block !important;
     }
