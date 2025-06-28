@@ -7,7 +7,8 @@
 function renderDetailTemplate(taskId) {
     const task = allTasks.find((task) => task.id === taskId);
     if (task) {
-        taskDetailCard.innerHTML = getDetailTaskCard(task);
+        const categoryColor = getCategoryColor(task.category);
+        taskDetailCard.innerHTML = getDetailTaskCard(task, categoryColor);
         overlay.classList.remove('fade_out');
         taskDetailCard.classList.remove('closed');
     };
