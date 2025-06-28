@@ -6,7 +6,8 @@
 function renderHeader() {
     const headerContainer = document.getElementById('header_container');
     headerContainer.innerHTML = getHeaderTemplate();
-}
+};
+
 
 /**
  * Initializes the help page by checking orientation, rendering elements, and updating user profile.
@@ -18,7 +19,8 @@ function init() {
     initSidebar();
     renderHeader();
     updateUserProfile();
-}
+};
+
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -32,7 +34,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version (mobile or desktop).
@@ -48,8 +51,9 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
+    };
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -64,7 +68,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -79,7 +84,8 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
+};
+
 
 /**
  * Navigates back to the previous page in browser history.
@@ -88,5 +94,4 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
  */
 function goBack() {
     window.history.back();
-}
-
+};

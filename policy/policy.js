@@ -7,8 +7,7 @@ function init() {
     renderHeader();
     updateUserProfile();
     initSidebar();
-}
-
+};
 
 
 /**
@@ -18,13 +17,8 @@ function init() {
  */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
-}
+};
 
-/**
- * Initializes the policy page components
- *
- * @returns {void} Sets up page layout and updates user information
- */
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -38,7 +32,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -54,8 +49,9 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
+    };
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -70,7 +66,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -85,7 +82,8 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
+};
+
 
 /**
  * Creates the template for the mobile navigation bar.
@@ -119,6 +117,4 @@ function getSidebarTemplateMobile(currentPage) {
             </nav>
         </div>
 `;
-}
-
-
+};
