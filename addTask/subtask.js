@@ -11,7 +11,8 @@ function replaceButtons() {
     const inputField = document.getElementById('tag_input_field');
     subtaskBtnContainer.innerHTML = getBtnsTemplate();
     inputField.focus();
-}
+};
+
 
 /**
  * Handles Enter key press in the subtask input field.
@@ -24,7 +25,8 @@ function onKeyDownEnter(event) {
         event.preventDefault();
         confirmSubtaskBtn();
     }
-}
+};
+
 
 /**
  * Checks if the subtask input field has a value and acts accordingly.
@@ -39,7 +41,8 @@ function checkValue() {
     } else {
         resetButtons();
     }
-}
+};
+
 
 /**
  * Clears the text in the subtask input field.
@@ -60,7 +63,8 @@ function deleteTextBtn() {
 function resetButtons() {
     const subtaskBtnContainer = document.getElementById('subtask_btn_container');
     subtaskBtnContainer.innerHTML = resetButtonsTemplate();
-}
+};
+
 
 /**
  * Automatically resizes a textarea to fit its content.
@@ -71,7 +75,8 @@ function resetButtons() {
 function autoResizeTextarea(element) {
     element.style.height = 'auto';
     element.style.height = element.scrollHeight + 'px';
-}
+};
+
 
 /**
  * Enables editing mode for a subtask.
@@ -89,7 +94,8 @@ function enableEditing(tagInputId, tagBtnConId, tagId) {
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
     newTagTrashDoneBtn(tagInputId, tagBtnConId, tagId);
-}
+};
+
 
 /**
  * Handles the edit button click for a subtask.
@@ -112,7 +118,8 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
     const tagField = newTag.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
     newTagTrashDoneBtn(tagInputId, tagBtnConId, tagId);
-}
+};
+
 
 /**
  * Removes a subtask from the DOM.
@@ -123,7 +130,8 @@ function editTextBtn(event, tagInputId, tagBtnConId, tagId) {
 function trashBtn(tagId) {
     const newTagField = document.getElementById(tagId);
     newTagField.remove();
-}
+};
+
 
 /**
  * Adds a new subtask from the input field value.
@@ -143,7 +151,8 @@ function confirmSubtaskBtn() {
         inputField.value = '';
         resetButtons();
     }
-}
+};
+
 
 /**
  * Validates the value of a subtask field when confirming edits.
@@ -166,7 +175,8 @@ function newTagCheckValue(event, tagBtnConId, tagInputId, tagId) {
     } else {
         input.classList.add('input_error_new_subtask_tag');
     }
-}
+};
+
 
 /**
  * Disables editing mode for a subtask input field.
@@ -188,7 +198,8 @@ function disableEditing(tagInputId) {
     input.classList.remove('focus');
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.remove('editing');
-}
+};
+
 
 /**
  * Restores default buttons for a subtask.
@@ -201,7 +212,8 @@ function disableEditing(tagInputId) {
 function newTagDefaultBtns(tagBtnConId, tagInputId, tagId) {
     const newTagField = document.getElementById(tagBtnConId);
     newTagField.innerHTML = newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId);
-}
+};
+
 
 /**
  * Updates a subtask's buttons to show trash and done buttons.
@@ -214,5 +226,5 @@ function newTagDefaultBtns(tagBtnConId, tagInputId, tagId) {
 function newTagTrashDoneBtn(tagInputId, tagBtnConId, tagId) {
     const newTagTrashDoneBtn = document.getElementById(tagBtnConId);
     newTagTrashDoneBtn.innerHTML = newTagTrashDoneBtnTemplate(tagBtnConId, tagInputId, tagId);
-}
+};
 

@@ -20,5 +20,5 @@ function switchBtnPriority(btnPriority) {
             document.getElementById('icon_low').src = '../assets/imgs/addTaskIcons/priorityLowIconWhite.svg';
             break;
     }
-}
+};
 

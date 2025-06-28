@@ -24,7 +24,8 @@ function collectTaskData(form, boardStatusRequest) {
         subtasks,
         status: status,
     };
-}
+};
+
 
 /**
  * Converts an array of subtask titles into an object with structured subtask data.
@@ -41,7 +42,8 @@ function collectSubtaskData(subtasksArray) {
         };
     });
     return subtasks;
-}
+};
+
 
 /**
  * Collects the assigned users for a task and structures them in an object.
@@ -59,7 +61,8 @@ function collectAssignedToData() {
         };
     });
     return assignedTo;
-}
+};
+
 
 /**
  * Returns the status string for a task based on the provided board status.
@@ -82,7 +85,8 @@ function boardStatusRequest(boardStatus) {
             break;
     }
     return status;
-}
+};
+
 
 /**
  * Sends task data to the server for saving.
@@ -92,7 +96,8 @@ function boardStatusRequest(boardStatus) {
  */
 function postTask(taskData) {
     postData('addTask', taskData);
-}
+};
+
 
 /**
  * Sends data to the server via a POST request.
@@ -110,5 +115,6 @@ async function postData(path = '', data = {}) {
         body: JSON.stringify(data),
     });
     return (responseToJson = await response.json());
-}
+};
+
 

@@ -75,7 +75,8 @@ function getLoginSignupTemplate() {
     </div>
   </div>
 `;
-}
+};
+
 
 /**
  * Returns the HTML template for the sidebar navigation.
@@ -112,7 +113,8 @@ function getSidebarTemplate(currentPage) {
       <a href="../legalNotes/legal.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
-}
+};
+
 
 /**
  * Returns the HTML template for the header section.
@@ -143,7 +145,8 @@ function getHeaderTemplate() {
       
     </header>
   `;
-}
+};
+
 
 /**
  * Returns the HTML template for the mobile version of the sidebar navigation.
@@ -176,7 +179,8 @@ function getSidebarTemplateMobile(currentPage) {
 </nav>
 </div>
   `;
-}
+};
+
 
 /**
  * Returns the HTML template for the "password visibility off" icon.
@@ -195,7 +199,8 @@ function passwordVisibilityOffTemplate(iconContainerId, inputId) {
             <img src="./assets/imgs/inputIcons/visibilityOffPassword.svg" alt="lock icon">
         </div>
     `;
-}
+};
+
 
 /**
  * Returns the HTML template for the "password visibility on" icon.
@@ -214,7 +219,7 @@ function passwordVisibilityOnTemplate(iconContainerId, inputId) {
             <img src="./assets/imgs/inputIcons/visibilityForPassword.svg" alt="lock icon">
         </div>
     `;
-}
+};
 
 /**
  * Returns the HTML template for the default lock icon.
@@ -230,8 +235,7 @@ function defaultLockIconTemplate() {
             <img src="./assets/imgs/inputIcons/lock.png" alt="lock icon">
         </div>
     `;
-}
-
+};
 
 
 /**
@@ -254,7 +258,7 @@ function rawSidebarDesktopRender(currentPage){
       <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
-}
+};
 
 
 /**

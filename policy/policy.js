@@ -7,8 +7,7 @@ function init() {
     renderHeader();
     updateUserProfile();
     initSidebar();
-}
-
+};
 
 
 /**
@@ -18,13 +17,8 @@ function init() {
  */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
-}
+};
 
-/**
- * Initializes the policy page components
- *
- * @returns {void} Sets up page layout and updates user information
- */
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -38,7 +32,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -54,8 +49,9 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
+    };
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -70,7 +66,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -85,7 +82,44 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
+};
 
 
+<<<<<<< HEAD
 
+
+=======
+/**
+ * Creates the template for the mobile navigation bar.
+ *
+ * @param {string} currentPage - Path of the current page for highlighting the active menu item.
+ * @returns {string} HTML template for the mobile navigation.
+ */
+function getSidebarTemplateMobile(currentPage) {
+    return ` 
+    <div class="sidebar_container">
+            <nav class="sidebar_nav">
+                <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
+                    <span>Summary</span>
+                </a>
+                <a href="../board/board.html" class="nav_item ${currentPage.includes('board') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/board.svg" alt="Board Icon" />
+                    <span>Board</span>
+                </a>
+                <a href="../addTask/addTask.html" class="nav_item ${currentPage.includes('addTask') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/addTask.svg" alt="Add Task Icon" />
+                    <span>Add Task</span>
+                </a>
+
+                <a
+                    href="../contacts/contacts.html"
+                    class="nav_item ${currentPage.includes('contacts') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/contacts.svg" alt="Contacts Icon" />
+                    <span>Contacts</span>
+                </a>
+            </nav>
+        </div>
+`;
+};
+>>>>>>> 6aa3aa724408cc4449383f2a2380c23928d24b4b

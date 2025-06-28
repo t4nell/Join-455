@@ -1,16 +1,17 @@
 const mainContainer = document.getElementById('navbar_container');
 const headerContainer = document.getElementById('header_container');
 
-/** * Initializes the legal notes page and sets up the sidebar and header.
+/** 
+ * Initializes the legal notes page and sets up the sidebar and header.
+ * 
  * @returns {void} Sets up the page layout and updates user information.
  */
-
 function init() {
     checkOrientation();
     initSidebar();
     renderHeader();
+};
 
-}
 
 /**
  * Renders the sidebar navigation menu
@@ -19,7 +20,8 @@ function init() {
  */
 function renderSidebar() {
     mainContainer.innerHTML = getSidebarTemplate();
-}
+};
+
 
 /**
  * Renders the header section
@@ -28,13 +30,8 @@ function renderSidebar() {
  */
 function renderHeader() {
     headerContainer.innerHTML = getRawHeaderTemplate();
-}
+};
 
-/**
- * Initializes the legal notes page components
- *
- * @returns {void} Sets up page layout and updates user information
- */
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -48,7 +45,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -64,8 +62,9 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
+    };
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -80,7 +79,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = rawSidebarDesktopRender(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -95,5 +95,4 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getRawSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
-
+};

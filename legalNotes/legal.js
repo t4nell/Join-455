@@ -1,16 +1,17 @@
 const mainContainer = document.getElementById('navbar_container');
 const headerContainer = document.getElementById('header_container');
 
-/** * Initializes the legal notes page and sets up the sidebar and header.
+/** 
+ * Initializes the legal notes page and sets up the sidebar and header.
+ * 
  * @returns {void} Sets up the page layout and updates user information.
  */
-
 function init() {
     checkOrientation();
     renderHeader();
     updateUserProfile();
     initSidebar();
-}
+};
 
 
 /**
@@ -20,13 +21,8 @@ function init() {
  */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
-}
+};
 
-/**
- * Initializes the legal notes page components
- *
- * @returns {void} Sets up page layout and updates user information
- */
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -40,7 +36,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -56,8 +53,9 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
+    };
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -72,7 +70,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -87,5 +86,30 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
+};
 
+<<<<<<< HEAD
+=======
+
+/**
+ * Renders a minimal sidebar for raw/legal pages (e.g., privacy policy, legal notice).
+ *
+ * @returns {void} Updates the sidebar with only login and legal links.
+ */
+function rawSidebarRender() {
+    const currentPage = window.location.pathname;
+    document.querySelector('.user_menu').style.display = 'none';
+    document.getElementById('navbar_container').innerHTML = `            
+            <nav class="sidebar_nav">
+                <a href="../index.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
+                    <span>Login</span>
+                </a>
+            </nav>
+            <div class="sidebar_footer">
+      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
+    </div>
+`;
+};
+>>>>>>> 6aa3aa724408cc4449383f2a2380c23928d24b4b

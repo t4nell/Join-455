@@ -1,26 +1,17 @@
 /**
- * Generates HTML for a contact item in the assignment dropdown.
+ * Generates the HTML template for a contact item in the "Assigned To" dropdown list.
  *
- * @param {Object} contact - The contact data object to render.
- * @param {number} index - Index of the contact in the contact array.
- * @returns {string} HTML markup for the contact list item.
+ * @param {string} activeClass - CSS class to indicate if the contact is currently active/selected.
+ * @param {number} index - The index of the contact in the list.
+ * @param {string} bgColor - The background color for the contact's profile icon.
+ * @param {string} nameInitials - The initials of the contact's first name.
+ * @param {string} surnameInitials - The initials of the contact's surname.
+ * @param {Object} contact - The contact object containing user details.
+ * @param {string} checkedAttr - The 'checked' attribute for the checkbox if the contact is selected.
+ * @returns {string} HTML markup for the contact item in the dropdown.
  */
-function loadContactsToAssignedTemplate(contact, index) {
-    const isSelected = selectedUserIndices.includes(index);
-    const activeClass = isSelected ? ' active' : '';
-    const checkedAttr = isSelected ? 'checked' : '';
-
-    const bgColor = contact.color;
-    const nameInitials = contact.name
-        .split(' ')
-        .map((p) => p.charAt(0).toUpperCase())
-        .join('');
-    const surnameInitials = contact.surname
-        .split(' ')
-        .map((p) => p.charAt(0).toUpperCase())
-        .join('');
-
-    return `
+function loadContactsToAssignedTemplate(activeClass, index, bgColor, nameInitials, surnameInitials, contact, checkedAttr) {
+  return `
     <li class="dropdown_item${activeClass}" id="dropdown_item_${index}" onclick="selectUser(${index}, event)">
             <div class="symbole_name_group">
                 <div class="profile_icon" style="background-color: ${bgColor}">
@@ -40,7 +31,8 @@ function loadContactsToAssignedTemplate(contact, index) {
                 ${checkedAttr} />
     </li>
 `;
-}
+};
+
 
 /**
  * Creates the HTML template for when no contacts are found.
@@ -48,10 +40,11 @@ function loadContactsToAssignedTemplate(contact, index) {
  * @returns {string} HTML markup for no contacts found message.
  */
 function noContactsFoundToAssignedTemplate() {
-    return `
+  return `
     <li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>
 `;
-}
+};
+
 
 /**
  * Creates the HTML template for a selected user's icon.
@@ -62,7 +55,7 @@ function noContactsFoundToAssignedTemplate() {
  * @returns {string} HTML markup for the selected user's icon.
  */
 function renderSelectedIconsTemplate(index, initials, bgColor) {
-    return `
+  return `
         <div id="selected_user_${index}">
             <div class="placeholder_icon">
                 <div class="profile_icon" style="background-color: ${bgColor}">
@@ -70,7 +63,8 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
                 </div>
             </div>
         </div>`;
-}
+};
+
 
 /**
  * Creates the HTML template for displaying the count of additional contacts beyond the visible limit.
@@ -80,10 +74,10 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
  * @returns {string} HTML markup for the +X indicator.
  */
 function renderMoreUserIcons(totalContacts, maxVisible) {
-    return `
+  return `
         <div class="user_icons more_user_icons">
             +${totalContacts - maxVisible}
         </div>
     `;
-}
+};
 
