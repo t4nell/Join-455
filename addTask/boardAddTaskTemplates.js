@@ -121,7 +121,8 @@ function renderTaskBoardTemplate() {
                 </div>
             </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for priority selection buttons.
@@ -148,7 +149,8 @@ function getPriorityButtonsTemplate() {
             <img src="../assets/imgs/addTaskIcons/priorityLowIcon.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
         </label>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for contact assignment.
@@ -175,7 +177,8 @@ function getAssignedToTemplate() {
         </div>
         <div id="selected_users_group" class="selected_user_group"></div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for category selection.
@@ -204,7 +207,8 @@ function getCategoryTemplate() {
             <ul class="category_dropdown_menu" id="category_dropdown_menu"></ul>
         </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for subtask input.
@@ -233,7 +237,8 @@ function getSubtasksTemplate() {
         </div>
         <div class="new_tag_container" id="new_tag_container"></div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for form buttons.
@@ -251,7 +256,8 @@ function getTaskButtonsTemplate() {
             <img class="create_task_icon" id="create_task" src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg" alt="Icon" />
         </button>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for success notification.
@@ -264,5 +270,5 @@ function showAddedNotificationTemplate(notificationText) {
         <p>${notificationText}</p>
         <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
     `;
-}
+};
 

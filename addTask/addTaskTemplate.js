@@ -118,7 +118,8 @@ function renderTaskTemplate() {
                 </div>
             </div>
     `;
-}
+};
+
 
 /**
  * Generates the template for priority selection buttons.
@@ -145,7 +146,8 @@ function getPriorityButtonsTemplate() {
             <img src="../assets/imgs/addTaskIcons/priorityLowIcon.svg" alt="Low Icon" class="priority_icon" id="icon_low"/>
         </label>
     `;
-}
+};
+
 
 /**
  * Creates the template for user assignment.
@@ -172,7 +174,8 @@ function getAssignedToTemplate() {
         </div>
         <div id="selected_users_group" class="selected_user_group"></div>
     `;
-}
+};
+
 
 /**
  * Creates the template for category selection.
@@ -201,7 +204,8 @@ function getCategoryTemplate() {
             <ul class="category_dropdown_menu" id="category_dropdown_menu"></ul>
         </div>
     `;
-}
+};
+
 
 /**
  * Creates the template for subtask input.
@@ -230,7 +234,8 @@ function getSubtasksTemplate() {
         </div>
         <div class="new_tag_container" id="new_tag_container"></div>
     `;
-}
+};
+
 
 /**
  * Creates the template for form buttons.
@@ -248,7 +253,8 @@ function getTaskButtonsTemplate() {
             <img class="create_task_icon" id="create_task" src="../assets/imgs/addTaskIcons/creatTaskBtnCheck.svg" alt="Icon" />
         </button>
     `;
-}
+};
+
 
 /**
  * Creates the template for the mobile navigation bar.
@@ -282,7 +288,8 @@ function getSidebarTemplateMobile(currentPage) {
             </nav>
         </div>
 `;
-}
+};
+
 
 /**
  * Creates the template for the success notification.
@@ -295,4 +302,5 @@ function showAddedNotificationTemplate(notificationText) {
         <p>${notificationText}</p>
         <img src="../assets/imgs/addTaskIcons/BoardMenuIcon.svg" alt="Icon" />
     `;
-}
+};
+

@@ -31,7 +31,8 @@ function loadContactsToAssignedTemplate(activeClass, index, bgColor, nameInitial
                 ${checkedAttr} />
     </li>
 `;
-}
+};
+
 
 /**
  * Creates the HTML template for when no contacts are found.
@@ -42,7 +43,8 @@ function noContactsFoundToAssignedTemplate() {
   return `
     <li class="dropdown_item_no_contact_found"><div class="no-results">No contact found</div></li>
 `;
-}
+};
+
 
 /**
  * Creates the HTML template for a selected user's icon.
@@ -61,7 +63,8 @@ function renderSelectedIconsTemplate(index, initials, bgColor) {
                 </div>
             </div>
         </div>`;
-}
+};
+
 
 /**
  * Creates the HTML template for displaying the count of additional contacts beyond the visible limit.
@@ -76,5 +79,5 @@ function renderMoreUserIcons(totalContacts, maxVisible) {
             +${totalContacts - maxVisible}
         </div>
     `;
-}
+};
 
