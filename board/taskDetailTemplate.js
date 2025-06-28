@@ -10,8 +10,9 @@ function renderDetailTemplate(taskId) {
         taskDetailCard.innerHTML = getDetailTaskCard(task);
         overlay.classList.remove('fade_out');
         taskDetailCard.classList.remove('closed');
-    }
-}
+    };
+};
+
 
 /**
  * Closes the task detail template
@@ -22,7 +23,8 @@ function closeDetailTemplate() {
     overlay.classList.add('fade_out');
     taskDetailCard.classList.add('closed');
     removeDatePicker('#due_date_edit_task');
-}
+};
+
 
 /**
  * Prevents event propagation when clicking on the card
@@ -32,7 +34,8 @@ function closeDetailTemplate() {
  */
 function eventBubbling(event) {
     event.stopPropagation();
-}
+};
+
 
 /**
  * Renders assigned contacts for task detail view
@@ -51,7 +54,8 @@ function renderAssignedContacts(assignedTo) {
             return getAssignedContactsTemplate(contactId, contact, initials);
         })
         .join('');
-}
+};
+
 
 /**
  * Creates initials from contact name
@@ -70,7 +74,8 @@ function getBatch(contact) {
         .join('');
     const initials = nameInitials + surnameInitials;
     return initials;
-}
+};
+
 
 /**
  * Renders list of subtasks for task detail view
@@ -84,10 +89,28 @@ function renderSubtasksList(subtasks, taskId) {
     return Object.entries(subtasks)
         .map(([key, subtask]) => getSubtaskTemplate(key, subtask, taskId))
         .join('');
-}
+};
+
 
 /**
- * Toggles completion status of a subtask
+ * Updates the completion status of a subtask in the local task object.
+ *
+ * @param {string} taskId - ID of the parent task
+ * @param {string} subtaskKey - Key of the subtask to toggle
+ * @param {boolean} checked - New checked state of the subtask
+ * @returns {Object|null} Object with updated task and subtask title, or null if not found
+ */
+function updateSubtaskStatusLocally(taskId, subtaskKey, checked) {
+    const task = allTasks.find((task) => task.id === taskId);
+    if (!task || !task.subtasks) return null;
+    task.subtasks[subtaskKey].done = checked;
+    const title = task.subtasks[subtaskKey].title;
+    return { task, title };
+};
+
+
+/**
+ * Toggles completion status of a subtask and updates the database.
  *
  * @param {string} taskId - ID of the parent task
  * @param {string} subtaskKey - Key of the subtask to toggle
@@ -95,15 +118,27 @@ function renderSubtasksList(subtasks, taskId) {
  * @returns {Promise<void>} Updates subtask status in database
  */
 async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
-    const task = allTasks.find((task) => task.id === taskId);
-    if (!task || !task.subtasks) return;
-    task.subtasks[subtaskKey].done = checkbox.checked;
-    const title = task.subtasks[subtaskKey].title;
+    const result = updateSubtaskStatusLocally(taskId, subtaskKey, checkbox.checked);
+    if (!result) return;
+    await updateSubtaskStatus(taskId, subtaskKey, result, checkbox);
+};
+
+
+/**
+ * Updates the subtask status in the database and handles UI updates or errors.
+ *
+ * @param {string} taskId - ID of the parent task
+ * @param {string} subtaskKey - Key of the subtask to update
+ * @param {Object} result - Object containing updated task and subtask title
+ * @param {HTMLElement} checkbox - Checkbox element that triggered the update
+ * @returns {Promise<void>} Updates subtask status in database and UI
+ */
+async function updateSubtaskStatus(taskId, subtaskKey, result, checkbox) {
     try {
         const response = await fetch(`${BASE_URL}addTask/${taskId}/subtasks/${subtaskKey}.json`, {
             method: 'PUT',
             body: JSON.stringify({
-                title: title,
+                title: result.title,
                 done: checkbox.checked,
             }),
             headers: {
@@ -115,46 +150,72 @@ async function toggleSubtaskStatus(taskId, subtaskKey, checkbox) {
     } catch (error) {
         console.error('Error updating subtask:', error);
         checkbox.checked = !checkbox.checked;
-    }
-}
+    };
+};
+
 
 /**
- * Opens task edit view for specified task
+ * Sets up the edit form UI for the given task (checkboxes, assigned contacts, priority button).
+ *
+ * @param {Object} task - Task object to edit
+ * @returns {void} Updates UI elements for editing
+ */
+function renderEditTaskTemplate(task) {
+    const taskDetailCard = document.querySelector('.task_detail_card');
+    taskDetailCard.innerHTML = getEditTaskTemplate(task);
+    initEditTaskVariables();
+};
+
+
+/**
+ * Sets up the edit form UI for the given task (checkboxes, assigned contacts, priority button).
+ *
+ * @param {Object} task - Task object to edit
+ * @returns {void} Updates UI elements for editing
+ */
+function setupEditTaskUI(task) {
+    loadContactsToAssignedEditTask();
+    initializeTextareas();
+    if (task.assignedTo) {
+        const assignedContactsIds = Object.keys(task.assignedTo);
+        assignedContactsIds.forEach((contactId) => {
+            initializeAssignedContactCheckbox(task, contactId);
+        });
+    }
+    switchBtnPriorityEditTask(task.priority);
+};
+
+
+function initializeAssignedContactCheckbox(task, contactId) {
+    if (task.assignedTo[contactId] === true ||
+        (typeof task.assignedTo[contactId] === 'object' &&
+            Object.values(task.assignedTo[contactId])[0] === true)) {
+        const checkbox = document.getElementById(`users_checkbox_${contactId}_edit_task`);
+        if (checkbox) {
+            checkbox.checked = true;
+            const clickedItem = document.getElementById(`dropdown_item_${contactId}`);
+            if (clickedItem) clickedItem.classList.add('active');
+        };
+    };
+};
+
+
+/**
+ * Opens task edit view for specified task and initializes all required data.
  *
  * @param {string} taskId - ID of the task to edit
- * @returns {Promise<void>} Renders edit form with task data
+ * @returns {Promise<void>} Renders edit form with task data and loads contacts
  */
 async function openEditTask(taskId) {
     const task = allTasks.find((task) => task.id === taskId);
     if (task) {
-        const taskDetailCard = document.querySelector('.task_detail_card');
-        taskDetailCard.innerHTML = getEditTaskTemplate(task);
-        initEditTaskVariables();
+        renderEditTaskTemplate(task);
         await loadContactData();
-        loadContactsToAssignedEditTask();
-        initializeTextareas();
-        if (task.assignedTo) {
-            // Check if task has assigned contacts stored by ID
-            const assignedContactsIds = Object.keys(task.assignedTo);
-            assignedContactsIds.forEach((contactId) => {
-                if (
-                    task.assignedTo[contactId] === true ||
-                    (typeof task.assignedTo[contactId] === 'object' &&
-                        Object.values(task.assignedTo[contactId])[0] === true)
-                ) {
-                    const checkbox = document.getElementById(`users_checkbox_${contactId}_edit_task`);
-                    if (checkbox) {
-                        checkbox.checked = true;
-                        const clickedItem = document.getElementById(`dropdown_item_${contactId}`);
-                        if (clickedItem) clickedItem.classList.add('active');
-                    }
-                }
-            });
-        }
-        switchBtnPriorityEditTask(task.priority);
+        setupEditTaskUI(task);
     }
     initializeCalendar();
-}
+};
+
 
 /**
  * Initializes auto-resize behavior for textareas
@@ -166,7 +227,8 @@ function initializeTextareas() {
     textareas.forEach((textarea) => {
         autoResizeTextareaEditTask(textarea);
     });
-}
+};
+
 
 /**
  * Deletes a task from the board
@@ -185,11 +247,21 @@ async function deleteTask(taskId) {
         if (!response.ok) {
             throw new Error('Failed to delete task');
         }
-        allTasks = allTasks.filter((task) => task.id !== taskId);
-        closeDetailTemplate();
-        renderColumns();
+        removeTaskFromList(taskId);
     } catch (error) {
         console.error('Error deleting task:', error);
-    }
-}
+    };
+};
 
+
+/**
+ * Removes the deleted task from the local task list and updates the UI.
+ *
+ * @param {string} taskId - ID of the task to remove
+ * @returns {void} Removes task from allTasks, closes detail view, and re-renders columns
+ */
+function removeTaskFromList(taskId) {
+    allTasks = allTasks.filter((task) => task.id !== taskId);
+    closeDetailTemplate();
+    renderColumns();
+};

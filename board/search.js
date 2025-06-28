@@ -13,10 +13,7 @@ let isSearchActive = false;
 function searchOnInput() {
     const searchValue = searchInput.value.toLowerCase();
     const noTaskMessage = document.getElementById('no_find_task_mesage');
-    if (!isSearchActive && searchValue.length > 0) {
-        isSearchActive = true;
-        searchIcon.src = '../assets/imgs/boardIcons/close.svg';
-    };
+    toggleSearchIcon(searchValue);
     if (searchValue.length === 0) {
         resetFilter();
         noTaskMessage.style.display = 'none';
@@ -24,6 +21,20 @@ function searchOnInput() {
     };
     const filteredTasks = getFilteredTasks(searchValue, noTaskMessage);
     renderFilteredColumns(filteredTasks);
+};
+
+
+/**
+ * Toggles the search icon between search and close depending on input state.
+ *
+ * @param {string} searchValue - Current value of the search input
+ * @returns {void} Updates the search icon and state
+ */
+function toggleSearchIcon(searchValue) {
+    if (!isSearchActive && searchValue.length > 0) {
+        isSearchActive = true;
+        searchIcon.src = '../assets/imgs/boardIcons/close.svg';
+    };
 };
 
 

@@ -1,15 +1,15 @@
 const CATEGORY_COLORS = {
-    'User Story': '#FF7A00',        // Orange
-    'Technical Task': '#1FD7C1',    // Türkis
-    'To Do': '#FC71FF',             // Pink
-    'Backlog': '#6E52FF',           // Violett
-    'Design': '#FF5EB3',            // Rosa
-    'In Progress': '#00BEE8',       // Hellblau
-    'In Review': '#9327FF',         // Lila
-    'Blocked': '#FF745E',           // Rot
-    'Testing': '#FFA35E',           // Hellorange
-    'Done': '#2AD300',              // Grün
-    'Archived': '#787878'           // Grau
+    'User Story': '#FF7A00',      
+    'Technical Task': '#1FD7C1',   
+    'To Do': '#FC71FF',             
+    'Backlog': '#6E52FF',          
+    'Design': '#FF5EB3',           
+    'In Progress': '#00BEE8',      
+    'In Review': '#9327FF',        
+    'Blocked': '#FF745E',           
+    'Testing': '#FFA35E',          
+    'Done': '#2AD300',              
+    'Archived': '#787878'          
 };
 
 
@@ -42,27 +42,50 @@ function toggleSectionButton() {
 
 
 /**
- * Renders status change dropdown for task cards
- * 
+ * Prepares the data and template for the status dropdown.
+ *
  * @param {Event} event - Click event object
- * @returns {void} Renders status dropdown template
+ * @returns {Object|null} Object with taskCard, status, task or null if not found
  */
-function renderSwapStatusTemplate(event) {
-    event.stopPropagation();
-    const existingTemplate = document.querySelector('.swap_status_template');
-    if (existingTemplate) {
-        existingTemplate.remove();
-    }
+function prepareSwapStatusData(event) {
     const taskCard = event.target.closest('.task_card');
-    if (!taskCard) return;
+    if (!taskCard) return null;
     const dragArea = taskCard.closest('.drag_area');
     const status = dragArea ? dragArea.getAttribute('status') : null;
     const taskId = taskCard.getAttribute('data-id');
     const task = allTasks.find(t => t.id === taskId);
-    taskCard.insertAdjacentHTML('afterbegin', getSwapStatusTemplate(task));
-    const templateElement = taskCard.querySelector('.swap_status_template');
-    setStatusButtonVisibility(status, templateElement);
+    return { taskCard, status, task };
+};
+
+
+/**
+ * Renders the status dropdown template and sets up listeners.
+ *
+ * @param {Event} event - Click event object
+ * @returns {void}
+ */
+function renderSwapStatusTemplate(event) {
+    event.stopPropagation();
+    const existingTemplate = document.querySelector('.swap_status_template');
+    removeExistingTemplate(existingTemplate);
+    const data = prepareSwapStatusData(event);
+    if (!data) return;
+    data.taskCard.insertAdjacentHTML('afterbegin', getSwapStatusTemplate(data.task));
+    const templateElement = data.taskCard.querySelector('.swap_status_template');
+    setStatusButtonVisibility(data.status, templateElement);
     addCloseSwapStatusListener(templateElement);
+};
+
+
+/**
+ * Removes the existing swap status template from the DOM if present.
+ *
+ * @param {HTMLElement} existingTemplate - The currently rendered swap status template element.
+ */
+function removeExistingTemplate(existingTemplate) {
+    if (existingTemplate) {
+        existingTemplate.remove();
+    };
 };
 
 
@@ -168,13 +191,12 @@ function getAssignedContacts(assignedTo) {
 
 
 /**
- * Creates contact object with avatar data
- * 
+ * Creates the initials string for a contact.
+ *
  * @param {Object} contact - Contact data object
- * @param {string} contactId - ID of the contact
- * @returns {Object} Contact object with initials and color
+ * @returns {string} Initials string
  */
-function createBatch(contact, contactId) {
+function getContactInitials(contact) {
     const nameInitials = contact.name
         .split(' ')
         .map(part => part.charAt(0).toUpperCase())
@@ -183,10 +205,21 @@ function createBatch(contact, contactId) {
         .split(' ')
         .map(part => part.charAt(0).toUpperCase())
         .join('');
-    const initials = nameInitials + surnameInitials;
+    return nameInitials + surnameInitials;
+};
+
+
+/**
+ * Creates a contact object with initials and color for avatar display.
+ *
+ * @param {Object} contact - Contact data object
+ * @param {string} contactId - ID of the contact
+ * @returns {Object} Contact object with initials and color
+ */
+function createBatch(contact, contactId) {
     return {
         id: contactId,
-        initials,
+        initials: getContactInitials(contact),
         color: contact.color
     };
 };

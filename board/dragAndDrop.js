@@ -148,7 +148,7 @@ async function updateTaskStatus(taskId, status) {
         await saveTaskWithNewStatus(taskId, existingTask, status);
     } catch (error) {
         console.error('Error updating task status:', error);
-    }
+    };
 };
 
 
@@ -226,13 +226,24 @@ function setupDragAreas() {
         document.getElementById('drag_area_await_feedback'),
         document.getElementById('drag_area_done')
     ].filter(Boolean);
+    initializeDragAreas(dragAreas);
+    document.addEventListener('dragend', handleDragEnd);
+};
+
+
+/**
+ * Initializes drag areas by setting up dragover and drop event handlers.
+ *
+ * @param {Array} dragAreas - Array of drag area elements to initialize
+ * @returns {void} Sets event handlers for drag and drop functionality
+ */
+function initializeDragAreas(dragAreas) {
     dragAreas.forEach(area => {
         if (area) {
             area.ondragover = allowDrop;
             area.ondrop = handleDrop;
         }
     });
-    document.addEventListener('dragend', handleDragEnd);
 };
 
 

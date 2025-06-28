@@ -24,7 +24,8 @@ async function init() {
     renderColumns();
     loadContactsToAssignedEditTask();
     await initDragAndDrop();
-}
+};
+
 
 /**
  * Renders all task cards in their respective status columns on the board
@@ -33,7 +34,8 @@ async function init() {
  */
 function renderContent() {
     headerContainer.innerHTML += getHeaderTemplate();
-}
+};
+
 
 /**
  * Loads all tasks from the database
@@ -52,8 +54,9 @@ async function loadAddTask(path = '') {
         convertTasksToArray(taskData);
     } catch (error) {
         handleTaskLoadError(error);
-    }
-}
+    };
+};
+
 
 /**
  * Converts task data from object to array format with IDs included
@@ -65,7 +68,8 @@ function convertTasksToArray(taskData) {
         ...task,
         id,
     }));
-}
+};
+
 
 /**
  * Renders all four task columns with their appropriate tasks
@@ -75,7 +79,8 @@ function renderColumns() {
     renderAllTaskCards(allTasks, 'inProgress', dragAreaInProgress);
     renderAllTaskCards(allTasks, 'awaitFeedback', dragAreaAwaitFeedback);
     renderAllTaskCards(allTasks, 'done', dragAreaDone);
-}
+};
+
 
 /**
  * Renders all task cards for a specific status into the given container.
@@ -92,9 +97,10 @@ function renderAllTaskCards(allTasks, status, container) {
     if (filteredTasks.length === 0) {
         container.innerHTML = renderPlaceholder();
         return;
-    }
+    };
     renderTasks(filteredTasks, container);
-}
+};
+
 
 /**
  * Filters tasks array by specified status
@@ -105,7 +111,8 @@ function renderAllTaskCards(allTasks, status, container) {
  */
 function filterTasksByStatus(tasks, status) {
     return tasks.filter((task) => task.status === status);
-}
+};
+
 
 /**
  * Removes all child elements from specified container element
@@ -115,7 +122,8 @@ function filterTasksByStatus(tasks, status) {
  */
 function clearContainer(container) {
     container.innerHTML = '';
-}
+};
+
 
 /**
  * Renders multiple task cards into specified container
@@ -129,7 +137,8 @@ function renderTasks(tasks, container) {
         container.innerHTML += getTaskCard(task);
         toggleSectionButton();
     });
-}
+};
+
 
 /**
  * Begins the drag process when a user starts dragging a task
@@ -142,7 +151,8 @@ function startDragging(event, taskId) {
     event.dataTransfer.setData('text/plain', taskId);
     draggedElement.classList.add('dragging');
     saveDraggedCardSize(draggedElement, event);
-}
+};
+
 
 /**
  * Saves the size of the card being dragged for later use
@@ -159,7 +169,8 @@ function saveDraggedCardSize(element, event) {
         event.dataTransfer.setData('application/json', JSON.stringify(dimensions));
     } catch (e) {}
     sessionStorage.setItem('draggedElementDimensions', JSON.stringify(dimensions));
-}
+};
+
 
 /**
  * Allows dropping by preventing the default behavior
@@ -174,8 +185,9 @@ function allowDrop(event) {
     if (dimensions.width && dimensions.height) {
         const placeholder = createPlaceholder(dimensions);
         dropzone.appendChild(placeholder);
-    }
-}
+    };
+};
+
 
 /**
  * Gets the dimensions of the dragged element
@@ -189,7 +201,8 @@ function getDraggedDimensions(event) {
         dimensionsStr = sessionStorage.getItem('draggedElementDimensions');
     }
     return dimensionsStr ? JSON.parse(dimensionsStr) : {};
-}
+};
+
 
 /**
  * Creates a placeholder element to show where the task will be placed
@@ -203,7 +216,8 @@ function createPlaceholder(dimensions) {
     placeholder.style.width = `${dimensions.width}px`;
     placeholder.style.height = `${dimensions.height}px`;
     return placeholder;
-}
+};
+
 
 /**
  * Removes all placeholder elements from task columns
@@ -214,7 +228,8 @@ function removePlaceholders() {
     document.querySelectorAll('.drag_area_placeholder').forEach((placeholder) => {
         placeholder.remove();
     });
-}
+};
+
 
 /**
  * Handles when a task is dropped into a column
@@ -229,8 +244,9 @@ function handleDrop(event) {
     const targetStatus = getTargetStatus(dropzone);
     if (taskId && targetStatus) {
         moveTo(taskId, targetStatus);
-    }
-}
+    };
+};
+
 
 /**
  * Removes all visual drag and drop effects from the board
@@ -243,7 +259,8 @@ function cleanupDragEffects() {
     });
     removePlaceholders();
     sessionStorage.removeItem('draggedElementDimensions');
-}
+};
+
 
 /**
  * Determines which status a task should get based on the drop zone
@@ -257,7 +274,8 @@ function getTargetStatus(dropzone) {
     if (dropzone.id === 'drag_area_await_feedback') return 'awaitFeedback';
     if (dropzone.id === 'drag_area_done') return 'done';
     return null;
-}
+};
+
 
 /**
  * Handles the end of a drag operation (when the user releases)
@@ -266,7 +284,8 @@ function getTargetStatus(dropzone) {
  */
 function handleDragEnd(event) {
     cleanupDragEffects();
-}
+};
+
 
 /**
  * Sets up all drag areas with the necessary event handlers
@@ -278,7 +297,8 @@ function setupDragAreas() {
         area.ondrop = handleDrop;
     });
     document.addEventListener('dragend', handleDragEnd);
-}
+};
+
 
 /**
  * Moves a task to a different status and updates the database
@@ -292,7 +312,8 @@ async function moveTo(taskId, targetStatus) {
     allTasks[taskIndex].status = targetStatus;
     await updateTaskStatus(taskId, targetStatus);
     renderColumns();
-}
+};
+
 
 /**
  * Updates the task status in the database
@@ -311,8 +332,9 @@ async function updateTaskStatus(taskId, status) {
         });
     } catch (error) {
         console.error('Error updating task status:', error);
-    }
-}
+    };
+};
+
 
 /**
  * Checks the task object and returns its card HTML
@@ -326,7 +348,8 @@ function getTaskCard(task) {
         return '';
     }
     return generateTaskCardHTML(task);
-}
+};
+
 
 /**
  * Renders the responsive sidebar menu for mobile view
@@ -340,7 +363,8 @@ function renderSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     updateSidebar();
-}
+};
+
 
 /**
  * Updates the sidebar display based on current screen size
@@ -364,5 +388,4 @@ function updateSidebar() {
     main.innerHTML = isMobile ? '' : getSidebarTemplate();
     mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
     side.style.display = isMobile ? 'none' : 'block';
-}
-
+};

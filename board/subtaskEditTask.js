@@ -11,7 +11,8 @@ function replaceButtonsEditTask() {
     const inputField = document.getElementById('tag_input_field_edit_task');
     subtaskBtnContainer.innerHTML = getBtnsTemplateEditTask();
     inputField.focus();
-}
+};
+
 
 /**
  * Handles Enter key press in subtask input field
@@ -23,8 +24,9 @@ function onKeyDownEnterEditTask(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         confirmSubtaskBtnEditTask();
-    }
-}
+    };
+};
+
 
 /**
  * Validates subtask input value
@@ -38,8 +40,9 @@ function checkValueEditTask() {
         confirmSubtaskBtnEditTask();
     } else {
         resetButtonsEditTask();
-    }
-}
+    };
+};
+
 
 /**
  * Clears subtask input field and resets buttons
@@ -50,7 +53,8 @@ function deleteTextBtnEditTask() {
     const inputField = document.getElementById('tag_input_field_edit_task');
     inputField.value = '';
     resetButtonsEditTask();
-}
+};
+
 
 /**
  * Resets subtask buttons to default state
@@ -60,7 +64,8 @@ function deleteTextBtnEditTask() {
 function resetButtonsEditTask() {
     const subtaskBtnContainer = document.getElementById('subtask_btn_container_edit_task');
     subtaskBtnContainer.innerHTML = resetButtonsTemplateEditTask();
-}
+};
+
 
 /**
  * Automatically resizes textarea based on content
@@ -70,16 +75,17 @@ function resetButtonsEditTask() {
  */
 function autoResizeTextareaEditTask(element) {
     adjustHeight(element);
-
     window.addEventListener('resize', function () {
         adjustHeight(element);
     });
-}
+};
+
 
 function adjustHeight(element) {
     element.style.height = 'auto';
     element.style.height = element.scrollHeight + 'px';
-}
+};
+
 
 /**
  * Enables editing mode for a subtask
@@ -97,7 +103,8 @@ function enableEditingEditTask(tagInputId, tagBtnConId, tagId) {
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
     newTagTrashDoneBtnEditTask(tagInputId, tagBtnConId, tagId);
-}
+};
+
 
 /**
  * Handles edit button click for subtask
@@ -120,7 +127,8 @@ function editTextBtnEditTask(event, tagInputId, tagBtnConId, tagId) {
     const tagField = newTag.closest('.tag_field');
     if (tagField) tagField.classList.add('editing');
     newTagTrashDoneBtnEditTask(tagInputId, tagBtnConId, tagId);
-}
+};
+
 
 /**
  * Removes a subtask element
@@ -131,7 +139,8 @@ function editTextBtnEditTask(event, tagInputId, tagBtnConId, tagId) {
 function trashBtnEditTask(tagId) {
     const newTagField = document.getElementById(tagId);
     newTagField.remove();
-}
+};
+
 
 /**
  * Confirms and adds new subtask
@@ -150,8 +159,9 @@ function confirmSubtaskBtnEditTask() {
         newTagCon.innerHTML += getNewTagTemplateEditTask(value, tagId, tagInputId, tagBtnConId);
         inputField.value = '';
         resetButtonsEditTask();
-    }
-}
+    };
+};
+
 
 /**
  * Validates edited subtask value
@@ -173,8 +183,9 @@ function newTagCheckValueEditTask(event, tagBtnConId, tagInputId, tagId) {
         allowBlurEditTask = false;
     } else {
         input.classList.add('input_error_new_subtask_tag_edit_task');
-    }
-}
+    };
+};
+
 
 /**
  * Disables editing mode for subtask
@@ -196,7 +207,8 @@ function disableEditingEditTask(tagInputId) {
     input.classList.remove('focus');
     const tagField = input.closest('.tag_field');
     if (tagField) tagField.classList.remove('editing');
-}
+};
+
 
 /**
  * Updates button container to default state
@@ -209,7 +221,8 @@ function disableEditingEditTask(tagInputId) {
 function newTagDefaultBtnsEditTask(tagBtnConId, tagInputId, tagId) {
     const newTagField = document.getElementById(tagBtnConId);
     newTagField.innerHTML = newTagDefaultBtnsTemplateEditTask(tagBtnConId, tagInputId, tagId);
-}
+};
+
 
 /**
  * Updates button container to editing state
@@ -222,5 +235,4 @@ function newTagDefaultBtnsEditTask(tagBtnConId, tagInputId, tagId) {
 function newTagTrashDoneBtnEditTask(tagInputId, tagBtnConId, tagId) {
     const newTagTrashDoneBtn = document.getElementById(tagBtnConId);
     newTagTrashDoneBtn.innerHTML = newTagTrashDoneBtnTemplateEditTask(tagBtnConId, tagInputId, tagId);
-}
-
+};
