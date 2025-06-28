@@ -14,8 +14,9 @@ function getGreeting(hours) {
         return 'Good afternoon';
     } else {
         return 'Good evening';
-    }
-}
+    };
+};
+
 
 /**
  * Updates the greeting with the current user's name
@@ -26,7 +27,8 @@ function updateGreeting() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const userName = currentUser?.name || 'Guest User';
     greetingContainer.innerHTML = getGreetingTemplate(greeting, userName);
-}
+};
+
 
 /**
  * Updates a statistic card with new values
@@ -39,13 +41,23 @@ function updateStatCard(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = getStatCardTemplate(value, label);
-}
+};
 
+
+/**
+ * Updates a statistic card with new values and appends it to the container (with icon support).
+ *
+ * @param {string} containerId - ID of the container element
+ * @param {number} value - The numerical value to display
+ * @param {string} label - The text to display
+ * @returns {void} Appends the stat card template to the container
+ */
 function updateStatCardWithIcon(containerId, value, label) {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML += getStatCardTemplate(value, label);
-}
+};
+
 
 /**
  * Updates the urgent tasks card
@@ -56,7 +68,8 @@ function updateUrgentCard(urgentCount) {
     const container = document.getElementById('summary_importance_container');
     if (!container) return;
     container.innerHTML = getUrgentCardTemplate(urgentCount);
-}
+};
+
 
 /**
  * Creates the HTML for the deadline card
@@ -76,7 +89,8 @@ function getDeadlineCardTemplate(nextUrgentTask) {
         <span class="summary_date">${deadlineText}</span>
         <span class="summary_text">Upcoming Deadline</span>
     `;
-}
+};
+
 
 /**
  * Updates the deadline card with the due date of the next urgent task
@@ -87,7 +101,8 @@ function updateDeadlineCard(nextUrgentTask) {
     const container = document.getElementById('summary_deadline_container');
     if (!container) return;
     container.innerHTML = getDeadlineCardTemplate(nextUrgentTask);
-}
+};
+
 
 /**
  * Updates all summary UI elements with task statistics
@@ -102,7 +117,8 @@ function updateSummaryUI(stats) {
     updateStatCard('summary_await_feedback_container', stats.awaitingFeedback, 'Awaiting Feedback');
     updateUrgentCard(stats.urgent);
     updateDeadlineCard(stats.nextUrgentTask);
-}
+};
+
 
 /**
  * Formats a Date object into a readable date string
@@ -116,7 +132,8 @@ function formatDate(date) {
         day: 'numeric',
         year: 'numeric',
     });
-}
+};
+
 
 /**
  * Notification template object that handles notification creation and display
@@ -152,6 +169,7 @@ const NotificationTemplate = {
     },
 };
 
+
 /**
  * Shows a notification that disappears after a few seconds
  *
@@ -159,7 +177,8 @@ const NotificationTemplate = {
  */
 function showNotification(message) {
     NotificationTemplate.render(message);
-}
+};
+
 
 /**
  * Returns an array of container IDs that should be clickable
@@ -175,7 +194,8 @@ function getClickableContainerIds() {
         'summary_tasks_progress_container',
         'summary_await_feedback_container',
     ];
-}
+};
+
 
 /**
  * Makes a container element clickable and adds styling
@@ -186,14 +206,16 @@ function makeContainerClickable(containerElement) {
     if (!containerElement) return;
     containerElement.classList.add('clickable-container');
     containerElement.onclick = navigateToBoard;
-}
+};
+
 
 /**
  * Navigates to the board page
  */
 function navigateToBoard() {
     window.location.href = '../board/board.html';
-}
+};
+
 
 /**
  * Makes all summary containers clickable
@@ -201,7 +223,8 @@ function navigateToBoard() {
 function makeContainersClickable() {
     const containerIds = getClickableContainerIds();
     processClickableContainers(containerIds);
-}
+};
+
 
 /**
  * Processes each container to make it clickable
@@ -213,9 +236,10 @@ function processClickableContainers(containerIds) {
         let container = findContainer(containerId);
         if (container) {
             makeContainerClickable(container);
-        }
-    }
-}
+        };
+    };
+};
+
 
 /**
  * Finds container element by ID or class
@@ -227,9 +251,10 @@ function findContainer(containerId) {
     let container = document.getElementById(containerId);
     if (!container) {
         container = document.querySelector('.' + containerId);
-    }
+    };
     return container;
-}
+};
+
 
 /**
  * Renders the header using template
@@ -238,7 +263,8 @@ function findContainer(containerId) {
  */
 function renderHeader() {
     headerContainer.innerHTML = getHeaderTemplate();
-}
+};
+
 
 /**
  * Renders the sidebar using template
@@ -247,7 +273,8 @@ function renderHeader() {
  */
 function renderSidebar() {
     mainContainer.innerHTML = getSidebarTemplate();
-}
+};
+
 
 /**
  * Checks if mobile greeting should be shown
@@ -258,14 +285,16 @@ function shouldShowMobileGreeting() {
     const hasSeenGreeting = sessionStorage.getItem('hasSeenGreeting');
     const viewportWidth = window.innerWidth;
     return viewportWidth <= 1050 && hasSeenGreeting !== 'true';
-}
+};
+
 
 /**
  * Marks greeting as seen in session storage
  */
 function markGreetingAsSeen() {
     sessionStorage.setItem('hasSeenGreeting', 'true');
-}
+};
+
 
 /**
  * Gets current user's name from local storage
@@ -275,7 +304,8 @@ function markGreetingAsSeen() {
 function getCurrentUserName() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     return currentUser?.name || 'Guest';
-}
+};
+
 
 /**
  * Creates fullscreen greeting element
@@ -290,7 +320,8 @@ function createGreetingElement() {
     fullscreenGreeting.className = 'fullscreen-greeting';
     fullscreenGreeting.innerHTML = getMobileGreetingTemplate(greeting, userName);
     return fullscreenGreeting;
-}
+};
+
 
 /**
  * Hides the summary container
@@ -301,7 +332,8 @@ function hideSummaryContainer() {
     const summaryContainer = document.querySelector('.summary_container');
     summaryContainer.classList.add('summary-content-hidden');
     return summaryContainer;
-}
+};
+
 
 /**
  * Checks if mobile greeting should be shown and prepares greeting element
@@ -316,7 +348,8 @@ function prepareMobileGreeting() {
     const fullscreenGreeting = createGreetingElement();
     const summaryContainer = hideSummaryContainer();
     return { fullscreenGreeting, summaryContainer };
-}
+};
+
 
 /**
  * Shows a mobile greeting that disappears after a few seconds
@@ -326,7 +359,8 @@ function showMobileGreeting() {
     if (!elements) return;
     const { fullscreenGreeting, summaryContainer } = elements;
     displayGreeting(fullscreenGreeting, summaryContainer);
-}
+};
+
 
 /**
  * Displays the greeting and starts animation
@@ -337,7 +371,8 @@ function showMobileGreeting() {
 function displayGreeting(fullscreenGreeting, summaryContainer) {
     document.body.appendChild(fullscreenGreeting);
     startGreetingAnimation(fullscreenGreeting, summaryContainer);
-}
+};
+
 
 /**
  * Handles the animation sequence for the greeting
@@ -349,7 +384,8 @@ function startGreetingAnimation(fullscreenGreeting, summaryContainer) {
     setTimeout(() => {
         hideGreeting(fullscreenGreeting, summaryContainer);
     }, 3000);
-}
+};
+
 
 /**
  * Hides greeting and shows summary content
@@ -362,7 +398,8 @@ function hideGreeting(fullscreenGreeting, summaryContainer) {
     setTimeout(() => {
         showSummaryContent(summaryContainer, fullscreenGreeting);
     }, 1000);
-}
+};
+
 
 /**
  * Shows summary content and removes greeting
@@ -376,7 +413,8 @@ function showSummaryContent(summaryContainer, fullscreenGreeting) {
     setTimeout(() => {
         fullscreenGreeting.remove();
     }, 1000);
-}
+};
+
 
 /**
  * Updates user profile display (add if missing)
@@ -385,4 +423,3 @@ window.showMobileGreeting = showMobileGreeting;
 window.updateSummaryUI = updateSummaryUI;
 window.NotificationTemplate = NotificationTemplate;
 window.updateUserProfile = updateUserProfile;
-

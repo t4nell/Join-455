@@ -81,7 +81,6 @@ function createStatsObject() {
 function calculateTaskStats(tasksFromDatabase) {
     const stats = createStatsObject();
     if (!tasksFromDatabase) return stats;
-    
     stats.totalTasks = Object.keys(tasksFromDatabase).length;
     const urgentTasks = processAllTasks(tasksFromDatabase, stats);
     handleUrgentTasks(stats, urgentTasks);
@@ -100,7 +99,7 @@ function handleUrgentTasks(stats, urgentTasks) {
         const closestUrgentTask = findTaskWithClosestDeadline(urgentTasks);
         stats.nextUrgentTask = closestUrgentTask;
         stats.upcomingDeadline = closestUrgentTask.dueDate;
-    }
+    };
 };
 
 

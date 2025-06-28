@@ -12,7 +12,8 @@ function checkAuth() {
         return null;
     }
     return currentUser;
-}
+};
+
 
 /**
  * Main initialization function - called by onload
@@ -25,11 +26,22 @@ function init() {
     renderHeader();
     updateUserProfile();
     updateGreeting();
+    notifyGuestUser(currentUser);
+    loadAndRenderTasks();
+};
+
+/**
+ * Notifies the user if they are using the app in guest mode.
+ *
+ * @param {Object} currentUser - The current user object
+ * @returns {void} Shows a notification if the user is a guest
+ */
+function notifyGuestUser(currentUser) {
     if (currentUser.isGuest) {
         showNotification('You are using the app in guest mode with limited functions');
-    }
-    loadAndRenderTasks();
-}
+    };
+};
+
 
 /**
  * Initializes global statistics object
@@ -37,8 +49,9 @@ function init() {
 function initializeGlobalStats() {
     if (typeof createStatsObject === 'function') {
         globalStats = createStatsObject();
-    }
-}
+    };
+};
+
 
 /**
  * Sets up all event handlers
@@ -47,14 +60,16 @@ function setupAllHandlers() {
     setupTaskHandlers();
     setupFormHandlers();
     setupModalHandlers();
-}
+};
+
 
 /**
  * Loads task data and renders the board
  */
 function loadAndRenderTasks() {
     loadTaskData().then(handleTaskDataLoaded).catch(showLoadingError);
-}
+};
+
 
 /**
  * Handles successful task data loading
@@ -66,8 +81,9 @@ function handleTaskDataLoaded(stats) {
     makeContainersClickable();
     if (typeof window.showMobileGreeting === 'function') {
         window.showMobileGreeting();
-    }
-}
+    };
+};
+
 
 /**
  * Shows error when loading task data fails
@@ -75,7 +91,8 @@ function handleTaskDataLoaded(stats) {
  */
 function showLoadingError() {
     showNotification('Error loading tasks');
-}
+};
+
 
 /**
  * Sets up task-related event handlers
@@ -87,7 +104,8 @@ function setupTaskHandlers() {
     window.handleTaskEdit = function (taskId) {
         openTaskModal('edit', taskId);
     };
-}
+};
+
 
 /**
  * Sets up form-related event handlers
@@ -97,7 +115,8 @@ function setupFormHandlers() {
         if (event) event.preventDefault();
         saveFormData();
     };
-}
+};
+
 
 /**
  * Sets up modal-related event handlers
@@ -107,7 +126,8 @@ function setupModalHandlers() {
         const modal = document.getElementById('task_modal');
         if (modal) modal.classList.remove('open');
     };
-}
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -122,7 +142,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
     navbarMobileContainer.innerHTML = '';
     mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -137,7 +158,8 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     mainContainer.innerHTML = '';
     navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
     navContainer.style.display = 'none';
-}
+};
+
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -151,7 +173,8 @@ function initSidebar() {
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
     proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -167,6 +190,5 @@ function proofSize() {
         renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer);
     } else {
         renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
-    }
-}
-
+    };
+};
