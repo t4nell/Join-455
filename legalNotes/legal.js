@@ -88,28 +88,3 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
     navContainer.style.display = 'none';
 };
 
-<<<<<<< HEAD
-=======
-
-/**
- * Renders a minimal sidebar for raw/legal pages (e.g., privacy policy, legal notice).
- *
- * @returns {void} Updates the sidebar with only login and legal links.
- */
-function rawSidebarRender() {
-    const currentPage = window.location.pathname;
-    document.querySelector('.user_menu').style.display = 'none';
-    document.getElementById('navbar_container').innerHTML = `            
-            <nav class="sidebar_nav">
-                <a href="../index.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
-                    <img src="../assets/imgs/sidebarIcons/summary.svg" alt="Summary Icon" />
-                    <span>Login</span>
-                </a>
-            </nav>
-            <div class="sidebar_footer">
-      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('policy') ? 'active' : ''}">Privacy Policy</a>
-      <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
-    </div>
-`;
-};
->>>>>>> 6aa3aa724408cc4449383f2a2380c23928d24b4b
