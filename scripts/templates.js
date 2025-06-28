@@ -247,15 +247,15 @@ function defaultLockIconTemplate() {
 function rawSidebarDesktopRender(currentPage){
     return `            
             <nav class="sidebar_nav">
-                <a href="../index.html" class="nav_item ${currentPage.includes('index') ? 'active' : ''}">
+                <a href="../index.html" class="nav_item ">
                     <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
                     <span>Login</span>
                 </a>
             </nav>
 
             <div class="sidebar_footer">
-      <a href="../raw/privacyPolicy.html" class="${currentPage.includes('privacyPolicy') ? 'active' : ''}">Privacy Policy</a>
-      <a href="../raw/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
+      <a href="../indexPages/privacyPolicy.html" class="${currentPage.includes('privacyPolicy') ? 'active' : ''}">Privacy Policy</a>
+      <a href="../indexPages/legalNotice.html" class="${currentPage.includes('legal') ? 'active' : ''}">Legal Notice</a>
     </div>
 `;
 };
