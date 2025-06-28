@@ -12,7 +12,6 @@ function openOverlay(boardStatus) {
   const overlayContent = document.getElementById('add_task_container_board');
   const overlay = document.getElementById('overlay');
   const width = window.innerWidth;
-
   currentBoardStatus = boardStatus;
 
   if (width > 1050) {
@@ -22,7 +21,8 @@ function openOverlay(boardStatus) {
   } else {
     window.location.href = '../addTask/addTask.html';
   }
-}
+};
+
 
 /**
  * Initializes all required data and components for the task creation overlay.
@@ -33,7 +33,8 @@ function initAll() {
   loadAllContactData();
   renderTaskBoard();
   renderCategories();
-}
+};
+
 
 /**
  * Sets up a click listener specifically for the assigned dropdown in the board overlay.
@@ -50,19 +51,13 @@ function setupAssignedDropdownClickListener() {
       const toggleBtn = document.getElementById('dropdown_toggle_btn');
       const selectedUser = document.getElementById('selected_users_group');
 
-      if (
-        dropdown &&
-        toggleBtn &&
-        selectedUser &&
-        !dropdown.contains(event.target) &&
-        !toggleBtn.contains(event.target) &&
-        !selectedUser.contains(event.target)
-      ) {
+      if (dropdown && toggleBtn && selectedUser && !dropdown.contains(event.target) && !toggleBtn.contains(event.target) && !selectedUser.contains(event.target)) {
         closeAssignedDropdown();
       }
     });
   }
-}
+};
+
 
 /**
  * Closes the task creation overlay and cleans up the datepicker.
@@ -76,7 +71,8 @@ function closeOverlay() {
   overlayContent.classList.add('closed');
   removeDatePicker('#due_date');
   clearTasks();
-}
+};
+
 
 /**
  * Prevents event propagation for click events.
@@ -86,7 +82,8 @@ function closeOverlay() {
  */
 function bubbling(event) {
   event.stopPropagation();
-}
+};
+
 
 /**
  * Renders the task creation form in the board overlay.
@@ -98,7 +95,8 @@ function renderTaskBoard() {
   taskContainer.innerHTML = '';
   taskContainer.innerHTML = renderTaskBoardTemplate();
   datePicker('#due_date');
-}
+};
+
 
 /**
  * Destroys a Flatpickr instance associated with the specified selector.
@@ -111,7 +109,8 @@ function removeDatePicker(selector) {
   if (element && element._flatpickr) {
     element._flatpickr.destroy();
   }
-}
+};
+
 
 /**
  * Initializes a datepicker on the specified element.
@@ -127,7 +126,8 @@ function datePicker(selectedDate) {
     firstDayOfWeek: 1,
     disableMobile: 'true',
   });
-}
+};
+
 
 /**
  * Creates a new task from form data and submits it to the server.
@@ -142,7 +142,8 @@ function createTask(boardStatus) {
 
   postTask(taskData);
   clearTasks();
-}
+};
+
 
 /**
  * Clears all task form fields and selection options.
@@ -157,7 +158,8 @@ function clearTasks() {
   clearSelectedUserIndices();
   clearSelection();
   switchBtnPriority('medium');
-}
+};
+
 
 /**
  * Validates all required fields in the task form.
@@ -174,7 +176,8 @@ function validateRequiredFields(boardStatus) {
     createTask(boardStatus);
     showAddedNotification('Task added to Board');
   }
-}
+};
+
 
 /**
  * Validates the title input field.
@@ -194,7 +197,8 @@ function validateTitleField() {
     titleMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Validates the due date input field.
@@ -214,7 +218,8 @@ function validateDueDateField() {
     dateMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Validates the category selection in the dropdown.
@@ -234,7 +239,8 @@ function validateCategoryField() {
     categoryMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Sets up a click listener specifically for the assigned dropdown in the board overlay.
@@ -249,19 +255,13 @@ function addClickListenerForDropdown() {
       const dropdown = document.getElementById('dropdown');
       const toggleBtn = document.getElementById('dropdown_toggle_btn');
       const selectedUser = document.getElementById('selected_users_group');
-      if (
-        dropdown &&
-        toggleBtn &&
-        selectedUser &&
-        !dropdown.contains(event.target) &&
-        !toggleBtn.contains(event.target) &&
-        !selectedUser.contains(event.target)
-      ) {
+      if (dropdown && toggleBtn && selectedUser && !dropdown.contains(event.target) && !toggleBtn.contains(event.target) && !selectedUser.contains(event.target)) {
         closeAssignedDropdown();
       }
     });
   }
-}
+};
+
 
 /**
  * Shows a notification that a task was successfully added.
@@ -280,7 +280,8 @@ function showAddedNotification(notificationText) {
     savedContactNotification.classList.add('closed');
     window.location.href = '../board/board.html';
   }, 1500);
-}
+};
+
 
 /**
  * Opens the calendar date picker by focusing on the date input field.
@@ -290,5 +291,5 @@ function showAddedNotification(notificationText) {
 function openCalendar() {
   const calenderInput = document.getElementById('due_date');
   calenderInput.focus();
-}
+};
 

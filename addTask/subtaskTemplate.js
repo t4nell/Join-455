@@ -12,7 +12,8 @@ function resetButtonsTemplate() {
                 alt="New Button Icon" />
     </button>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for the confirmation and cancel buttons in subtask input.
@@ -37,7 +38,7 @@ function getBtnsTemplate() {
             alt="Icon" />
     </button>
         `;
-}
+};
 
 /**
  * Generates the HTML template for delete and confirmation buttons when editing a subtask.
@@ -59,7 +60,8 @@ function newTagTrashDoneBtnTemplate(tagBtnConId, tagInputId, tagId) {
             </button>
     </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for the default buttons (edit and delete) for a subtask.
@@ -81,7 +83,8 @@ function newTagDefaultBtnsTemplate(tagBtnConId, tagInputId, tagId) {
             </button>
     </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for a new subtask.
@@ -116,5 +119,5 @@ function getNewTagTemplate(value, tagId, tagInputId, tagBtnConId) {
             </div>
     </div>
     `;
-}
+};
 

@@ -15,4 +15,4 @@ function categoriesTemplate(category, index) {
             ${category}
         </li>
     `;
-}
+};

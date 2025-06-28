@@ -11,7 +11,8 @@ async function init() {
   renderCategories();
   renderHeader();
   updateUserProfile();
-}
+};
+
 
 /**
  * Renders the task creation form in the designated container.
@@ -23,7 +24,8 @@ function renderTask() {
   taskContainer.innerHTML = renderTaskTemplate();
 
   datePicker('#due_date');
-}
+};
+
 
 /**
  * Renders the desktop version of the sidebar.
@@ -38,7 +40,8 @@ function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer
   navbarMobileContainer.innerHTML = '';
   mainContainer.innerHTML = getSidebarTemplate(currentPage);
   navContainer.style.display = 'block';
-}
+};
+
 
 /**
  * Renders the mobile version of the sidebar.
@@ -53,7 +56,8 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
   mainContainer.innerHTML = '';
   navbarMobileContainer.innerHTML = getSidebarTemplateMobile(currentPage);
   navContainer.style.display = 'none';
-}
+};
+
 
 /**
  * Initializes the sidebar with event listeners and correct display.
@@ -67,7 +71,8 @@ function initSidebar() {
   };
   mediaQuery.addEventListener('change', handleBreakpoint);
   proofSize();
-}
+};
+
 
 /**
  * Checks the window size and renders the appropriate sidebar version.
@@ -84,7 +89,8 @@ function proofSize() {
   } else {
     renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer);
   }
-}
+};
+
 
 /**
  * Initializes a date picker on the specified element.
@@ -100,7 +106,8 @@ function datePicker(selectedDate) {
     firstDayOfWeek: 1,
     disableMobile: 'true',
   });
-}
+};
+
 
 /**
  * Opens the calendar date picker by focusing on the date input field.
@@ -110,7 +117,8 @@ function datePicker(selectedDate) {
 function openCalendar() {
   const calenderInput = document.getElementById('due_date');
   calenderInput.focus();
-}
+};
+
 
 /**
  * Renders the header component in the designated container.
@@ -120,7 +128,8 @@ function openCalendar() {
 function renderHeader() {
   const headerContainer = document.getElementById('header_container');
   headerContainer.innerHTML = getHeaderTemplate();
-}
+};
+
 
 /**
  * Creates a new task from form data and submits it to the server.
@@ -134,7 +143,8 @@ function createTask() {
   postTask(taskData);
   clearTasks();
   document.getElementById('clear_btn').click();
-}
+};
+
 
 /**
  * Clears all task form input fields and selections.
@@ -149,7 +159,8 @@ function clearTasks() {
   clearSelectedUserIndices();
   clearSelection();
   switchBtnPriority('medium');
-}
+};
+
 
 /**
  * Validates all required fields in the task form.
@@ -165,7 +176,8 @@ function validateRequiredFields() {
     createTask();
     showAddedNotification('Task added to Board');
   }
-}
+};
+
 
 /**
  * Validates the title input field.
@@ -184,7 +196,8 @@ function validateTitleField() {
     titleMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Validates the due date input field.
@@ -203,7 +216,8 @@ function validateDueDateField() {
     dateMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Validates the category dropdown selection.
@@ -222,7 +236,8 @@ function validateCategoryField() {
     categoryMessage.style.display = 'none';
     return true;
   }
-}
+};
+
 
 /**
  * Shows a notification that a task was successfully added.
@@ -241,5 +256,5 @@ function showAddedNotification(notificationText) {
     savedContactNotification.classList.add('closed_contact_save_message_addTask');
     window.location.href = '../board/board.html';
   }, 1500);
-}
+};
 

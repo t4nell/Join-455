@@ -1,4 +1,3 @@
-
 /**
  * Deletes contact data from the server and updates the UI accordingly.
  *
@@ -16,6 +15,7 @@ async function deleteContactData(path = '') {
         console.error('Error posting contact data:', response.statusText);
     }
 }
+
 
 /**
  * Deletes a contact and updates tasks associated with that contact.
@@ -48,6 +48,7 @@ async function deleteContactAndUpdateTasks(contactId) {
     await reloadDataAfterDelete();
 }
 
+
 /**
  * Deletes the contact from all tasks where it was assigned.
  *
@@ -74,6 +75,7 @@ function deleteContactInTasks(taskEntries, nameToDelete, updateTasks) {
     }
   }
 }
+
 
 /**
  * Reloads the contact data after a contact has been deleted.

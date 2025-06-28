@@ -21,5 +21,5 @@ async function loadAllContactData(path = '') {
         console.error('Error loading contact data:', error);
     }
     loadAllContactsToAssigned();
-}
+};
 

@@ -6,7 +6,8 @@
 function renderCategories() {
     const categoryMenu = document.getElementById('category_dropdown_menu');
     categoryMenu.innerHTML = categories.map((category, index) => categoriesTemplate(category, index)).join('');
-}
+};
+
 
 /**
  * Listens for clicks outside the category dropdown and closes the dropdown if a click occurs outside.
@@ -45,7 +46,8 @@ function toggleDropdownCategory(event) {
     } else {
         hideRequiredMessage.classList.remove('d_none');
     }
-}
+};
+
 
 /**
  * Selects a category and updates the input field value.
@@ -59,7 +61,8 @@ function selectCategory(category) {
     categoryInput.value = category;
     categoryDropdown.classList.remove('open');
     validateCategoryField();
-}
+};
+
 
 /**
  * Closes the category dropdown.
@@ -77,5 +80,5 @@ function closeCategoryDropdown() {
     if (hideRequiredMessage) {
         hideRequiredMessage.classList.remove('d_none');
     }
-}
+};
 

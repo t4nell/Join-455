@@ -15,6 +15,7 @@ document.addEventListener('click', function (event) {
   }
 });
 
+
 /**
  * Filters contacts based on the input value and displays matching contacts.
  *
@@ -34,7 +35,8 @@ function filterContacts() {
   if (!menu.innerHTML) {
     menu.innerHTML = noContactsFoundToAssignedTemplate();
   }
-}
+};
+
 
 /**
  * Toggles the visibility of the assigned contacts dropdown.
@@ -55,7 +57,8 @@ function toggleDropdownAssigned(event) {
     toggle.blur();
   }
   filterContacts();
-}
+};
+
 
 /**
  * Toggles the background color of a selected contact item.
@@ -68,7 +71,8 @@ function toggleBackground(index) {
   if (clickedItem) {
     clickedItem.classList.toggle('active');
   }
-}
+};
+
 
 /**
  * Closes the assigned users dropdown.
@@ -84,7 +88,8 @@ function closeAssignedDropdown() {
   if (toggle) {
     toggle.value = '';
   }
-}
+};
+
 
 /**
  * Loads all contacts into the assignment dropdown.
@@ -97,7 +102,8 @@ function loadAllContactsToAssigned() {
   allContactsArray.forEach((contact, index) => {
     menu.innerHTML += loadContactsToAssignedAllData(contact, index);
   });
-}
+};
+
 
 /**
  * Generates the HTML for a single contact item in the "Assigned To" dropdown,
@@ -123,7 +129,8 @@ function loadContactsToAssignedAllData(contact, index) {
     .join('');
 
   return loadContactsToAssignedTemplate(activeClass, index, bgColor, nameInitials, surnameInitials, contact, checkedAttr);
-}
+};
+
 
 /**
  * Selects or deselects a user for assignment to a task.
@@ -147,7 +154,8 @@ function selectUser(index, event) {
   }
   filterContacts();
   renderSelectedIcons();
-}
+};
+
 
 /**
  * Renders the icons of selected users in the display area.
@@ -160,7 +168,8 @@ function renderSelectedIcons() {
   selectedUser.innerHTML = '';
   const selectedContacts = selectedUserIndices.map((index) => allContactsArray[index]);
   selectedUser.innerHTML += filterMaxVisibility(selectedContacts);
-}
+};
+
 
 /**
  * Generates HTML for displaying up to a maximum number of selected user icons.
@@ -181,7 +190,8 @@ function filterMaxVisibility(SelectedContact) {
     SelectedIconsHtml += renderMoreUserIcons(assignedContacts.length, maxVisibilitySelectedIcons);
   }
   return SelectedIconsHtml;
-}
+};
+
 
 /**
  * Returns the initials for a given contact by extracting the first letter of each part of the name and surname.
@@ -195,7 +205,8 @@ function getInitialsFromContact(contact) {
       .map((UserInitials) => UserInitials[0].toUpperCase())
       .join('');
   return extractInitials(contact.name) + extractInitials(contact.surname);
-}
+};
+
 
 /**
  * Clears all selected users from the assignment list.
@@ -210,7 +221,8 @@ function clearSelection() {
     }
   });
   removeActiveBgColor();
-}
+};
+
 
 /**
  * Removes active background color from all contact items.
@@ -223,7 +235,8 @@ function removeActiveBgColor() {
     items[i].classList.remove('active');
   }
   loadAllContactsToAssigned();
-}
+};
+
 
 /**
  * Resets the list of selected user indices.
@@ -234,5 +247,6 @@ function clearSelectedUserIndices() {
   selectedUserIndices = [];
   filterContacts();
   renderSelectedIcons();
-}
+};
+
 
