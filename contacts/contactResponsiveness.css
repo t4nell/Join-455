@@ -29,6 +29,11 @@ html {
     .contact_side_mail {
         font-size: 16px;
     }
+
+    .contact_details span,
+    .contact_details a{
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 1150px) {
