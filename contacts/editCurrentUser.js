@@ -24,7 +24,7 @@ function editCurrentUserOverlay(){
  * @param {*} newEmail - The new email address of the user.
  * @param {*} newPhone - The new phone number of the user.
  * @param {*} isEdit - A flag indicating whether the validation is for editing the current user.
- * @return {*} - Returns true if all fields are valid, otherwise returns undefined.
+ * @return {*} Returns true if all fields are valid, otherwise returns undefined.
  */
 function checkValidation(newNameParts, newEmail, newPhone, isEdit){
   const isNameValid = validateName(newNameParts, isEdit);

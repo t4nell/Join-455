@@ -7,27 +7,11 @@ const headerContainer = document.getElementById('header_container');
 
 function init() {
     checkOrientation();
-    renderSidebar();
     renderHeader();
     updateUserProfile();
     initSidebar();
 }
 
-function rawInit() {
-    checkOrientation();
-    initSidebar();
-    renderHeader();
-    rawSidebarRender();
-}
-
-/**
- * Renders the sidebar navigation menu
- *
- * @returns {void} Updates mainContainer with sidebar template
- */
-function renderSidebar() {
-    mainContainer.innerHTML = getSidebarTemplate();
-}
 
 /**
  * Renders the header section
@@ -84,8 +68,9 @@ function proofSize() {
  * @returns {void} Updates the sidebar for desktop view.
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
     navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = getSidebarTemplate();
+    mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
 }
 

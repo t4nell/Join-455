@@ -118,8 +118,9 @@ function setupModalHandlers() {
  * @returns {void} Updates the sidebar for desktop view.
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
     navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = getSidebarTemplate();
+    mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
 }
 
@@ -145,7 +146,7 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
  */
 function initSidebar() {
     const mediaQuery = window.matchMedia('(min-width: 1050px)');
-    const handleBreakpoint = (placeholder) => {
+    const handleBreakpoint = () => {
         proofSize();
     };
     mediaQuery.addEventListener('change', handleBreakpoint);
