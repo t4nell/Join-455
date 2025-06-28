@@ -8,7 +8,7 @@ function resetButtonsTemplateEditTask() {
     <button class="plus_btn" onclick="replaceButtonsEditTask()">
             <img
                 class="subtasks_icon arrow_bg_hover_color_subtask"
-                src="../assets/imgs//addTaskIcons/subtasksPlusIcon.svg"
+                src="../assets/imgs/addTaskIcons/subtasksPlusIcon.svg"
                 alt="New Button Icon" />
     </button>
     `;

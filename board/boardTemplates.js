@@ -7,7 +7,8 @@ function renderPlaceholder() {
     return `
   <span class="drag_area_placeholder">No Tasks</span>
   `;
-}
+};
+
 
 /**
  * Generates HTML markup for a task card with all its components
@@ -22,9 +23,7 @@ function renderPlaceholder() {
  * @param {string} task.priority - Priority level of the task
  * @returns {string} HTML string representing the complete task card
  */
-function getTaskCard(task) {
-    const progress = calculateSubtaskProgress(task);
-    const categoryColor = getCategoryColor(task.category);
+function getTaskCard(task, progress, categoryColor) {
     return `
     <div draggable="true" ondragstart="startDragging(event, '${task.id}')" id="task_${
         task.id
@@ -59,16 +58,15 @@ function getTaskCard(task) {
       </div>
     </div>
   `;
-}
+};
+
 
 /**
  * Creates the mobile sidebar HTML
  *
  * @returns {string} HTML string for the mobile sidebar
  */
-function getSidebarTemplateMobile() {
-    const currentPage = window.location.pathname;
-
+function getSidebarTemplateMobile(currentPage) {
     return ` 
     <div class="sidebar_container">  
         <nav class="sidebar_nav">
@@ -91,7 +89,8 @@ function getSidebarTemplateMobile() {
         </nav>
     </div>
     `;
-}
+};
+
 
 /**
  * Generates the HTML template for a task card
@@ -112,7 +111,8 @@ function generateTaskCardHTML(task) {
             </div>
         </div>
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for a contact's avatar display
@@ -128,7 +128,8 @@ function getAvatarTemplate(contact) {
               ${contact.initials}
           </div>
         `;
-}
+};
+
 
 /**
  * Renders a batch showing the number of additional contacts not displayed
@@ -143,7 +144,8 @@ function renderMoreAvatarsButton(totalContacts, maxVisible) {
             +${totalContacts - maxVisible}
         </div>
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for task status selection dropdown
@@ -174,7 +176,8 @@ function getSwapStatusTemplate(task) {
       </button>
     </div>
   `;
-}
+};
+
 
 /**
  * Generates HTML markup for the detailed task card view
@@ -189,8 +192,7 @@ function getSwapStatusTemplate(task) {
  * @param {Array} task.subtasks - Array of subtask objects
  * @returns {string} HTML string containing the detailed task card markup
  */
-function getDetailTaskCard(task) {
-    const categoryColor = getCategoryColor(task.category);
+function getDetailTaskCard(task, categoryColor) {
     return `
       <div class="task_detail_card_template">
         <div class="task_detail_card_header">
@@ -247,7 +249,8 @@ function getDetailTaskCard(task) {
           </div>
       </div>    
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for displaying assigned contacts in task detail view
@@ -268,7 +271,8 @@ function getAssignedContactsTemplate(contactId, contact, initials) {
         <span>${contact.name} ${contact.surname}</span>
       </div>
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for a subtask item in task detail view
@@ -292,7 +296,8 @@ function getSubtaskTemplate(key, subtask, taskId) {
           </div>
       </div>
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for the task edit form
@@ -308,8 +313,7 @@ function getSubtaskTemplate(key, subtask, taskId) {
  * @returns {string} HTML string containing the complete edit form markup
  */
 function getEditTaskTemplate(task) {
-    return `
-    
+    return ` 
     <button onclick="closeDetailTemplate()" class="closed_btn edit_close_btn">
             <img src="../assets/imgs/boardIcons/close.svg" alt="close button">
           </button>
@@ -404,7 +408,8 @@ function getEditTaskTemplate(task) {
       
     </form>
   `;
-}
+};
+
 
 /**
  * Creates HTML markup for a contact list item in the assign contacts dropdown
@@ -436,7 +441,8 @@ function createContactListItem(activeClass, contact, bgColor, nameInitials, surn
         ${checkedAttr}
         onclick="selectUserEditTask('${contact.id}', event)"/>
     </li>`;
-}
+};
+
 
 /**
  * Creates HTML markup for a contact list item in the assign contacts dropdown
@@ -457,7 +463,8 @@ function generateContactBadge(contactId, contact, initials) {
             </div>
         </div>
     `;
-}
+};
+
 
 /**
  * Generates HTML markup for selected user icon in the assign contacts section
@@ -474,7 +481,8 @@ function addSelectedUserIconTemplate(id, bgColor, initials) {
                 <div>${initials}</div>
             </div>
         </div>`;
-}
+};
+
 
 /**
  * Generates HTML markup for a subtask input element with controls
@@ -512,5 +520,4 @@ function renderSubtaskElement(tagId, tagInputId, tagBtnConId, subtask) {
             </div>
         </div>
     </div>`;
-}
-
+};
