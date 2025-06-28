@@ -9,7 +9,7 @@ function init() {
     checkOrientation();
     initSidebar();
     renderHeader();
-    rawSidebarDesktopRender();
+
 }
 
 /**
@@ -76,8 +76,9 @@ function proofSize() {
  * @returns {void} Updates the sidebar for desktop view.
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
     navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = rawSidebarDesktopRender();
+    mainContainer.innerHTML = rawSidebarDesktopRender(currentPage);
     navContainer.style.display = 'block';
 }
 

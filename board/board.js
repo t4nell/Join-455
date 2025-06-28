@@ -387,7 +387,7 @@ function updateSidebar() {
     const mobile = document.getElementById('navbar_mobile_container');
     const currentPage = window.location.pathname;
     const isMobile = window.innerWidth < 1050;
-    main.innerHTML = isMobile ? '' : getSidebarTemplate();
+    main.innerHTML = isMobile ? '' : getSidebarTemplate(currentPage);
     mobile.innerHTML = isMobile ? getSidebarTemplateMobile(currentPage) : '';
     side.style.display = isMobile ? 'none' : 'block';
 };

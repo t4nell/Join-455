@@ -1,14 +1,15 @@
 const mainContainer = document.getElementById('navbar_container');
 const headerContainer = document.getElementById('header_container');
 
-/**
- * Renders the sidebar navigation menu
- *
- * @returns {void} Updates mainContainer with sidebar template
- */
-function renderSidebar() {
-    mainContainer.innerHTML = getSidebarTemplate();
+
+function init() {
+    checkOrientation();
+    renderHeader();
+    updateUserProfile();
+    initSidebar();
 }
+
+
 
 /**
  * Renders the header section
@@ -65,8 +66,9 @@ function proofSize() {
  * @returns {void} Updates the sidebar for desktop view.
  */
 function renderSidebarDesktop(mainContainer, navContainer, navbarMobileContainer) {
+    const currentPage = window.location.pathname;
     navbarMobileContainer.innerHTML = '';
-    mainContainer.innerHTML = getSidebarTemplate();
+    mainContainer.innerHTML = getSidebarTemplate(currentPage);
     navContainer.style.display = 'block';
 }
 
@@ -119,11 +121,4 @@ function getSidebarTemplateMobile(currentPage) {
 `;
 }
 
-function init() {
-    checkOrientation();
-    renderSidebar();
-    renderHeader();
-    updateUserProfile();
-    initSidebar();
-}
 

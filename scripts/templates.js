@@ -85,8 +85,7 @@ function getLoginSignupTemplate() {
  *
  * @returns {string} HTML string representing the sidebar navigation
  */
-function getSidebarTemplate() {
-    const currentPage = window.location.pathname;
+function getSidebarTemplate(currentPage) {
     return ` 
             <nav class="sidebar_nav">
                 <a href="../summary/summary.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
@@ -233,11 +232,18 @@ function defaultLockIconTemplate() {
     `;
 }
 
-function rawSidebarDesktopRender(){
-    const currentPage = window.location.pathname;
+
+
+/**
+ * Returns the HTML template for the sidebar navigation on desktopview coming from index page.
+ *
+ * @param {*} currentPage
+ * @return {*} The HTML string representing the desktop sidebar navigation
+ */
+function rawSidebarDesktopRender(currentPage){
     return `            
             <nav class="sidebar_nav">
-                <a href="../index.html" class="nav_item ${currentPage.includes('summary') ? 'active' : ''}">
+                <a href="../index.html" class="nav_item ${currentPage.includes('index') ? 'active' : ''}">
                     <img src="../assets/imgs/helpIcons/login.svg" alt="login icon" />
                     <span>Login</span>
                 </a>
@@ -250,6 +256,13 @@ function rawSidebarDesktopRender(){
 `;
 }
 
+
+/**
+ * Returns the HTML template for the sidebar navigation on mobile view coming from index page.
+ *
+ * @param {*} currentPage
+ * @return {*} The HTML string representing the mobile sidebar navigation
+ */
 function getRawSidebarTemplateMobile(currentPage) {
   return ` 
     <div class="sidebar_container">  
@@ -275,6 +288,11 @@ function getRawSidebarTemplateMobile(currentPage) {
 };
 
 
+/**
+ * Returns the HTML template for the header section in the legal and privacy pages coming from index page.
+ *
+ * @return {*} The HTML string representing the header section
+ */
 function getRawHeaderTemplate() {
     return ` 
     <header>
