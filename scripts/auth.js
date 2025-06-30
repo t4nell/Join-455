@@ -170,28 +170,59 @@ function validateEmail(email) {
  */
 async function handleSignup(event) {
     event.preventDefault();
-    const { email, acceptPolicy, password, confirmPassword, name } = getSignUpData();
+    const signupData = getSignUpData();
+    
+    const validationError = validateSignupData(signupData);
+    if (validationError) {
+        showNotification(validationError, true);
+        return;
+    }
+    
+    await registerUser(signupData.password, signupData.name, signupData.email);
+};
+
+/**
+ * Validates all signup form data
+ *
+ * @param {Object} signupData - The signup form data
+ * @returns {string|null} Error message or null if valid
+ */
+function validateSignupData(signupData) {
+    const { email, acceptPolicy, password, confirmPassword } = signupData;
+    
     if (!validateEmail(email)) {
-        showNotification('Bitte geben Sie eine gültige E-Mail-Adresse ein', true);
-        return;
+        return 'Bitte geben Sie eine gültige E-Mail-Adresse ein';
     }
+    
     if (!acceptPolicy) {
-        showNotification('Bitte akzeptieren Sie die Datenschutzrichtlinie', true);
-        return;
+        return 'Bitte akzeptieren Sie die Datenschutzrichtlinie';
     }
+    
+    return validatePasswords(password, confirmPassword, email);
+};
+
+/**
+ * Validates password requirements and checks for existing user
+ *
+ * @param {string} password - The password to validate
+ * @param {string} confirmPassword - The password confirmation
+ * @param {string} email - The email to check for existing user
+ * @returns {string|null} Error message or null if valid
+ */
+function validatePasswords(password, confirmPassword, email) {
     if (password !== confirmPassword) {
-        showNotification('Passwörter stimmen nicht überein', true);
-        return;
+        return 'Passwörter stimmen nicht überein';
     }
+    
     if (password.length < 8) {
-        showNotification('Passwort muss mindestens 8 Zeichen haben', true);
-        return;
+        return 'Passwort muss mindestens 8 Zeichen haben';
     }
+    
     if (findUser(email)) {
-        showNotification('Ein Benutzer mit dieser E-Mail existiert bereits', true);
-        return;
+        return 'Ein Benutzer mit dieser E-Mail existiert bereits';
     }
-    await registerUser(password, name, email);
+    
+    return null;
 };
 
 
@@ -222,20 +253,52 @@ function getSignUpData() {
 async function registerUser(password, name, email) {
     try {
         const hashedPassword = await hashPassword(password);
-        const user = {
-            name,
-            email,
-            password: hashedPassword,
-            isGuest: false,
-        };
-        saveUser(user);
-        showNotification('Registrierung erfolgreich!');
-        clearSignupFields();
-        toggleLoginSignup();
+        const user = createUserObject(name, email, hashedPassword);
+        completeUserRegistration(user);
     } catch (error) {
-        console.error('Hashing fehlgeschlagen:', error);
-        showNotification('Technischer Fehler - bitte versuchen Sie es später erneut', true);
+        handleRegistrationError(error);
+    }
+};
+
+/**
+ * Creates a user object with the provided data
+ *
+ * @param {string} name - The user's name
+ * @param {string} email - The user's email
+ * @param {string} hashedPassword - The hashed password
+ * @returns {Object} The user object
+ */
+function createUserObject(name, email, hashedPassword) {
+    return {
+        name,
+        email,
+        password: hashedPassword,
+        isGuest: false,
     };
+};
+
+/**
+ * Completes the user registration process
+ *
+ * @param {Object} user - The user object to register
+ * @returns {void}
+ */
+function completeUserRegistration(user) {
+    saveUser(user);
+    showNotification('Registrierung erfolgreich!');
+    clearSignupFields();
+    toggleLoginSignup();
+};
+
+/**
+ * Handles registration errors
+ *
+ * @param {Error} error - The error that occurred
+ * @returns {void}
+ */
+function handleRegistrationError(error) {
+    console.error('Hashing fehlgeschlagen:', error);
+    showNotification('Technischer Fehler - bitte versuchen Sie es später erneut', true);
 };
 
 
@@ -372,28 +435,32 @@ function showNotification(message, isError = false) {
 /**
  * Enables or disables the signup button based on form input values
  *
- * Checks if all required fields in the signup form have values.
- * Enables the signup button only when all fields contain input.
- *
- * @function
  * @returns {void}
  */
 function disableSignupButton() {
     const signupButton = document.getElementById('signup_btn');
+    const allFieldsFilled = checkAllSignupFieldsFilled();
+    
+    signupButton.disabled = !allFieldsFilled;
+};
+
+/**
+ * Checks if all required signup form fields are filled
+ *
+ * @returns {boolean} True if all fields have values, false otherwise
+ */
+function checkAllSignupFieldsFilled() {
     const name = document.getElementById('signupName');
     const email = document.getElementById('signupEmail');
     const password = document.getElementById('signupPassword');
     const confirmPassword = document.getElementById('signupConfirmPassword');
-    if (
+    
+    return (
         name.value.length > 0 &&
         email.value.length > 0 &&
         password.value.length > 0 &&
         confirmPassword.value.length > 0
-    ) {
-        signupButton.disabled = false;
-    } else {
-        signupButton.disabled = true;
-    };
+    );
 };
 
 
