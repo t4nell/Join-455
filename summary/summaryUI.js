@@ -370,14 +370,6 @@ function showSummaryContent(summaryContainer, fullscreenGreeting) {
     }, 1000);
 };
 
-
-/**
- * Updates user profile display (add if missing)
- */
-function updateUserProfile() {
-    console.log('updateUserProfile called');
-}
-
 /**
  * Exports
  */
