@@ -136,77 +136,6 @@ function formatDate(date) {
 
 
 /**
- * Notification template object that handles notification creation and display
- */
-const NotificationTemplate = {
-/**
- * Creates the HTML content for a notification
- * @param {string} message - The message to display
- * @returns {string} HTML for the notification
- */
-    getHTML: function (message) {
-        return getNotificationTemplate(message);
-    },
-
-
-/**
- * Creates the HTML content for a notification
- * @param {string} message - The message to display
- * @returns {string} HTML for the notification
- */
-    createNotificationHTML: function (message) {
-        return getNotificationTemplate(message);
-    },
-
-    
-/**
- * Creates a notification container element
- * @param {string} message - The message to display
- * @returns {HTMLElement} Container element with notification content
- */
-    createNotificationContainer: function (message) {
-        const container = document.createElement('div');
-        container.id = 'notification-container-' + Date.now();
-        container.innerHTML = createNotificationHTML(message);
-        return container;
-    },
-
-/**
- * Adds fade-out animation and removes notification
- * @param {HTMLElement} container - The notification container
- * @param {number} duration - Duration before starting fade-out
- */
-    animateAndRemoveNotification: function (container, duration) {
-        setTimeout(function () {
-            container.classList.add('fade-out');
-            setTimeout(() => {
-                if (container.parentNode) {
-                    container.remove();
-                }
-            }, 500);
-        }, duration);
-    },
-
-
-/**
- * Shows a notification that disappears after a few seconds
- * @param {string} message - The message to display
- * @param {number} duration - How long to show the notification in ms (default: 3000)
- */
-    showNotification: function (message, duration = 3000) {
-        if (!message || typeof message !== 'string') {
-            console.warn('showNotification: Invalid message provided');
-            return;
-        }
-
-        const container = createNotificationContainer(message);
-        document.body.appendChild(container);
-        animateAndRemoveNotification(container, duration);
-    },
-};
-
-
-/**
  * Returns an array of container IDs that should be clickable
  *
  * @returns {Array<string>} Array of container IDs
@@ -454,5 +383,4 @@ function updateUserProfile() {
  */
 window.showMobileGreeting = showMobileGreeting;
 window.updateSummaryUI = updateSummaryUI;
-window.showNotification = showNotification;
 window.updateUserProfile = updateUserProfile;
