@@ -425,11 +425,3 @@ function filterOutTask(allTasks, taskId) {
     }
     return updatedTasks;
 };
-
-
-window.loadTaskData = loadTaskData;
-window.fetchTaskData = fetchTaskData;
-window.transformTaskData = transformTaskData;
-window.deleteTaskById = deleteTaskById;
-window.createStatsObject = createStatsObject;
-window.parseDate = parseDate;

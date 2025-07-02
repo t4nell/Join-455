@@ -369,10 +369,3 @@ function showSummaryContent(summaryContainer, fullscreenGreeting) {
         fullscreenGreeting.remove();
     }, 1000);
 };
-
-/**
- * Exports
- */
-window.showMobileGreeting = showMobileGreeting;
-window.updateSummaryUI = updateSummaryUI;
-window.updateUserProfile = updateUserProfile;
