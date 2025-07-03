@@ -1,5 +1,5 @@
 const allTasks = [];
-BASE_URL = 'https://join-455-default-rtdb.europe-west1.firebasedatabase.app/';
+BASE_URL = 'https://join-9e844-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
  * Asynchronously loads data from the Firebase Realtime Database.
