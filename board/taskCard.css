@@ -72,6 +72,12 @@
     padding: 0;
 }
 
+
+.dark_btn_task_cart_img:hover {
+    filter: brightness(0) saturate(100%) invert(55%) sepia(83%) saturate(1795%) hue-rotate(165deg) brightness(95%)
+        contrast(101%);
+}
+
 .category_label {
     background-color: #0052ff;
     color: var(--category-label-text-color);
@@ -199,10 +205,11 @@
     border-radius: 16px;
     border-top-right-radius: 0;
     z-index: 999;
+    cursor: auto;
 }
 
 .swap_status_template h3{
-    margin: 0 0 14px 0;
+    margin: 0 0 8px 0;
     padding: 8px;
     padding-bottom: 0;
 }
@@ -223,4 +230,59 @@
 
 .swap_status_button:hover {
     background-color: #091931;
+}
+
+
+.swap_status_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 4px;
+}
+
+.closed_btn_swap_status {
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+}
+
+.closed_btn_swap_status:hover {
+    background-color: #091931;
+    border-radius: 35px;
+}
+
+.closed_btn_swap_status_img{
+    filter: brightness(0) invert(1);
+}
+
+.closed_btn_position{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.swap_status_button_delete_img{
+    filter: brightness(0) invert(1);
+    width: 16px;
+    height: 16px;
+}
+
+.swap_status_button_delete{
+    display: flex;
+    gap: 8px;
+    margin: 2px 0;
+    padding: 4px;
+    background-color: transparent;
+    border-radius: 8px;
+    align-items: center;
+    padding-left: 8px;
+}
+
+.swap_status_button_delete:hover {
+    background-color: #091931;
+}
+
+.swap_status_button_delete p {
+    color: #fff;
+    margin: 0;
 }

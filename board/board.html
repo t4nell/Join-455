@@ -9,11 +9,11 @@
         <link rel="stylesheet" href="../styles/font.css" />
         <link rel="stylesheet" href="../styles/standard.css" />
         <link rel="stylesheet" href="./taskCard.css" />
-        <link rel="stylesheet" href="./taskDetail.css" />
+        <link rel="stylesheet" href="./taskDetailTemplate.css" />
         <link rel="stylesheet" href="./board.css" />
         <link rel="stylesheet" href="../styles/allSitesResponsive.css" />
         <link rel="stylesheet" href="../addTask/subtask.css" />
-        <link rel="stylesheet" href="./editTask.css" />
+        <link rel="stylesheet" href="./editTaskTemplate.css" />
         <link rel="stylesheet" href="./boardResponsive.css" />
 
         <link rel="stylesheet" href="../styles/scrollbar.css" />
@@ -40,11 +40,11 @@
         <script src="./boardTemplates.js" defer></script>
         <script src="../scripts/userProfil.js" defer></script>
         <script src="./taskCard.js" defer></script>
-        <script src="./taskDetail.js" defer></script>
+        <script src="./taskDetailTemplate.js" defer></script>
         <script src="./dragAndDrop.js" defer></script>
         <script src="../addTask/subtask.js" defer></script>
         <script src="../addTask/subtaskTemplate.js" defer></script>
-        <script src="./editTask.js" defer></script>
+        <script src="./editTaskTemplate.js" defer></script>
         <script src="../scripts/landscape.js" defer></script>
 
         <script src="../addTask/boardAddTask.js" defer></script>
@@ -123,7 +123,7 @@
                         <div class="category">
                             <span>To do</span>
                             <button class="plus_button" onclick="openOverlay('todo')">
-                                <img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
+                                <img class="plus_button_img" src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
                             </button>
                         </div>
 
@@ -139,7 +139,7 @@
                         <div class="category">
                             <span>In progress</span>
                             <button class="plus_button" onclick="openOverlay('inProgress')">
-                                <img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
+                                <img class="plus_button_img" src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
                             </button>
                         </div>
                         <div
@@ -154,7 +154,7 @@
                         <div class="category">
                             <span>Await feedback</span>
                             <button class="plus_button" onclick="openOverlay('awaitFeedback')">
-                                <img src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
+                                <img class="plus_button_img" src="../assets/imgs/boardIcons/plusButton.svg" alt="Plus Button symbol" />
                             </button>
                         </div>
                         <div

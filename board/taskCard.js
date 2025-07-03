@@ -24,6 +24,30 @@ function getCategoryColor(category) {
 };
 
 
+
+
+/**
+ * Handles the media query breakpoint change event and toggles the section button visibility.
+ *
+ * @returns {void}
+ */
+function handleBreakpointForBtn() {
+  toggleSectionButton();
+};
+
+/**
+ * Initializes the section button visibility logic by setting up a media query listener
+ * and toggling the section button display based on the current window width.
+ *
+ * @returns {void}
+ */
+function proofSizeForShowBtn() {
+  const mediaQuery = window.matchMedia('(min-width: 1346px)');
+  mediaQuery.addEventListener('change', handleBreakpointForBtn);
+  toggleSectionButton();
+};
+
+
 /**
  * Toggles visibility of section buttons based on window width
  * 
@@ -31,11 +55,13 @@ function getCategoryColor(category) {
  */
 function toggleSectionButton() {
     const sectionButtons = document.querySelectorAll('#section_button_container')
+    const existingTemplate = document.querySelector('.swap_status_template');
     sectionButtons.forEach(button => {
-        if (window.innerWidth < 1345) {
+        if (window.innerWidth < 1346) {
             button.style.display = 'flex'; 
         }else {
             button.style.display = 'none';
+            removeExistingTemplate(existingTemplate)
         };
     });
 };
@@ -101,15 +127,21 @@ function setStatusButtonVisibility(status, templateElement) {
         switch (status) {
             case 'todo':
                 templateElement.querySelector('#status_button_todo').style.display = 'none';
+                templateElement.querySelector('#status_button_in_Progress_img_arrow_upward').style.display = 'none';
+                templateElement.querySelector('#status_button_in_await_feedback_img_arrow_upward').style.display = 'none';
                 break;
             case 'inProgress':
                 templateElement.querySelector('#status_button_in_Progress').style.display = 'none';
+                templateElement.querySelector('#status_button_in_await_feedback_img_arrow_upward').style.display = 'none';
                 break;
             case 'awaitFeedback':
                 templateElement.querySelector('#status_button_await_Feedback').style.display = 'none';
+                templateElement.querySelector('#status_button_in_Progress_img_arrow_downward').style.display = 'none';
                 break;
             case 'done':
                 templateElement.querySelector('#status_button_done').style.display = 'none';
+                templateElement.querySelector('#status_button_in_Progress_img_arrow_downward').style.display = 'none';
+                templateElement.querySelector('#status_button_in_await_feedback_img_arrow_downward').style.display = 'none';
                 break;
         };
     };
@@ -150,6 +182,17 @@ function addCloseSwapStatusListener(templateElement) {
         };
     });
 };
+
+function CloseSwapStatus() {
+const templateElement = document.getElementById('swap_status_template');
+            templateElement.remove();
+            
+        };
+
+
+function bubbling(event){
+    event.stopPropagation()
+}
 
 
 /**

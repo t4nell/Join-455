@@ -33,7 +33,7 @@ function getTaskCard(task, progress, categoryColor) {
           <span class="category_label" style="background-color: ${categoryColor}">${task.category}</span>
         </div>
         <div id="section_button_container" style="display: none" >
-          <button onclick="renderSwapStatusTemplate(event)" id="section_button" class="dark_btn_task_cart"><img src="../assets/imgs/boardIcons/swapButton.svg" alt="Swap Button Icon"/></button>
+          <button onclick="renderSwapStatusTemplate(event)" id="section_button" class="dark_btn_task_cart"><img class="dark_btn_task_cart_img" src="../assets/imgs/boardIcons/swapButton.svg" alt="Swap Button Icon"/></button>
         </div>
       </div>
       <div class="task_content">
@@ -156,23 +156,37 @@ function renderMoreAvatarsButton(totalContacts, maxVisible) {
  */
 function getSwapStatusTemplate(task) {
     return `
-    <div class="swap_status_template">
-      <h3>Move To</h3>
+    
+    <div class="swap_status_template" id="swap_status_template" onclick="bubbling(event)">
+    <div class="swap_status_header">
+    <h3>Move To</h3>
+    <div class="closed_btn_position">
+    <button onclick="CloseSwapStatus()" class="closed_btn_swap_status">
+            <img class="closed_btn_swap_status_img" src="../assets/imgs/boardIcons/close.svg" alt="close button">
+          </button>
+    </div>
+    </div>
       <button id="status_button_todo" data-status="todo" class="swap_status_button" onclick="changeTaskStatus(event, '${task.id}', 'todo')">
         <img src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
         <p>To-Do</p>
       </button>
       <button id="status_button_in_Progress" data-status="inProgress" class="swap_status_button" onclick="changeTaskStatus(event, '${task.id}', 'inProgress')">
-        <img src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
+        <img id="status_button_in_Progress_img_arrow_upward" src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
+        <img id="status_button_in_Progress_img_arrow_downward" src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
         <p>In progress</p>
       </button>
       <button id="status_button_await_Feedback" data-status="awaitFeedback" class="swap_status_button" onclick="changeTaskStatus(event, '${task.id}', 'awaitFeedback')">
-        <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+        <img id="status_button_in_await_feedback_img_arrow_downward" src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+        <img id="status_button_in_await_feedback_img_arrow_upward" src="../assets/imgs/boardIcons/arrow_upward.svg" alt="Arrow Upward Icon">
         <p>Await feedback</p>
       </button>      
       <button id="status_button_done" data-status="done" class="swap_status_button" onclick="changeTaskStatus(event, '${task.id}', 'done')">
-        <img src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
+        <img  src="../assets/imgs/boardIcons/arrow_downward.svg" alt="Arrow Downward Icon">
         <p>Done</p>
+      </button>
+      <button id="status_button_done" data-status="done" class="swap_status_button_delete" onclick="deleteTask('${task.id}')">
+        <img  class="swap_status_button_delete_img" src="../assets/imgs/boardIcons/delete.svg" alt="Arrow Downward Icon">
+        <p>Delete</p>
       </button>
     </div>
   `;

@@ -133,11 +133,11 @@ function clearContainer(container) {
  * @returns {void} Renders task cards into the container
  */
 function renderTasks(tasks, container) {
-       tasks.forEach((task) => {
+       tasks.slice().reverse().forEach((task) => {
         const progress = calculateSubtaskProgress(task);
         const categoryColor = getCategoryColor(task.category);
         container.innerHTML += getTaskCard(task, progress, categoryColor);
-        toggleSectionButton();
+        proofSizeForShowBtn();
     });
 };
 

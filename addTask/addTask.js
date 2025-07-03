@@ -60,15 +60,22 @@ function renderSidebarMobile(mainContainer, navContainer, navbarMobileContainer)
 
 
 /**
- * Initializes the sidebar with event listeners and correct display.
+ * Handles the media query breakpoint change event and updates the sidebar accordingly.
  *
- * @returns {void} Sets up the sidebar responsiveness.
+ * @returns {void}
+ */
+function handleBreakpoint() {
+  proofSize();
+};
+
+
+/**
+ * Initializes the sidebar by setting up a media query listener and rendering the correct sidebar version.
+ *
+ * @returns {void}
  */
 function initSidebar() {
   const mediaQuery = window.matchMedia('(min-width: 1050px)');
-  const handleBreakpoint = () => {
-    proofSize();
-  };
   mediaQuery.addEventListener('change', handleBreakpoint);
   proofSize();
 };
